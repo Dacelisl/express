@@ -1,0 +1,15 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "servidor express con productos",
+  "main": "app.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "author": "Diego celis",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
