@@ -101,8 +101,7 @@ const fs = require('fs')
 
 /* -------------------------------------------------------------------------------------------------------- */
 /* -------------------------------------------TEST--------------------------------------------------------- */
-
-const testProducts = new ProductManager('productos.json')
+  const testProducts = new ProductManager('productos.json')
   const testProduct = new Product(
     'pera',
     'fruta',
@@ -135,4 +134,4 @@ const testProducts = new ProductManager('productos.json')
       thumbnail: 'ruta de foto',
       code: 'sdmo',
       stock: 9,
-    })
+    }) 
