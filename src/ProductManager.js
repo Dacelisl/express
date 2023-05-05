@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-  class Product {
+class Product {
   constructor(title, description, price, thumbnail, code, stock) {
     this.title = title
     this.description = description
@@ -11,37 +11,45 @@ const fs = require('fs')
   }
 }
 
- class ProductManager {
+class ProductManager {
   constructor(path) {
     this.path = path
-    this.products = []
-    fs.writeFileSync(this.path, JSON.stringify(this.products))
+    if (!fs.existsSync(this.path)) {
+      fs.writeFileSync(this.path, '[]')
+    }
+    this.products = JSON.parse(fs.readFileSync(this.path, 'utf-8'))
   }
-  addProduct(product) {
-    if (this.codeFind(product.code)) return 'El codigo no puede ser Repetido'
-    if (
-      product.title &&
-      product.description &&
-      product.price &&
-      product.thumbnail &&
-      product.code &&
-      product.stock
-    ) {
-      this.products.push({
-        id: this.idIncrement(),
-        title: product.title,
-        description: product.description,
-        price: product.price,
-        thumbnail: product.thumbnail,
-        code: product.code,
-        stock: product.stock,
-      })
-      fs.writeFileSync(this.path, JSON.stringify(this.products))
-      return 'Agregado con exito'
-    } else {
-      return 'Los campos son obligatorios; '
+  async addProduct(product) {
+    try {
+      if (this.codeFind(product.code)) return 'El codigo no puede ser Repetido'
+      if (
+        product.title &&
+        product.description &&
+        product.price &&
+        product.thumbnail &&
+        product.code &&
+        product.stock
+      ) {
+        this.products.push({
+          id: this.idIncrement(),
+          title: product.title,
+          description: product.description,
+          price: product.price,
+          thumbnail: product.thumbnail,
+          code: product.code,
+          stock: product.stock,
+        })
+        await fs.promises.writeFile(this.path, JSON.stringify(this.products))
+        return 'Agregado con exito'
+      } else {
+        return 'Los campos son obligatorios'
+      }
+    } catch (error) {
+      console.error(error)
+      throw new Error('Error al agregar producto')
     }
   }
+
   codeFind(codeProduct) {
     return this.products.some(
       (itemProducts) => itemProducts.code === codeProduct
@@ -53,10 +61,14 @@ const fs = require('fs')
     return id[id.length - 1].id + 1
   }
 
-  getProducts() {
-    const res = fs.readFileSync(this.path, 'utf-8')
-    if (res) this.products = JSON.parse(res)
-    return this.products
+  async getProducts() {
+    try {
+      const res = await fs.promises.readFile(this.path, 'utf-8')
+      if (res) this.products = JSON.parse(res)
+      return this.products
+    } catch (error) {
+      throw new Error(`Error al obtener los productos: ${error}`)
+    }
   }
 
   getProductById(idProduct) {
@@ -68,7 +80,7 @@ const fs = require('fs')
     return 'Not found '
   }
 
-  updateProduct(idProduct, product) {
+  async updateProduct(idProduct, product) {
     if (this.codeFind(product.code)) return 'El codigo no puede ser Repetido'
     const productFind = this.getProductById(idProduct)
     if (productFind.toString() !== 'Not found ') {
@@ -82,17 +94,28 @@ const fs = require('fs')
         stock: product.stock || productFind[0].stock,
       }
       this.products.splice(this.products.indexOf(productFind[0]), 1, update)
-      fs.writeFileSync(this.path, JSON.stringify(this.products))
+      try {
+        await fs.promises.writeFileSync(
+          this.path,
+          JSON.stringify(this.products)
+        )
+      } catch (error) {
+        throw new Error(`Error al actualizar el archivo: ${error}`)
+      }
     } else {
       return 'Code Not found '
     }
   }
 
-  deleteProduct(idProduct) {
+  async deleteProduct(idProduct) {
     const productFind = this.getProductById(idProduct)
     if (productFind.toString() !== 'Not found ') {
       this.products.splice(this.products.indexOf(productFind[0]), 1)
-      fs.writeFileSync(this.path, JSON.stringify(this.products))
+      try {
+        await fs.promises.writeFile(this.path, JSON.stringify(this.products))
+      } catch (error) {
+        throw new Error(`Error al escribir el archivo:  ${error}`)
+      }
     } else {
       return 'Not found '
     }
@@ -101,6 +124,8 @@ const fs = require('fs')
 
 /* -------------------------------------------------------------------------------------------------------- */
 /* -------------------------------------------TEST--------------------------------------------------------- */
+
+const productsExect = () => {
   const testProducts = new ProductManager('productos.json')
   const testProduct = new Product(
     'pera',
@@ -111,27 +136,37 @@ const fs = require('fs')
     6
   )
   testProducts.addProduct(testProduct)
-    testProducts.addProduct({
-      title: 'Manzana',
-      description: 'fruta',
-      price: 300,
-      thumbnail: 'ruta de foto',
-      code: 'agdgdsg',
-      stock: 16,
-    })
-    testProducts.addProduct({
-      title: 'Fresa',
-      description: 'fruta',
-      price: 150,
-      thumbnail: 'ruta de foto',
-      code: 'a29837gdsg',
-      stock: 16,
-    })
-    testProducts.addProduct({
-      title: 'mora',
-      description: 'fruta',
-      price: 140,
-      thumbnail: 'ruta de foto',
-      code: 'sdmo',
-      stock: 9,
-    }) 
+  testProducts.addProduct({
+    title: 'Manzana',
+    description: 'fruta',
+    price: 300,
+    thumbnail: 'ruta de foto',
+    code: 'agdgdsg',
+    stock: 16,
+  })
+  testProducts.addProduct({
+    title: 'piña',
+    description: 'fruta',
+    price: 3450,
+    thumbnail: 'ruta de foto',
+    code: 'apiasg',
+    stock: 36,
+  })
+  testProducts.addProduct({
+    title: 'sandia',
+    description: 'fruta',
+    price: 600,
+    thumbnail: 'ruta de foto',
+    code: 'tresan',
+    stock: 10,
+  })
+  testProducts.addProduct({
+    title: 'Fresa',
+    description: 'fruta',
+    price: 150,
+    thumbnail: 'ruta de foto',
+    code: 'a29837gdsg',
+    stock: 16,
+  })
+}
+module.exports = { productsExect, ProductManager }
