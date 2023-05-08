@@ -1,32 +1,24 @@
-const express = require('express')
-const { ProductManager, productsExect } = require('./ProductManager')
-const productos = new ProductManager('productos.json')
-productsExect()
+import express from 'express'
+import { productsRouter } from './routers/router.products.js'
 
 const app = express()
 const port = 3000
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.use('/products/', productsRouter)
+
 app.listen(port, () => {
-  console.log('example port', port)
-})
-app.get('/products', async (req, res) => {
-  let limit = req.query.limit
-  const data = await productos.getProducts()
-  if (limit) {
-    const resultado = data.slice(0, limit)
-    res.json(resultado)
-  } else {
-    res.json(productos)
-  }
+  console.log(`listen on http://localhost:${port}`)
 })
 
-app.get('/products/:qid', async (req, res) => {
-  const productId = parseInt(req.params.qid)
-  const data = await productos.getProducts()
-  const productFind = data.find((product) => product.id == productId)
-  if (productFind) {
-    res.json(productFind)
-  } else {
-    res.json({ error: `product not found ${productId}` })
-  }
+app.get('*', (req, res) => {
+  return res.status(404).json({
+    status: 'error',
+    msg: 'Not Found',
+    data: {},
+  })
 })
+
+

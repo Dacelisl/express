@@ -1,4 +1,4 @@
-const fs = require('fs')
+import { existsSync, writeFileSync, readFileSync, promises } from 'fs'
 
 class Product {
   constructor(title, description, price, thumbnail, code, stock) {
@@ -11,13 +11,13 @@ class Product {
   }
 }
 
-class ProductManager {
+ export class ProductManager {
   constructor(path) {
     this.path = path
-    if (!fs.existsSync(this.path)) {
-      fs.writeFileSync(this.path, '[]')
+    if (!existsSync(this.path)) {
+      writeFileSync(this.path, '[]')
     }
-    this.products = JSON.parse(fs.readFileSync(this.path, 'utf-8'))
+    this.products = JSON.parse(readFileSync(this.path, 'utf-8'))
   }
   async addProduct(product) {
     try {
@@ -39,13 +39,12 @@ class ProductManager {
           code: product.code,
           stock: product.stock,
         })
-        await fs.promises.writeFile(this.path, JSON.stringify(this.products))
+        await promises.writeFile(this.path, JSON.stringify(this.products))
         return 'Agregado con exito'
       } else {
         return 'Los campos son obligatorios'
       }
     } catch (error) {
-      console.error(error)
       throw new Error('Error al agregar producto')
     }
   }
@@ -63,7 +62,7 @@ class ProductManager {
 
   async getProducts() {
     try {
-      const res = await fs.promises.readFile(this.path, 'utf-8')
+      const res = await promises.readFile(this.path, 'utf-8')
       if (res) this.products = JSON.parse(res)
       return this.products
     } catch (error) {
@@ -71,18 +70,18 @@ class ProductManager {
     }
   }
 
-  getProductById(idProduct) {
-    const productList = this.getProducts()
-    const productFind = productList.filter(
-      (product) => product.id === idProduct
-    )
-    if (productFind.length > 0) return productFind
+  async getProductById(idProduct) {
+    const productList = await this.getProducts().then((prod) => {
+      const productFind = prod.filter((product) => product.id === idProduct)
+      return productFind
+    })
+    if (productList.length > 0) return productList
     return 'Not found '
   }
 
   async updateProduct(idProduct, product) {
     if (this.codeFind(product.code)) return 'El codigo no puede ser Repetido'
-    const productFind = this.getProductById(idProduct)
+    const productFind = await this.getProductById(idProduct)
     if (productFind.toString() !== 'Not found ') {
       const update = {
         id: productFind[0].id,
@@ -95,10 +94,8 @@ class ProductManager {
       }
       this.products.splice(this.products.indexOf(productFind[0]), 1, update)
       try {
-        await fs.promises.writeFileSync(
-          this.path,
-          JSON.stringify(this.products)
-        )
+        await promises.writeFile(this.path, JSON.stringify(this.products))
+        return 'Actualizado con exito'
       } catch (error) {
         throw new Error(`Error al actualizar el archivo: ${error}`)
       }
@@ -108,16 +105,17 @@ class ProductManager {
   }
 
   async deleteProduct(idProduct) {
-    const productFind = this.getProductById(idProduct)
+    const productFind = await this.getProductById(idProduct)
     if (productFind.toString() !== 'Not found ') {
       this.products.splice(this.products.indexOf(productFind[0]), 1)
       try {
-        await fs.promises.writeFile(this.path, JSON.stringify(this.products))
+        await promises.writeFile(this.path, JSON.stringify(this.products))
+        return 'Eliminado con exito'
       } catch (error) {
-        throw new Error(`Error al escribir el archivo:  ${error}`)
+        throw new Error(`Error al eliminar el archivo:  ${error}`)
       }
     } else {
-      return 'Not found '
+      return 'Code Not found '
     }
   }
 }
@@ -125,7 +123,7 @@ class ProductManager {
 /* -------------------------------------------------------------------------------------------------------- */
 /* -------------------------------------------TEST--------------------------------------------------------- */
 
-const productsExect = () => {
+ export const productsExect = () => {
   const testProducts = new ProductManager('productos.json')
   const testProduct = new Product(
     'pera',
@@ -169,4 +167,3 @@ const productsExect = () => {
     stock: 16,
   })
 }
-module.exports = { productsExect, ProductManager }
