@@ -2,42 +2,25 @@ import express from 'express'
 import { ProductManager, productsExect } from '../ProductManager.js'
 
 const productos = new ProductManager('productos.json')
-productsExect() 
-export const productsRouter = express.Router() 
+productsExect()
+export const productsRouter = express.Router()
 
 productsRouter.get('/', async (req, res) => {
-  let limit = req.query.limit
+  let limit = parseInt(req.query.limit)
   const data = await productos.getProducts().then((response) => {
     return response
   })
   if (limit) {
-    const resultado = data.slice(0, limit)
-    res.status(200).json(resultado)
+    const resultado = data.data.slice(0, limit)
+    res.json(resultado)
   } else {
-    res.status(200).json({
-      status: 'succes',
-      msg: 'ok',
-      data: data,
-    })
+    res.json(data)
   }
 })
-productsRouter.get('/products/:qid', async (req, res) => {
+productsRouter.get('/:qid', async (req, res) => {
   const productId = parseInt(req.params.qid)
-  const data = await productos.getProducts()
-  const productFind = data.find((product) => product.id == productId)
-  if (productFind) {
-    res.status(200).json({
-      status: 'succes',
-      msg: 'ok',
-      data: productFind,
-    })
-  } else {
-    res.status(400).json({
-      status: 'error',
-      msg: 'product not found',
-      data: {},
-    })
-  }
+  const data = await productos.getProductById(productId)
+  res.json(data)
 })
 productsRouter.post('/', async (req, res) => {
   const dataProduct = req.body
@@ -53,11 +36,7 @@ productsRouter.post('/', async (req, res) => {
     .then((response) => {
       return response
     })
-  return res.status(200).json({
-    status: 'ok',
-    msg: resAdd,
-    data: {},
-  })
+  return res.json(resAdd)
 })
 productsRouter.put('/', async (req, res) => {
   const dataProduct = req.body
@@ -73,14 +52,14 @@ productsRouter.put('/', async (req, res) => {
     .then((response) => {
       return response
     })
-  return res.status(200).json({ message: resUpdate })
+  return res.json(resUpdate)
 })
 productsRouter.delete('/', async (req, res) => {
   const dataProduct = req.body
   const resDelete = await productos
-    .deleteProduct(dataProduct.id)
+    .deleteProduct(parseInt(dataProduct.id))
     .then((response) => {
       return response
     })
-  return res.status(200).json({ message: resDelete })
+  return res.json(resDelete)
 })

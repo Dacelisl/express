@@ -1,0 +1,53 @@
+{
+	"info": {
+		"_postman_id": "7cd16566-63c5-465f-b6ae-e10b237463a9",
+		"name": "cartManager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27289473"
+	},
+	"item": [
+		{
+			"name": "createCart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/carts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productsToCart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/carts/143984/product/19",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"carts",
+						"143984",
+						"product",
+						"19"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
