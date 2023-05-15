@@ -1,1 +1,12 @@
-[{"id":358901,"products":[]},{"id":143984,"products":[{"pId":1,"quantity":2},{"pId":5,"quantity":1},{"pId":19,"quantity":1}]},{"id":447361,"products":[]}]
+[
+  { "id": 358901, "products": [] },
+  {
+    "id": 143984,
+    "products": [
+      { "pId": 1, "quantity": 2 },
+      { "pId": 5, "quantity": 1 },
+      { "pId": 3, "quantity": 1 }
+    ]
+  },
+  { "id": 447361, "products": [] }
+]

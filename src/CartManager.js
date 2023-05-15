@@ -1,4 +1,8 @@
 import { existsSync, writeFileSync, readFileSync, promises } from 'fs'
+import { ProductManager } from './ProductManager.js'
+
+const productos = new ProductManager('productos.json')
+
 export class CartManager {
   constructor(path) {
     this.path = path
@@ -62,7 +66,6 @@ export class CartManager {
       }
     }
   }
-
   async getCarts() {
     try {
       const res = await promises.readFile(this.path, 'utf-8')
@@ -87,11 +90,8 @@ export class CartManager {
     const max = 999999
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
-
   async getCartById(idCart) {
-    const cartsCopy = await this.getCarts().then((response) => {
-      return response
-    })
+    const cartsCopy = await this.getCarts()
     const cartFind = cartsCopy.filter((cart) => cart.id === idCart)
     if (cartFind.length > 0) return cartFind
     return {
@@ -100,44 +100,23 @@ export class CartManager {
       msg: `Error IdCart not found `,
     }
   }
-
-  async updateProduct(idProduct, product) {
-    if (this.codeExist(product.code)) return 'El codigo no puede ser Repetido'
-    const productFind = await this.getProductById(idProduct)
-    if (productFind.toString() !== 'Not found ') {
-      const update = {
-        id: productFind[0].id,
-        title: product.title || productFind[0].title,
-        description: product.description || productFind[0].description,
-        price: product.price || productFind[0].price,
-        thumbnail: product.thumbnail || productFind[0].thumbnail,
-        code: product.code || productFind[0].code,
-        stock: product.stock || productFind[0].stock,
-      }
-      this.products.splice(this.products.indexOf(productFind[0]), 1, update)
-      try {
-        await promises.writeFile(this.path, JSON.stringify(this.products))
-        return 'Actualizado con exito'
-      } catch (error) {
-        throw new Error(`Error al actualizar el archivo: ${error}`)
-      }
-    } else {
-      return 'Code Not found '
-    }
-  }
-
-  async deleteProduct(idProduct) {
-    const productFind = await this.getProductById(idProduct)
-    if (productFind.toString() !== 'Not found ') {
-      this.products.splice(this.products.indexOf(productFind[0]), 1)
-      try {
-        await promises.writeFile(this.path, JSON.stringify(this.products))
-        return 'Eliminado con exito'
-      } catch (error) {
-        throw new Error(`Error al eliminar el archivo:  ${error}`)
-      }
-    } else {
-      return 'Code Not found '
+  async getProductsInCart(idCart) {
+    const data = await this.getCartById(idCart)
+    const productsInCart = await Promise.all(
+      data[0].products.map(async (item) => {
+        const productId = await productos.getProductById(item.pId)
+        return {
+          id: item.pId,
+          product: productId.data[0].title,
+          quantity: item.quantity,
+        }
+      })
+    )
+    return {
+      status: 'success',
+      code: 201,
+      msg: `Product list`,
+      data: productsInCart,
     }
   }
 }

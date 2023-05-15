@@ -97,7 +97,7 @@ export class ProductManager {
       }
     }
   }
-  async getProductById(idProduct) {
+   async getProductById(idProduct) {
     const productList = await this.getProducts().then((prod) => {
       const productFind = prod.data.filter(
         (product) => product.id === idProduct
