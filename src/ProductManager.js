@@ -16,8 +16,14 @@ export class ProductManager {
     this.path = path
     if (!existsSync(this.path)) {
       writeFileSync(this.path, '[]')
+    } else {
+      try {
+        this.products = JSON.parse(readFileSync(this.path, 'utf-8'))
+      } catch (error) {
+        console.error('Error parsing JSON:', error)
+        this.products = []
+      }
     }
-    this.products = JSON.parse(readFileSync(this.path, 'utf-8'))
   }
   async addProduct(product) {
     try {
@@ -78,10 +84,12 @@ export class ProductManager {
     return id[id.length - 1].id + 1
   }
 
-  async getProducts() {
+  async getProducts(limit) {
     try {
       const res = await promises.readFile(this.path, 'utf-8')
       if (res) this.products = JSON.parse(res)
+      if (limit > 0) this.products = this.products.slice(0, limit)
+
       return {
         status: 'success',
         code: 200,
@@ -97,7 +105,7 @@ export class ProductManager {
       }
     }
   }
-   async getProductById(idProduct) {
+  async getProductById(idProduct) {
     const productList = await this.getProducts().then((prod) => {
       const productFind = prod.data.filter(
         (product) => product.id === idProduct

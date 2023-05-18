@@ -2,23 +2,18 @@ import express from 'express'
 import { ProductManager, productsExect } from '../ProductManager.js'
 
 const productos = new ProductManager('productos.json')
-productsExect()
+/* productsExect() */
 export const productsRouter = express.Router()
 
 productsRouter.get('/', async (req, res) => {
   let limit = parseInt(req.query.limit)
-  const data = await productos.getProducts()
-  if (limit) {
-    const resultado = data.data.slice(0, limit)
-    res.json(resultado)
-  } else {
-    res.json(data)
-  }
+  let data = await productos.getProducts(limit)
+  res.render('home', data)
 })
 productsRouter.get('/:qid', async (req, res) => {
   const productId = parseInt(req.params.qid)
   const data = await productos.getProductById(productId)
-  return res.json(data)
+  res.render('home', data)
 })
 productsRouter.post('/', async (req, res) => {
   const dataProduct = req.body
@@ -31,10 +26,8 @@ productsRouter.post('/', async (req, res) => {
       code: dataProduct.code,
       stock: dataProduct.stock,
     })
-    .then((response) => {
-      return response
-    })
-  return res.json(resAdd)
+    res.render('addProduct', {})
+  /* return res.json(resAdd) */
 })
 productsRouter.put('/:pid', async (req, res) => {
   const productId = parseInt(req.params.pid)
