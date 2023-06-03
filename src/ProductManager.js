@@ -33,14 +33,7 @@ export class ProductManager {
           code: 404,
           msg: 'The code cannot be repeated',
         }
-      if (
-        product.title &&
-        product.description &&
-        product.price &&
-        product.thumbnail &&
-        product.code &&
-        product.stock
-      ) {
+      if (product.title && product.description && product.price && product.thumbnail && product.code && product.stock) {
         this.products.push({
           id: this.idIncrement(),
           title: product.title,
@@ -72,18 +65,14 @@ export class ProductManager {
       }
     }
   }
-
   codeFind(codeProduct) {
-    return this.products.some(
-      (itemProducts) => itemProducts.code === codeProduct
-    )
+    return this.products.some((itemProducts) => itemProducts.code === codeProduct)
   }
   idIncrement() {
     if (this.products.length === 0) return 1
     const id = this.products.sort((a, b) => a.id < b.id)
     return id[id.length - 1].id + 1
   }
-
   async getProducts(limit) {
     try {
       const res = await promises.readFile(this.path, 'utf-8')
@@ -107,9 +96,7 @@ export class ProductManager {
   }
   async getProductById(idProduct) {
     const productList = await this.getProducts().then((prod) => {
-      const productFind = prod.data.filter(
-        (product) => product.id === idProduct
-      )
+      const productFind = prod.data.filter((product) => product.id === idProduct)
       return productFind
     })
     return {
@@ -138,11 +125,7 @@ export class ProductManager {
         code: product.code || productFind.data[0].code,
         stock: product.stock || productFind.data[0].stock,
       }
-      this.products.splice(
-        this.products.indexOf(productFind.data[0]),
-        1,
-        update
-      )
+      this.products.splice(this.products.indexOf(productFind.data[0]), 1, update)
       try {
         await promises.writeFile(this.path, JSON.stringify(this.products))
         return {
@@ -161,7 +144,6 @@ export class ProductManager {
       return productFind
     }
   }
-
   async deleteProduct(idProduct) {
     const productFind = await this.getProductById(idProduct)
     if (productFind.code !== 404) {
@@ -191,14 +173,7 @@ export class ProductManager {
 
 export const productsExect = () => {
   const testProducts = new ProductManager('productos.json')
-  const testProduct = new Product(
-    'pera',
-    'fruta',
-    100,
-    'ruta de foto',
-    'abc123',
-    6
-  )
+  const testProduct = new Product('pera', 'fruta', 100, 'ruta de foto', 'abc123', 6)
   testProducts.addProduct(testProduct)
   testProducts.addProduct({
     title: 'Manzana',
