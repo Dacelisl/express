@@ -5,35 +5,8 @@ import { faker } from '@faker-js/faker'
 
 export const connectMongo = async () => {
   try {
-    await connect('mongodb+srv://hero055:v1jGGXbhtPoSKple@backendcoder.tu6mnjp.mongodb.net/?retryWrites=true&w=majority')
-
+    await connect('mongodb+srv://hero055:v1jGGXbhtPoSKple@backendcoder.tu6mnjp.mongodb.net/ecommerce?retryWrites=true&w=majority')
     console.log('plug to MONGODB!')
-    /* insert Data */
-    /* let products = await ProductsModel.find({})
-    console.log(JSON.stringify(products, null, 2))
-     let products = await ProductsModel.findOne({ _id: '6477bde9d7627dafa9ea28b2' }); .populate('courses.course');
-    console.log(JSON.stringify(products, null, 2)); */
-
-    /* let student = await ProductsModel.findOne({ _id: '6477be0ac11ecddd0d42aa51' });
-    student.courses.push({ course: '6477c6d4c8f14bc83cca80f1' });
-    let res = await ProductsModel.updateOne({ _id: '6477be0ac11ecddd0d42aa51' }, student);
-    console.log(res); */
-
-    /* const created = ProductsModel.create({
-       title: 'Mango'  ,
-  description: 'Fruta'  ,
-  price: '200' ,
-  thumbnail: 'ruta de la imagen'  ,
-  code: 'M4760' ,
-  stock: '20' ,
-    }); */
-
-    /* const created = CartsModel.create({
-      products: [],
-    }); */
-
-    /* let res = await ProductsModel.find({ title: 'mango' }).explain('executionStats');
-    console.log(res); */
 
     /* async function poblar() {
       const products = []
@@ -58,7 +31,6 @@ export const connectMongo = async () => {
 
     /* END */
   } catch (e) {
-    console.log('Error', e)
     throw new Error('Can not connected')
   }
 }

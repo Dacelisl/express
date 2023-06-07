@@ -4,34 +4,28 @@ import { ProductServices } from '../services/product.services.js'
 
 const productos = new ProductManager('productos.json')
 const productService = new ProductServices()
-/* productsExect() */
 export const productsRouter = express.Router()
 
 productsRouter.get('/', async (req, res) => {
-  /* let limit = parseInt(req.query.limit)
-  let data = await productos.getProducts(limit)
-  res.render('home', {data}) */
+  const opcionesConsulta = {}
+  opcionesConsulta.limit = parseInt(req.query.limit)
+  opcionesConsulta.page = req.query.page
+  opcionesConsulta.sort = req.query.sort
+  opcionesConsulta.query = req.query.query
   try {
-    const products = await productService.getAll()
-    return res.status(200).json({
-      status: 'success',
-      msg: 'products list',
-      data: products,
-    })
-  } catch (e) {
-    console.log(e)
-    return res.status(500).json({
-      status: 'error',
-      msg: 'something went wrong :(',
-      data: {},
-    })
+    const data = await productService.getAll(opcionesConsulta)
+    const pagetotal = data.length
+    /* res.render('home', {data}) */
+    
+  } catch (error) {
+    throw error
   }
 })
 
 productsRouter.get('/:qid', async (req, res) => {
   const productId = parseInt(req.params.qid)
-  const data = await productos.getProductById(productId)
-  res.render('home', {})
+  const data = await productService.findById(productId)
+  res.render('home', {data})
 })
 
 productsRouter.post('/', async (req, res) => {
@@ -52,7 +46,6 @@ productsRouter.post('/', async (req, res) => {
       data: createProduct,
     })
   } catch (e) {
-    console.log(e)
     return res.status(500).json({
       status: 'error',
       msg: 'something went wrong :(',
@@ -80,7 +73,6 @@ productsRouter.put('/:pid', async (req, res) => {
       data: { _id: id, title, description, price, thumbnail, code, stock },
     })
   } catch (e) {
-    console.log(e)
     return res.status(500).json({
       status: 'error',
       msg: 'something went wrong :(',
@@ -100,7 +92,6 @@ productsRouter.delete('/:pid', async (req, res) => {
       data: {},
     })
   } catch (e) {
-    console.log(e)
     return res.status(500).json({
       status: 'error',
       msg: 'something went wrong :(',

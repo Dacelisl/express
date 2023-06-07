@@ -22,9 +22,9 @@
 </div>
 <h1 class='title'>PRODUCT LIST</h1>
 <div id='product-container' class='center'>
-  {{#each data}}
+  {{#each payload}}
     <ul class='product-list'>
-      <li class='product-item'>id: {{id}}</li>
+      <li class='product-item'>id: {{_id}}</li>
       <li class='product-item'>title: {{title}}</li>
       <li class='product-item'>description: {{description}}</li>
       <li class='product-item'>price: {{price}}</li>
@@ -33,10 +33,24 @@
       <li class='product-item'>code: {{code}}</li>
       <li class='product-item'>stock: {{stock}}</li>
       <li class='button-item'>
-        <button class='delete-button' data-id='{{id}}'>Delete</button>
+        <button class='delete-button' id='product-button' data-id='{{_id}}'>Delete</button>
+      <button class='addCart-button' id='product-button' data-id='{{_id}}'>Add To Cart</button>
       </li>
     </ul>
   {{/each}}
 </div>
+<footer class="footer">
+  <ul class="pagination">
+    {{#if hasPrevPage}}
+      <li><a href="{{prevLink}}">Anterior</a></li>
+    {{/if}}
+    <li><a >Page: {{page}}</a></li>
+    {{#if hasNextPage}}
+      <li><a href="{{nextLink}}">Siguiente</a></li>
+    {{/if}}
+    
+  </ul>
+</footer>
 <script src='/socket.io/socket.io.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src='/js/index.js'></script>

@@ -1,18 +1,39 @@
-import express from "express";
-import { ProductManager } from '../ProductManager.js'
-const productos = new ProductManager('productos.json')
+import express from 'express'
+import { ProductServices } from '../services/product.services.js'
 
+const productService = new ProductServices()
 export const routerView = express.Router()
 
 routerView.get('/', async (req, res) => {
-  let limit = parseInt(req.query.limit)
-  let data = await productos.getProducts(limit)
-  res.render('realTimeProducts', data)
+  const opcionesConsulta = {}
+  opcionesConsulta.limit = parseInt(req.query.limit)
+  opcionesConsulta.page = req.query.page
+  opcionesConsulta.sort = req.query.sort
+  opcionesConsulta.query = req.query.query
+  try {
+    const payload = await productService.getAll(opcionesConsulta)
+    /* return res.json(payload) */
+    res.render('realTimeProducts', payload)
+  } catch (error) {
+    throw new Error(error)
+  }
+})
+routerView.get('/products', async (req, res) => {
+  try {
+    const payload = await productService.getAll({})
+    /* return res.json(payload) */
+    res.render('home', payload)
+  } catch (error) {
+    throw new Error(error)
+  }
 })
 routerView.get('/:qid', async (req, res) => {
-  const productId = parseInt(req.params.qid)
-  const data = await productos.getProductById(productId)
-  res.render('realTimeProducts', data)
+  const productId = req.params.qid
+  try {
+    const payload = await productService.findById(productId)
+    /* return res.json(payload) */
+    res.render('product', payload.payload)
+  } catch (error) {
+    throw new Error(error)
+  }
 })
-
-
