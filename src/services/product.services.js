@@ -31,8 +31,8 @@ export class ProductServices {
         page: page,
         hasPrevPage: hasPrevPage,
         hasNextPage: hasNextPage,
-        prevLink: hasPrevPage ? `http://localhost:8080/realTimeProducts?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page - 1}` : null,
-        nextLink: hasNextPage ? `http://localhost:8080/realTimeProducts?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page + 1}` : null,
+        prevLink: hasPrevPage ? `http://localhost:8080${search.baseUrl}?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page - 1}` : null,
+        nextLink: hasNextPage ? `http://localhost:8080${search.baseUrl}?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page + 1}` : null,
       }
     } catch (error) {
       return {

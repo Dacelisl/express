@@ -5,11 +5,16 @@
     <button type='submit'>Search</button>
   </form>
 </div>
+<div id='buttons'>
+  <button id='button-option' class="assingCart">Assign New Cart</button>
+  <button id='button-option' class="deleteCart">Delete car</button>
+  <button id='button-option'> <a href='http://localhost:8080/api/products/'>Go to the Store</a> </button>
+</div>
 
-<h2 class='title'>PRODUCT LIST FROM CART </h2>
+<h2 class='title' id="title_cart">PRODUCT LIST FROM CART : </h2>
 <div id='product-container' class='center'>
 
 </div>
 <script src='/socket.io/socket.io.js'></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
 <script src='/js/carts.js'></script>

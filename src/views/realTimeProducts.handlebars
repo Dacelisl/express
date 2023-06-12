@@ -1,20 +1,21 @@
+<div class='top-bar'>
+  <div class='search'>
+    <input class='input-search' type='text' placeholder='Category like Garden, Tools... ' />
+    <button class='button-search' type='submit'>Search</button>
+  </div>
+  <div class='cart'>
+    <span class='cart-icon'>Cart</span>
+    <span class='cart-items'>3</span>
+  </div>
+</div>
+
 <div class='container'>
   <h1>ADD PRODUCT</h1>
   <form id='form-product' method='post'>
     <input type='text' name='title' id='title' placeholder='Title' />
-    <input
-      type='text'
-      name='description'
-      id='description'
-      placeholder='Description'
-    />
+    <input type='text' name='description' id='description' placeholder='Description' />
     <input type='text' name='price' id='price' placeholder='Price' />
-    <input
-      type='text'
-      name='thumbnail'
-      id='thumbnail'
-      placeholder='Thumbnail'
-    />
+    <input type='text' name='thumbnail' id='thumbnail' placeholder='Thumbnail' />
     <input type='text' name='code' id='code' placeholder='Code' />
     <input type='text' name='stock' id='stock' placeholder='Stock' />
     <button type='submit'>Send</button>
@@ -33,24 +34,24 @@
       <li class='product-item'>code: {{code}}</li>
       <li class='product-item'>stock: {{stock}}</li>
       <li class='button-item'>
-        <button class='delete-button' id='product-button' data-id='{{_id}}'>Delete</button>
-      <button class='addCart-button' id='product-button' data-id='{{_id}}'>Add To Cart</button>
+        <button class='delete-button' id='product-button' data-id={{_id}}>Delete</button>
+        <button class='addCart-button' id='product-button' data-id={{_id}}>Add To Cart</button>
       </li>
     </ul>
   {{/each}}
 </div>
-<footer class="footer">
-  <ul class="pagination">
+<footer class='footer'>
+  <ul class='pagination'>
     {{#if hasPrevPage}}
-      <li><a href="{{prevLink}}">Anterior</a></li>
+      <li><a href='{{prevLink}}'>Anterior</a></li>
     {{/if}}
-    <li><a >Page: {{page}}</a></li>
+    <li><a>Page: {{page}} of {{totalPages}}</a></li>
     {{#if hasNextPage}}
-      <li><a href="{{nextLink}}">Siguiente</a></li>
+      <li><a href='{{nextLink}}'>Siguiente</a></li>
     {{/if}}
-    
+
   </ul>
 </footer>
 <script src='/socket.io/socket.io.js'></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
 <script src='/js/index.js'></script>

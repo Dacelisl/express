@@ -13,6 +13,7 @@ export const connectMongo = async () => {
       for (let i = 0; i < 3000; i++) {
         products.push({
           title: faker.commerce.product(),
+          category: faker.commerce.department(),
           description: faker.commerce.productDescription(),
           price: faker.commerce.price({ min: 10, max: 2000, dec: 0, symbol: '$' }),
           thumbnail: faker.system.fileName(),

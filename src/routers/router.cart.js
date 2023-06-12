@@ -39,6 +39,8 @@ CartsRouter.delete('/:cid', async (req, res) => {
 CartsRouter.get('/:cid', async (req, res) => {
   const cartId = req.params.cid
   const payload = await cartService.getCartWithProducts(cartId)
-  /* return res.json(data) */
-  res.render('cart', {payload})
+  res.render('cart', { payload })
+})
+CartsRouter.get('/', async (req, res) => {
+  res.render('cart', {})
 })

@@ -1,8 +1,6 @@
 import express from 'express'
-import { ProductManager, productsExect } from '../ProductManager.js'
 import { ProductServices } from '../services/product.services.js'
 
-const productos = new ProductManager('productos.json')
 const productService = new ProductServices()
 export const productsRouter = express.Router()
 
@@ -12,20 +10,19 @@ productsRouter.get('/', async (req, res) => {
   opcionesConsulta.page = req.query.page
   opcionesConsulta.sort = req.query.sort
   opcionesConsulta.query = req.query.query
+  opcionesConsulta.baseUrl = req.baseUrl
   try {
     const data = await productService.getAll(opcionesConsulta)
-    const pagetotal = data.length
-    /* res.render('home', {data}) */
-    
+    res.render('home', data)
   } catch (error) {
-    throw error
+    throw new Error(error)
   }
 })
 
 productsRouter.get('/:qid', async (req, res) => {
   const productId = parseInt(req.params.qid)
   const data = await productService.findById(productId)
-  res.render('home', {data})
+  res.render('home', { data })
 })
 
 productsRouter.post('/', async (req, res) => {

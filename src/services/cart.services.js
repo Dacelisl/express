@@ -1,9 +1,8 @@
 import { Types } from 'mongoose'
 import { CartsModel } from '../DAO/models/carts.model.js'
-import { isValid } from "../utils/utils.js";
+import { isValid } from '../utils/utils.js'
 
 export class CartServices {
-  
   async createCart() {
     try {
       const createdCart = await CartsModel.create({})
@@ -43,6 +42,7 @@ export class CartServices {
       return {
         status: 'Fail',
         code: 500,
+        data: {},
         msg: `Error: ${error}`,
       }
     }
