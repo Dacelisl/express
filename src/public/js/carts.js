@@ -1,6 +1,6 @@
 const socket = io()
 
-const cartLocal = localStorage.getItem('idCart')
+let cartLocal = localStorage.getItem('idCart')
 const title = document.getElementById('title_cart')
 const container = document.getElementById('product-container')
 
@@ -9,6 +9,9 @@ function resetData() {
   container.innerHTML = ''
 }
 function cartInUse() {
+  if (cartLocal === null) cartLocal = ''
+  if (cartLocal !== null) socket.emit('searchCart', cartLocal)
+
   title.innerHTML += cartLocal
 }
 cartInUse()
@@ -42,6 +45,7 @@ socket.on('cartFound', (response) => {
     <li class='product-item'>id: ${item.productId._id}</li>
 <li class='product-item'>title: ${item.productId.title}</li>
 <li class='product-item'>description: ${item.productId.description}</li>
+<li class='product-item'>category: ${item.productId.category}</li>
 <li class='product-item'>price: ${item.productId.price}</li>
 <li class='product-item'>status: ${item.productId.status}</li>
 <li class='product-item'>thumbnail: ${item.productId.thumbnail}</li>

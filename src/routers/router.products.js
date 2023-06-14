@@ -31,12 +31,12 @@ productsRouter.post('/', async (req, res) => {
     const createProduct = await productService.createOne({
       title: dataProduct.nombre,
       description: dataProduct.description,
+      category: dataProduct.category,
       price: dataProduct.price,
       thumbnail: dataProduct.thumbnail,
       code: dataProduct.code,
       stock: dataProduct.stock,
     })
-    /* res.render('addProduct', {}) */
     return res.status(201).json({
       status: 'success',
       msg: 'product created',
@@ -58,12 +58,12 @@ productsRouter.put('/:pid', async (req, res) => {
     const resUpdate = await productService.updateOne(productId, {
       title: dataProduct.nombre,
       description: dataProduct.description,
+      category: dataProduct.category,
       price: dataProduct.price,
       thumbnail: dataProduct.thumbnail,
       code: dataProduct.code,
       stock: dataProduct.stock,
     })
-    /*  return res.json(resUpdate) */
     return res.status(201).json({
       status: 'success',
       msg: 'product uptaded',
@@ -82,7 +82,6 @@ productsRouter.delete('/:pid', async (req, res) => {
   try {
     const productId = parseInt(req.params.pid)
     const resDelete = await productService.deletedOne(productId)
-    /*  return res.json(resDelete) */
     return res.status(200).json({
       status: 'success',
       msg: 'product deleted',

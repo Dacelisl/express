@@ -129,6 +129,8 @@ button[type='submit']:hover {
 
 .cart-icon {
   margin-right: 10px;
+  color: black;
+  font-size: 30px;
 }
 
 .cart-items {
@@ -187,7 +189,7 @@ button[type='submit']:hover {
   cursor: pointer;
   transition: ease-in-out 0.2s ease;
 }
-a{
+a {
   text-decoration: none;
   color: #fff;
 }

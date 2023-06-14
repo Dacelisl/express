@@ -66,9 +66,9 @@ export class ProductServices {
     let product = await ProductsModel.findOne({ code: code })
     return product
   }
-  async createOne(title, description, price, thumbnail, code, stock) {
-    this.validateProduct(title, description, price, thumbnail, code, stock)
-    const createProduct = await ProductsModel.create({ title, description, price, thumbnail, code, stock })
+  async createOne(title, description, category, price, thumbnail, code, stock) {
+    this.validateProduct(title, description, category, price, thumbnail, code, stock)
+    const createProduct = await ProductsModel.create({ title, description, category, price, thumbnail, code, stock })
     return createProduct
   }
 
@@ -77,10 +77,10 @@ export class ProductServices {
     return deleted
   }
 
-  async updateOne(_id, title, description, price, thumbnail, code, stock) {
+  async updateOne(_id, title, description, category, price, thumbnail, code, stock) {
     if (!_id) throw new Error('invalid _id')
-    this.validateProduct(title, description, price, thumbnail, code, stock)
-    const updateProduct = await ProductsModel.updateOne({ _id: id }, { title, description, price, thumbnail, code, stock })
+    this.validateProduct(title, description, category, price, thumbnail, code, stock)
+    const updateProduct = await ProductsModel.updateOne({ _id: id }, { title, description, category, price, thumbnail, code, stock })
     return updateProduct
   }
 }

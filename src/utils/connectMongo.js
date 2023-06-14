@@ -15,6 +15,7 @@ export const connectMongo = async () => {
           title: faker.commerce.product(),
           category: faker.commerce.department(),
           description: faker.commerce.productDescription(),
+          category:faker.commerce.department(),
           price: faker.commerce.price({ min: 10, max: 2000, dec: 0, symbol: '$' }),
           thumbnail: faker.system.fileName(),
           code: faker.string.alphanumeric(10),
@@ -30,7 +31,6 @@ export const connectMongo = async () => {
     }
     poblar() */
 
-    /* END */
   } catch (e) {
     throw new Error('Can not connected')
   }

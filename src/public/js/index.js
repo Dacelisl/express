@@ -13,6 +13,7 @@ function formProduct() {
     const product = {
       title: newForm.get('title'),
       description: newForm.get('description'),
+      category: newForm.get('category'),
       price: parseInt(newForm.get('price')),
       thumbnail: newForm.get('thumbnail'),
       code: newForm.get('code'),
@@ -43,6 +44,7 @@ socket.on('updateProducts', (response) => {
     <li class='product-item'>id: ${item._id}</li>
 <li class='product-item'>title: ${item.title}</li>
 <li class='product-item'>description: ${item.description}</li>
+<li class='product-item'>category: ${item.category}</li>
 <li class='product-item'>price: ${item.price}</li>
 <li class='product-item'>status: ${item.status}</li>
 <li class='product-item'>thumbnail: ${item.thumbnail}</li>
@@ -67,6 +69,7 @@ socket.on('loadProduct', (response) => {
     <li class='product-item'>id: ${response._id}</li>
 <li class='product-item'>title: ${response.title}</li>
 <li class='product-item'>description: ${response.description}</li>
+<li class='product-item'>category: ${response.category}</li>
 <li class='product-item'>price: ${response.price}</li>
 <li class='product-item'>status: ${response.status}</li>
 <li class='product-item'>thumbnail: ${response.thumbnail}</li>

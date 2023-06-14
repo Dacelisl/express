@@ -15,8 +15,8 @@ export const connectSocket = (httpServer) => {
       console.log('Un cliente se ha desconectado')
     })
     socket.on('addProduct', async (product) => {
-      const { title, description, price, thumbnail, code, stock } = product
-      await productService.createOne(title, description, price, thumbnail, code, stock)
+      const { title, description, category, price, thumbnail, code, stock } = product
+      await productService.createOne(title, description, category, price, thumbnail, code, stock)
       const newProducts = await productService.findByCode(code)
       socket.emit('loadProduct', newProducts)
     })
@@ -38,7 +38,7 @@ export const connectSocket = (httpServer) => {
     })
 
     socket.on('searchProductByCategory', async (category) => {
-      const query = 'title:' + category
+      const query = 'category:' + category
       const productsByCategory = await productService.getAll({ query: query })
       socket.emit('updateProducts', productsByCategory.payload)
       socket.emit('updateFooter', productsByCategory)

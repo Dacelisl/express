@@ -82,7 +82,7 @@ export class CartServices {
           msg: 'product added successfully',
         }
       }
-      const product = cart.products.find((p) => p.productId === productId)
+      const product = cart.products.find((p) => p.productId.toString() === productId)
       if (product) {
         product.quantity += 1
         await cart.save()
@@ -117,7 +117,14 @@ export class CartServices {
           msg: 'The car does not exist',
         }
       }
-      const product = cart.products.filter((p) => p.productId.toString() !== productId)
+      const product = cart.products.filter((p) => {
+        if (p.productId.toString() === productId) {
+          p.quantity -= 1
+          return p.quantity > 0
+        }
+        return true
+      })
+
       cart.products = product
       await cart.save()
       return {
