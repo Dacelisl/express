@@ -2,38 +2,50 @@ import { ProductsModel } from '../DAO/models/products.model.js'
 import { parsedQuery, isValid } from '../utils/utils.js'
 
 export class ProductServices {
-  validateProduct(title, description, price, thumbnail, code, stock) {
-    if (!title || !description || !price || !thumbnail || !code || !stock) {
-      console.log('All Fields are required')
+  validateProduct(title, description, category, price, thumbnail, code, stock) {
+    if (!title || !description || !category || !price || !thumbnail || !code || !stock) {
       throw new Error('validation error: All Fields are required.')
     }
   }
   async getAll(search) {
-    const limit = search.limit ? search.limit : 10
+    const limit = parseInt(search.limit) ? search.limit : 10
     const page = search.page ? parseInt(search.page) : 1
+    const sorting = search.sort === 'desc' ? 1 : -1
     const queryFilter = search.query ? parsedQuery(search.query) : {}
     try {
       const payload = await ProductsModel.find(queryFilter)
         .skip((page - 1) * limit)
         .limit(limit)
-        .sort({ price: search.sort })
+        .sort({ price: sorting })
         .lean()
 
-      const hasNextPage = page < payload.length
-      const hasPrevPage = page > 1
-      return {
-        status: 'Success',
-        code: 200,
-        payload: payload,
-        totalPages: payload.length,
-        prevPage: hasPrevPage ? page - 1 : null,
-        nextPage: hasNextPage ? page + 1 : null,
-        page: page,
-        hasPrevPage: hasPrevPage,
-        hasNextPage: hasNextPage,
-        prevLink: hasPrevPage ? `http://localhost:8080${search.baseUrl}?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page - 1}` : null,
-        nextLink: hasNextPage ? `http://localhost:8080${search.baseUrl}?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page + 1}` : null,
-      }
+      /* if (search.isUpdating) {
+        return {
+          status: 'Success',
+          code: 200,
+          payload: payload,
+        }
+      } else { */
+        const totalProducts = await ProductsModel.countDocuments(queryFilter)
+        const totalPages = Math.ceil(totalProducts / limit)
+
+        const hasNextPage = page < totalPages
+        const hasPrevPage = page > 1
+
+        return {
+          status: 'Success',
+          code: 200,
+          payload: payload,
+          totalPages: totalPages,
+          prevPage: hasPrevPage ? page - 1 : null,
+          nextPage: hasNextPage ? page + 1 : null,
+          page: page,
+          hasPrevPage: hasPrevPage,
+          hasNextPage: hasNextPage,
+          prevLink: hasPrevPage ? `http://localhost:8080${search.baseUrl}?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page - 1}` : null,
+          nextLink: hasNextPage ? `http://localhost:8080${search.baseUrl}?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page + 1}` : null,
+        }
+      /* } */
     } catch (error) {
       return {
         status: 'Fail',
@@ -44,10 +56,10 @@ export class ProductServices {
     }
   }
 
-  async findById(productId) {
+  async findById(_id) {
     try {
-      isValid(productId)
-      const payload = await ProductsModel.findOne({ _id: productId }).lean()
+      isValid(_id)
+      const payload = await ProductsModel.findOne({ _id }).lean()
       return {
         status: 'Success',
         code: 201,
@@ -66,14 +78,14 @@ export class ProductServices {
     let product = await ProductsModel.findOne({ code: code })
     return product
   }
-  async createOne(title, description, category, price, thumbnail, code, stock) {
+  async createOne({ title, description, category, price, thumbnail, code, stock }) {
     this.validateProduct(title, description, category, price, thumbnail, code, stock)
     const createProduct = await ProductsModel.create({ title, description, category, price, thumbnail, code, stock })
     return createProduct
   }
 
-  async deletedOne(_id) {
-    const deleted = await ProductsModel.deleteOne({ _id: _id })
+  async deletedOne(objectId) {
+    const deleted = await ProductsModel.deleteOne({ _id: objectId })
     return deleted
   }
 

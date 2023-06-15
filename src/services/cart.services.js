@@ -20,6 +20,7 @@ export class CartServices {
       }
     }
   }
+
   async getCartWithProducts(cartId) {
     try {
       isValid(cartId)
@@ -66,14 +67,15 @@ export class CartServices {
       }
     }
   }
-  async addToCart(cartId, productId) {
+  async addToCart(cartId, productId, quantity) {
     try {
+      const quant = parseInt(quantity) ? quantity : 1
       if (!Types.ObjectId.isValid(cartId)) return await this.createOne(productId)
       const cart = await CartsModel.findById(cartId)
       if (!cart) {
         const newCart = await CartsModel.create({
           _id: cartId,
-          products: [{ productId, quantity: 1 }],
+          products: [{ productId, quantity: quant }],
         })
         return {
           status: 'success',
@@ -84,10 +86,10 @@ export class CartServices {
       }
       const product = cart.products.find((p) => p.productId.toString() === productId)
       if (product) {
-        product.quantity += 1
+        product.quantity += quant
         await cart.save()
       } else {
-        cart.products.push({ productId, quantity: 1 })
+        cart.products.push({ productId, quantity: quant })
         await cart.save()
       }
       return {
@@ -169,10 +171,10 @@ export class CartServices {
       }
     }
   }
-  async deleteCart(cartId) {
+  async deleteCart(_id) {
     try {
-      isValid(cartId)
-      const result = await CartsModel.deleteOne({ _id: cartId })
+      isValid(_id)
+      const result = await CartsModel.deleteOne({ _id})
       if (result.deletedCount === 0) {
         return {
           status: 'Fail',

@@ -1,13 +1,11 @@
-const socket = io()
-
-const cartLocal = localStorage.getItem('idCart')
+let cartLocal = localStorage.getItem('idCart')
 
 // addProduct
 function formProduct() {
   const path = window.location.pathname
   if (path !== '/realTimeProducts/') return
   const formProduct = document.getElementById('form-product')
-  formProduct.addEventListener('submit', (event) => {
+  formProduct.addEventListener('submit', async (event) => {
     event.preventDefault()
     const newForm = new FormData(formProduct)
     const product = {
@@ -19,24 +17,53 @@ function formProduct() {
       code: newForm.get('code'),
       stock: newForm.get('stock'),
     }
-    socket.emit('addProduct', product)
+    try {
+      const response = await fetch('http://localhost:8080/api/products/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product),
+      })
+      const newProduct = await response.json()
+      loadProduct(newProduct.data)
+    } catch (error) {
+      throw new Error('Failed', error)
+    }
   })
 }
 formProduct()
 
-//Add Product to Cart
-function productToCart() {
+async function productToCart() {
   const addButtons = document.querySelectorAll('.addCart-button')
   addButtons.forEach((button) => {
-    button.addEventListener('click', (event) => {
+    button.addEventListener('click', async (event) => {
       const productId = event.target.getAttribute('data-id')
-      socket.emit('productToCart',cartLocal, productId)
+      try {
+        const response = await fetch(`http://localhost:8080/api/carts/${cartLocal}/product/${productId}`, {
+          method: 'POST',
+        })
+        if (response.ok) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your product has been added to the cart',
+            showConfirmButton: false,
+            timer: 1500,
+          })
+          AssingDeleteEvent()
+        } else {
+          throw new Error('Failed', response.status)
+        }
+      } catch (error) {
+        throw new Error('Failed', error)
+      }
     })
   })
 }
 productToCart()
 
-socket.on('updateProducts', (response) => {
+function loadProduct(response) {
   const container = document.getElementById('product-container')
   container.innerHTML = ''
   response.forEach((item) => {
@@ -61,34 +88,8 @@ socket.on('updateProducts', (response) => {
   })
   AssingDeleteEvent()
   productToCart()
-})
-socket.on('loadProduct', (response) => {
-  const container = document.getElementById('product-container')
-  container.innerHTML = ''
-  const newData = `<ul class='product-list'>
-    <li class='product-item'>id: ${response._id}</li>
-<li class='product-item'>title: ${response.title}</li>
-<li class='product-item'>description: ${response.description}</li>
-<li class='product-item'>category: ${response.category}</li>
-<li class='product-item'>price: ${response.price}</li>
-<li class='product-item'>status: ${response.status}</li>
-<li class='product-item'>thumbnail: ${response.thumbnail}</li>
-<li class='product-item'>code: ${response.code}</li>
-<li class='product-item'>stock: ${response.stock}</li>
-<li class='button-item'>
-        <button class='delete-button' id='product-button' data-id='${response._id}'>Delete</button>
-      <button class='addCart-button' id='product-button' data-id='${response._id}'>Add To Cart</button>
-      </li>
-</ul>`
-  const tempContainer = document.createElement('div')
-  tempContainer.innerHTML = newData
-  container.append(tempContainer.firstChild)
-
-  AssingDeleteEvent()
-  productToCart()
-})
-
-socket.on('updateFooter', (response) => {
+}
+function updateFooter(response) {
   const path = window.location.pathname
   const urlNext = response.nextLink
   const urlPrev = response.prevLink
@@ -103,37 +104,65 @@ socket.on('updateFooter', (response) => {
       </ul>
     </footer>`
   container.innerHTML = newData
-})
-
-socket.on('updateCart', () => {
-  Swal.fire({
-    position: 'top-end',
-    icon: 'success',
-    title: 'Your product has been added to the cart',
-    showConfirmButton: false,
-    timer: 1500,
-  })
-  AssingDeleteEvent()
-})
-//deleteProduct
+}
 function AssingDeleteEvent() {
   const deleteButtons = document.querySelectorAll('.delete-button')
   deleteButtons.forEach((button) => {
-    button.addEventListener('click', (event) => {
+    button.addEventListener('click', async (event) => {
       const productId = event.target.getAttribute('data-id')
-      socket.emit('deleteProduct', productId)
+      await deleteProduct(productId)
     })
   })
 }
 AssingDeleteEvent()
+async function deleteProduct(productId) {
+  try {
+    const response = await fetch(`http://localhost:8080/api/products/${productId}`, {
+      method: 'DELETE',
+    })
+    if (!response.ok) {
+      throw new Error('Failed to delete product')
+    }
+    updateProducts()
+  } catch (error) {
+    throw new Error('Failed', error)
+  }
+}
+async function updateProducts() {
+  try {
+    const response = await fetch('http://localhost:8080/api/products/?limit=10&isUpdating=true')
+    if (!response.ok) {
+      throw new Error('Failed to fetch products')
+    }
+    const data = await response.json()
+    loadProduct(data.payload)
+  } catch (error) {
+    throw new Error('Failed to update product', error)
+  }
+}
 
 function searchProductByCategory() {
   const search = document.querySelector('.input-search')
   const buttonSearch = document.querySelector('.button-search')
-  buttonSearch.addEventListener('click', (e) => {
+  buttonSearch.addEventListener('click', async (e) => {
     const category = search.value.charAt(0).toUpperCase() + search.value.slice(1)
-    socket.emit('searchProductByCategory', category)
+    try {
+      const productsByCategory = await searchProductByCategoryAPI(category)
+      loadProduct(productsByCategory.payload)
+      updateFooter(productsByCategory)
+    } catch (error) {
+      throw new Error('Error searching products by category:', error)
+    }
     search.value = ''
   })
 }
 searchProductByCategory()
+async function searchProductByCategoryAPI(category) {
+  const query = 'category:' + category
+  const response = await fetch(`http://localhost:8080/api/products?query=${query}&isUpdating=true`)
+  if (!response.ok) {
+    throw new Error('Failed to search products by category')
+  }
+  const data = await response.json()
+  return data
+}

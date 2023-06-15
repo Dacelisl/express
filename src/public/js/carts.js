@@ -1,5 +1,3 @@
-const socket = io()
-
 let cartLocal = localStorage.getItem('idCart')
 const title = document.getElementById('title_cart')
 const container = document.getElementById('product-container')
@@ -9,10 +7,27 @@ function resetData() {
   container.innerHTML = ''
 }
 function cartInUse() {
-  if (cartLocal === null) cartLocal = ''
-  if (cartLocal !== null) socket.emit('searchCart', cartLocal)
-
+  if (cartLocal === null) return (cartLocal = '')
+  if (cartLocal !== null) searchCart(cartLocal)
   title.innerHTML += cartLocal
+}
+async function searchCart(cart) {
+  try {
+    const response = await fetch(`http://localhost:8080/api/carts/${cart}`)
+    if (!response.ok) {
+      throw new Error('Something went wrong!')
+    }
+    const cartProducts = await response.json()
+    updateCart(cartProducts)
+  } catch (error) {
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'Something went wrong, car not found!',
+      showConfirmButton: false,
+      timer: 1500,
+    })
+  }
 }
 cartInUse()
 function formCart() {
@@ -23,14 +38,14 @@ function formCart() {
     const cart = {
       _id: newForm.get('cart'),
     }
-    socket.emit('searchCart', cart)
+    searchCart(cart._id)
   })
 }
 formCart()
-socket.on('cartFound', (response) => {
+function updateCart(response) {
   if (response.code !== 200) {
     return Swal.fire({
-      position: 'top-end',
+      position: 'center',
       icon: 'error',
       title: 'Something went wrong!',
       showConfirmButton: false,
@@ -61,12 +76,13 @@ socket.on('cartFound', (response) => {
     container.append(tempContainer.firstChild)
   })
   assingDeleteProduct()
-})
+}
+
 function assingCart() {
   const assigCart = document.querySelector('.assingCart')
   assigCart.addEventListener('click', (e) => {
     localStorage.removeItem('idCart')
-    socket.emit('createNewCart')
+    createNewCart()
   })
 }
 assingCart()
@@ -76,25 +92,70 @@ function assingDeleteProduct() {
   deleteButtons.forEach((button) => {
     button.addEventListener('click', (event) => {
       const productId = event.target.getAttribute('data-id')
-      socket.emit('deleteProductInCart', cartLocal, productId)
+      deleteProductInCart(cartLocal, productId)
     })
   })
 }
 
-socket.on('cartCreated', (response) => {
-  localStorage.setItem('idCart', response.data._id)
+async function deleteProductInCart(cartLocal, productId) {
+  try {
+    const response = await fetch(`http://localhost:8080/api/carts/${cartLocal}/products/${productId}`, {
+      method: 'DELETE',
+    })
+    if (!response.ok) {
+      throw new Error('Failed to create a new cart')
+    }
+    const newCart = await response.json()
+    searchCart(newCart.data._id)
+  } catch (error) {
+    throw new Error('Something went wrong!', error)
+  }
+}
+async function createNewCart() {
+  try {
+    const response = await fetch(`http://localhost:8080/api/carts/`, {
+      method: 'POST',
+    })
+    if (!response.ok) {
+      throw new Error('Failed to create a new cart')
+    }
+    const newCart = await response.json()
+    cartCreated(newCart.data)
+  } catch (error) {
+    throw new Error('Something went wrong!', error)
+  }
+}
+
+function cartCreated(cartId) {
+  localStorage.setItem('idCart', cartId._id)
   resetData()
-  title.innerHTML = 'PRODUCT LIST FROM CART : ' + response.data._id
-})
+  title.innerHTML = 'PRODUCT LIST FROM CART : ' + cartId._id
+}
+
 function deleteCart() {
   const deleteCart = document.querySelector('.deleteCart')
   deleteCart.addEventListener('click', (e) => {
-    socket.emit('deleteCart', cartLocal)
+    cartDeleted(cartLocal)
     localStorage.removeItem('idCart')
   })
 }
 deleteCart()
-socket.on('updateDeleteCart', () => {
+
+async function cartDeleted(cart) {
+  try {
+    const response = await fetch(`http://localhost:8080/api/carts/${cart}`, {
+      method: 'DELETE',
+    })
+    if (!response.ok) {
+      throw new Error('Failed to create a new cart')
+    }
+    updateDeleteCart()
+  } catch (error) {
+    throw new Error('Something went wrong!', error)
+  }
+}
+
+function updateDeleteCart() {
   resetData()
   Swal.fire({
     position: 'center',
@@ -103,4 +164,4 @@ socket.on('updateDeleteCart', () => {
     showConfirmButton: false,
     timer: 1500,
   })
-})
+}

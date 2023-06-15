@@ -1,7 +1,6 @@
 const socket = io();
 //FRONT
 let correoDelUsuario = ''
-
 async function pedirEmail() {
   const { value: nombre } = await Swal.fire({
     title: 'Enter your mail',
@@ -15,7 +14,6 @@ async function pedirEmail() {
       }
     },
   })
-
   correoDelUsuario = nombre
 }
 

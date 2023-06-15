@@ -11,16 +11,29 @@ productsRouter.get('/', async (req, res) => {
   opcionesConsulta.sort = req.query.sort
   opcionesConsulta.query = req.query.query
   opcionesConsulta.baseUrl = req.baseUrl
+  opcionesConsulta.isUpdating = !!req.query.isUpdating
   try {
     const data = await productService.getAll(opcionesConsulta)
-    res.render('home', data)
+    if (data.status === 'Success') {
+      if (opcionesConsulta.isUpdating) {
+        return res.status(200).json(data)
+      } else {
+        res.render('home', data)
+      }
+    } else {
+      return res.status(500).json({
+        status: 'error',
+        msg: 'something went wrong :(',
+        data: {},
+      })
+    }
   } catch (error) {
     throw new Error(error)
   }
 })
 
-productsRouter.get('/:qid', async (req, res) => {
-  const productId = parseInt(req.params.qid)
+productsRouter.get('/:pid', async (req, res) => {
+  const productId = req.params.pid
   const data = await productService.findById(productId)
   res.render('home', { data })
 })
@@ -29,7 +42,7 @@ productsRouter.post('/', async (req, res) => {
   try {
     const dataProduct = req.body
     const createProduct = await productService.createOne({
-      title: dataProduct.nombre,
+      title: dataProduct.title,
       description: dataProduct.description,
       category: dataProduct.category,
       price: dataProduct.price,
@@ -80,7 +93,7 @@ productsRouter.put('/:pid', async (req, res) => {
 
 productsRouter.delete('/:pid', async (req, res) => {
   try {
-    const productId = parseInt(req.params.pid)
+    const productId = req.params.pid
     const resDelete = await productService.deletedOne(productId)
     return res.status(200).json({
       status: 'success',
@@ -91,6 +104,7 @@ productsRouter.delete('/:pid', async (req, res) => {
     return res.status(500).json({
       status: 'error',
       msg: 'something went wrong :(',
+      e,
       data: {},
     })
   }
