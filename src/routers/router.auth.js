@@ -53,6 +53,6 @@ authRouter.get('/profile', isUser, (req, res) => {
 
   return res.render('profile', user)
 })
-authRouter.get('/administracion', isUser, isAdmin, (req, res) => {
-  return res.send('datos super secretos clasificados sobre los nuevos ingresos a boca juniors')
+authRouter.get('/admin', isUser, isAdmin, (req, res) => {
+  return res.render('admin')
 })

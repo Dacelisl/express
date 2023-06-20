@@ -5,14 +5,16 @@
     <p><strong>Email:</strong> {{email}}</p>
     <p><strong>Rol:</strong>
       {{#if isAdmin}}
-        <span>Administrator</span>
+        <p>Administrator</p>
+        <a href='/auth/admin'>setting</a>
       {{else}}
         <span>User</span>
       {{/if}}
     </p>
   </div>
   <div class='buttons'>
-    <a href='http://localhost:8080/api/products/' class='button'>Go to Home</a>
-    <a href='http://localhost:8080/auth/logout/' class='button'>Logout</a>
+    <button><a href='http://localhost:8080/api/products/'>Go to Home</a></button>
+    <button><a href='http://localhost:8080/auth/logout/'>Logout</a></button>
+
   </div>
 </div>
