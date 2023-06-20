@@ -1,5 +1,17 @@
 let cartLocal = localStorage.getItem('idCart')
 
+function message() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const alertElement = document.querySelector('.alert')
+    if (alertElement) {
+      setTimeout(() => {
+        alertElement.remove()
+      }, 3000)
+    }
+  })
+}
+message()
+
 // addProduct
 function formProduct() {
   const path = window.location.pathname
@@ -142,8 +154,10 @@ async function updateProducts() {
 }
 
 function searchProductByCategory() {
+  const path = window.location.pathname
   const search = document.querySelector('.input-search')
   const buttonSearch = document.querySelector('.button-search')
+  if (path !== '/realTimeProducts/') return
   buttonSearch.addEventListener('click', async (e) => {
     const category = search.value.charAt(0).toUpperCase() + search.value.slice(1)
     try {

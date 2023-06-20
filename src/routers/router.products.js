@@ -18,6 +18,8 @@ productsRouter.get('/', async (req, res) => {
       if (opcionesConsulta.isUpdating) {
         return res.status(200).json(data)
       } else {
+        data.session = { email: req.session.email, isAdmin: req.session.isAdmin, user: req.session.user, message: req.session.message }
+        req.session.message = null
         res.render('home', data)
       }
     } else {

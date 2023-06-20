@@ -2,6 +2,7 @@ import { Types } from 'mongoose'
 import multer from 'multer'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import bcrypt from 'bcrypt';
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.resolve(__filename, '../../')
@@ -35,5 +36,7 @@ function isValid(id) {
   }
 }
 
+export const createHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+export const isValidPassword = (password, hashPassword) => bcrypt.compareSync(password, hashPassword);
 export const uploader = multer({ storage })
 export { __filename, __dirname, parsedQuery, isValid }

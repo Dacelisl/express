@@ -1,0 +1,18 @@
+<div class='profile-container'>
+  <h1>User Profile</h1>
+  <div class='profile-info'>
+    <p><strong>Name:</strong> {{user}}</p>
+    <p><strong>Email:</strong> {{email}}</p>
+    <p><strong>Rol:</strong>
+      {{#if isAdmin}}
+        <span>Administrator</span>
+      {{else}}
+        <span>User</span>
+      {{/if}}
+    </p>
+  </div>
+  <div class='buttons'>
+    <a href='http://localhost:8080/api/products/' class='button'>Go to Home</a>
+    <a href='http://localhost:8080/auth/logout/' class='button'>Logout</a>
+  </div>
+</div>
