@@ -26,25 +26,25 @@ export class ProductServices {
           payload: payload,
         }
       } else { */
-        const totalProducts = await ProductsModel.countDocuments(queryFilter)
-        const totalPages = Math.ceil(totalProducts / limit)
+      const totalProducts = await ProductsModel.countDocuments(queryFilter)
+      const totalPages = Math.ceil(totalProducts / limit)
 
-        const hasNextPage = page < totalPages
-        const hasPrevPage = page > 1
+      const hasNextPage = page < totalPages
+      const hasPrevPage = page > 1
 
-        return {
-          status: 'Success',
-          code: 200,
-          payload: payload,
-          totalPages: totalPages,
-          prevPage: hasPrevPage ? page - 1 : null,
-          nextPage: hasNextPage ? page + 1 : null,
-          page: page,
-          hasPrevPage: hasPrevPage,
-          hasNextPage: hasNextPage,
-          prevLink: hasPrevPage ? `http://localhost:8080${search.baseUrl}?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page - 1}` : null,
-          nextLink: hasNextPage ? `http://localhost:8080${search.baseUrl}?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page + 1}` : null,
-        }
+      return {
+        status: 'Success',
+        code: 200,
+        payload: payload,
+        totalPages: totalPages,
+        prevPage: hasPrevPage ? page - 1 : null,
+        nextPage: hasNextPage ? page + 1 : null,
+        page: page,
+        hasPrevPage: hasPrevPage,
+        hasNextPage: hasNextPage,
+        prevLink: hasPrevPage ? `http://localhost:8080${search.baseUrl}?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page - 1}` : null,
+        nextLink: hasNextPage ? `http://localhost:8080${search.baseUrl}?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page + 1}` : null,
+      }
       /* } */
     } catch (error) {
       return {
@@ -55,7 +55,6 @@ export class ProductServices {
       }
     }
   }
-
   async findById(_id) {
     try {
       isValid(_id)
@@ -83,13 +82,11 @@ export class ProductServices {
     const createProduct = await ProductsModel.create({ title, description, category, price, thumbnail, code, stock })
     return createProduct
   }
-
   async deletedOne(objectId) {
     const deleted = await ProductsModel.deleteOne({ _id: objectId })
     return deleted
   }
-
-  async updateOne(_id, title, description, category, price, thumbnail, code, stock) {
+  async updateOne({ _id, title, description, category, price, thumbnail, code, stock }) {
     if (!_id) throw new Error('invalid _id')
     this.validateProduct(title, description, category, price, thumbnail, code, stock)
     const updateProduct = await ProductsModel.updateOne({ _id: id }, { title, description, category, price, thumbnail, code, stock })

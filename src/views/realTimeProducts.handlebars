@@ -4,23 +4,16 @@
     <button class='button-search' type='submit'>Search</button>
   </div>
   <div class='cart'>
-    <span class='cart-icon'>Cart</span>
-    <span class='cart-items'>3</span>
+    <a href='http://localhost:8080/api/carts/' class='cart-icon'>Cart</a>
+    {{! <span class='cart-items'>3</span> }}
   </div>
-</div>
-
-<div class='container'>
-  <h1>ADD PRODUCT</h1>
-  <form id='form-product' method='post'>
-    <input type='text' name='title' id='title' placeholder='Title' />
-    <input type='text' name='description' id='description' placeholder='Description' />
-    <input type='text' name='category' id='category' placeholder='category' />
-    <input type='text' name='price' id='price' placeholder='Price' />
-    <input type='text' name='thumbnail' id='thumbnail' placeholder='Thumbnail' />
-    <input type='text' name='code' id='code' placeholder='Code' />
-    <input type='text' name='stock' id='stock' placeholder='Stock' />
-    <button type='submit'>Send</button>
-  </form>
+  <div id='session'>
+    {{#if session.user}}
+      <a href='http://localhost:8080/auth/profile/'>{{session.user}}</a>
+    {{else}}
+      <a href='http://localhost:8080/auth/login/'>Login</a>
+    {{/if}}
+  </div>
 </div>
 <h1 class='title'>PRODUCT LIST</h1>
 <div id='product-container' class='center'>
@@ -37,7 +30,7 @@
       <li class='product-item'>stock: {{stock}}</li>
       <li class='button-item'>
         <button class='delete-button' id='product-button' data-id={{_id}}>Delete</button>
-        <button class='addCart-button' id='product-button' data-id={{_id}}>Add To Cart</button>
+        <button class='update-button' id='product-button' data-id={{_id}}>Update</button>
       </li>
     </ul>
   {{/each}}
@@ -54,6 +47,6 @@
 
   </ul>
 </footer>
-<script  src='/socket.io/socket.io.js'></script>
-<script  src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-<script  src='/js/index.js'></script>
+<script src='/socket.io/socket.io.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+<script src='/js/index.js'></script>

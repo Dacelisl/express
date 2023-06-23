@@ -48,3 +48,17 @@ CartsRouter.get('/:cid', async (req, res) => {
 CartsRouter.get('/', async (req, res) => {
   res.render('cart', {})
 })
+CartsRouter.put('/:cid/product/:pid', async (req, res) => {
+  const cid = req.params.cid
+  const pid = req.params.pid
+  const quant = req.body.quantity
+  const resAdd = await cartService.addToCart(cid, pid, quant)
+  return res.json(resAdd)
+})
+
+CartsRouter.put('/:cid', async (req, res) => {
+  const cid = req.params.cid
+  const products = req.body.products
+  const resUpdate = await cartService.updateCart(cid, products)
+  return res.json(resUpdate)
+})

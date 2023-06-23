@@ -12,25 +12,41 @@ routerView.get('/', async (req, res) => {
   opcionesConsulta.query = req.query.query
   try {
     const payload = await productService.getAll(opcionesConsulta)
+    payload.session = { email: req.session.email, isAdmin: req.session.isAdmin, user: req.session.user, message: req.session.message }
     res.render('realTimeProducts', payload)
   } catch (error) {
     throw new Error(error)
   }
 })
-routerView.get('/products', async (req, res) => {
-  try {
-    const payload = await productService.getAll({})
-    res.render('home', payload)
-  } catch (error) {
-    throw new Error(error)
-  }
-})
-routerView.get('/:qid', async (req, res) => {
+/* routerView.get('/:qid', async (req, res) => {
   const productId = req.params.qid
   try {
     const payload = await productService.findById(productId)
     res.render('product', payload.payload)
   } catch (error) {
     throw new Error(error)
+  }
+}) */
+routerView.get('/addProduct', async (req, res) => {
+  res.render('addProduct', {})
+})
+routerView.post('/add', async (req, res) => {
+  let message = ''
+  try {
+    const dataProduct = req.body
+    await productService.createOne({
+      title: dataProduct.title,
+      description: dataProduct.description,
+      category: dataProduct.category,
+      price: dataProduct.price,
+      thumbnail: dataProduct.thumbnail,
+      code: dataProduct.code,
+      stock: dataProduct.stock,
+    })
+    message = `Producto agregado con éxito.`
+    return res.render('addProduct', { message })
+  } catch (e) {
+    message = `Producto no agregado`
+    return res.render('addProduct', { message })
   }
 })

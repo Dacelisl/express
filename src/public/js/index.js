@@ -1,5 +1,3 @@
-let cartLocal = localStorage.getItem('idCart')
-
 function message() {
   document.addEventListener('DOMContentLoaded', () => {
     const alertElement = document.querySelector('.alert')
@@ -12,41 +10,8 @@ function message() {
 }
 message()
 
-// addProduct
-function formProduct() {
-  const path = window.location.pathname
-  if (path !== '/realTimeProducts/') return
-  const formProduct = document.getElementById('form-product')
-  formProduct.addEventListener('submit', async (event) => {
-    event.preventDefault()
-    const newForm = new FormData(formProduct)
-    const product = {
-      title: newForm.get('title'),
-      description: newForm.get('description'),
-      category: newForm.get('category'),
-      price: parseInt(newForm.get('price')),
-      thumbnail: newForm.get('thumbnail'),
-      code: newForm.get('code'),
-      stock: newForm.get('stock'),
-    }
-    try {
-      const response = await fetch('http://localhost:8080/api/products/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(product),
-      })
-      const newProduct = await response.json()
-      loadProduct(newProduct.data)
-    } catch (error) {
-      throw new Error('Failed', error)
-    }
-  })
-}
-formProduct()
-
 async function productToCart() {
+  let cartLocal = localStorage.getItem('idCart')
   const addButtons = document.querySelectorAll('.addCart-button')
   addButtons.forEach((button) => {
     button.addEventListener('click', async (event) => {
@@ -78,7 +43,7 @@ productToCart()
 function loadProduct(response) {
   const container = document.getElementById('product-container')
   container.innerHTML = ''
-  response.forEach((item) => {
+  response.payload.forEach((item) => {
     const newData = `<ul class='product-list'>
     <li class='product-item'>id: ${item._id}</li>
 <li class='product-item'>title: ${item.title}</li>
@@ -90,8 +55,13 @@ function loadProduct(response) {
 <li class='product-item'>code: ${item.code}</li>
 <li class='product-item'>stock: ${item.stock}</li>
 <li class='button-item'>
-        <button class='delete-button' id='product-button' data-id='${item._id}'>Delete</button>
-      <button class='addCart-button' id='product-button' data-id='${item._id}'>Add To Cart</button>
+        ${
+          response.session.isAdmin
+            ? `<button class='delete-button' id='product-button' data-id='${item._id}'>Delete</button> 
+        <button class='update-button' id='product-button' data-id='${item._id}'>Update</button>`
+            : `<button class='addCart-button' id='product-button' data-id='${item._id}'>Add To Cart</button>`
+        }
+      
       </li>
 </ul>`
     const tempContainer = document.createElement('div')
@@ -147,28 +117,28 @@ async function updateProducts() {
       throw new Error('Failed to fetch products')
     }
     const data = await response.json()
-    loadProduct(data.payload)
+    loadProduct(data)
   } catch (error) {
     throw new Error('Failed to update product', error)
   }
 }
 
 function searchProductByCategory() {
-  const path = window.location.pathname
   const search = document.querySelector('.input-search')
   const buttonSearch = document.querySelector('.button-search')
-  if (path !== '/realTimeProducts/') return
-  buttonSearch.addEventListener('click', async (e) => {
-    const category = search.value.charAt(0).toUpperCase() + search.value.slice(1)
-    try {
-      const productsByCategory = await searchProductByCategoryAPI(category)
-      loadProduct(productsByCategory.payload)
-      updateFooter(productsByCategory)
-    } catch (error) {
-      throw new Error('Error searching products by category:', error)
-    }
-    search.value = ''
-  })
+  if (search && buttonSearch) {
+    buttonSearch.addEventListener('click', async (e) => {
+      const category = search.value.charAt(0).toUpperCase() + search.value.slice(1)
+      try {
+        const productsByCategory = await searchProductByCategoryAPI(category)
+        loadProduct(productsByCategory)
+        updateFooter(productsByCategory)
+      } catch (error) {
+        throw new Error('Error searching products by category:', error)
+      }
+      search.value = ''
+    })
+  }
 }
 searchProductByCategory()
 async function searchProductByCategoryAPI(category) {

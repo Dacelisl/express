@@ -1,6 +1,12 @@
-<div class="container">
+<div class='container'>
   <h1>ADD PRODUCT</h1>
-  <form action='/products' method='post'>
+  {{#if message}}
+    <div class='add-alert alert alert-success'>{{message}}</div>
+    <script>
+      const alertElement = document.querySelector('.add-alert'); if (alertElement) { setTimeout(() => { alertElement.remove() }, 3000) }
+    </script>
+  {{/if}}
+  <form action='/realtimeproducts/add' method='POST'>
     <label for='title'>Title</label>
     <input type='text' name='title' id='title' />
     <label for='description'>description</label>
@@ -15,6 +21,9 @@
     <input type='text' name='code' id='code' />
     <label for='stock'>stock</label>
     <input type='text' name='stock' id='stock' />
-    <button type='submit'>Send</button>
+    <div class='buttons'>
+      <button><a href='http://localhost:8080/auth/admin'>Back</a></button>
+      <button type='submit'>Send</button>
+    </div>
   </form>
 </div>

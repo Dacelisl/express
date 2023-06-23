@@ -1,22 +1,21 @@
 <div class='top-bar'>
   <div class='search'>
     <input class='input-search' type='text' placeholder='Category like Garden, Tools... ' />
-    <button class='button-search' type='submit'>Search</button>
+    <button class='button-search'>Search</button>
   </div>
   <div class='cart'>
     <a href='http://localhost:8080/api/carts/' class='cart-icon'>Cart</a>
-    {{!-- <span class='cart-items'>3</span> --}}
+    {{! <span class='cart-items'>3</span> }}
   </div>
   <div id='session'>
     {{#if session.user}}
       <a href='http://localhost:8080/auth/profile/'>{{session.user}}</a>
-      {{else}}
+    {{else}}
       <a href='http://localhost:8080/auth/login/'>Login</a>
-
     {{/if}}
   </div>
-
 </div>
+
 {{#if session.message}}
   <div class='alert alert-success'>{{session.message}}</div>
 {{/if}}
@@ -34,8 +33,12 @@
       <li class='product-item'>code: {{code}}</li>
       <li class='product-item'>stock: {{stock}}</li>
       <li class='button-item'>
-        <button class='delete-button' id='product-button' data-id={{_id}}>Delete</button>
-        <button class='addCart-button' id='product-button' data-id={{_id}}>Add To Cart</button>
+        {{#if session.isAdmin}}
+          <button class='delete-button' id='product-button' data-id={{_id}}>Delete</button>
+          <button class='update-button' id='product-button' data-id={{_id}}>Update</button>
+        {{else}}
+          <button class='addCart-button' id='product-button' data-id={{_id}}>Add To Cart</button>
+        {{/if}}
       </li>
     </ul>
   {{/each}}

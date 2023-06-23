@@ -20,7 +20,6 @@ export class CartServices {
       }
     }
   }
-
   async getCartWithProducts(cartId) {
     try {
       isValid(cartId)
@@ -174,7 +173,7 @@ export class CartServices {
   async deleteCart(_id) {
     try {
       isValid(_id)
-      const result = await CartsModel.deleteOne({ _id})
+      const result = await CartsModel.deleteOne({ _id })
       if (result.deletedCount === 0) {
         return {
           status: 'Fail',
@@ -194,6 +193,37 @@ export class CartServices {
         status: 'Fail',
         code: 500,
         msg: `Error: ${error}`,
+      }
+    }
+  }
+  async updateCart(cartId, products) {
+    try {
+      const cart = await CartsModel.findById(cartId)
+      if (!cart) {
+        return {
+          status: 'Fail',
+          code: 404,
+          data: {},
+          msg: 'Cart not found',
+        }
+      }
+      cart.products = products.map((product) => ({
+        productId: product._id,
+        quantity: product.quantity,
+      }))
+
+      await cart.save()
+      return {
+        status: 'success',
+        code: 201,
+        data: cart,
+        msg: 'products added successfully',
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 400,
+        msg: `Error ${error}`,
       }
     }
   }

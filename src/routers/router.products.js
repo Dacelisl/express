@@ -15,11 +15,11 @@ productsRouter.get('/', async (req, res) => {
   try {
     const data = await productService.getAll(opcionesConsulta)
     if (data.status === 'Success') {
+      data.session = { email: req.session.email, isAdmin: req.session.isAdmin, user: req.session.user, message: req.session.message }
+      req.session.message = null
       if (opcionesConsulta.isUpdating) {
         return res.status(200).json(data)
       } else {
-        data.session = { email: req.session.email, isAdmin: req.session.isAdmin, user: req.session.user, message: req.session.message }
-        req.session.message = null
         res.render('home', data)
       }
     } else {
@@ -33,13 +33,11 @@ productsRouter.get('/', async (req, res) => {
     throw new Error(error)
   }
 })
-
 productsRouter.get('/:pid', async (req, res) => {
   const productId = req.params.pid
   const data = await productService.findById(productId)
   res.render('home', { data })
 })
-
 productsRouter.post('/', async (req, res) => {
   try {
     const dataProduct = req.body
@@ -55,17 +53,16 @@ productsRouter.post('/', async (req, res) => {
     return res.status(201).json({
       status: 'success',
       msg: 'product created',
-      data: createProduct,
+      payload: createProduct,
     })
   } catch (e) {
     return res.status(500).json({
       status: 'error',
       msg: 'something went wrong :(',
-      data: {},
+      payload: {},
     })
   }
 })
-
 productsRouter.put('/:pid', async (req, res) => {
   try {
     const productId = parseInt(req.params.pid)
@@ -92,7 +89,6 @@ productsRouter.put('/:pid', async (req, res) => {
     })
   }
 })
-
 productsRouter.delete('/:pid', async (req, res) => {
   try {
     const productId = req.params.pid

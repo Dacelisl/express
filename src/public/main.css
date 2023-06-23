@@ -386,7 +386,6 @@ a {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   z-index: 9999;
 }
-
 .alert-success {
   background-color: #dff0d8;
   border-color: #d6e9c6;
@@ -413,6 +412,7 @@ a {
 }
 .buttons {
   display: flex;
+  justify-content: center;
 }
 .buttons button {
   margin: 5px;

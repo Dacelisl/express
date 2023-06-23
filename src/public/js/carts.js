@@ -1,4 +1,7 @@
-let cartLocal = localStorage.getItem('idCart')
+let cartLocal = ''
+if (!cartLocal) {
+  cartLocal = localStorage.getItem('idCart')
+}
 const title = document.getElementById('title_cart')
 const container = document.getElementById('product-container')
 
