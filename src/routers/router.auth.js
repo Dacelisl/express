@@ -1,44 +1,39 @@
 import express from 'express'
-import { UserModel } from '../DAO/models/user.model.js'
 import { isAdmin, isUser } from '../middleware/auth.js'
-import { createHash, isValidPassword } from '../utils/utils.js'
+import passport from 'passport'
 
 export const authRouter = express.Router()
 authRouter.get('/register', (req, res) => {
-  return res.render('register', {})
+  const message = req.flash('info')
+  return res.render('register', { message })
 })
-authRouter.post('/register', async (req, res) => {
-  const { email, password, firstName, lastName } = req.body
-  if (!email || !password || !firstName || !lastName) {
-    return res.status(400).render('error', { error: 'all data is required', code: 400 })
-  }
-  try {
-    await UserModel.create({ email: email, password: createHash(password), firstName: firstName, lastName: lastName, isAdmin: false })
-    req.session.email = email
-    req.session.isAdmin = false
-    return res.redirect('/api/products')
-  } catch (e) {
-    return res.status(400).render('error', { error: 'User not created, Try another email' })
-  }
+authRouter.post('/register', (req, res, next) => {
+  passport.authenticate('register', { failureRedirect: '/auth/register', failureFlash: true }, (err, user, info) => {
+    if (err) return next(err)
+    req.flash('info', info.message)
+    if (!user) {
+      return res.redirect('/auth/register')
+    }
+    return res.redirect('/auth/login')
+  })(req, res, next)
 })
 authRouter.get('/login', (req, res) => {
-  return res.render('login', {})
+  const message = req.flash('info')
+  return res.render('login', { message })
 })
-authRouter.post('/login', async (req, res) => {
-  const { email, password } = req.body
-  if (!email || !password) {
-    return res.status(400).render('error', { error: 'all data is required', code: 400 })
-  }
-  const usarioEncontrado = await UserModel.findOne({ email: email })
-  if (usarioEncontrado && isValidPassword(password, usarioEncontrado.password)) {
-    req.session.email = usarioEncontrado.email
-    req.session.isAdmin = usarioEncontrado.isAdmin
-    req.session.user = usarioEncontrado.firstName
-    req.session.message = `¡Bienvenido ${req.session.user}!. Has iniciado sesión con éxito.`
+authRouter.post('/login', (req, res, next) => {
+  passport.authenticate('login', { failureRedirect: '/auth/login', failureFlash: true }, (err, user, info) => {
+    if (err) return next(err)
+    if (!user) {
+      req.flash('info', info.message)
+      return res.redirect('/auth/login')
+    }
+    req.session.email = user.email
+    req.session.isAdmin = user.isAdmin
+    req.session.user = user.firstName
+    req.session.message = `¡Bienvenido ${user.firstName}!. Has iniciado sesión con éxito.`
     return res.redirect('/api/products')
-  } else {
-    return res.status(401).render('error', { error: 'Invalid Email or password.', code: 401 })
-  }
+  })(req, res, next)
 })
 authRouter.get('/logout', (req, res) => {
   req.session.destroy((err) => {
@@ -50,7 +45,6 @@ authRouter.get('/logout', (req, res) => {
 })
 authRouter.get('/profile', isUser, (req, res) => {
   const user = { email: req.session.email, isAdmin: req.session.isAdmin, user: req.session.user }
-
   return res.render('profile', user)
 })
 authRouter.get('/admin', isUser, isAdmin, (req, res) => {

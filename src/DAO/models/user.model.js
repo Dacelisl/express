@@ -25,8 +25,9 @@ const schema = new Schema({
   },
 
   isAdmin: {
-    type: Boolean,
+    type: Boolean, 
     required: true,
+    default: false,
   },
 })
 export const UserModel = model('users', schema)

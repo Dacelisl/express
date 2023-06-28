@@ -12,6 +12,9 @@ import { routerView } from './routers/router.views.js'
 import { testSocketChatRouter } from './routers/test.socket.chat.router.js'
 import { authRouter } from './routers/router.auth.js'
 import { isAdmin } from './middleware/auth.js'
+import { initPassport } from './config/passport.config.js'
+import passport from 'passport'
+import flash from "connect-flash";
 
 const app = express()
 const port = 8080
@@ -37,12 +40,16 @@ app.use(
     saveUninitialized: true,
   })
 )
-
+app.use(flash())
 app.use('/api/products', productsRouter)
 app.use('/api/carts', CartsRouter)
 app.use('/realtimeproducts',isAdmin, routerView)
 app.use('/test-chat', testSocketChatRouter)
 app.use('/auth', authRouter)
+
+initPassport()
+app.use(passport.authorize())
+app.use(passport.session())
 
 app.get('*', (req, res) => {
   return res.status(404).json({

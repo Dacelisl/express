@@ -407,8 +407,12 @@ a {
 .profile-info {
   margin-bottom: 20px;
 }
-.profile-info a {
-  color: black;
+#settings {
+  display: flex;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 5px;
+  background: #c9bbb6;
 }
 .buttons {
   display: flex;

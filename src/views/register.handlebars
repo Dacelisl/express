@@ -1,11 +1,14 @@
 <div class='bodyForm'>
   <a href='/api/products' class='floating-button'>Home</a>
+  {{#if message}}
+    <div class='alert alert-success'>{{message}}</div>
+  {{/if}}
   <form class='form' action='/auth/register' method='POST'>
     <h1>REGISTER</h1>
-    <input type='text' name='firstName' placeholder='FirstName' />
-    <input type='text' name='lastName' placeholder='LastName' />
-    <input type='text' name='email' placeholder='Email' />
-    <input type='text' name='password' placeholder='Password' />
+    <input type='text' name='firstName' placeholder='FirstName' required />
+    <input type='text' name='lastName' placeholder='LastName' required />
+    <input type='text' name='email' placeholder='Email' required />
+    <input type='text' name='password' placeholder='Password' required />
 
     <button type='submit'>Sign up</button>
     <span class='info'>Already have an account?
