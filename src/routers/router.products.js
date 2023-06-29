@@ -15,8 +15,10 @@ productsRouter.get('/', async (req, res) => {
   try {
     const data = await productService.getAll(opcionesConsulta)
     if (data.status === 'Success') {
-      data.session = { email: req.session.email, isAdmin: req.session.isAdmin, user: req.session.user, message: req.session.message }
-      req.session.message = null
+      if (req.session.user) {
+        data.session = { email: req.session.user.email, isAdmin: req.session.user.isAdmin, user: req.session.user.firstName, message: req.flash('info') }
+        req.session.user.message = null
+      }
       if (opcionesConsulta.isUpdating) {
         return res.status(200).json(data)
       } else {

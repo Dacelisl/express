@@ -28,10 +28,8 @@ authRouter.post('/login', (req, res, next) => {
       req.flash('info', info.message)
       return res.redirect('/auth/login')
     }
-    req.session.email = user.email
-    req.session.isAdmin = user.isAdmin
-    req.session.user = user.firstName
-    req.session.message = `¡Bienvenido ${user.firstName}!. Has iniciado sesión con éxito.`
+    req.session.user = user
+    req.flash('info', `¡Bienvenido ${user.firstName}!. Has iniciado sesión con éxito.`)
     return res.redirect('/api/products')
   })(req, res, next)
 })
@@ -44,9 +42,16 @@ authRouter.get('/logout', (req, res) => {
   })
 })
 authRouter.get('/profile', isUser, (req, res) => {
-  const user = { email: req.session.email, isAdmin: req.session.isAdmin, user: req.session.user }
+  const user = { email: req.session.user.email, isAdmin: req.session.user.isAdmin, user: req.session.user.firstName }
   return res.render('profile', user)
 })
 authRouter.get('/admin', isUser, isAdmin, (req, res) => {
   return res.render('admin')
+})
+
+authRouter.get('/github', passport.authenticate('github', { scope: ['user:email'] }))
+authRouter.get('/githubcallback', passport.authenticate('github', { failureRedirect: '/login', failureFlash: true }), (req, res) => {
+  req.session.user = req.user
+  req.flash('info', `${req.user.firstName} Logged in with GitHub successfully`)
+  res.redirect('/api/products')
 })

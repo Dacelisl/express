@@ -1,7 +1,9 @@
 import passport from 'passport'
 import local from 'passport-local'
+import GitHubStrategy from 'passport-github'
 import { createHash, isValidPassword } from '../utils/utils.js'
 import { UserModel } from '../DAO/models/user.model.js'
+import fetch from 'node-fetch'
 const LocalStrategy = local.Strategy
 
 export function initPassport() {
@@ -22,7 +24,6 @@ export function initPassport() {
       }
     })
   )
-
   passport.use(
     'register',
     new LocalStrategy(
@@ -46,10 +47,56 @@ export function initPassport() {
     )
   )
 
+  passport.use(
+    'github',
+    new GitHubStrategy(
+      {
+        clientID: 'bb0c042ee4e10dba89b0',
+        clientSecret: '201045da4a993a51bdc9bb407a3553bc6d5f3f3a',
+        callbackURL: 'http://localhost:8080/auth/githubcallback',
+      },
+      async (accesToken, _, profile, done) => {
+        console.log('data profile', profile)
+        try {
+          const res = await fetch('https://api.github.com/user/emails', {
+            headers: {
+              Accept: 'application/vnd.github+json',
+              Authorization: 'Bearer ' + accesToken,
+              'X-Github-Api-Version': '2022-11-28',
+            },
+          })
+          const emails = await res.json()
+          const emailDetail = emails.find((email) => email.verified == true)
+
+          if (!emailDetail) {
+            return done(null, { message: 'cannot get a valid email for this user' })
+          }
+          profile.email = emailDetail.email
+
+          let user = await UserModel.findOne({ email: profile.email })
+          if (!user) {
+            const newUser = {
+              email: profile.email,
+              firstName: profile._json.name || profile._json.login || 'noname',
+              lastName: 'nolast',
+              isAdmin: false,
+              password: 'nopass',
+            }
+            let userCreated = await UserModel.create(newUser)
+            return done(null, userCreated, { message: 'User Registration succesful' })
+          } else {
+            return done(null, user, { message: 'User already exists' })
+          }
+        } catch (e) {
+          return done(e, { message: 'Error en auth github' })
+        }
+      }
+    )
+  )
+
   passport.serializeUser((user, done) => {
     done(null, user._id)
   })
-
   passport.deserializeUser(async (id, done) => {
     let user = await UserModel.findById(id)
     done(null, user)

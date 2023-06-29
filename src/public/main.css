@@ -351,6 +351,19 @@ a {
   font-size: 20px;
   color: #b7b7bd;
 }
+.form .git {
+  display: flex;
+  margin-top: 30px;
+  position: relative;
+  background: #333333;
+  justify-content: center;
+  align-items: center;
+  left: 30%;
+  height: fit-content;
+  width: fit-content;
+  padding: 12px;
+}
+
 #session {
   color: white;
   font-size: 18px;

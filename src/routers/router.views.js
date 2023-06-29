@@ -12,7 +12,7 @@ routerView.get('/', async (req, res) => {
   opcionesConsulta.query = req.query.query
   try {
     const payload = await productService.getAll(opcionesConsulta)
-    payload.session = { email: req.session.email, isAdmin: req.session.isAdmin, user: req.session.user, message: req.session.message }
+    payload.session = { email: req.session.user.email, isAdmin: req.session.user.isAdmin, user: req.session.user.firstName, message: req.session.user.message }
     res.render('realTimeProducts', payload)
   } catch (error) {
     throw new Error(error)

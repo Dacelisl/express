@@ -8,8 +8,8 @@
     {{! <span class='cart-items'>3</span> }}
   </div>
   <div id='session'>
-    {{#if session.user}}
-      <a href='http://localhost:8080/auth/profile/'>{{session.user}}</a>
+    {{#if session.user.user}}
+      <a href='http://localhost:8080/auth/profile/'>{{session.user.user}}</a>
     {{else}}
       <a href='http://localhost:8080/auth/login/'>Login</a>
     {{/if}}

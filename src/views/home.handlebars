@@ -33,7 +33,7 @@
       <li class='product-item'>code: {{code}}</li>
       <li class='product-item'>stock: {{stock}}</li>
       <li class='button-item'>
-        {{#if session.isAdmin}}
+        {{#if session.user.isAdmin}}
           <button class='delete-button' id='product-button' data-id={{_id}}>Delete</button>
           <button class='update-button' id='product-button' data-id={{_id}}>Update</button>
         {{else}}
