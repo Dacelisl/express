@@ -55,7 +55,6 @@ CartsRouter.put('/:cid/product/:pid', async (req, res) => {
   const resAdd = await cartService.addToCart(cid, pid, quant)
   return res.json(resAdd)
 })
-
 CartsRouter.put('/:cid', async (req, res) => {
   const cid = req.params.cid
   const products = req.body.products

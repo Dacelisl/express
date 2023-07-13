@@ -56,7 +56,7 @@ function loadProduct(response) {
 <li class='product-item'>stock: ${item.stock}</li>
 <li class='button-item'>
         ${
-          response.session.user.isAdmin
+          response.session.user.rol === 'admin'
             ? `<button class='delete-button' id='product-button' data-id='${item._id}'>Delete</button> 
         <button class='update-button' id='product-button' data-id='${item._id}'>Update</button>`
             : `<button class='addCart-button' id='product-button' data-id='${item._id}'>Add To Cart</button>`

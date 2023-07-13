@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import { CartsModel } from './carts.model.js'
 
 const schema = new Schema({
   firstName: {
@@ -17,17 +18,24 @@ const schema = new Schema({
     max: 100,
     unique: true,
   },
-
   password: {
     type: String,
     required: true,
     max: 100,
   },
-
-  isAdmin: {
-    type: Boolean, 
+  age: {
+    type: Number,
+    required: false,
+  },
+  rol: {
+    type: String,
     required: true,
-    default: false,
+    default: 'user',
+    max: 20,
+  },
+  cart: {
+    type: String,
+    required: false,
   },
 })
 export const UserModel = model('users', schema)

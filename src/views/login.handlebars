@@ -3,16 +3,16 @@
   {{#if message}}
     <div class='alert alert-success'>{{message}}</div>
   {{/if}}
-  <form class='form' action='/auth/login' method='POST'>
+  <form class='form' action='/api/sessions/login' method='POST'>
     <h1>LOGIN</h1>
     <input type='text' name='email' placeholder='Email' />
     <input type='text' name='password' placeholder='Password' />
     <button type='submit'>Login!</button>
     <span class='info'>You don't have an account?
-      <a href='/auth/register' type='submit'>Register Now!!</a>
+      <a href='/api/sessions/register' type='submit'>Register Now!!</a>
     </span>
     <span class='info git'>
-      <a href='/auth/github'>Login with GitHub</a>
+      <a href='/api/sessions/github'>Login with GitHub</a>
     </span>
   </form>
 </div>

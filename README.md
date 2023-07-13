@@ -1,4 +1,4 @@
-<h1 align="center">Implementación de login</h1>
+<h1 align="center">Segunda Práctica de integración</h1>
 
 Link del Proyecto: [Express](https://github.com/Dacelisl/express/tree/project).
 
@@ -8,13 +8,21 @@ Link del Proyecto: [Express](https://github.com/Dacelisl/express/tree/project).
   <img src='https://softprodigy.com/wp-content/uploads/2019/07/express-js.png' width='300px'/>
    </div>
 
-Ajustar nuestro servidor principal para trabajar con un sistema de login.
+Continuar sobre el proyecto que has trabajado para tu ecommerce y configurar los siguientes elementos:
 
 ## Se debe entregar
-- Deberá contar con todas las vistas realizadas en el hands on lab, así también como las rutas de router para procesar el registro y el login. 
-- Una vez completado el login, realizar la redirección directamente a la vista de productos.
-- Agregar a la vista de productos un mensaje de bienvenida con los datos del usuario
-- Agregar un sistema de roles, de manera que si colocamos en el login como correo adminCoder@coder.com, y la contraseña adminCod3r123, el usuario de la sesión además tenga un campo 
-- Todos los usuarios que no sean admin deberán contar con un rol “usuario”.
-- Implementar botón de “logout” para destruir la sesión y redirigir a la vista de login
 
+- Crear un modelo User el cual contará con los campos:
+
+  - first_name:String,
+  - last_name:String,
+  - email:String (único)
+  - age:Number,
+  - password:String(Hash)
+  - cart:Id con referencia a Carts
+  - role:String(default:’user’)
+
+- Desarrollar las estrategias de Passport para que funcionen con este modelo de usuarios
+- Modificar el sistema de login del usuario para poder trabajar con session o con jwt (a tu elección).
+- (Sólo para jwt) desarrollar una estrategia “current” para extraer la cookie que contiene el token para obtener el usuario asociado a dicho token, en caso de tener el token, devolver al usuario asociado al token, caso contrario devolver un error de passport, utilizar un extractor de cookie
+- Agregar al router /api/sessions/ la ruta /current, la cual utilizará el modelo de sesión que estés utilizando, para poder devolver en una respuesta el usuario actual.

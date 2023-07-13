@@ -10,7 +10,7 @@ import { productsRouter } from './routers/router.products.js'
 import { CartsRouter } from './routers/router.cart.js'
 import { routerView } from './routers/router.views.js'
 import { testSocketChatRouter } from './routers/test.socket.chat.router.js'
-import { authRouter } from './routers/router.auth.js'
+import { sessionRouter } from './routers/router.session.js'
 import { isAdmin } from './middleware/auth.js'
 import { initPassport } from './config/passport.config.js'
 import passport from 'passport'
@@ -45,7 +45,7 @@ app.use('/api/products', productsRouter)
 app.use('/api/carts', CartsRouter)
 app.use('/realtimeproducts',isAdmin, routerView)
 app.use('/test-chat', testSocketChatRouter)
-app.use('/auth', authRouter)
+app.use('/api/sessions', sessionRouter)
 
 initPassport()
 app.use(passport.authorize())

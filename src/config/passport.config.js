@@ -4,6 +4,7 @@ import GitHubStrategy from 'passport-github'
 import { createHash, isValidPassword } from '../utils/utils.js'
 import { UserModel } from '../DAO/models/user.model.js'
 import fetch from 'node-fetch'
+import { CartsModel } from '../DAO/models/carts.model.js'
 const LocalStrategy = local.Strategy
 
 export function initPassport() {
@@ -33,12 +34,13 @@ export function initPassport() {
       },
       async (req, username, password, done) => {
         try {
-          const { email, firstName, lastName } = req.body
+          const { email, firstName, lastName, age } = req.body
           let user = await UserModel.findOne({ email: username })
           if (user) {
             return done(null, false, { message: 'User already exists' })
           }
-          let userCreated = await UserModel.create({ email: email, password: createHash(password), firstName: firstName, lastName: lastName, isAdmin: false })
+          let cart = await CartsModel.create({})
+          let userCreated = await UserModel.create({ email: email, password: createHash(password), firstName: firstName, lastName: lastName, rol: 'user', age: Number(age), cart: cart._id })
           return done(null, userCreated, { message: 'User Registration succesful' })
         } catch (e) {
           return done(e, { message: 'Error in register' })
@@ -53,10 +55,9 @@ export function initPassport() {
       {
         clientID: 'bb0c042ee4e10dba89b0',
         clientSecret: '201045da4a993a51bdc9bb407a3553bc6d5f3f3a',
-        callbackURL: 'http://localhost:8080/auth/githubcallback',
+        callbackURL: 'http://localhost:8080/api/sessions/githubcallback',
       },
       async (accesToken, _, profile, done) => {
-        console.log('data profile', profile)
         try {
           const res = await fetch('https://api.github.com/user/emails', {
             headers: {
@@ -72,6 +73,7 @@ export function initPassport() {
             return done(null, { message: 'cannot get a valid email for this user' })
           }
           profile.email = emailDetail.email
+          let cart = await CartsModel.create({})
 
           let user = await UserModel.findOne({ email: profile.email })
           if (!user) {
@@ -79,8 +81,10 @@ export function initPassport() {
               email: profile.email,
               firstName: profile._json.name || profile._json.login || 'noname',
               lastName: 'nolast',
-              isAdmin: false,
+              rol: 'user',
               password: 'nopass',
+              age: 0,
+              cart: cart._id,
             }
             let userCreated = await UserModel.create(newUser)
             return done(null, userCreated, { message: 'User Registration succesful' })

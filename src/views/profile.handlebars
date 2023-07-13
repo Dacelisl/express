@@ -4,9 +4,10 @@
     <p><strong>Name:</strong> {{user}}</p>
     <p><strong>Email:</strong> {{email}}</p>
     <p><strong>Rol:</strong>
+
       {{#if isAdmin}}
         <p>Administrator</p>
-        <a id="settings" href='/auth/admin'>settings</a>
+        <a id='settings' href='/api/sessions/admin'>settings</a>
       {{else}}
         <span>User</span>
       {{/if}}
@@ -14,7 +15,7 @@
   </div>
   <div class='buttons'>
     <button><a href='http://localhost:8080/api/products/'>Go to Home</a></button>
-    <button><a href='http://localhost:8080/auth/logout/'>Logout</a></button>
+    <button><a href='http://localhost:8080/api/sessions/logout/'>Logout</a></button>
 
   </div>
 </div>
