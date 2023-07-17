@@ -68,6 +68,7 @@ export class CartServices {
   }
   async addToCart(cartId, productId, quantity) {
     try {
+      console.log('ingreso 1');
       const quant = parseInt(quantity) ? quantity : 1
       if (!Types.ObjectId.isValid(cartId)) return await this.createOne(productId)
       const cart = await CartsModel.findById(cartId)
@@ -85,11 +86,13 @@ export class CartServices {
       }
       const product = cart.products.find((p) => p.productId.toString() === productId)
       if (product) {
+        console.log('producto repetido');
         product.quantity += quant
         await cart.save()
       } else {
         cart.products.push({ productId, quantity: quant })
         await cart.save()
+        console.log('ingreso 2');
       }
       return {
         status: 'success',

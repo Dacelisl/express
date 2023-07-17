@@ -1,17 +1,13 @@
 let cartLocal = ''
-if (!cartLocal) {
+/* if (!cartLocal) {
   cartLocal = localStorage.getItem('idCart')
-}
+} */
 const title = document.getElementById('title_cart')
 const container = document.getElementById('product-container')
 
-function resetData() {
-  title.innerHTML = ' '
-  container.innerHTML = ''
-}
 function cartInUse() {
   if (cartLocal === null) return (cartLocal = '')
-  if (cartLocal !== null) searchCart(cartLocal)
+  if (cartLocal !== null) createNewCart() /* searchCart(cartLocal) */
   title.innerHTML += cartLocal
 }
 async function searchCart(cart) {
@@ -116,13 +112,15 @@ async function deleteProductInCart(cartLocal, productId) {
 }
 async function createNewCart() {
   try {
-    const response = await fetch(`http://localhost:8080/api/carts/`, {
-      method: 'POST',
+    const response = await fetch(`http://localhost:8080/api/carts/?updateCart=true'`, {
+      method: 'GET',
     })
     if (!response.ok) {
       throw new Error('Failed to create a new cart')
     }
+    console.log('data en el server', reponse)
     const newCart = await response.json()
+    console.log('data en el server', newCart)
     cartCreated(newCart.data)
   } catch (error) {
     throw new Error('Something went wrong!', error)
@@ -131,6 +129,7 @@ async function createNewCart() {
 
 function cartCreated(cartId) {
   localStorage.setItem('idCart', cartId._id)
+  let cartLocal = cartId._id
   resetData()
   title.innerHTML = 'PRODUCT LIST FROM CART : ' + cartId._id
 }
@@ -157,7 +156,10 @@ async function cartDeleted(cart) {
     throw new Error('Something went wrong!', error)
   }
 }
-
+function resetData() {
+  title.innerHTML = ' '
+  container.innerHTML = ''
+}
 function updateDeleteCart() {
   resetData()
   Swal.fire({

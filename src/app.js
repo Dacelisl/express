@@ -14,7 +14,8 @@ import { sessionRouter } from './routers/router.session.js'
 import { isAdmin } from './middleware/auth.js'
 import { initPassport } from './config/passport.config.js'
 import passport from 'passport'
-import flash from "connect-flash";
+import flash from 'connect-flash'
+import 'dotenv/config'
 
 const app = express()
 const port = 8080
@@ -34,7 +35,10 @@ app.use(express.static(__dirname + '/public'))
 
 app.use(
   session({
-    store: MongoStore.create({ mongoUrl: 'mongodb+srv://hero055:v1jGGXbhtPoSKple@backendcoder.tu6mnjp.mongodb.net/ecommerce?retryWrites=true&w=majority', ttl: 7200 }),
+    store: MongoStore.create({
+      mongoUrl: `mongodb+srv://${process.env.USER_NAME}:${process.env.SECRET_ACCESS_KEY}@backendcoder.tu6mnjp.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`,
+      ttl: 7200,
+    }),
     secret: 'accessKey',
     resave: true,
     saveUninitialized: true,
@@ -43,7 +47,7 @@ app.use(
 app.use(flash())
 app.use('/api/products', productsRouter)
 app.use('/api/carts', CartsRouter)
-app.use('/realtimeproducts',isAdmin, routerView)
+app.use('/realtimeproducts', isAdmin, routerView)
 app.use('/test-chat', testSocketChatRouter)
 app.use('/api/sessions', sessionRouter)
 
