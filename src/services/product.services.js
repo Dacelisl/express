@@ -1,56 +1,48 @@
 import { ProductsModel } from '../DAO/models/products.model.js'
 import { parsedQuery, isValid } from '../utils/utils.js'
+import dataConfig from '../config/process.config.js'
 
-export class ProductServices {
+class ProductServices {
   validateProduct(title, description, category, price, thumbnail, code, stock) {
     if (!title || !description || !category || !price || !thumbnail || !code || !stock) {
       throw new Error('validation error: All Fields are required.')
     }
   }
-  async getAll(search) {
-    const limit = parseInt(search.limit) ? search.limit : 10
-    const page = search.page ? parseInt(search.page) : 1
-    const sorting = search.sort === 'desc' ? 1 : -1
-    const queryFilter = search.query ? parsedQuery(search.query) : {}
+  async getAll({ limit, page, sort, query, baseUrl, isUpdating }) {
+    const limitValue = limit ? parseInt(limit) : 10
+    const pageNumber = page ? parseInt(page) : 1
+    const sorting = sort === 'desc' ? -1 : 1
+    const queryFilter = query ? parsedQuery(query) : {}
     try {
       const payload = await ProductsModel.find(queryFilter)
-        .skip((page - 1) * limit)
-        .limit(limit)
+        .skip((page - 1) * limitValue)
+        .limit(limitValue)
         .sort({ price: sorting })
         .lean()
-
-      /* if (search.isUpdating) {
-        return {
-          status: 'Success',
-          code: 200,
-          payload: payload,
-        }
-      } else { */
       const totalProducts = await ProductsModel.countDocuments(queryFilter)
-      const totalPages = Math.ceil(totalProducts / limit)
+      const totalPages = Math.ceil(totalProducts / limitValue)
 
-      const hasNextPage = page < totalPages
-      const hasPrevPage = page > 1
+      const hasNextPage = pageNumber < totalPages
+      const hasPrevPage = pageNumber > 1
 
       return {
         status: 'Success',
         code: 200,
-        payload: payload,
-        totalPages: totalPages,
-        prevPage: hasPrevPage ? page - 1 : null,
-        nextPage: hasNextPage ? page + 1 : null,
-        page: page,
-        hasPrevPage: hasPrevPage,
-        hasNextPage: hasNextPage,
-        prevLink: hasPrevPage ? `http://localhost:8080${search.baseUrl}?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page - 1}` : null,
-        nextLink: hasNextPage ? `http://localhost:8080${search.baseUrl}?limit=${limit}&query=${encodeURIComponent(search.query)}&page=${page + 1}` : null,
+        payload,
+        totalPages,
+        prevPage: hasPrevPage ? pageNumber - 1 : null,
+        nextPage: hasNextPage ? pageNumber + 1 : null,
+        pageNumber,
+        hasPrevPage,
+        hasNextPage,
+        prevLink: hasPrevPage ? `http://localhost:${dataConfig.port}${baseUrl}?limit=${limitValue}&query=${encodeURIComponent(query)}&page=${pageNumber - 1}` : null,
+        nextLink: hasNextPage ? `http://localhost:${dataConfig.port}${baseUrl}?limit=${limitValue}&query=${encodeURIComponent(query)}&page=${pageNumber + 1}` : null,
       }
-      /* } */
     } catch (error) {
       return {
         status: 'Fail',
         code: 404,
-        msg: `Error getting data ${error}`,
+        msg: `Error getting data ${error.message}`,
         payload: {},
       }
     }
@@ -93,3 +85,4 @@ export class ProductServices {
     return updateProduct
   }
 }
+export const productService = new ProductServices()

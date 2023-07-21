@@ -1,3 +1,5 @@
 **/node_modules/*
 githubInfo.txt
 .env
+.env.development
+.env.production

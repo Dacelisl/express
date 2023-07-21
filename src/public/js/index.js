@@ -1,3 +1,5 @@
+const port = 8080
+
 function message() {
   document.addEventListener('DOMContentLoaded', () => {
     const alertElement = document.querySelector('.alert')
@@ -17,7 +19,7 @@ async function productToCart() {
     button.addEventListener('click', async (event) => {
       const productId = event.target.getAttribute('data-id')
       try {
-        const response = await fetch(`http://localhost:8080/api/carts/${cartLocal}/product/${productId}`, {
+        const response = await fetch(`http://localhost:${port}/api/carts/${cartLocal}/product/${productId}`, {
           method: 'POST',
         })
         if (response.ok) {
@@ -99,7 +101,7 @@ function AssingDeleteEvent() {
 AssingDeleteEvent()
 async function deleteProduct(productId) {
   try {
-    const response = await fetch(`http://localhost:8080/api/products/${productId}`, {
+    const response = await fetch(`http://localhost:${port}/api/products/${productId}`, {
       method: 'DELETE',
     })
     if (!response.ok) {
@@ -112,7 +114,7 @@ async function deleteProduct(productId) {
 }
 async function updateProducts() {
   try {
-    const response = await fetch('http://localhost:8080/api/products/?limit=10&isUpdating=true')
+    const response = await fetch(`http://localhost:${port}/api/products/?limit=10&isUpdating=true`)
     if (!response.ok) {
       throw new Error('Failed to fetch products')
     }
@@ -143,7 +145,7 @@ function searchProductByCategory() {
 searchProductByCategory()
 async function searchProductByCategoryAPI(category) {
   const query = 'category:' + category
-  const response = await fetch(`http://localhost:8080/api/products?query=${query}&isUpdating=true`)
+  const response = await fetch(`http://localhost:${port}/api/products?query=${query}&isUpdating=true`)
   if (!response.ok) {
     throw new Error('Failed to search products by category')
   }

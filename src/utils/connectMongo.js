@@ -2,13 +2,17 @@ import { connect, Schema, model } from 'mongoose'
 import { ProductsModel } from '../DAO/models/products.model.js'
 import { CartsModel } from '../DAO/models/carts.model.js'
 import { faker } from '@faker-js/faker'
+import dataConfig from '../config/process.config.js'
+
+let mongoConnectionInstance = null
 
 export const connectMongo = async () => {
-  try {
-    await connect('mongodb+srv://hero055:v1jGGXbhtPoSKple@backendcoder.tu6mnjp.mongodb.net/ecommerce?retryWrites=true&w=majority')
-    console.log('plug to MONGODB!')
-
-    /* async function poblar() {
+  if (!mongoConnectionInstance) {
+    try {
+      const dbConnection = await connect(`mongodb+srv://${dataConfig.userName}:${dataConfig.secretKey}@backendcoder.tu6mnjp.mongodb.net/${dataConfig.databaseName}?retryWrites=true&w=majority`)
+      console.log('Connected to MongoDB!')
+      mongoConnectionInstance = dbConnection
+      /* async function poblar() {
       const products = []
       for (let i = 0; i < 3000; i++) {
         products.push({
@@ -30,8 +34,9 @@ export const connectMongo = async () => {
       }
     }
     poblar() */
-
-  } catch (e) {
-    throw new Error('Can not connected')
+    } catch (e) {
+      throw new Error('Can not connect to MongoDB')
+    }
   }
+  return mongoConnectionInstance
 }

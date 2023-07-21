@@ -1,3 +1,4 @@
+const port = 8080
 let cartLocal = ''
 /* if (!cartLocal) {
   cartLocal = localStorage.getItem('idCart')
@@ -12,7 +13,7 @@ function cartInUse() {
 }
 async function searchCart(cart) {
   try {
-    const response = await fetch(`http://localhost:8080/api/carts/${cart}`)
+    const response = await fetch(`http://localhost:${port}/api/carts/${cart}`)
     if (!response.ok) {
       throw new Error('Something went wrong!')
     }
@@ -98,7 +99,7 @@ function assingDeleteProduct() {
 
 async function deleteProductInCart(cartLocal, productId) {
   try {
-    const response = await fetch(`http://localhost:8080/api/carts/${cartLocal}/products/${productId}`, {
+    const response = await fetch(`http://localhost:${port}/api/carts/${cartLocal}/products/${productId}`, {
       method: 'DELETE',
     })
     if (!response.ok) {
@@ -112,7 +113,7 @@ async function deleteProductInCart(cartLocal, productId) {
 }
 async function createNewCart() {
   try {
-    const response = await fetch(`http://localhost:8080/api/carts/?updateCart=true'`, {
+    const response = await fetch(`http://localhost:${port}/api/carts/?updateCart=true'`, {
       method: 'GET',
     })
     if (!response.ok) {
@@ -145,7 +146,7 @@ deleteCart()
 
 async function cartDeleted(cart) {
   try {
-    const response = await fetch(`http://localhost:8080/api/carts/${cart}`, {
+    const response = await fetch(`http://localhost:${port}/api/carts/${cart}`, {
       method: 'DELETE',
     })
     if (!response.ok) {

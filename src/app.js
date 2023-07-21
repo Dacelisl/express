@@ -6,21 +6,20 @@ import path from 'path'
 import { __dirname } from './utils/utils.js'
 import { connectMongo } from './utils/connectMongo.js'
 import { connectSocket } from './utils/socketServer.js'
-import { productsRouter } from './routers/router.products.js'
-import { CartsRouter } from './routers/router.cart.js'
-import { routerView } from './routers/router.views.js'
-import { testSocketChatRouter } from './routers/test.socket.chat.router.js'
-import { sessionRouter } from './routers/router.session.js'
+import { ProductRoutes } from './routes/products.routes.js'
+import { CartRoutes } from './routes/cart.routes.js'
+import { ViewRoutes } from './routes/views.routes.js'
+import { TestSocketChatRoutes } from './routes/test.socket.chat.routes.js'
+import { SessionRoutes } from './routes/session.routes.js'
 import { isAdmin } from './middleware/auth.js'
 import { initPassport } from './config/passport.config.js'
 import passport from 'passport'
 import flash from 'connect-flash'
-import 'dotenv/config'
+import dataConfig from './config/process.config.js'
 
 const app = express()
-const port = 8080
 
-const httpServer = app.listen(port, () => console.log(`listen on http://localhost:${port}`))
+const httpServer = app.listen(dataConfig.port, () => console.log(`listen on http://localhost:${dataConfig.port}, mode:`, dataConfig.mode))
 connectSocket(httpServer)
 connectMongo()
 
@@ -36,7 +35,7 @@ app.use(express.static(__dirname + '/public'))
 app.use(
   session({
     store: MongoStore.create({
-      mongoUrl: `mongodb+srv://${process.env.USER_NAME}:${process.env.SECRET_ACCESS_KEY}@backendcoder.tu6mnjp.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`,
+      mongoUrl: `mongodb+srv://${dataConfig.userName}:${dataConfig.secretKey}@backendcoder.tu6mnjp.mongodb.net/${dataConfig.databaseName}?retryWrites=true&w=majority`,
       ttl: 7200,
     }),
     secret: 'accessKey',
@@ -45,11 +44,11 @@ app.use(
   })
 )
 app.use(flash())
-app.use('/api/products', productsRouter)
-app.use('/api/carts', CartsRouter)
-app.use('/realtimeproducts', isAdmin, routerView)
-app.use('/test-chat', testSocketChatRouter)
-app.use('/api/sessions', sessionRouter)
+app.use('/api/products', ProductRoutes)
+app.use('/api/carts', CartRoutes)
+app.use('/realtimeproducts', isAdmin, ViewRoutes)
+app.use('/test-chat', TestSocketChatRoutes)
+app.use('/api/sessions/', SessionRoutes)
 
 initPassport()
 app.use(passport.authorize())

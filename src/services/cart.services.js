@@ -2,7 +2,7 @@ import { Types } from 'mongoose'
 import { CartsModel } from '../DAO/models/carts.model.js'
 import { isValid } from '../utils/utils.js'
 
-export class CartServices {
+class CartServices {
   async createCart() {
     try {
       const createdCart = await CartsModel.create({})
@@ -86,13 +86,11 @@ export class CartServices {
       }
       const product = cart.products.find((p) => p.productId.toString() === productId)
       if (product) {
-        console.log('producto repetido');
         product.quantity += quant
         await cart.save()
       } else {
         cart.products.push({ productId, quantity: quant })
         await cart.save()
-        console.log('ingreso 2');
       }
       return {
         status: 'success',
@@ -231,3 +229,4 @@ export class CartServices {
     }
   }
 }
+export const cartService = new CartServices()
