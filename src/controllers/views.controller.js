@@ -21,19 +21,23 @@ class ViewsController {
   async createProduct(req, res) {
     let message = ''
     try {
-      const dataProduct = req.body
-      await productService.createOne({
-        title: dataProduct.title,
-        description: dataProduct.description,
-        category: dataProduct.category,
-        price: dataProduct.price,
-        thumbnail: dataProduct.thumbnail,
-        code: dataProduct.code,
-        stock: dataProduct.stock,
-      })
+      const data = req.body
+      const dataProduct = {
+        title: data.title,
+        description: data.description,
+        category: data.category,
+        price: data.price,
+        thumbnail: data.thumbnail,
+        code: data.code,
+        stock: data.stock,
+      }
+      console.log('data qeu entra ', dataProduct)
+      const res = await productService.createOne({dataProduct})
+      console.log('data del res ', res)
       message = `Producto agregado con éxito.`
       return res.render('addProduct', { message })
     } catch (e) {
+      console.log('data error', e)
       message = `Producto no agregado`
       return res.render('addProduct', { message })
     }

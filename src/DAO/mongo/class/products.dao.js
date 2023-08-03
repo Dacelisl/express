@@ -19,8 +19,9 @@ class Product {
     return user
   }
 
-  saveProduct = async (title, description, category, price, thumbnail, code, stock) => {
-    const result = await ProductsModel.create({ title, description, category, price, thumbnail, code, stock })
+  saveProduct = async (dataProduct) => {
+    const { title, description, category, price, thumbnail, code, stock } = dataProduct
+    const result = await ProductsModel.create(title, description, category, price, thumbnail, code, stock)
     return result
   }
   deleteProduct = async (objectId) => {
@@ -28,8 +29,9 @@ class Product {
     return result
   }
 
-  updateProduct = async (id, title, description, category, price, thumbnail, code, stock) => {
-    const result = await ProductsModel.updateOne({ _id: id }, { title, description, category, price, thumbnail, code, stock })
+  updateProduct = async (dataProduct) => {
+    const { title, description, category, price, thumbnail, code, stock, id } = dataProduct
+    const result = await ProductsModel.updateOne({ _id: id }, title, description, category, price, thumbnail, code, stock)
     return result
   }
 }

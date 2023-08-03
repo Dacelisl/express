@@ -1,4 +1,5 @@
 import { productService } from '../services/product.services.js'
+import ProductDTO from '../DAO/DTO/product.dto.js'
 
 class ProductController {
   async getAllProducts(req, res) {
@@ -41,16 +42,17 @@ class ProductController {
   }
   async createProduct(req, res) {
     try {
-      const dataProduct = req.body
-      const createProduct = await productService.createOne({
-        title: dataProduct.title,
-        description: dataProduct.description,
-        category: dataProduct.category,
-        price: dataProduct.price,
-        thumbnail: dataProduct.thumbnail,
-        code: dataProduct.code,
-        stock: dataProduct.stock,
-      })
+      const data = req.body
+      const dataProduct = {
+        title: data.title,
+        description: data.description,
+        category: data.category,
+        price: data.price,
+        thumbnail: data.thumbnail,
+        code: data.code,
+        stock: data.stock,
+      }
+      const createProduct = await productService.createOne(dataProduct)
       return res.status(201).json({
         status: 'success',
         msg: 'product created',
@@ -66,17 +68,18 @@ class ProductController {
   }
   async updateProduct(req, res) {
     try {
-      const productId = parseInt(req.params.pid)
-      const dataProduct = req.body
-      const resUpdate = await productService.updateOne(productId, {
-        title: dataProduct.nombre,
-        description: dataProduct.description,
-        category: dataProduct.category,
-        price: dataProduct.price,
-        thumbnail: dataProduct.thumbnail,
-        code: dataProduct.code,
-        stock: dataProduct.stock,
-      })
+      const data = req.body
+      const dataProduct = {
+        title: data.title,
+        description: data.description,
+        category: data.category,
+        price: data.price,
+        thumbnail: data.thumbnail,
+        code: data.code,
+        stock: data.stock,
+      }
+      dataProduct.id = req.params.pid
+      const resUpdate = await productService.updateOne(dataProduct)
       return res.status(201).json({
         status: 'success',
         msg: 'product uptaded',

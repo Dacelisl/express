@@ -1,13 +1,18 @@
 import { productFactory } from '../DAO/factory.js'
 import { parsedQuery, isValid } from '../utils/utils.js'
 import dataConfig from '../config/process.config.js'
+import ProductDTO from '../DAO/DTO/product.DTO.js'
 
 class ProductServices {
-  validateProduct(title, description, category, price, thumbnail, code, stock) {
-    if (!title || !description || !category || !price || !thumbnail || !code || !stock) {
-      throw new Error('validation error: All Fields are required.')
+
+  validateProduct({dataProduct}) {
+    const requiredProperties = ['title', 'description', 'category', 'price', 'thumbnail', 'code', 'stock']
+    const missingProperties = requiredProperties.filter((property) => !(property in dataProduct))
+    if (missingProperties.length > 0) {
+      throw new Error(`Validation error: Missing properties - ${missingProperties.join(', ')}`)
     }
   }
+
   async getAll({ limit, page, sort, query, baseUrl, isUpdating }) {
     const limitValue = limit ? parseInt(limit) : 10
     const pageNumber = page ? parseInt(page) : 1
@@ -61,19 +66,24 @@ class ProductServices {
       }
     }
   }
-  async createOne({ title, description, category, price, thumbnail, code, stock }) {
-    this.validateProduct(title, description, category, price, thumbnail, code, stock)
-    const createProduct = await productFactory.saveProduct(title, description, category, price, thumbnail, code, stock)
+  async createOne(dataProduct) {
+    const dataDTO = new ProductDTO(dataProduct)
+    console.log('data 1 dto', dataDTO);
+    this.validateProduct(dataDTO)
+
+    const createProduct = await productFactory.saveProduct(dataDTO)
+    console.log('data del dto', createProduct)
     return createProduct
   }
   async deletedOne(objectId) {
     const deleted = await productFactory.deleteProduct(objectId)
     return deleted
   }
-  async updateOne({ _id, title, description, category, price, thumbnail, code, stock }) {
-    if (!_id) throw new Error('invalid _id')
-    this.validateProduct(title, description, category, price, thumbnail, code, stock)
-    const updateProduct = await productFactory.updateProduct(_id, title, description, category, price, thumbnail, code, stock)
+  async updateOne(dataProduct) {
+    const dataDTO = new ProductDTO(dataProduct)
+    if (!dataDTO.id) throw new Error('invalid _id')
+    this.validateProduct(dataDTO)
+    const updateProduct = await productFactory.updateProduct(dataDTO)
     return updateProduct
   }
 }
