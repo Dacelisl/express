@@ -1,6 +1,5 @@
 import { cartService } from '../services/cart.services.js'
 
-
 class CartController {
   async createCart(req, res) {
     try {
@@ -40,7 +39,7 @@ class CartController {
   }
   async getAll(req, res) {
     const user = req.session.user
-    user.isAdmin = user.rol === 'admin' ? true : false
+    user.isAdmin = user.rol === 'admin'
     if (req.query.isUpdating) {
       return res.status(201).json(user)
     }

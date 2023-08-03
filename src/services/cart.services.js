@@ -1,11 +1,11 @@
 import { Types } from 'mongoose'
-import { CartsModel } from '../DAO/models/carts.model.js'
+import { cartFactory } from '../DAO/factory.js'
 import { isValid } from '../utils/utils.js'
 
 class CartServices {
   async createCart() {
     try {
-      const createdCart = await CartsModel.create({})
+      const createdCart = await cartFactory.createEmptyCart()
       return {
         status: 'Success',
         code: 201,
@@ -23,7 +23,7 @@ class CartServices {
   async getCartWithProducts(cartId) {
     try {
       isValid(cartId)
-      const cart = await CartsModel.findOne({ _id: cartId }).populate('products.productId')
+      const cart = await cartFactory.getCartWithProducts(cartId)
       if (!cart) {
         return {
           status: 'Fail',
@@ -47,36 +47,13 @@ class CartServices {
       }
     }
   }
-  async createOne(productId) {
-    try {
-      isValid(productId)
-      const cart = { productId: productId, quantity: 1 }
-      const createdCart = await CartsModel.create({ products: [cart] })
-      return {
-        status: 'Success',
-        code: 201,
-        data: createdCart,
-        msg: 'cart created',
-      }
-    } catch (error) {
-      return {
-        status: 'Fail',
-        code: 401,
-        msg: `Error ${error}`,
-      }
-    }
-  }
   async addToCart(cartId, productId, quantity) {
     try {
-      console.log('ingreso 1');
       const quant = parseInt(quantity) ? quantity : 1
       if (!Types.ObjectId.isValid(cartId)) return await this.createOne(productId)
-      const cart = await CartsModel.findById(cartId)
+      const cart = await cartFactory.getCartByID(cartId)
       if (!cart) {
-        const newCart = await CartsModel.create({
-          _id: cartId,
-          products: [{ productId, quantity: quant }],
-        })
+        const newCart = await cartFactory.createCart(cartId, productId, quant)
         return {
           status: 'success',
           code: 201,
@@ -110,7 +87,7 @@ class CartServices {
     try {
       isValid(cartId)
       isValid(productId)
-      const cart = await CartsModel.findById(cartId)
+      const cart = await cartFactory.getCartByID(cartId)
       if (!cart) {
         return {
           status: 'Fail',
@@ -146,7 +123,7 @@ class CartServices {
   async deleteAllProducts(cartId) {
     try {
       isValid(cartId)
-      const cart = await CartsModel.findById(cartId)
+      const cart = await cartFactory.getCartByID(cartId)
       if (!cart) {
         return {
           status: 'Fail',
@@ -174,7 +151,7 @@ class CartServices {
   async deleteCart(_id) {
     try {
       isValid(_id)
-      const result = await CartsModel.deleteOne({ _id })
+      const result = await cartFactory.deleteCart(_id)
       if (result.deletedCount === 0) {
         return {
           status: 'Fail',
@@ -199,7 +176,7 @@ class CartServices {
   }
   async updateCart(cartId, products) {
     try {
-      const cart = await CartsModel.findById(cartId)
+      const cart = await cartFactory.getCartByID(cartId)
       if (!cart) {
         return {
           status: 'Fail',

@@ -1,6 +1,5 @@
 import { connect, Schema, model } from 'mongoose'
-import { ProductsModel } from '../DAO/models/products.model.js'
-import { CartsModel } from '../DAO/models/carts.model.js'
+import { ProductsModel } from '../DAO/mongo/models/products.model.js'
 import { faker } from '@faker-js/faker'
 import dataConfig from '../config/process.config.js'
 

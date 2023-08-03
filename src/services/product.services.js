@@ -1,4 +1,4 @@
-import { ProductsModel } from '../DAO/models/products.model.js'
+import { productFactory } from '../DAO/factory.js'
 import { parsedQuery, isValid } from '../utils/utils.js'
 import dataConfig from '../config/process.config.js'
 
@@ -14,12 +14,8 @@ class ProductServices {
     const sorting = sort === 'desc' ? -1 : 1
     const queryFilter = query ? parsedQuery(query) : {}
     try {
-      const payload = await ProductsModel.find(queryFilter)
-        .skip((page - 1) * limitValue)
-        .limit(limitValue)
-        .sort({ price: sorting })
-        .lean()
-      const totalProducts = await ProductsModel.countDocuments(queryFilter)
+      const payload = await productFactory.getProducts(queryFilter, page, limitValue, sorting)
+      const totalProducts = await productFactory.getTotalProducts(queryFilter)
       const totalPages = Math.ceil(totalProducts / limitValue)
 
       const hasNextPage = pageNumber < totalPages
@@ -50,7 +46,7 @@ class ProductServices {
   async findById(_id) {
     try {
       isValid(_id)
-      const payload = await ProductsModel.findOne({ _id }).lean()
+      const payload = await productFactory.getProductByID(_id)
       return {
         status: 'Success',
         code: 201,
@@ -65,23 +61,19 @@ class ProductServices {
       }
     }
   }
-  async findByCode(code) {
-    let product = await ProductsModel.findOne({ code: code })
-    return product
-  }
   async createOne({ title, description, category, price, thumbnail, code, stock }) {
     this.validateProduct(title, description, category, price, thumbnail, code, stock)
-    const createProduct = await ProductsModel.create({ title, description, category, price, thumbnail, code, stock })
+    const createProduct = await productFactory.saveProduct(title, description, category, price, thumbnail, code, stock)
     return createProduct
   }
   async deletedOne(objectId) {
-    const deleted = await ProductsModel.deleteOne({ _id: objectId })
+    const deleted = await productFactory.deleteProduct(objectId)
     return deleted
   }
   async updateOne({ _id, title, description, category, price, thumbnail, code, stock }) {
     if (!_id) throw new Error('invalid _id')
     this.validateProduct(title, description, category, price, thumbnail, code, stock)
-    const updateProduct = await ProductsModel.updateOne({ _id: id }, { title, description, category, price, thumbnail, code, stock })
+    const updateProduct = await productFactory.updateProduct(_id, title, description, category, price, thumbnail, code, stock)
     return updateProduct
   }
 }

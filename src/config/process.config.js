@@ -12,6 +12,7 @@ dotenv.config({
 
 const dataConfig = {
   mode:mode.mode,
+  persistence: process.env.PERSISTENCE,
   port: process.env.PORT,
   userName: process.env.USER_NAME,
   secretKey: process.env.SECRET_ACCESS_KEY,

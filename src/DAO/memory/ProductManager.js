@@ -25,7 +25,7 @@ export class ProductManager {
       }
     }
   }
-  async addProduct(product) {
+  async saveProduct(product) {
     try {
       if (this.codeFind(product.code))
         return {

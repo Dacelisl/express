@@ -11,8 +11,6 @@ class ProductController {
       baseUrl: req.baseUrl,
       isUpdating: !!req.query.isUpdating,
     }
-    console.log('completo del req', req.baseUrl);
-    console.log('completo del req', req.rawHeaders);
     try {
       const data = await productService.getAll(opcionesConsulta)
       if (data.status === 'Success') {

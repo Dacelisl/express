@@ -119,9 +119,7 @@ async function createNewCart() {
     if (!response.ok) {
       throw new Error('Failed to create a new cart')
     }
-    console.log('data en el server', reponse)
     const newCart = await response.json()
-    console.log('data en el server', newCart)
     cartCreated(newCart.data)
   } catch (error) {
     throw new Error('Something went wrong!', error)

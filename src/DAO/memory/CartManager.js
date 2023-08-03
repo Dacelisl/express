@@ -100,7 +100,7 @@ export class CartManager {
       msg: `Error IdCart not found `,
     }
   }
-  async getProductsInCart(idCart) {
+  async getCartWithProducts(idCart) {
     const data = await this.getCartById(idCart)
     const productsInCart = await Promise.all(
       data[0].products.map(async (item) => {

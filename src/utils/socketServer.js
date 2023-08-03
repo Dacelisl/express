@@ -1,5 +1,5 @@
 import { Server } from 'socket.io'
-import { MsgModel } from '../DAO/models/msgs.model.js'
+import { MsgModel } from '../DAO/mongo/models/msgs.model.js'
 
 export const connectSocket = (httpServer) => {
   const socketServer = new Server(httpServer)
