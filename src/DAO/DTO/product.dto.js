@@ -1,6 +1,5 @@
-export default class ProductDTO {
-  constructor(dataProduct) {
-    console.log('DATA DTO EN DTO', dataProduct)
+class ProductDTO {
+  constructor({dataProduct}) {
     this.title = dataProduct.title
     this.description = dataProduct.description
     this.category = dataProduct.category
@@ -11,3 +10,4 @@ export default class ProductDTO {
     this.id = dataProduct.id
   }
 }
+export default ProductDTO

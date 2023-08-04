@@ -5,7 +5,6 @@ export let cartFactory, productFactory, userFactory
 
 switch (dataConfig.persistence) {
   case 'mongo':
-    console.log('Mongo connect')
     connectMongo()
     const { cartDAO } = await import('./mongo/class/carts.dao.js')
     cartFactory = cartDAO
@@ -16,7 +15,6 @@ switch (dataConfig.persistence) {
     break
   case 'memory':
     console.log('Persistence with Memory')
-
     const { default: cartMemory } = await import('./memory/CartManager.js')
     cartFactory = cartMemory
     const { default: productMemory } = await import('./memory/ProductManager.js')

@@ -1,5 +1,4 @@
 import { productService } from '../services/product.services.js'
-import ProductDTO from '../DAO/DTO/product.dto.js'
 
 class ProductController {
   async getAllProducts(req, res) {

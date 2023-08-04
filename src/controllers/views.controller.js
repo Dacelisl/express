@@ -31,13 +31,10 @@ class ViewsController {
         code: data.code,
         stock: data.stock,
       }
-      console.log('data qeu entra ', dataProduct)
-      const res = await productService.createOne({dataProduct})
-      console.log('data del res ', res)
+      await productService.createOne({ dataProduct })
       message = `Producto agregado con éxito.`
       return res.render('addProduct', { message })
     } catch (e) {
-      console.log('data error', e)
       message = `Producto no agregado`
       return res.render('addProduct', { message })
     }

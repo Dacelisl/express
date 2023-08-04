@@ -4,8 +4,7 @@ import dataConfig from '../config/process.config.js'
 import ProductDTO from '../DAO/DTO/product.DTO.js'
 
 class ProductServices {
-
-  validateProduct({dataProduct}) {
+  validateProduct(dataProduct) {
     const requiredProperties = ['title', 'description', 'category', 'price', 'thumbnail', 'code', 'stock']
     const missingProperties = requiredProperties.filter((property) => !(property in dataProduct))
     if (missingProperties.length > 0) {
@@ -68,11 +67,8 @@ class ProductServices {
   }
   async createOne(dataProduct) {
     const dataDTO = new ProductDTO(dataProduct)
-    console.log('data 1 dto', dataDTO);
     this.validateProduct(dataDTO)
-
     const createProduct = await productFactory.saveProduct(dataDTO)
-    console.log('data del dto', createProduct)
     return createProduct
   }
   async deletedOne(objectId) {

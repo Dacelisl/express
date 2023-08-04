@@ -3,6 +3,7 @@ import local from 'passport-local'
 import GitHubStrategy from 'passport-github'
 import { createHash, isValidPassword } from '../utils/utils.js'
 import { userFactory, cartFactory } from '../DAO/factory.js'
+import userDTO from '../DAO/DTO/user.DTO.js'
 import fetch from 'node-fetch'
 import dataConfig from './process.config.js'
 const LocalStrategy = local.Strategy
@@ -49,7 +50,8 @@ export function initPassport() {
             age: Number(age),
             cart: cart._id,
           }
-          let userCreated = await userFactory.saveUser(newUser)
+          const userDto = new userDTO(newUser)
+          let userCreated = await userFactory.saveUser(userDto)
           return done(null, userCreated, { message: 'User Registration succesful' })
         } catch (e) {
           return done(e, { message: 'Error in register' })
@@ -95,7 +97,8 @@ export function initPassport() {
               age: 0,
               cart: cart._id,
             }
-            let userCreated = await userFactory.saveUser(newUser)
+            const userDto = new userDTO(newUser)
+            let userCreated = await userFactory.saveUser(userDto)
             return done(null, userCreated, { message: 'User Registration succesful' })
           } else {
             return done(null, user, { message: 'User already exists' })
