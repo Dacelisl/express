@@ -11,7 +11,7 @@ dotenv.config({
 })
 
 const dataConfig = {
-  mode:mode.mode,
+  mode: mode.mode,
   persistence: process.env.PERSISTENCE,
   port: process.env.PORT,
   userName: process.env.USER_NAME,
@@ -20,5 +20,7 @@ const dataConfig = {
   gitClient: process.env.GIT_CLIENT_ID,
   gitSecret: process.env.GIT_CLIENT_SECRET,
   gitCallBack: process.env.GIT_CALLBACKURL,
+  url_mongo: process.env.URL_MONGO,
+  secret: process.env.SECRET,
 }
 export default dataConfig

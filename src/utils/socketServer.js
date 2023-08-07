@@ -1,5 +1,5 @@
 import { Server } from 'socket.io'
-import { MsgModel } from '../DAO/mongo/models/msgs.model.js'
+import { chatService } from '../services/chat.services.js'
 
 export const connectSocket = (httpServer) => {
   const socketServer = new Server(httpServer)
@@ -11,9 +11,9 @@ export const connectSocket = (httpServer) => {
     })
 
     socket.on('msg_front_to_back', async (msg) => {
-      const msgCreated = await MsgModel.create(msg)
-      const msgs = await MsgModel.find({})
-      socketServer.emit('msg_back_to_front', msgs)
+      const msgCreated = await chatService.addMessage(msg)
+      const msgs = await chatService.getAllMessages()
+      socketServer.emit('msg_back_to_front', msgs.data)
     })
   })
 }

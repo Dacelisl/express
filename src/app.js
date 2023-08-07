@@ -9,7 +9,7 @@ import { connectSocket } from './utils/socketServer.js'
 import { ProductRoutes } from './routes/products.routes.js'
 import { CartRoutes } from './routes/cart.routes.js'
 import { ViewRoutes } from './routes/views.routes.js'
-import { TestSocketChatRoutes } from './routes/test.socket.chat.routes.js'
+import { chatRoutes } from './routes/chat.routes.js'
 import { SessionRoutes } from './routes/session.routes.js'
 import { isAdmin } from './middleware/auth.js'
 import { initPassport } from './config/passport.config.js'
@@ -35,10 +35,10 @@ app.use(express.static(__dirname + '/public'))
 app.use(
   session({
     store: MongoStore.create({
-      mongoUrl: `mongodb+srv://${dataConfig.userName}:${dataConfig.secretKey}@backendcoder.tu6mnjp.mongodb.net/${dataConfig.databaseName}?retryWrites=true&w=majority`,
+      mongoUrl: dataConfig.url_mongo,
       ttl: 7200,
     }),
-    secret: 'accessKey',
+    secret: dataConfig.secret,
     resave: true,
     saveUninitialized: true,
   })
@@ -47,7 +47,7 @@ app.use(flash())
 app.use('/api/products', ProductRoutes)
 app.use('/api/carts', CartRoutes)
 app.use('/realtimeproducts', isAdmin, ViewRoutes)
-app.use('/test-chat', TestSocketChatRoutes)
+app.use('/test-chat', chatRoutes)
 app.use('/api/sessions/', SessionRoutes)
 
 initPassport()

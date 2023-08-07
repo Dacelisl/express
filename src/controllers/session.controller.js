@@ -1,4 +1,5 @@
 import passport from 'passport'
+import userDTO from '../DAO/DTO/user.DTO.js'
 
 class SessionController {
   getRegister(req, res) {
@@ -47,7 +48,8 @@ class SessionController {
     return res.render('admin')
   }
   getCurrent(req, res) {
-    return res.status(200).json({ user: req.session.user })
+    const userDto = new userDTO(req.session.user)
+    return res.status(200).json(userDto)
   }
   loginGit(req, res) {
     req.session.user = req.user

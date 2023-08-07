@@ -58,5 +58,20 @@ class CartController {
     const resUpdate = await cartService.updateCart(cid, products)
     return res.json(resUpdate)
   }
+
+  purchaseCart = async (req, res) => {
+    const id = req.params.cid;
+    const cartList = req.body;
+    const infoUser = new userDTO(req.session);
+    const response = await ticketsServices.purchaseCart(id, cartList, infoUser.email, infoUser.cartID);
+    return res.status(response.status).json(response.result);
+  };
+
+  getTicketById = async (req, res) => {
+    const id = req.params.cid;
+    const response = await ticketsServices.getTicketById(id);
+    return res.render('ticket', { ticket: response.result });
+  };
+
 }
 export const cartController = new CartController()

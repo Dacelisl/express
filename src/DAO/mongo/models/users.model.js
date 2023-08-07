@@ -1,5 +1,4 @@
 import { Schema, model } from 'mongoose'
-import { CartsModel } from '../models/carts.model.js'
 
 const schema = new Schema({
   firstName: {
