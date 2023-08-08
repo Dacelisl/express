@@ -79,6 +79,7 @@ class TicketServices {
             quantity: product.purchasedQuantity,
           })),
       }
+      console.log('compra', newOrder)
       await ticketFactory.addOrder(newOrder)
 
       return {

@@ -1,5 +1,3 @@
-const port = 8080
-
 function message() {
   document.addEventListener('DOMContentLoaded', () => {
     const alertElement = document.querySelector('.alert')
@@ -15,22 +13,24 @@ message()
 async function productToCart() {
   const addButtons = document.querySelectorAll('.addCart-button')
   try {
-    const response = await fetch(`http://localhost:${port}/api/sessions/current`)
+    const response = await fetch(`/api/sessions/current`)
     const userLocal = await response.json()
-    if (userLocal.rol === 'admin') {
-      return Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'login as a user to buy!',
-        showConfirmButton: true,
-        timer: 4000,
-      })
+    if (response.ok) {
+      if (userLocal.rol === 'admin') {
+        return Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'login as a user to buy!',
+          showConfirmButton: true,
+          timer: 4000,
+        })
+      }
     }
     addButtons.forEach((button) => {
       button.addEventListener('click', async (event) => {
         try {
           const productId = event.target.getAttribute('data-id')
-          const response = await fetch(`http://localhost:${port}/api/carts/${userLocal.cart}/product/${productId}`, {
+          const response = await fetch(`/api/carts/${userLocal.cart}/product/${productId}`, {
             method: 'POST',
           })
           if (response.ok) {
@@ -43,10 +43,10 @@ async function productToCart() {
             })
             AssingDeleteEvent()
           } else {
-            throw new Error('Failed', response.status)
+            throw new Error('Failed res no ok', response.status)
           }
         } catch (error) {
-          throw new Error('Failed', error)
+          throw new Error('Failed on click', error)
         }
       })
     })
@@ -114,7 +114,7 @@ function AssingDeleteEvent() {
 AssingDeleteEvent()
 async function deleteProduct(productId) {
   try {
-    const response = await fetch(`http://localhost:${port}/api/products/${productId}`, {
+    const response = await fetch(`/api/products/${productId}`, {
       method: 'DELETE',
     })
     if (!response.ok) {
@@ -127,7 +127,7 @@ async function deleteProduct(productId) {
 }
 async function updateProducts() {
   try {
-    const response = await fetch(`http://localhost:${port}/api/products/?limit=10&isUpdating=true`)
+    const response = await fetch(`/api/products/?limit=10&isUpdating=true`)
     if (!response.ok) {
       throw new Error('Failed to fetch products')
     }
@@ -158,7 +158,7 @@ function searchProductByCategory() {
 searchProductByCategory()
 async function searchProductByCategoryAPI(category) {
   const query = 'category:' + category
-  const response = await fetch(`http://localhost:${port}/api/products?query=${query}&isUpdating=true`)
+  const response = await fetch(`/api/products?query=${query}&isUpdating=true`)
   if (!response.ok) {
     throw new Error('Failed to search products by category')
   }

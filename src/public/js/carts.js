@@ -1,4 +1,3 @@
-const port = 8080
 let cartLocal = ''
 
 const title = document.getElementById('title_cart')
@@ -6,7 +5,7 @@ const container = document.getElementById('product-container')
 
 async function cartInUse() {
   try {
-    const response = await fetch(`http://localhost:${port}/api/carts/current/cart`)
+    const response = await fetch(`/api/carts/current/cart`)
     cartLocal = await response.json()
     title.innerHTML = 'PRODUCT LIST FROM CART : ' + cartLocal
     searchCart(cartLocal)
@@ -18,7 +17,7 @@ cartInUse()
 
 async function searchCart(cart) {
   try {
-    const response = await fetch(`http://localhost:${port}/api/carts/${cart}`, {
+    const response = await fetch(`/api/carts/${cart}`, {
       method: 'GET',
     })
     if (!response.ok) {
@@ -27,7 +26,6 @@ async function searchCart(cart) {
     const cartProducts = await response.json()
     updateCart(cartProducts)
   } catch (error) {
-    console.log('error', error)
     Swal.fire({
       position: 'center',
       icon: 'error',
@@ -57,25 +55,32 @@ async function purchase() {
   const ticket = document.querySelector('.purchase')
   try {
     if (ticket) {
-      const userData = await fetch(`http://localhost:${port}/api/sessions/current`)
+      const userData = await fetch(`/api/sessions/current`)
       const userSession = await userData.json()
-      /* const cartToPurchase = await fetch(`http://localhost:${port}/api/carts/${userSession.cart}/purchase`, {
-        method: 'PUT',
-      }) */
-      const cartToPurchase = await fetch(`http://localhost:8080/api/carts/64d133a9d80ee1946b5c62fc/purchase/`, {
-        method: 'PUT',
-      })
-    
-
-      ticket.addEventListener('click', (e) => {
-        console.log('data de cart to purchase', cartToPurchase)
+      ticket.addEventListener('click', async (e) => {
+        await fetch(`/api/carts/${userSession.cart}/purchase`, {
+          method: 'PUT',
+        })
+        cartAfterPurchase()
       })
     }
   } catch (error) {
-    console.log('error en el purchase', error)
+    throw new Error('Failed to purchase', error)
   }
 }
 purchase()
+
+async function cartAfterPurchase() {
+  try {
+    const userData = await fetch(`/api/sessions/current`)
+    const userSession = await userData.json()
+    const cartData = await fetch(`/api/carts/${userSession.cart}`)
+    const cartUpdate = await cartData.json()
+    updateCart(cartUpdate)
+  } catch (error) {
+    throw new Error('Failed to purchase', error)
+  }
+}
 
 function updateCart(response) {
   if (response.code !== 200) {
@@ -132,7 +137,7 @@ function assingDeleteProduct() {
 }
 async function deleteProductInCart(cartLocal, productId) {
   try {
-    const response = await fetch(`http://localhost:${port}/api/carts/${cartLocal}/products/${productId}`, {
+    const response = await fetch(`/api/carts/${cartLocal}/products/${productId}`, {
       method: 'DELETE',
     })
     if (!response.ok) {
@@ -146,7 +151,7 @@ async function deleteProductInCart(cartLocal, productId) {
 }
 async function createNewCart() {
   try {
-    const response = await fetch(`http://localhost:${port}/api/carts/?updateCart=true'`, {
+    const response = await fetch(`/api/carts/?updateCart=true'`, {
       method: 'GET',
     })
     if (!response.ok) {
@@ -160,7 +165,6 @@ async function createNewCart() {
 }
 function cartCreated(cartId) {
   localStorage.setItem('idCart', cartId._id)
-  let cartLocal = cartId._id
   resetData()
   title.innerHTML = 'PRODUCT LIST FROM CART : ' + cartId._id
 }
@@ -176,7 +180,7 @@ function deleteCart() {
 deleteCart()
 async function cartDeleted(cart) {
   try {
-    const response = await fetch(`http://localhost:${port}/api/carts/${cart}`, {
+    const response = await fetch(`/api/carts/${cart}`, {
       method: 'DELETE',
     })
     if (!response.ok) {

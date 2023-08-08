@@ -48,7 +48,15 @@ class SessionController {
     return res.render('admin')
   }
   getCurrent(req, res) {
-    const userDto = new userDTO(req.session.user)
+    const dataUser = req.session.user
+    if (dataUser === undefined) {
+      return res.json({
+        status: 'error',
+        msg: 'No user data found in session',
+        data: null,
+      })
+    }
+    const userDto = new userDTO(dataUser)
     return res.status(200).json(userDto)
   }
   loginGit(req, res) {

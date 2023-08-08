@@ -16,7 +16,7 @@ class CartServices {
       return {
         status: 'Fail',
         code: 401,
-        msg: `Error ${error}`,
+        msg: `Error createCart ${error}`,
       }
     }
   }
@@ -43,7 +43,7 @@ class CartServices {
         status: 'Fail',
         code: 500,
         data: {},
-        msg: `Error: ${error}`,
+        msg: `Error getCartWithProducts: ${error}`,
       }
     }
   }
@@ -61,8 +61,10 @@ class CartServices {
           msg: 'product added successfully',
         }
       }
+      console.log('info del cart', cart);
       const product = cart.products.find((p) => p.productId.toString() === productId)
       if (product) {
+        console.log('product repeat');
         product.quantity += quant
         await cart.save()
       } else {
@@ -79,7 +81,7 @@ class CartServices {
       return {
         status: 'Fail',
         code: 400,
-        msg: `Error ${error}`,
+        msg: `Error addToCart ${error}`,
       }
     }
   }
@@ -116,7 +118,7 @@ class CartServices {
       return {
         status: 'Fail',
         code: 500,
-        msg: `Error ${error}`,
+        msg: `Error deletedProduct ${error}`,
       }
     }
   }
@@ -144,7 +146,7 @@ class CartServices {
       return {
         status: 'Fail',
         code: 500,
-        msg: `Error: ${error}`,
+        msg: `Error deleteAllProducts: ${error}`,
       }
     }
   }
@@ -170,7 +172,7 @@ class CartServices {
       return {
         status: 'Fail',
         code: 500,
-        msg: `Error: ${error}`,
+        msg: `Error deleteCart: ${error}`,
       }
     }
   }
@@ -201,7 +203,7 @@ class CartServices {
       return {
         status: 'Fail',
         code: 400,
-        msg: `Error ${error}`,
+        msg: `Error updateCart ${error}`,
       }
     }
   }
