@@ -24,5 +24,16 @@ class Cart {
     const result = await CartsModel.deleteOne({ _id: id })
     return result
   }
+  removeProductsFromCart = async (cartId, productToRemove) => {
+    try {
+      const cart = await CartsModel.findByIdAndUpdate(cartId, { $pull: { products: { productId: { $in: productToRemove } } } }, { new: true })
+      if (!cart) {
+        throw new Error('Cart not found')
+      }
+      return cart
+    } catch (error) {
+      throw new Error(`Error removing products from cart: ${error.message}`)
+    }
+  }
 }
 export const cartDAO = new Cart()

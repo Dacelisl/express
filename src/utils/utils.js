@@ -34,7 +34,22 @@ function isValid(id) {
     }
   }
 }
+function randomCode(length) {
+  const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  let code = ''
+  for (let i = 0; i < length; i++) {
+    const index = Math.floor(Math.random() * caracteres.length)
+    code += caracteres.charAt(index)
+  }
+  return code
+}
+
+function convertCurrencyToNumber(currencyString) {
+  const numericValue = parseFloat(currencyString.replace('$', '').trim());
+  return isNaN(numericValue) ? 0 : numericValue;
+}
+
 export const createHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10))
 export const isValidPassword = (password, hashPassword) => bcrypt.compareSync(password, hashPassword)
 export const uploader = multer({ storage })
-export { __filename, __dirname, parsedQuery, isValid }
+export { __filename, __dirname, parsedQuery, isValid, randomCode, convertCurrencyToNumber }

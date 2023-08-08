@@ -13,32 +13,46 @@ function message() {
 message()
 
 async function productToCart() {
-  let cartLocal = localStorage.getItem('idCart')
   const addButtons = document.querySelectorAll('.addCart-button')
-  addButtons.forEach((button) => {
-    button.addEventListener('click', async (event) => {
-      const productId = event.target.getAttribute('data-id')
-      try {
-        const response = await fetch(`http://localhost:${port}/api/carts/${cartLocal}/product/${productId}`, {
-          method: 'POST',
-        })
-        if (response.ok) {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Your product has been added to the cart',
-            showConfirmButton: false,
-            timer: 1500,
+  try {
+    const response = await fetch(`http://localhost:${port}/api/sessions/current`)
+    const userLocal = await response.json()
+    if (userLocal.rol === 'admin') {
+      return Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'login as a user to buy!',
+        showConfirmButton: true,
+        timer: 4000,
+      })
+    }
+    addButtons.forEach((button) => {
+      button.addEventListener('click', async (event) => {
+        try {
+          const productId = event.target.getAttribute('data-id')
+          const response = await fetch(`http://localhost:${port}/api/carts/${userLocal.cart}/product/${productId}`, {
+            method: 'POST',
           })
-          AssingDeleteEvent()
-        } else {
-          throw new Error('Failed', response.status)
+          if (response.ok) {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your product has been added to the cart',
+              showConfirmButton: false,
+              timer: 1500,
+            })
+            AssingDeleteEvent()
+          } else {
+            throw new Error('Failed', response.status)
+          }
+        } catch (error) {
+          throw new Error('Failed', error)
         }
-      } catch (error) {
-        throw new Error('Failed', error)
-      }
+      })
     })
-  })
+  } catch (error) {
+    throw new Error('server error', error)
+  }
 }
 productToCart()
 
@@ -58,7 +72,7 @@ function loadProduct(response) {
 <li class='product-item'>stock: ${item.stock}</li>
 <li class='button-item'>
         ${
-          response.session.user.rol === 'admin'
+          response.session.isAdmin
             ? `<button class='delete-button' id='product-button' data-id='${item._id}'>Delete</button> 
         <button class='update-button' id='product-button' data-id='${item._id}'>Update</button>`
             : `<button class='addCart-button' id='product-button' data-id='${item._id}'>Add To Cart</button>`
@@ -71,7 +85,6 @@ function loadProduct(response) {
     container.append(tempContainer.firstChild)
   })
   AssingDeleteEvent()
-  productToCart()
 }
 function updateFooter(response) {
   const path = window.location.pathname

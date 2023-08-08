@@ -1,17 +1,18 @@
 import { TicketModel } from '../models/ticket.model.js'
 
 class TicketDAO {
-  getAll = async () => {
+  getAllOrders = async () => {
     const tickets = await TicketModel.find({})
     return tickets
   }
-  getById = async (id) => {
+  getOrderById = async (id) => {
     const ticket = await TicketModel.findById(id).lean()
     return ticket
   }
 
-  add = async (ticket) => {
-    const newTicket = await TicketModel.create(ticket)
+  addOrder = async (ticket) => {
+    const { code, purchase_datetime, amount, purchaser, products } = ticket
+    const newTicket = await TicketModel.create({ code, purchase_datetime, amount, purchaser, products })
     return newTicket
   }
 }

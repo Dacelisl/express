@@ -1,4 +1,6 @@
 import { cartService } from '../services/cart.services.js'
+import { ticketServices } from '../services/ticket.services.js'
+import userDTO from '../DAO/DTO/user.DTO.js'
 
 class CartController {
   async createCart(req, res) {
@@ -32,19 +34,29 @@ class CartController {
     const resAdd = await cartService.deleteCart(cid)
     return res.json(resAdd)
   }
+
+  async currentCart(req, res) {
+    const dataUser = req.session.user.cart
+    if (!dataUser) return res.redirect('/api/sessions/login')
+    return res.status(200).json(dataUser)
+  }
+
   async getCartId(req, res) {
-    const cartId = req.session.user.cart || req.params.cid
+    const cartId = req.params.cid || req.session.user.cart
     const payload = await cartService.getCartWithProducts(cartId)
     return res.json(payload)
   }
+
   async getAll(req, res) {
     const user = req.session.user
+    if (!user) return res.redirect('/api/sessions/login')
     user.isAdmin = user.rol === 'admin'
     if (req.query.isUpdating) {
       return res.status(201).json(user)
     }
     res.render('cart', { user })
   }
+
   async updateAddToCart(req, res) {
     const cid = req.session.user.cart || req.params.cid
     const pid = req.params.pid
@@ -60,18 +72,19 @@ class CartController {
   }
 
   purchaseCart = async (req, res) => {
-    const id = req.params.cid;
-    const cartList = req.body;
-    const infoUser = new userDTO(req.session);
-    const response = await ticketsServices.purchaseCart(id, cartList, infoUser.email, infoUser.cartID);
-    return res.status(response.status).json(response.result);
-  };
+    const id = req.params.cid
+    console.log('data del id cart', id)
+    console.log('info del user session', req.session.user)
+    const infoUser = new userDTO(req.session.user)
+    const response = await ticketServices.purchaseCart(id, infoUser)
+    return res.status(200).json(response)
+  }
 
   getTicketById = async (req, res) => {
-    const id = req.params.cid;
-    const response = await ticketsServices.getTicketById(id);
-    return res.render('ticket', { ticket: response.result });
-  };
-
+    const id = req.params.cid
+    const response = await ticketServices.getTicketById(id)
+    return res.status(201).json(response)
+    /* return res.render('ticket', { ticket: response.result }) */
+  }
 }
 export const cartController = new CartController()

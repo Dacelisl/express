@@ -1,25 +1,33 @@
 const port = 8080
 let cartLocal = ''
-/* if (!cartLocal) {
-  cartLocal = localStorage.getItem('idCart')
-} */
+
 const title = document.getElementById('title_cart')
 const container = document.getElementById('product-container')
 
-function cartInUse() {
-  if (cartLocal === null) return (cartLocal = '')
-  if (cartLocal !== null) createNewCart() /* searchCart(cartLocal) */
-  title.innerHTML += cartLocal
+async function cartInUse() {
+  try {
+    const response = await fetch(`http://localhost:${port}/api/carts/current/cart`)
+    cartLocal = await response.json()
+    title.innerHTML = 'PRODUCT LIST FROM CART : ' + cartLocal
+    searchCart(cartLocal)
+  } catch (error) {
+    throw new Error('Something went wrong!', error)
+  }
 }
+cartInUse()
+
 async function searchCart(cart) {
   try {
-    const response = await fetch(`http://localhost:${port}/api/carts/${cart}`)
+    const response = await fetch(`http://localhost:${port}/api/carts/${cart}`, {
+      method: 'GET',
+    })
     if (!response.ok) {
       throw new Error('Something went wrong!')
     }
     const cartProducts = await response.json()
     updateCart(cartProducts)
   } catch (error) {
+    console.log('error', error)
     Swal.fire({
       position: 'center',
       icon: 'error',
@@ -29,19 +37,46 @@ async function searchCart(cart) {
     })
   }
 }
-cartInUse()
+
 function formCart() {
   const formCart = document.getElementById('form-cart')
-  formCart.addEventListener('submit', (event) => {
-    event.preventDefault()
-    const newForm = new FormData(formCart)
-    const cart = {
-      _id: newForm.get('cart'),
-    }
-    searchCart(cart._id)
-  })
+  if (formCart) {
+    formCart.addEventListener('submit', (event) => {
+      event.preventDefault()
+      const newForm = new FormData(formCart)
+      const cart = {
+        _id: newForm.get('cart'),
+      }
+      searchCart(cart._id)
+    })
+  }
 }
 formCart()
+
+async function purchase() {
+  const ticket = document.querySelector('.purchase')
+  try {
+    if (ticket) {
+      const userData = await fetch(`http://localhost:${port}/api/sessions/current`)
+      const userSession = await userData.json()
+      /* const cartToPurchase = await fetch(`http://localhost:${port}/api/carts/${userSession.cart}/purchase`, {
+        method: 'PUT',
+      }) */
+      const cartToPurchase = await fetch(`http://localhost:8080/api/carts/64d133a9d80ee1946b5c62fc/purchase/`, {
+        method: 'PUT',
+      })
+    
+
+      ticket.addEventListener('click', (e) => {
+        console.log('data de cart to purchase', cartToPurchase)
+      })
+    }
+  } catch (error) {
+    console.log('error en el purchase', error)
+  }
+}
+purchase()
+
 function updateCart(response) {
   if (response.code !== 200) {
     return Swal.fire({
@@ -52,7 +87,6 @@ function updateCart(response) {
       timer: 1500,
     })
   }
-  localStorage.setItem('idCart', response.data._id)
   title.innerHTML = 'PRODUCT LIST FROM CART : ' + response.data._id
   container.innerHTML = ''
   response.data.products.forEach((item) => {
@@ -80,13 +114,13 @@ function updateCart(response) {
 
 function assingCart() {
   const assigCart = document.querySelector('.assingCart')
-  assigCart.addEventListener('click', (e) => {
-    localStorage.removeItem('idCart')
-    createNewCart()
-  })
+  if (assigCart) {
+    assigCart.addEventListener('click', (e) => {
+      createNewCart()
+    })
+  }
 }
 assingCart()
-
 function assingDeleteProduct() {
   const deleteButtons = document.querySelectorAll('.delete-product')
   deleteButtons.forEach((button) => {
@@ -96,7 +130,6 @@ function assingDeleteProduct() {
     })
   })
 }
-
 async function deleteProductInCart(cartLocal, productId) {
   try {
     const response = await fetch(`http://localhost:${port}/api/carts/${cartLocal}/products/${productId}`, {
@@ -125,23 +158,22 @@ async function createNewCart() {
     throw new Error('Something went wrong!', error)
   }
 }
-
 function cartCreated(cartId) {
   localStorage.setItem('idCart', cartId._id)
   let cartLocal = cartId._id
   resetData()
   title.innerHTML = 'PRODUCT LIST FROM CART : ' + cartId._id
 }
-
 function deleteCart() {
   const deleteCart = document.querySelector('.deleteCart')
-  deleteCart.addEventListener('click', (e) => {
-    cartDeleted(cartLocal)
-    localStorage.removeItem('idCart')
-  })
+  if (deleteCart) {
+    deleteCart.addEventListener('click', (e) => {
+      cartDeleted(cartLocal)
+      localStorage.removeItem('idCart')
+    })
+  }
 }
 deleteCart()
-
 async function cartDeleted(cart) {
   try {
     const response = await fetch(`http://localhost:${port}/api/carts/${cart}`, {

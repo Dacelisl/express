@@ -12,5 +12,8 @@ CartRoutes.put('/:cid', cartController.updateCart)
 CartRoutes.delete('/:cid/products/:pid', cartController.deletedProduct)
 CartRoutes.delete('/:cid', cartController.deleteCart)
 /* CartRoutes.delete('/:cid', cartController.deleteAllProducts) */
-CartRoutes.put('/:cid/purchase', registeredUser, isUser, cartController.purchaseCart)
-CartRoutes.get('/purchase/:cid', registeredUser, isUser, cartController.getTicketById)
+CartRoutes.get('/current/cart', cartController.currentCart)
+CartRoutes.put('/:cid/purchase', cartController.purchaseCart)
+CartRoutes.get('/purchase/:cid', cartController.getTicketById)
+/* CartRoutes.put('/:cid/purchase', registeredUser, isUser, cartController.purchaseCart)
+CartRoutes.get('/purchase/:cid', registeredUser, isUser, cartController.getTicketById) */

@@ -20,7 +20,7 @@ export class ProductManager {
       try {
         this.products = JSON.parse(readFileSync(this.path, 'utf-8'))
       } catch (error) {
-        console.error('Error parsing JSON:', error)
+        throw new Error('Error parsing JSON:', error)
         this.products = []
       }
     }

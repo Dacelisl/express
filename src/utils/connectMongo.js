@@ -29,7 +29,7 @@ export const connectMongo = async () => {
         await ProductsModel.insertMany(products)
         console.log('Inserted', products.length, 'products')
       } catch (error) {
-        console.error('Error en insert many:', error)
+        throw new Error('Error en insert many:', error)
       }
     }
     poblar() */

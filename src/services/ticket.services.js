@@ -1,104 +1,99 @@
-import { ticketFactory, cartFactory, productFactory } from '../DAO/factory'
-import { isValid } from '../utils/utils.js'
+import { ticketFactory, cartFactory, productFactory } from '../DAO/factory.js'
+import { isValid, randomCode, convertCurrencyToNumber } from '../utils/utils.js'
 
 class TicketServices {
-  async purchaseCart(cartId, cartList, userMail, userCartId) {
+  async purchaseCart(id, dataUser) {
     try {
-      isValid(cartId)
-
-      const cartFiltered = await cartFactory.getCartWithProducts(cartId)
-
+      if (id !== dataUser.cart)
+        return {
+          status: 'Fail',
+          code: 404,
+          data: {},
+          msg: 'the cart does not belong to the user',
+        }
+      const cartFilter = await cartFactory.getCartWithProducts(dataUser.cart)
       const productsNotPurchased = []
-
-      const products = await Promise.all(
-        cartList.map(async (product) => {
-          const productFiltered = await productFactory.getById(product.id)
-          // console.log('FLAG: Product filtered: ', productFiltered);
-
-          if (!productFiltered) {
-            return {
-              status: 400,
-              result: {
-                status: 'error',
-                error: `🛑 Product not found.`,
-              },
-            }
-          }
+      const productsToRemove = []
+      let totalCost = 0
+      const updatedProducts = await Promise.all(
+        cartFilter.products.map(async (product) => {
+          const productFiltered = await productFactory.getProductByID(product.productId._id)
 
           if (productFiltered.stock >= product.quantity) {
             productFiltered.stock -= product.quantity
             await productFiltered.save()
-            return productFiltered
+            productsToRemove.push(productFiltered)
+            totalCost += convertCurrencyToNumber(productFiltered.price) * product.quantity
+            return {
+              purchasedProduct: productFiltered,
+              purchasedQuantity: product.quantity,
+            }
+          } else if (productFiltered.stock > 0) {
+            const remainingQuantity = productFiltered.stock
+            productFiltered.stock = 0
+            await productFiltered.save()
+            totalCost += convertCurrencyToNumber(productFiltered.price) * remainingQuantity
+            productsNotPurchased.push({
+              product: productFiltered,
+              remainingQuantity: product.quantity - remainingQuantity,
+            })
+            return {
+              purchasedProduct: productFiltered,
+              purchasedQuantity: remainingQuantity,
+            }
           } else {
-            productsNotPurchased.push(product) // Agrega el producto a la lista de productos no comprados
+            productsNotPurchased.push({
+              product: productFiltered,
+              remainingQuantity: 0,
+            })
             return null
           }
         })
       )
+      productsToRemove.forEach(async (product) => {
+        const resRemove = await cartFactory.removeProductsFromCart(dataUser.cart, product._id)
+      })
 
-      // Filtra los productos que no se compraron
-      const productsFiltered = products.filter((product) => product !== null)
+      const cartUpdate = await cartFactory.getCartWithProducts(dataUser.cart)
+      cartUpdate.products.forEach((product) => {
+        productsNotPurchased.forEach((outStock) => {
+          if (product.productId._id.toString() === outStock.product._id.toString()) {
+            const newQuantity = outStock.remainingQuantity > 0 ? outStock.remainingQuantity : product.quantity
+            product.quantity = newQuantity
+          }
+        })
+      })
+      await cartUpdate.save()
+      const currentDate = new Date()
+      const formattedDate = currentDate.toLocaleString()
 
-      if (productsFiltered.length === 0) {
-        return {
-          status: 400,
-          result: {
-            status: 'error',
-            error: `🛑 No products available.`,
-          },
-        }
-      }
-
-      // Calcula el total de la compra
-      const totalAmount = cartList.reduce((acc, product) => {
-        const productFiltered = productsFiltered.find((p) => p._id.equals(product.id))
-        if (productFiltered) {
-          acc += productFiltered.price * product.quantity
-        }
-        return acc
-      }, 0)
-
-      // console.log('FLAG Total amount: ', totalAmount);
-
-      // Crea la orden
       const newOrder = {
-        code: Math.floor(Math.random() * 1000000),
-        purchase_datetime: new Date(),
-        amount: +totalAmount,
-        purchaser: userMail,
-        products: productsFiltered.map((product) => ({
-          id: product._id,
-          quantity: cartList.find((p) => p.id === product._id.toString()).quantity,
-        })),
+        code: randomCode(10),
+        purchase_datetime: formattedDate,
+        amount: totalCost,
+        purchaser: dataUser.email,
+        products: updatedProducts
+          .filter((product) => product !== null)
+          .map((product) => ({
+            productId: product.purchasedProduct._id,
+            quantity: product.purchasedQuantity,
+          })),
       }
-
-      const orderCreated = await ticketFactory.add(newOrder) // dao listo PASAR
-
-      // Borra los productos comprados del carrito
-      if (productsFiltered.length > 0) {
-        await Services.deleteProduct(
-          cartId,
-          productsFiltered.map((product) => product._id)
-        )
-        // console.log('FLAG Productos comprados: ', productsFiltered);
-        //Limpia carrito cuando se compra
-        await Services.deleteCart(cartId)
-      }
-      // Agrega los productos no comprados al carrito
-      if (productsNotPurchased.length > 0) {
-        await Services.updateCart(cartId, productsNotPurchased)
-        // console.log('FLAG Productos no comprados: ', productsNotPurchased);
-      }
+      await ticketFactory.addOrder(newOrder)
 
       return {
-        status: 200,
-        result: { status: 'success', payload: orderCreated },
+        status: 'Success',
+        code: 200,
+        data: newOrder,
+        msg: 'Ticket created successfully',
       }
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
       return {
-        status: 500,
-        result: { status: 'error', msg: 'Internal Server Error', payload: {} },
+        status: 'Fail',
+        code: 500,
+        data: {},
+        msg: 'Internal Server Error',
+        error,
       }
     }
   }
@@ -122,7 +117,7 @@ class TicketServices {
         msg: 'Ticket retrieved successfully',
       }
     } catch (error) {
-      console.log(err)
+      console.log(error)
       return {
         status: 'Fail',
         code: 500,

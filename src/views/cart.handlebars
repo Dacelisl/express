@@ -7,8 +7,6 @@
     </form>
   </div>
   <div id='buttons'>
-    <button id='button-option' class='assingCart'>Assign New Cart</button>
-    <button id='button-option' class='deleteCart'>Delete car</button>
     <button id='button-option'> <a href='http://localhost:8080/api/products/'>Go to the Store</a> </button>
   </div>
   <h2 class='title' id='title_cart'>PRODUCT LIST FROM CART : ${{user.cart}} </h2>
@@ -17,6 +15,7 @@
 {{else}}
   <div id='buttons'>
     <button id='button-option'> <a href='http://localhost:8080/api/products/'>Go to the Store</a> </button>
+    <button id='button-option' class='purchase'>Purchase</button>
   </div>
   <h2 class='title' id='title_cart'>PRODUCT LIST FROM CART : ${{user.cart}}</h2>
   <div id='product-container' class='center'>
