@@ -18,8 +18,21 @@
     <button id='button-option' class='purchase'>Purchase</button>
   </div>
   <h2 class='title' id='title_cart'>PRODUCT LIST FROM CART : ${{user.cart}}</h2>
-  <div id='product-container' class='center'>
-  </div>
+
+  <table id='productTable'>
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Units</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 {{/if}}
 
 <script src='/socket.io/socket.io.js'></script>

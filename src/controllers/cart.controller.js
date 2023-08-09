@@ -12,7 +12,7 @@ class CartController {
     }
   }
   async addProduct(req, res) {
-    const cid = req.session.user.cart || req.params.cid
+    const cid = req.params.cid ? req.params.cid : req.session.user.cart
     const pid = req.params.pid
     const quant = req.body
     const resAdd = await cartService.addToCart(cid, pid, quant)
@@ -44,7 +44,11 @@ class CartController {
   async getCartId(req, res) {
     const cartId = req.params.cid || req.session.user.cart
     const payload = await cartService.getCartWithProducts(cartId)
-    return res.json(payload)
+    
+    /* return res.render('table', {payload}) */
+     return res.json(payload)
+    
+    
   }
 
   async getAll(req, res) {
@@ -73,8 +77,6 @@ class CartController {
 
   purchaseCart = async (req, res) => {
     const id = req.params.cid
-    console.log('data del id cart', id)
-    console.log('info del user session', req.session.user)
     const infoUser = new userDTO(req.session.user)
     const response = await ticketServices.purchaseCart(id, infoUser)
     return res.status(200).json(response)

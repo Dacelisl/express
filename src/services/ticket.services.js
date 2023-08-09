@@ -118,12 +118,11 @@ class TicketServices {
         msg: 'Ticket retrieved successfully',
       }
     } catch (error) {
-      console.log(error)
       return {
         status: 'Fail',
         code: 500,
         data: {},
-        msg: `Error: ${error}`,
+        msg: `Error: getTicketById ${error}`,
       }
     }
   }

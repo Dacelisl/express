@@ -451,3 +451,29 @@ a {
 .floating-button:hover {
   background-color: #0b6bd1;
 }
+
+/* table */
+#productTable {
+  border-collapse: collapse;
+  width: 80%;
+  max-width: 800px;
+  margin: auto;
+}
+
+#productTable th, #productTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+#productTable th {
+  background-color: #f2f2f2;
+}
+
+#productTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#productTable tr:hover {
+  background-color: #ddd;
+}

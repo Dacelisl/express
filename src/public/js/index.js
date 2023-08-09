@@ -9,53 +9,41 @@ function message() {
   })
 }
 message()
-
 async function productToCart() {
   const addButtons = document.querySelectorAll('.addCart-button')
   try {
-    const response = await fetch(`/api/sessions/current`)
-    const userLocal = await response.json()
-    if (response.ok) {
-      if (userLocal.rol === 'admin') {
-        return Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'login as a user to buy!',
-          showConfirmButton: true,
-          timer: 4000,
-        })
-      }
-    }
     addButtons.forEach((button) => {
-      button.addEventListener('click', async (event) => {
-        try {
-          const productId = event.target.getAttribute('data-id')
-          const response = await fetch(`/api/carts/${userLocal.cart}/product/${productId}`, {
-            method: 'POST',
-          })
-          if (response.ok) {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'Your product has been added to the cart',
-              showConfirmButton: false,
-              timer: 1500,
-            })
-            AssingDeleteEvent()
-          } else {
-            throw new Error('Failed res no ok', response.status)
-          }
-        } catch (error) {
-          throw new Error('Failed on click', error)
-        }
-      })
+      button.removeEventListener('click', handleClick)
+      button.addEventListener('click', handleClick)
     })
   } catch (error) {
     throw new Error('server error', error)
   }
 }
-productToCart()
-
+async function handleClick(event) {
+  try {
+    const session = await fetch(`/api/sessions/current`)
+    const userLocal = await session.json()
+    const productId = event.target.getAttribute('data-id')
+    const response = await fetch(`/api/carts/${userLocal.cart}/product/${productId}`, {
+      method: 'POST',
+    })
+    if (response.ok) {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your product has been added to the cart',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      /* updateProducts() */
+    } else {
+      throw new Error('Failed res no ok', response.status)
+    }
+  } catch (error) {
+    throw new Error('Failed on click', error)
+  }
+}
 function loadProduct(response) {
   const container = document.getElementById('product-container')
   container.innerHTML = ''
@@ -84,6 +72,7 @@ function loadProduct(response) {
     tempContainer.innerHTML = newData
     container.append(tempContainer.firstChild)
   })
+  productToCart()
   AssingDeleteEvent()
 }
 function updateFooter(response) {
@@ -111,7 +100,6 @@ function AssingDeleteEvent() {
     })
   })
 }
-AssingDeleteEvent()
 async function deleteProduct(productId) {
   try {
     const response = await fetch(`/api/products/${productId}`, {
@@ -137,7 +125,6 @@ async function updateProducts() {
     throw new Error('Failed to update product', error)
   }
 }
-
 function searchProductByCategory() {
   const search = document.querySelector('.input-search')
   const buttonSearch = document.querySelector('.button-search')
@@ -155,7 +142,6 @@ function searchProductByCategory() {
     })
   }
 }
-searchProductByCategory()
 async function searchProductByCategoryAPI(category) {
   const query = 'category:' + category
   const response = await fetch(`/api/products?query=${query}&isUpdating=true`)
@@ -165,3 +151,26 @@ async function searchProductByCategoryAPI(category) {
   const data = await response.json()
   return data
 }
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const response = await fetch(`/api/sessions/current`)
+    const userLocal = await response.json()
+    if (response.ok) {
+      if (userLocal.rol === 'admin') {
+        return Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'login as a user to buy!',
+          showConfirmButton: true,
+          timer: 4000,
+        })
+      }
+    }
+    productToCart()
+    /* AssingDeleteEvent() */
+    searchProductByCategory()
+  } catch (error) {
+    throw new Error('Something went wrong!', error)
+  }
+})

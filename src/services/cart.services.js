@@ -61,7 +61,6 @@ class CartServices {
           msg: 'product added successfully',
         }
       }
-      console.log('info del cart', cart);
       const product = cart.products.find((p) => p.productId.toString() === productId)
       if (product) {
         console.log('product repeat');
