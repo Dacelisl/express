@@ -10,6 +10,7 @@ import { ProductRoutes } from './routes/products.routes.js'
 import { CartRoutes } from './routes/cart.routes.js'
 import { ViewRoutes } from './routes/views.routes.js'
 import { chatRoutes } from './routes/chat.routes.js'
+import { MockRoutes } from './routes/mock.routes.js'
 import { SessionRoutes } from './routes/session.routes.js'
 import { isAdmin } from './middleware/auth.js'
 import { initPassport } from './config/passport.config.js'
@@ -49,6 +50,7 @@ app.use('/api/carts', CartRoutes)
 app.use('/realtimeproducts', isAdmin, ViewRoutes)
 app.use('/test-chat', chatRoutes)
 app.use('/api/sessions/', SessionRoutes)
+app.use('/api/mock/', MockRoutes)
 
 initPassport()
 app.use(passport.authorize())
