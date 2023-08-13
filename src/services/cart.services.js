@@ -63,7 +63,6 @@ class CartServices {
       }
       const product = cart.products.find((p) => p.productId.toString() === productId)
       if (product) {
-        console.log('product repeat');
         product.quantity += quant
         await cart.save()
       } else {

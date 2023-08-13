@@ -44,11 +44,8 @@ class CartController {
   async getCartId(req, res) {
     const cartId = req.params.cid || req.session.user.cart
     const payload = await cartService.getCartWithProducts(cartId)
-    
     /* return res.render('table', {payload}) */
-     return res.json(payload)
-    
-    
+    return res.json(payload)
   }
 
   async getAll(req, res) {

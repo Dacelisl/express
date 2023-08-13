@@ -58,6 +58,7 @@ class ProductController {
         payload: createProduct,
       })
     } catch (e) {
+      console.log('data error', e);
       return res.status(500).json({
         status: 'error',
         msg: 'something went wrong :(',

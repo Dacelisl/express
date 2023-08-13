@@ -1,12 +1,13 @@
 import express from 'express'
 import { isAdmin, registeredUser } from '../middleware/auth.js'
 import { sessionController } from '../controllers/session.controller.js'
+import { handleUserCreationError } from '../services/error.services.js'
 import passport from 'passport'
 
 export const SessionRoutes = express.Router()
 
 SessionRoutes.get('/register', sessionController.getRegister)
-SessionRoutes.post('/register', sessionController.createRegister)
+SessionRoutes.post('/register', handleUserCreationError, sessionController.createRegister)
 SessionRoutes.get('/login', sessionController.getLogin)
 SessionRoutes.post('/login', sessionController.createLogin)
 SessionRoutes.get('/logout', sessionController.logout)
