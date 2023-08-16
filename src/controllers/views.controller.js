@@ -12,7 +12,7 @@ class ViewsController {
       payload.session = { email: req.session.user.email, isAdmin: req.session.user.rol === 'admin', user: req.session.user.firstName, message: req.session.user.message }
       res.render('realTimeProducts', payload)
     } catch (error) {
-      throw new Error(error)
+      req.logger.error('something went wrong getAllProducts', error)
     }
   }
   async addProduct(req, res) {
@@ -35,6 +35,7 @@ class ViewsController {
       message = `Producto agregado con éxito.`
       return res.render('addProduct', { message })
     } catch (e) {
+      req.logger.error('something went wrong createProduct', e)
       message = `Producto no agregado`
       return res.render('addProduct', { message })
     }

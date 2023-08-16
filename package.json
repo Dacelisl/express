@@ -5,9 +5,12 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node ./src/app.js",
-    "dev": "nodemon src/app.js --mode development",
-    "prod": "nodemon src/app.js --mode production"
+    "start": "node ./src/app.js --mode production",
+    "prod": "nodemon src/app.js --mode production",
+    "dev": "nodemon src/app.js --mode development"
+  },
+  "engines": {
+    "node": "16.x"
   },
   "author": "Diego celis",
   "license": "ISC",

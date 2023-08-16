@@ -1,143 +1,18 @@
-[2023-08-16T05:19:29.423Z] debug: ingresando a un proceso importante debug
-[2023-08-16T05:19:29.424Z] debug: ingresando a un proceso importante debug
-[2023-08-16T05:19:29.425Z] http: ingresando a un proceso importante http
-[2023-08-16T05:19:29.426Z] http: ingresando a un proceso importante http
-[2023-08-16T05:19:29.427Z] info: ingresando a un proceso importante info
-[2023-08-16T05:19:29.427Z] info: ingresando a un proceso importante info
-[2023-08-16T05:19:29.428Z] warning: ingresando a un proceso importante warning
-[2023-08-16T05:19:29.428Z] warning: ingresando a un proceso importante warning
-[2023-08-16T05:19:29.429Z] error: ingresando a un proceso importante error
-[2023-08-16T05:19:29.429Z] fatal: ingresando a un proceso importante fatal
-[2023-08-16T05:19:29.429Z] error: ingresando a un proceso importante error
-[2023-08-16T05:24:26.842Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:24:26.844Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:25:00.312Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:25:00.313Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:25:41.512Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:25:41.513Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:26:01.689Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:26:01.690Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:27:22.297Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:27:22.299Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:27:56.082Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:27:56.083Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:28:25.615Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:28:25.616Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:29:24.692Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:29:24.693Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:30:19.668Z] info: Connected to MongoDB!
-[2023-08-16T05:30:19.669Z] info: Connected to MongoDB!
-[2023-08-16T05:30:19.670Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:30:19.670Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:30:21.001Z] info: Connected to MongoDB!
-[2023-08-16T05:30:21.001Z] info: Connected to MongoDB!
-[2023-08-16T05:30:31.567Z] info: Connected to MongoDB!
-[2023-08-16T05:30:31.568Z] info: Connected to MongoDB!
-[2023-08-16T05:30:31.569Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:30:31.570Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:30:32.650Z] info: Connected to MongoDB!
-[2023-08-16T05:30:32.650Z] info: Connected to MongoDB!
-[2023-08-16T05:31:13.367Z] info: Connected to MongoDB!
-[2023-08-16T05:31:13.368Z] info: Connected to MongoDB!
-[2023-08-16T05:31:13.369Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:31:13.370Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:31:14.750Z] info: Connected to MongoDB!
-[2023-08-16T05:31:14.750Z] info: Connected to MongoDB!
-[2023-08-16T05:31:21.511Z] info: Connected to MongoDB!
-[2023-08-16T05:31:21.511Z] info: Connected to MongoDB!
-[2023-08-16T05:31:21.513Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:31:21.513Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:31:22.969Z] info: Connected to MongoDB!
-[2023-08-16T05:31:22.969Z] info: Connected to MongoDB!
-[2023-08-16T05:31:31.037Z] info: Connected to MongoDB!
-[2023-08-16T05:31:31.038Z] info: Connected to MongoDB!
-[2023-08-16T05:31:31.040Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:31:31.040Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:31:32.631Z] info: Connected to MongoDB!
-[2023-08-16T05:31:32.631Z] info: Connected to MongoDB!
-[2023-08-16T05:34:42.750Z] info: Connected to MongoDB!
-[2023-08-16T05:34:42.750Z] info: Connected to MongoDB!
-[2023-08-16T05:34:42.752Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:34:42.752Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:34:44.144Z] info: Connected to MongoDB!
-[2023-08-16T05:34:44.144Z] info: Connected to MongoDB!
-[2023-08-16T05:36:56.248Z] info: Connected to MongoDB!
-[2023-08-16T05:36:56.250Z] info: Connected to MongoDB!
-[2023-08-16T05:36:56.251Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:36:56.251Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:36:57.706Z] info: Connected to MongoDB!
-[2023-08-16T05:36:57.706Z] info: Connected to MongoDB!
-[2023-08-16T05:37:03.710Z] info: Connected to MongoDB!
-[2023-08-16T05:37:03.711Z] info: Connected to MongoDB!
-[2023-08-16T05:37:03.712Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:37:03.713Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:37:05.096Z] info: Connected to MongoDB!
-[2023-08-16T05:37:05.096Z] info: Connected to MongoDB!
-[2023-08-16T05:39:25.930Z] info: Connected to MongoDB!
-[2023-08-16T05:39:25.931Z] info: Connected to MongoDB!
-[2023-08-16T05:39:25.932Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:39:25.933Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:39:27.639Z] info: Connected to MongoDB!
-[2023-08-16T05:39:27.640Z] info: Connected to MongoDB!
-[2023-08-16T05:40:00.383Z] info: Connected to MongoDB!
-[2023-08-16T05:40:00.384Z] info: Connected to MongoDB!
-[2023-08-16T05:40:00.386Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:40:00.386Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:40:01.725Z] info: Connected to MongoDB!
-[2023-08-16T05:40:01.725Z] info: Connected to MongoDB!
-[2023-08-16T05:40:12.708Z] info: Connected to MongoDB!
-[2023-08-16T05:40:12.710Z] info: Connected to MongoDB!
-[2023-08-16T05:40:12.713Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:40:12.713Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:40:13.959Z] info: Connected to MongoDB!
-[2023-08-16T05:40:13.959Z] info: Connected to MongoDB!
-[2023-08-16T05:41:27.455Z] info: Connected to MongoDB!
-[2023-08-16T05:41:27.456Z] info: Connected to MongoDB!
-[2023-08-16T05:41:27.458Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:41:27.458Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:41:28.871Z] info: Connected to MongoDB!
-[2023-08-16T05:41:28.871Z] info: Connected to MongoDB!
-[2023-08-16T05:41:37.663Z] error: something went wrong 
-[2023-08-16T05:41:37.663Z] error: something went wrong 
-[2023-08-16T05:45:10.498Z] info: Connected to MongoDB!
-[2023-08-16T05:45:10.500Z] info: Connected to MongoDB!
-[2023-08-16T05:45:10.502Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:45:10.502Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:45:12.039Z] info: Connected to MongoDB!
-[2023-08-16T05:45:12.040Z] info: Connected to MongoDB!
-[2023-08-16T05:47:33.087Z] info: Connected to MongoDB!
-[2023-08-16T05:47:33.088Z] info: Connected to MongoDB!
-[2023-08-16T05:47:33.089Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:47:33.089Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:47:34.565Z] info: Connected to MongoDB!
-[2023-08-16T05:47:34.565Z] info: Connected to MongoDB!
-[2023-08-16T05:47:58.247Z] info: Connected to MongoDB!
-[2023-08-16T05:47:58.248Z] info: Connected to MongoDB!
-[2023-08-16T05:47:58.250Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:47:58.250Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:47:59.492Z] info: Connected to MongoDB!
-[2023-08-16T05:47:59.492Z] info: Connected to MongoDB!
-[2023-08-16T05:49:30.539Z] info: Connected to MongoDB!
-[2023-08-16T05:49:30.540Z] info: Connected to MongoDB!
-[2023-08-16T05:49:30.542Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:49:30.542Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:49:32.094Z] info: Connected to MongoDB!
-[2023-08-16T05:49:32.094Z] info: Connected to MongoDB!
-[2023-08-16T05:49:54.786Z] info: Connected to MongoDB!
-[2023-08-16T05:49:54.787Z] info: Connected to MongoDB!
-[2023-08-16T05:49:54.788Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:49:54.788Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:49:56.058Z] info: Connected to MongoDB!
-[2023-08-16T05:49:56.058Z] info: Connected to MongoDB!
-[2023-08-16T05:52:00.914Z] info: Connected to MongoDB!
-[2023-08-16T05:52:00.915Z] info: Connected to MongoDB!
-[2023-08-16T05:52:00.917Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:52:00.917Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:52:02.142Z] info: Connected to MongoDB!
-[2023-08-16T05:52:02.142Z] info: Connected to MongoDB!
-[2023-08-16T05:52:14.102Z] info: Connected to MongoDB!
-[2023-08-16T05:52:14.104Z] info: Connected to MongoDB!
-[2023-08-16T05:52:14.105Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:52:14.105Z] info: listen on http://localhost:8080, mode:
-[2023-08-16T05:52:15.365Z] info: Connected to MongoDB!
-[2023-08-16T05:52:15.366Z] info: Connected to MongoDB!
+[2023-08-16T15:59:58.513Z] info: Connected to MongoDB!
+[2023-08-16T15:59:58.514Z] info: Connected to MongoDB!
+[2023-08-16T15:59:58.516Z] info: listen on http://localhost:8080, mode:
+[2023-08-16T15:59:58.516Z] info: listen on http://localhost:8080, mode:
+[2023-08-16T16:00:01.326Z] info: Connected to MongoDB!
+[2023-08-16T16:00:01.329Z] info: Connected to MongoDB!
+[2023-08-16T16:00:01.331Z] info: listen on http://localhost:8080, mode:
+[2023-08-16T16:00:01.331Z] info: listen on http://localhost:8080, mode:
+[2023-08-16T16:00:03.183Z] info: Connected to MongoDB!
+[2023-08-16T16:00:03.183Z] info: Connected to MongoDB!
+[2023-08-16T16:00:05.786Z] error: something went wrong generateProduct
+[2023-08-16T16:00:05.786Z] error: something went wrong generateProduct
+[2023-08-16T16:17:17.452Z] info: Connected to MongoDB!
+[2023-08-16T16:17:17.453Z] info: Connected to MongoDB!
+[2023-08-16T16:17:17.454Z] info: listen on http://localhost:8080, mode:
+[2023-08-16T16:17:17.455Z] info: listen on http://localhost:8080, mode:
+[2023-08-16T16:17:20.540Z] info: Connected to MongoDB!
+[2023-08-16T16:17:20.541Z] info: Connected to MongoDB!

@@ -47,7 +47,6 @@ class CartController {
       req.logger.error('something went wrong deleteCart', error)
     }
   }
-
   async currentCart(req, res) {
     try {
       const dataUser = req.session.user.cart
@@ -57,7 +56,6 @@ class CartController {
       req.logger.error('something went wrong currentCart', error)
     }
   }
-
   async getCartId(req, res) {
     try {
       const cartId = req.params.cid || req.session.user.cart
@@ -82,7 +80,6 @@ class CartController {
       req.logger.error('something went wrong getAll', error)
     }
   }
-
   async updateAddToCart(req, res) {
     try {
       const cid = req.session.user.cart || req.params.cid

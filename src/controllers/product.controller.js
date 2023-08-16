@@ -37,9 +37,13 @@ class ProductController {
     }
   }
   async getProductId(req, res) {
-    const productId = req.params.pid
-    const data = await productService.findById(productId)
-    res.render('home', { data })
+    try {
+      const productId = req.params.pid
+      const data = await productService.findById(productId)
+      res.render('home', { data })
+    } catch (error) {
+      req.logger.error('something went wrong getProductId', error)
+    }
   }
   async createProduct(req, res) {
     try {

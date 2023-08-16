@@ -3,12 +3,19 @@ import userDTO from '../DAO/DTO/user.DTO.js'
 
 class SessionController {
   getRegister(req, res) {
-    const message = req.flash('info')
-    return res.render('register', { message })
+    try {
+      const message = req.flash('info')
+      return res.render('register', { message })
+    } catch (error) {
+      req.logger.error('something went wrong getRegister', error)
+    }
   }
   createRegister(req, res, next) {
     passport.authenticate('register', { failureRedirect: '/api/sessions/register', failureFlash: true }, (err, user, info) => {
-      if (err) return next(err)
+      if (err) {
+        req.logger.error('something went wrong createRegister', err)
+        return next(err)
+      }
       req.flash('info', info.message)
       if (!user) {
         return res.redirect('/api/sessions/register')
@@ -22,7 +29,10 @@ class SessionController {
   }
   createLogin(req, res, next) {
     passport.authenticate('login', { failureRedirect: '/api/sessions/login', failureFlash: true }, (err, user, info) => {
-      if (err) return next(err)
+      if (err) {
+        req.logger.error('something went wrong createLogin', err)
+        return next(err)
+      }
       if (!user) {
         req.flash('info', info.message)
         return res.redirect('/api/sessions/login')
@@ -35,6 +45,7 @@ class SessionController {
   logout(req, res) {
     req.session.destroy((err) => {
       if (err) {
+        req.logger.error('something went wrong logout', err)
         return res.status(500).render('error', { error: 'session could not be closed', code: 500 })
       }
       return res.redirect('/api/sessions/login')
@@ -50,6 +61,7 @@ class SessionController {
   getCurrent(req, res) {
     const dataUser = req.session.user
     if (dataUser === undefined) {
+      req.logger.warning('No user data found in session')
       return res.json({
         status: 'error',
         msg: 'No user data found in session',
