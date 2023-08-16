@@ -1,5 +1,6 @@
 import dataConfig from '../config/process.config.js'
 import { connectMongo } from '../utils/connectMongo.js'
+import { logger } from '../utils/logger.js'
 
 export let cartFactory, productFactory, userFactory, chatFactory, ticketFactory
 
@@ -18,14 +19,13 @@ switch (dataConfig.persistence) {
     ticketFactory = ticketDAO
     break
   case 'memory':
-    console.log('Persistence with Memory')
+    logger.info('Persistence with Memory')
     const { default: cartMemory } = await import('./memory/CartManager.js')
     cartFactory = cartMemory
     const { default: productMemory } = await import('./memory/ProductManager.js')
     productFactory = productMemory
     const { default: userMemory } = await import('./memory/CartManager.js')
     userFactory = userMemory
-
     break
   default:
     break

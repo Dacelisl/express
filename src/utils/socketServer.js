@@ -1,13 +1,14 @@
 import { Server } from 'socket.io'
 import { chatService } from '../services/chat.services.js'
+import { logger } from './logger.js'
 
 export const connectSocket = (httpServer) => {
   const socketServer = new Server(httpServer)
 
   socketServer.on('connection', (socket) => {
-    console.log('cliente socketServer conectado')
+    logger.info('cliente socketServer conectado')
     socket.on('disconnect', () => {
-      console.log('Un cliente se ha desconectado')
+      logger.info('Un cliente se ha desconectado')
     })
 
     socket.on('msg_front_to_back', async (msg) => {

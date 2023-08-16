@@ -5,6 +5,7 @@ import handlebars from 'express-handlebars'
 import MongoStore from 'connect-mongo'
 import path from 'path'
 import { __dirname } from './utils/utils.js'
+import { addLogger, logger } from './utils/logger.js'
 import { connectMongo } from './utils/connectMongo.js'
 import { connectSocket } from './utils/socketServer.js'
 import { isAdmin } from './middleware/auth.js'
@@ -21,9 +22,10 @@ import flash from 'connect-flash'
 import dataConfig from './config/process.config.js'
 
 const app = express()
+app.use(addLogger)
 app.use(compression())
 
-const httpServer = app.listen(dataConfig.port, () => console.log(`listen on http://localhost:${dataConfig.port}, mode:`, dataConfig.mode))
+const httpServer = app.listen(dataConfig.port, () => logger.info(`listen on http://localhost:${dataConfig.port}, mode:`, dataConfig.mode))
 connectSocket(httpServer)
 connectMongo()
 
@@ -54,7 +56,16 @@ app.use('/realtimeproducts', isAdmin, ViewRoutes)
 app.use('/test-chat', chatRoutes)
 app.use('/api/sessions/', SessionRoutes)
 app.use('/api/mock/', MockRoutes)
-app.use(errorHandler)
+app.get('/loggerTest', (req, res) => {
+  req.logger.debug('ingresando a un proceso importante debug')
+  req.logger.http('ingresando a un proceso importante http')
+  req.logger.info('ingresando a un proceso importante info')
+  req.logger.warning('ingresando a un proceso importante warning')
+  req.logger.error('ingresando a un proceso importante error')
+  req.logger.fatal('ingresando a un proceso importante fatal')
+  res.send({ message: 'fin del proceso heavy exito!!!' })
+})
+/* app.use(errorHandler) */
 
 initPassport()
 app.use(passport.authorize())

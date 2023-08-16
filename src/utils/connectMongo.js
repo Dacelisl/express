@@ -2,6 +2,7 @@ import { connect, Schema, model } from 'mongoose'
 import { ProductsModel } from '../DAO/mongo/models/products.model.js'
 import { faker } from '@faker-js/faker'
 import dataConfig from '../config/process.config.js'
+import { logger } from "./logger.js";
 
 let mongoConnectionInstance = null
 
@@ -9,7 +10,7 @@ export const connectMongo = async () => {
   if (!mongoConnectionInstance) {
     try {
       const dbConnection = await connect(`mongodb+srv://${dataConfig.userName}:${dataConfig.secretKey}@backendcoder.tu6mnjp.mongodb.net/${dataConfig.databaseName}?retryWrites=true&w=majority`)
-      console.log('Connected to MongoDB!')
+      logger.info('Connected to MongoDB!')
       mongoConnectionInstance = dbConnection
       /* async function poblar() {
       const products = []
@@ -27,7 +28,7 @@ export const connectMongo = async () => {
       }
       try {
         await ProductsModel.insertMany(products)
-        console.log('Inserted', products.length, 'products')
+        logger.info('Inserted', products.length, 'products')
       } catch (error) {
         throw new Error('Error en insert many:', error)
       }

@@ -24,6 +24,7 @@ class ProductController {
           res.render('home', data)
         }
       } else {
+        req.logger.error('something went wrong ')
         return res.status(500).json({
           status: 'error',
           msg: 'something went wrong :(',
@@ -31,6 +32,7 @@ class ProductController {
         })
       }
     } catch (error) {
+      req.logger.error('Error getting the products', error)
       res.status(500).json({ error: 'Error getting the products' })
     }
   }
@@ -58,7 +60,7 @@ class ProductController {
         payload: createProduct,
       })
     } catch (e) {
-      console.log('data error', e);
+      req.logger.error('something went wrong createProduct', e)
       return res.status(500).json({
         status: 'error',
         msg: 'something went wrong :(',
@@ -86,6 +88,7 @@ class ProductController {
         data: resUpdate,
       })
     } catch (e) {
+      req.logger.error('something went wrong updateProduct', e)
       return res.status(500).json({
         status: 'error',
         msg: 'something went wrong :(',
@@ -103,6 +106,7 @@ class ProductController {
         data: resDelete,
       })
     } catch (e) {
+      req.logger.error('something went wrong deleteProduct', e)
       return res.status(500).json({
         status: 'error',
         msg: 'something went wrong :(',
