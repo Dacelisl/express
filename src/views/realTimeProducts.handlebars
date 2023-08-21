@@ -4,14 +4,14 @@
     <button class='button-search' type='submit'>Search</button>
   </div>
   <div class='cart'>
-    <a href='http://localhost:8080/api/carts/' class='cart-icon'>Cart</a>
+    <a href='/api/carts/' class='cart-icon'>Cart</a>
     {{! <span class='cart-items'>3</span> }}
   </div>
   <div id='session'>
     {{#if session.user}}
-      <a href='http://localhost:8080/api/sessions/profile/'>{{session.user}}</a>
+      <a href='/api/sessions/profile/'>{{session.user}}</a>
     {{else}}
-      <a href='http://localhost:8080/api/sessions/login/'>Login</a>
+      <a href='/api/sessions/login/'>Login</a>
     {{/if}}
   </div>
 </div>

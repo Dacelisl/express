@@ -100,8 +100,7 @@ class TicketServices {
 
   async getTicketById(id) {
     try {
-      isValid(id)
-      const ticket = await ticketFactory.getById(id)
+      const ticket = await ticketFactory.getOrderByCode(id)
       if (!ticket) {
         return {
           status: 'Fail',

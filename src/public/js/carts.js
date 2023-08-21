@@ -88,9 +88,11 @@ async function purchase() {
   try {
     if (ticket) {
       ticket.addEventListener('click', async (e) => {
-        await fetch(`/api/carts/${currentCart}/purchase`, {
+        const response = await fetch(`/api/carts/${currentCart}/purchase`, {
           method: 'PUT',
         })
+        const dataPurchase = await response.json()
+        sendMail(dataPurchase.data.code)
         cartAfterPurchase()
       })
     }
@@ -98,6 +100,25 @@ async function purchase() {
     throw new Error('Failed to purchase', error)
   }
 }
+async function sendMail(code) {
+  try {
+    const res = await fetch(`/mail/send/${code}`, {
+      method: 'POST',
+    })
+    if (res.ok) {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'confirmation message has been sent',
+        showConfirmButton: false,
+        timer: 2000,
+      })
+    }
+  } catch (error) {
+    throw new Error('Failed to sendMail', error)
+  }
+}
+
 async function cartAfterPurchase() {
   try {
     const cartData = await fetch(`/api/carts/${currentCart}`)

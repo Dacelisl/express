@@ -22,5 +22,7 @@ const dataConfig = {
   gitCallBack: process.env.GIT_CALLBACKURL,
   url_mongo: process.env.URL_MONGO,
   secret: process.env.SECRET,
+  email_google: process.env.EMAIL,
+  key_email_google: process.env.KEY_GOOGLE,
 }
 export default dataConfig

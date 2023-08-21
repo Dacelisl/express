@@ -5,8 +5,8 @@ class TicketDAO {
     const tickets = await TicketModel.find({})
     return tickets
   }
-  getOrderById = async (id) => {
-    const ticket = await TicketModel.findById(id).lean()
+  getOrderByCode = async (id) => {
+    const ticket = await TicketModel.findOne({ code: id }).populate('products.productId')
     return ticket
   }
 

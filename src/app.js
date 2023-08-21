@@ -15,6 +15,7 @@ import { CartRoutes } from './routes/cart.routes.js'
 import { ViewRoutes } from './routes/views.routes.js'
 import { chatRoutes } from './routes/chat.routes.js'
 import { MockRoutes } from './routes/mock.routes.js'
+import { MailRoutes } from './routes/mail.routes.js'
 import { SessionRoutes } from './routes/session.routes.js'
 import { initPassport } from './config/passport.config.js'
 import passport from 'passport'
@@ -56,6 +57,7 @@ app.use('/realtimeproducts', isAdmin, ViewRoutes)
 app.use('/test-chat', chatRoutes)
 app.use('/api/sessions/', SessionRoutes)
 app.use('/api/mock/', MockRoutes)
+app.use('/mail', MailRoutes)
 app.get('/loggerTest', (req, res) => {
   req.logger.debug('ingresando a un proceso importante debug')
   req.logger.http('ingresando a un proceso importante http')
@@ -65,7 +67,7 @@ app.get('/loggerTest', (req, res) => {
   req.logger.fatal('ingresando a un proceso importante fatal')
   res.send({ message: 'fin del proceso heavy exito!!!' })
 })
-/* app.use(errorHandler) */
+app.use(errorHandler)
 
 initPassport()
 app.use(passport.authorize())
