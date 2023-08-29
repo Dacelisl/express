@@ -2,7 +2,7 @@ import { Types } from 'mongoose'
 import multer from 'multer'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import bcrypt from 'bcrypt'
+import bcryptjs from 'bcryptjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.resolve(__filename, '../../')
@@ -45,11 +45,11 @@ function randomCode(length) {
 }
 
 function convertCurrencyToNumber(currencyString) {
-  const numericValue = parseFloat(currencyString.replace('$', '').trim());
-  return isNaN(numericValue) ? 0 : numericValue;
+  const numericValue = parseFloat(currencyString.replace('$', '').trim())
+  return isNaN(numericValue) ? 0 : numericValue
 }
 
-export const createHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10))
-export const isValidPassword = (password, hashPassword) => bcrypt.compareSync(password, hashPassword)
+export const createHash = (password) => bcryptjs.hashSync(password, bcryptjs.genSaltSync(10))
+export const isValidPassword = (password, hashPassword) => bcryptjs.compareSync(password, hashPassword)
 export const uploader = multer({ storage })
 export { __filename, __dirname, parsedQuery, isValid, randomCode, convertCurrencyToNumber }
