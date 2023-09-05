@@ -1,0 +1,11 @@
+<div class='bodyForm'>
+  <a href='/api/products' class='floating-button'>Home</a>
+  {{#if message}}
+    <div class='alert alert-success'>{{message}}</div>
+  {{/if}}
+  <form class='form' action='/recover/mail' method='POST'>
+    <h1>Send me reset password instructions</h1>
+    <input type='email' name='email' placeholder='Email' required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"/>
+    <button type='submit'>Send!</button>
+  </form>
+</div>

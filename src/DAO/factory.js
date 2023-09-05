@@ -2,7 +2,7 @@ import dataConfig from '../config/process.config.js'
 import { connectMongo } from '../utils/connectMongo.js'
 import { logger } from '../utils/logger.js'
 
-export let cartFactory, productFactory, userFactory, chatFactory, ticketFactory
+export let cartFactory, productFactory, userFactory, chatFactory, ticketFactory, recoveryCodeFactory
 
 switch (dataConfig.persistence) {
   case 'mongo':
@@ -17,6 +17,8 @@ switch (dataConfig.persistence) {
     chatFactory = chatDAO
     const { ticketDAO } = await import('./mongo/class/ticket.dao.js')
     ticketFactory = ticketDAO
+    const { RecoveryCodesDAO } = await import('./mongo/class/recoveryCodes.dao.js')
+    recoveryCodeFactory = RecoveryCodesDAO
     break
   case 'memory':
     logger.info('Persistence with Memory')

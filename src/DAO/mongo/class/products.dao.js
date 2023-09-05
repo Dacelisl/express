@@ -1,5 +1,4 @@
 import { ProductsModel } from '../models/products.model.js'
-import mongoose from 'mongoose'
 
 class Product {
   getProducts = async (queryFilter, page, limitValue, sorting) => {
@@ -22,8 +21,8 @@ class Product {
   }
 
   saveProduct = async (dataProduct) => {
-    const { title, description, category, price, thumbnail, code, stock } = dataProduct
-    const result = await ProductsModel.create({ title, description, category, price, thumbnail, code, stock })
+    const { title, description, category, price, thumbnail, code, stock, owner } = dataProduct
+    const result = await ProductsModel.create({ title, description, category, price, thumbnail, code, owner, stock })
     return result
   }
   deleteProduct = async (objectId) => {
@@ -32,8 +31,8 @@ class Product {
   }
 
   updateProduct = async (dataProduct) => {
-    const { title, description, category, price, thumbnail, code, stock, id } = dataProduct
-    const result = await ProductsModel.updateOne({ _id: id }, { title, description, category, price, thumbnail, code, stock })
+    const { title, description, category, price, thumbnail, code, stock, id, owner } = dataProduct
+    const result = await ProductsModel.updateOne({ _id: id }, { title, description, category, price, thumbnail, code, owner, stock })
     return result
   }
 }

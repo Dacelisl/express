@@ -11,6 +11,7 @@ import { connectSocket } from './utils/socketServer.js'
 import { isAdmin } from './middleware/auth.js'
 import { errorHandler } from './middleware/errors.js'
 import { ProductRoutes } from './routes/products.routes.js'
+import { RecoveryCodesRoutes } from './routes/recoveryCodes.routes.js'
 import { CartRoutes } from './routes/cart.routes.js'
 import { ViewRoutes } from './routes/views.routes.js'
 import { chatRoutes } from './routes/chat.routes.js'
@@ -56,6 +57,7 @@ app.use('/api/carts', CartRoutes)
 app.use('/realtimeproducts', isAdmin, ViewRoutes)
 app.use('/test-chat', chatRoutes)
 app.use('/api/sessions/', SessionRoutes)
+app.use('/recover', RecoveryCodesRoutes)
 app.use('/api/mock/', MockRoutes)
 app.use('/mail', MailRoutes)
 app.get('/loggerTest', (req, res) => {

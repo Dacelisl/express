@@ -334,7 +334,7 @@ a {
   color: #efe9e9;
 }
 .form button {
-  margin-top: 50px;
+  margin-top: 40px;
   margin-bottom: 20px;
   width: 100%;
   background-color: #ffffff;
@@ -362,6 +362,10 @@ a {
   height: fit-content;
   width: fit-content;
   padding: 12px;
+}
+#forgot{
+  display: flex;
+  justify-content: center;
 }
 
 #session {

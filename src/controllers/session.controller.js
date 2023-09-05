@@ -1,5 +1,6 @@
 import passport from 'passport'
 import userDTO from '../DAO/DTO/user.DTO.js'
+import { userFactory } from '../DAO/factory.js'
 
 class SessionController {
   getRegister(req, res) {
@@ -58,10 +59,28 @@ class SessionController {
   getAdmin(req, res) {
     return res.render('admin')
   }
+  async switchRol(req, res) {
+    try {
+      const uid = req.params.uid
+      let user = await userFactory.getUserByID(uid)
+      const userUpdate = await userFactory.updateUser(uid, { rol: user.rol === 'user' ? 'premium' : 'user' })
+      if (userUpdate.acknowledged) {
+        user = await userFactory.getUserByID(uid)
+      }
+      return res.status(200).json(user)
+    } catch (error) {
+      req.logger.warning('failed to change roles, switchRol', error)
+      return res.json({
+        status: 'error',
+        msg: 'failed to change roles,',
+        data: null,
+      })
+    }
+  }
   getCurrent(req, res) {
     const dataUser = req.session.user
     if (dataUser === undefined) {
-      req.logger.warning('No user data found in session')
+      req.logger.warning('No user data found in session, getCurrent')
       return res.json({
         status: 'error',
         msg: 'No user data found in session',

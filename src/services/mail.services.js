@@ -26,6 +26,26 @@ class MailServices {
     }
   }
 
+  async recoveryMail(email, token, basePath) {
+    try {
+      const transporter = this.createTransporter()
+      const mailOptions = this.generateMailRecoverOptions(email, token, basePath)
+      const sendResult = await transporter.sendMail(mailOptions)
+      return {
+        status: 'Success',
+        code: 201,
+        data: sendResult,
+        msg: 'Mail sent successfully',
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 401,
+        msg: `Error Mail sent ${error}`,
+      }
+    }
+  }
+
   createTransporter() {
     return nodemailer.createTransport({
       service: 'Gmail',
@@ -34,6 +54,60 @@ class MailServices {
         pass: dataConfig.key_email_google,
       },
     })
+  }
+
+  generateMailRecoverOptions(email, token, basePath) {
+    return {
+      from: dataConfig.email_google,
+      to: email,
+      subject: 'Recovery Password',
+      html: this.generateMailRecoverHtml(email, token, basePath),
+    }
+  }
+
+  generateMailRecoverHtml(email, token, basePath) {
+    return `
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+    <div class="container">
+        <div class="header">
+            <h1>Recuperación de Contraseña</h1>
+        </div>
+        <div class="content">
+            <p>Hemos recibido una solicitud para restablecer tu contraseña. Si no has realizado esta solicitud, puedes ignorar este mensaje.</p>
+            <p>Para restablecer tu contraseña, haz clic en el siguiente enlace:</p>
+            <p><a class="button" href='${basePath}/recover/pass?token=${token}&email=${email}'>Restablecer Contraseña</a></p>
+            <p>Este enlace expirará en 1 hora. Si no haces clic en el enlace antes de la expiración, deberás solicitar un nuevo enlace de restablecimiento de contraseña.</p>
+            <p>Gracias,<br>Tu Equipo de Soporte</p>
+        </div>
+    </div>
+    `
   }
 
   generateMailOptions(user, dataRes) {

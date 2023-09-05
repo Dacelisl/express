@@ -1,12 +1,13 @@
 import { existsSync, writeFileSync, readFileSync, promises } from 'fs'
 
 class Product {
-  constructor(title, description, price, thumbnail, code, stock) {
+  constructor(title, description, price, thumbnail, code, stock, owner) {
     this.title = title
     this.description = description
     this.price = price
     this.thumbnail = thumbnail
     this.code = code
+    this.owner = owner
     this.stock = stock
   }
 }
@@ -33,7 +34,7 @@ export class ProductManager {
           code: 404,
           msg: 'The code cannot be repeated',
         }
-      if (product.title && product.description && product.price && product.thumbnail && product.code && product.stock) {
+      if (product.title && product.description && product.price && product.thumbnail && product.code && product.owner && product.stock) {
         this.products.push({
           id: this.idIncrement(),
           title: product.title,
@@ -42,6 +43,7 @@ export class ProductManager {
           status: true,
           thumbnail: product.thumbnail,
           code: product.code,
+          owner: product.owner,
           stock: product.stock,
         })
         await promises.writeFile(this.path, JSON.stringify(this.products))
@@ -123,6 +125,7 @@ export class ProductManager {
         status: true,
         thumbnail: product.thumbnail || productFind.data[0].thumbnail,
         code: product.code || productFind.data[0].code,
+        owner: product.owner || productFind.data[0].owner,
         stock: product.stock || productFind.data[0].stock,
       }
       this.products.splice(this.products.indexOf(productFind.data[0]), 1, update)

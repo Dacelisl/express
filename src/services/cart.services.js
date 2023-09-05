@@ -1,5 +1,5 @@
 import { Types } from 'mongoose'
-import { cartFactory } from '../DAO/factory.js'
+import { cartFactory, productFactory } from '../DAO/factory.js'
 import { isValid } from '../utils/utils.js'
 
 class CartServices {
@@ -47,12 +47,21 @@ class CartServices {
       }
     }
   }
-  async addToCart(cartId, productId, quantity) {
+  async addToCart(cartId, productId, quantity, user) {
     try {
       const quant = parseInt(quantity) ? quantity : 1
       if (!Types.ObjectId.isValid(cartId)) return await this.createOne(productId)
       const cart = await cartFactory.getCartByID(cartId)
       if (!cart) {
+        const productFound = await productFactory.getProductByID(productId)
+        if (user.rol === 'premium' && productFound.owner === user.email) {
+          return {
+            status: 'Fail',
+            code: 401,
+            data: {},
+            msg: `You can't add products you created`,
+          }
+        }
         const newCart = await cartFactory.createCart(cartId, productId, quant)
         return {
           status: 'success',
@@ -62,6 +71,14 @@ class CartServices {
         }
       }
       const product = cart.products.find((p) => p.productId.toString() === productId)
+      if (user.rol === 'premium' && product.owner === user.email) {
+        return {
+          status: 'Fail',
+          code: 401,
+          data: {},
+          msg: `You can't add products you created`,
+        }
+      }
       if (product) {
         product.quantity += quant
         await cart.save()

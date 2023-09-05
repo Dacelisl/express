@@ -20,9 +20,10 @@ export function handleProductCreationError(req, res, next) {
     price: data.price,
     thumbnail: data.thumbnail,
     code: data.code,
+    owner: data.owner,
     stock: data.stock,
   }
-  const requiredProperties = ['title', 'description', 'category', 'price', 'thumbnail', 'code', 'stock']
+  const requiredProperties = ['title', 'description', 'category', 'price', 'thumbnail', 'code', 'owner', 'stock']
   const missingProperties = requiredProperties.filter((property) => !dataProduct.hasOwnProperty(property) || dataProduct[property] === undefined)
   if (missingProperties.length > 0) {
     req.logger.error('something went wrong generateProduct')

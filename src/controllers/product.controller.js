@@ -55,6 +55,7 @@ class ProductController {
         price: data.price,
         thumbnail: data.thumbnail,
         code: data.code,
+        owner: data.owner,
         stock: data.stock,
       }
       const createProduct = await productService.createOne(dataProduct)
@@ -82,6 +83,7 @@ class ProductController {
         price: data.price,
         thumbnail: data.thumbnail,
         code: data.code,
+        owner: data.owner,
         stock: data.stock,
       }
       dataProduct.id = req.params.pid

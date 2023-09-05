@@ -7,6 +7,7 @@ class ProductDTO {
     this.thumbnail = dataProduct.thumbnail
     this.code = dataProduct.code
     this.stock = dataProduct.stock
+    this.owner = dataProduct.owner
     this.id = dataProduct.id
   }
 }

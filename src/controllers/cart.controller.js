@@ -15,9 +15,10 @@ class CartController {
   async addProduct(req, res) {
     try {
       const cid = req.params.cid ? req.params.cid : req.session.user.cart
+      const user = req.session.user.rol
       const pid = req.params.pid
       const quant = req.body
-      const resAdd = await cartService.addToCart(cid, pid, quant)
+      const resAdd = await cartService.addToCart(cid, pid, quant, user)
       return res.json(resAdd)
     } catch (error) {
       req.logger.error('something went wrong addProduct', error)
@@ -85,7 +86,8 @@ class CartController {
       const cid = req.session.user.cart || req.params.cid
       const pid = req.params.pid
       const quant = req.body.quantity
-      const resAdd = await cartService.addToCart(cid, pid, quant)
+      const user = req.session.user
+      const resAdd = await cartService.addToCart(cid, pid, quant, user)
       return res.json(resAdd)
     } catch (error) {
       req.logger.error('something went wrong updateAddToCart', error)

@@ -1,6 +1,6 @@
-<h1 align="center">Tercera entrega del Proyecto Final </h1>
+<h1 align="center">Tercera práctica integradora </h1>
 
-Link del Proyecto: [Express](https://github.com/Dacelisl/express/tree/project).
+Link del Proyecto: [Express](https://github.com/Dacelisl/express).
 
 ## Mejorando la arquitectura del servidor
 
@@ -8,27 +8,23 @@ Link del Proyecto: [Express](https://github.com/Dacelisl/express/tree/project).
   <img src='https://miro.medium.com/v2/resize:fit:4800/format:webp/1*M10QaO1mZCk_jvH2EBNmaQ.jpeg' width='300px'/>
    </div>
 
-Se profundizará sobre los roles de los usuarios, las autorizaciones y sobre la lógica de compra:
+Con base en el proyecto que venimos desarrollando, toca solidificar algunos procesos:
 
 ## Se debe entregar
 
-- Modificar nuestra capa de persistencia para aplicar los conceptos de Factory (opcional), DAO y DTO.
-- El DAO seleccionado (por un parámetro en línea de comandos como lo hicimos anteriormente) será devuelto por una Factory para que la capa de negocio opere con él. (Factory puede ser opcional)
-- Implementar el patrón Repository para trabajar con el DAO en la lógica de negocio.
-- Modificar la ruta /current Para evitar enviar información sensible, enviar un DTO del usuario sólo con la información necesaria.
-- Realizar un middleware que pueda trabajar en conjunto con la estrategia “current” para hacer un sistema de autorización y delimitar el acceso a dichos endpoints:
+- Realizar un sistema de recuperación de contraseña, la cual envíe por medio de un correo un botón que redireccione a una página para restablecer la contraseña (no recuperarla).
+    - link del correo debe expirar después de 1 hora de enviado.
+    - Si se trata de restablecer la contraseña con la misma contraseña del usuario, debe impedirlo e indicarle que no se puede colocar la misma contraseña
+    - Si el link expiró, debe redirigir a una vista que le permita generar nuevamente el correo de restablecimiento, el cual contará con una nueva duración de 1 hora.
 
-    - Sólo el administrador puede crear, actualizar y eliminar productos.
-    - Sólo el usuario puede enviar mensajes al chat.
-    - Sólo el usuario puede agregar productos a su carrito
+- Establecer un nuevo rol para el schema del usuario llamado “premium” el cual estará habilitado también para crear productos
+- Modificar el schema de producto para contar con un campo “owner”, el cual haga referencia a la persona que creó el producto
+    - Si un producto se crea sin owner, se debe colocar por defecto “admin”.
+    - El campo owner deberá guardar sólo el correo electrónico (o _id, lo dejamos a tu conveniencia) del usuario que lo haya creado (Sólo podrá recibir usuarios premium)
+- Modificar los permisos de modificación y eliminación de productos para que:
+    - Un usuario premium sólo pueda borrar los productos que le pertenecen.
+    - El admin pueda borrar cualquier producto, aún si es de un owner.
+- Además, modificar la lógica de carrito para que un usuario premium NO pueda agregar a su carrito un producto que le pertenece
+- Implementar una nueva ruta en el router de api/users, la cual será /api/users/premium/:uid  la cual permitirá cambiar el rol de un usuario, de “user” a “premium” y viceversa.
 
-- Crear un modelo Ticket el cual contará con todas las formalizaciones de la compra. Éste contará con los campos:
 
-    - Id (autogenerado por mongo)
-    - code: String debe autogenerarse y ser único
-    - purchase_datetime: Deberá guardar la fecha y hora exacta en la cual se formalizó la compra (básicamente es un created_at)
-    - amount: Number, total de la compra.
-    - purchaser: String, contendrá el correo del usuario asociado al carrito.
-
-- Implementar, en el router de carts, la ruta /:cid/purchase, la cual permitirá finalizar el proceso de compra de dicho carrito: - La compra debe corroborar el stock del producto al momento de finalizarse - Si el producto tiene suficiente stock para la cantidad indicada en el producto del carrito, entonces restarlo del stock del producto y continuar. - Si el producto no tiene suficiente stock para la cantidad indicada en el producto del carrito, entonces no agregar el producto al proceso de compra. - Al final, utilizar el servicio de Tickets para poder generar un ticket con los datos de la compra. - En caso de existir una compra no completada, devolver el arreglo con los ids de los productos que no pudieron procesarse.
-  Una vez finalizada la compra, el carrito asociado al usuario que compró deberá contener sólo los productos que no pudieron comprarse. Es decir, se filtran los que sí se compraron y se quedan aquellos que no tenían disponibilidad.

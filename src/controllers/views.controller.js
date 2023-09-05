@@ -29,6 +29,7 @@ class ViewsController {
         price: data.price,
         thumbnail: data.thumbnail,
         code: data.code,
+        owner: data.owner,
         stock: data.stock,
       }
       await productService.createOne({ dataProduct })

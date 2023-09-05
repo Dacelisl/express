@@ -1,6 +1,5 @@
 # Definimos una imagen base
-FROM node:16
-
+FROM node:20
 # Creamos una carpeda donde vamos a guardar el proyecto
 WORKDIR /app
 

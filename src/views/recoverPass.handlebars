@@ -1,0 +1,13 @@
+<div class='bodyForm'>
+  <a href='/api/products' class='floating-button'>Home</a>
+  {{#if message}}
+    <div class='alert alert-success'>{{message}}</div>
+  {{/if}}
+  <form class='form' action='/recover/pass' method='POST'>
+    <h1>Change Password</h1>
+    <input type='hidden' value='{{email}}' name='email' placeholder='Email' />
+    <input type='hidden' value='{{token}}' name='token' placeholder='Token' />
+    <input type='password' name='password' placeholder='Password' />
+    <button type='submit'>Send!</button>
+  </form>
+</div>
