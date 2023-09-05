@@ -5,7 +5,7 @@ import ProductDTO from '../DAO/DTO/product.DTO.js'
 
 class ProductServices {
   validateProduct(dataProduct) {
-    const requiredProperties = ['title', 'description', 'category', 'price', 'thumbnail', 'code', 'stock', 'owner']
+    const requiredProperties = ['title', 'description', 'category', 'price', 'thumbnail', 'code', 'owner','stock']
     const missingProperties = requiredProperties.filter((property) => !(property in dataProduct))
     if (missingProperties.length > 0) {
       throw new Error(`Validation error: Missing properties - ${missingProperties.join(', ')}`)
@@ -66,7 +66,7 @@ class ProductServices {
     }
   }
   async createOne(dataProduct) {
-    const dataDTO = new ProductDTO(dataProduct)
+    const dataDTO = new ProductDTO({dataProduct})
     this.validateProduct(dataDTO)
     const createProduct = await productFactory.saveProduct(dataDTO)
     return createProduct

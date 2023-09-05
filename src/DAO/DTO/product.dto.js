@@ -8,7 +8,6 @@ class ProductDTO {
     this.code = dataProduct.code
     this.stock = dataProduct.stock
     this.owner = dataProduct.owner
-    this.id = dataProduct.id
   }
 }
 export default ProductDTO

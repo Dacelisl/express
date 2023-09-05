@@ -103,7 +103,7 @@ class MailServices {
             <p>Hemos recibido una solicitud para restablecer tu contraseña. Si no has realizado esta solicitud, puedes ignorar este mensaje.</p>
             <p>Para restablecer tu contraseña, haz clic en el siguiente enlace:</p>
             <p><a class="button" href='${basePath}/recover/pass?token=${token}&email=${email}'>Restablecer Contraseña</a></p>
-            <p>Este enlace de unico uso y expirará en 1 hora. Si no haces clic en el enlace antes de la expiración, deberás solicitar un nuevo enlace de restablecimiento de contraseña.</p>
+            <p>Este enlace es de unico uso y expirará en 1 hora. Si no haces clic en el enlace antes de la expiración, deberás solicitar un nuevo enlace de restablecimiento de contraseña.</p>
             <p>Gracias,<br>Tu Equipo de Soporte</p>
         </div>
     </div>

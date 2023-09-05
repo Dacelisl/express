@@ -29,7 +29,7 @@ class ViewsController {
         price: data.price,
         thumbnail: data.thumbnail,
         code: data.code,
-        owner: data.owner,
+        owner: req.session.user ? req.session.user.email : 'admin',
         stock: data.stock,
       }
       await productService.createOne({ dataProduct })

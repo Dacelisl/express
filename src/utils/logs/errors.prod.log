@@ -1066,3 +1066,251 @@
 [2023-09-05T20:34:09.257Z] info: Connected to MongoDB!
 [2023-09-05T20:34:16.538Z] warning: No user data found in session, getCurrent
 [2023-09-05T20:34:16.539Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:40:49.969Z] info: Connected to MongoDB!
+[2023-09-05T20:40:49.970Z] info: Connected to MongoDB!
+[2023-09-05T20:40:49.971Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:40:49.971Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:40:51.756Z] info: Connected to MongoDB!
+[2023-09-05T20:40:51.756Z] info: Connected to MongoDB!
+[2023-09-05T20:50:09.665Z] info: Connected to MongoDB!
+[2023-09-05T20:50:09.666Z] info: Connected to MongoDB!
+[2023-09-05T20:50:09.668Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:50:09.668Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:50:11.397Z] info: Connected to MongoDB!
+[2023-09-05T20:50:11.397Z] info: Connected to MongoDB!
+[2023-09-05T20:51:38.144Z] info: Connected to MongoDB!
+[2023-09-05T20:51:38.145Z] info: Connected to MongoDB!
+[2023-09-05T20:51:38.147Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:51:38.147Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:51:40.050Z] info: Connected to MongoDB!
+[2023-09-05T20:51:40.050Z] info: Connected to MongoDB!
+[2023-09-05T20:56:47.402Z] info: Connected to MongoDB!
+[2023-09-05T20:56:47.404Z] info: Connected to MongoDB!
+[2023-09-05T20:56:47.407Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:56:47.407Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:56:49.793Z] info: Connected to MongoDB!
+[2023-09-05T20:56:49.794Z] info: Connected to MongoDB!
+[2023-09-05T20:56:49.795Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:56:49.795Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:56:52.362Z] info: Connected to MongoDB!
+[2023-09-05T20:56:52.362Z] info: Connected to MongoDB!
+[2023-09-05T21:13:20.379Z] error: something went wrong generateProduct
+[2023-09-05T21:13:20.379Z] error: something went wrong generateProduct
+[2023-09-05T21:15:26.763Z] error: something went wrong generateProduct
+[2023-09-05T21:15:26.763Z] error: something went wrong generateProduct
+[2023-09-05T21:16:49.410Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:16:49.410Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:20:43.150Z] info: Connected to MongoDB!
+[2023-09-05T21:20:43.152Z] info: Connected to MongoDB!
+[2023-09-05T21:20:43.154Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:20:43.153Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:20:45.105Z] info: Connected to MongoDB!
+[2023-09-05T21:20:45.105Z] info: Connected to MongoDB!
+[2023-09-05T21:20:46.924Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:20:46.924Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:21:52.897Z] info: Connected to MongoDB!
+[2023-09-05T21:21:52.898Z] info: Connected to MongoDB!
+[2023-09-05T21:21:52.900Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:21:52.900Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:21:54.667Z] info: Connected to MongoDB!
+[2023-09-05T21:21:54.668Z] info: Connected to MongoDB!
+[2023-09-05T21:21:59.296Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:21:59.297Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:22:20.675Z] info: Connected to MongoDB!
+[2023-09-05T21:22:20.677Z] info: Connected to MongoDB!
+[2023-09-05T21:22:20.679Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:22:20.679Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:22:22.477Z] info: Connected to MongoDB!
+[2023-09-05T21:22:22.477Z] info: Connected to MongoDB!
+[2023-09-05T21:22:23.737Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:22:23.738Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:22:59.464Z] info: Connected to MongoDB!
+[2023-09-05T21:22:59.465Z] info: Connected to MongoDB!
+[2023-09-05T21:22:59.468Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:22:59.468Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:23:02.766Z] info: Connected to MongoDB!
+[2023-09-05T21:23:02.767Z] info: Connected to MongoDB!
+[2023-09-05T21:23:03.038Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:23:03.038Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:23:46.618Z] info: Connected to MongoDB!
+[2023-09-05T21:23:46.619Z] info: Connected to MongoDB!
+[2023-09-05T21:23:46.622Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:23:46.622Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:23:47.799Z] info: Connected to MongoDB!
+[2023-09-05T21:23:47.799Z] info: Connected to MongoDB!
+[2023-09-05T21:23:48.174Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:23:48.174Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:27:16.604Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:27:16.604Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:28:44.321Z] info: Connected to MongoDB!
+[2023-09-05T21:28:44.324Z] info: Connected to MongoDB!
+[2023-09-05T21:28:44.328Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:28:44.328Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:30:01.480Z] info: Connected to MongoDB!
+[2023-09-05T21:30:01.481Z] info: Connected to MongoDB!
+[2023-09-05T21:30:01.483Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:30:01.483Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:30:05.650Z] info: Connected to MongoDB!
+[2023-09-05T21:30:05.650Z] info: Connected to MongoDB!
+[2023-09-05T21:30:08.869Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:30:08.870Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:30:27.733Z] info: Connected to MongoDB!
+[2023-09-05T21:30:27.735Z] info: Connected to MongoDB!
+[2023-09-05T21:30:27.737Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:30:27.737Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:30:30.326Z] info: Connected to MongoDB!
+[2023-09-05T21:30:30.326Z] info: Connected to MongoDB!
+[2023-09-05T21:30:33.515Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:30:33.516Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:30:48.496Z] info: Connected to MongoDB!
+[2023-09-05T21:30:48.497Z] info: Connected to MongoDB!
+[2023-09-05T21:30:48.498Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:30:48.498Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:30:50.633Z] info: Connected to MongoDB!
+[2023-09-05T21:30:50.633Z] info: Connected to MongoDB!
+[2023-09-05T21:30:51.006Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:30:51.007Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:31:28.416Z] warning: No user data found in session, getCurrent
+[2023-09-05T21:31:28.417Z] warning: No user data found in session, getCurrent
+[2023-09-05T21:31:28.946Z] warning: No user data found in session, getCurrent
+[2023-09-05T21:31:28.947Z] warning: No user data found in session, getCurrent
+[2023-09-05T21:31:35.872Z] warning: No user data found in session, getCurrent
+[2023-09-05T21:31:35.872Z] warning: No user data found in session, getCurrent
+[2023-09-05T21:32:07.116Z] warning: No user data found in session, getCurrent
+[2023-09-05T21:32:07.116Z] warning: No user data found in session, getCurrent
+[2023-09-05T21:37:03.827Z] info: Connected to MongoDB!
+[2023-09-05T21:37:03.828Z] info: Connected to MongoDB!
+[2023-09-05T21:37:03.830Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:37:03.830Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:37:06.470Z] info: Connected to MongoDB!
+[2023-09-05T21:37:06.470Z] info: Connected to MongoDB!
+[2023-09-05T21:37:34.478Z] info: Connected to MongoDB!
+[2023-09-05T21:37:34.478Z] info: Connected to MongoDB!
+[2023-09-05T21:37:34.480Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:37:34.480Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:37:36.187Z] info: Connected to MongoDB!
+[2023-09-05T21:37:36.187Z] info: Connected to MongoDB!
+[2023-09-05T21:42:30.273Z] info: Connected to MongoDB!
+[2023-09-05T21:42:30.274Z] info: Connected to MongoDB!
+[2023-09-05T21:42:30.275Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:42:30.275Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:42:33.072Z] info: Connected to MongoDB!
+[2023-09-05T21:42:33.072Z] info: Connected to MongoDB!
+[2023-09-05T21:42:45.627Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:42:45.627Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:45:02.301Z] info: Connected to MongoDB!
+[2023-09-05T21:45:02.303Z] info: Connected to MongoDB!
+[2023-09-05T21:45:02.305Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:45:02.305Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:45:04.437Z] info: Connected to MongoDB!
+[2023-09-05T21:45:04.437Z] info: Connected to MongoDB!
+[2023-09-05T21:45:42.579Z] info: Connected to MongoDB!
+[2023-09-05T21:45:42.580Z] info: Connected to MongoDB!
+[2023-09-05T21:45:42.584Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:45:42.584Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:45:44.141Z] info: Connected to MongoDB!
+[2023-09-05T21:45:44.141Z] info: Connected to MongoDB!
+[2023-09-05T21:46:20.680Z] info: Connected to MongoDB!
+[2023-09-05T21:46:20.682Z] info: Connected to MongoDB!
+[2023-09-05T21:46:20.684Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:46:20.684Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:46:24.209Z] info: Connected to MongoDB!
+[2023-09-05T21:46:24.210Z] info: Connected to MongoDB!
+[2023-09-05T21:46:24.429Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:46:24.430Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:46:37.062Z] error: something went wrong generateProduct
+[2023-09-05T21:46:37.063Z] error: something went wrong generateProduct
+[2023-09-05T21:47:00.062Z] info: Connected to MongoDB!
+[2023-09-05T21:47:00.063Z] info: Connected to MongoDB!
+[2023-09-05T21:47:00.065Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:47:00.065Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:47:03.275Z] info: Connected to MongoDB!
+[2023-09-05T21:47:03.276Z] info: Connected to MongoDB!
+[2023-09-05T21:47:05.013Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'title')
+[2023-09-05T21:47:05.013Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'title')
+[2023-09-05T21:48:19.466Z] info: Connected to MongoDB!
+[2023-09-05T21:48:19.467Z] info: Connected to MongoDB!
+[2023-09-05T21:48:19.470Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:48:19.470Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:48:22.880Z] info: Connected to MongoDB!
+[2023-09-05T21:48:22.880Z] info: Connected to MongoDB!
+[2023-09-05T21:48:44.084Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'title')
+[2023-09-05T21:48:44.085Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'title')
+[2023-09-05T21:49:19.128Z] info: Connected to MongoDB!
+[2023-09-05T21:49:19.129Z] info: Connected to MongoDB!
+[2023-09-05T21:49:19.130Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:49:19.131Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:49:22.314Z] info: Connected to MongoDB!
+[2023-09-05T21:49:22.314Z] info: Connected to MongoDB!
+[2023-09-05T21:49:26.720Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'title')
+[2023-09-05T21:49:26.721Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'title')
+[2023-09-05T21:50:11.160Z] info: Connected to MongoDB!
+[2023-09-05T21:50:11.162Z] info: Connected to MongoDB!
+[2023-09-05T21:50:11.164Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:50:11.164Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:50:14.364Z] info: Connected to MongoDB!
+[2023-09-05T21:50:14.364Z] info: Connected to MongoDB!
+[2023-09-05T21:50:16.269Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'title')
+[2023-09-05T21:50:16.269Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'title')
+[2023-09-05T21:51:20.686Z] info: Connected to MongoDB!
+[2023-09-05T21:51:20.687Z] info: Connected to MongoDB!
+[2023-09-05T21:51:20.688Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:51:20.689Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:51:22.216Z] info: Connected to MongoDB!
+[2023-09-05T21:51:22.216Z] info: Connected to MongoDB!
+[2023-09-05T21:53:43.821Z] info: Connected to MongoDB!
+[2023-09-05T21:53:43.822Z] info: Connected to MongoDB!
+[2023-09-05T21:53:43.823Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:53:43.823Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:53:46.180Z] info: Connected to MongoDB!
+[2023-09-05T21:53:46.180Z] info: Connected to MongoDB!
+[2023-09-05T21:55:44.925Z] info: Connected to MongoDB!
+[2023-09-05T21:55:44.927Z] info: Connected to MongoDB!
+[2023-09-05T21:55:44.930Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:55:44.930Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:55:46.895Z] info: Connected to MongoDB!
+[2023-09-05T21:55:46.895Z] info: Connected to MongoDB!
+[2023-09-05T21:57:03.559Z] info: Connected to MongoDB!
+[2023-09-05T21:57:03.561Z] info: Connected to MongoDB!
+[2023-09-05T21:57:03.564Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:57:03.564Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:57:07.893Z] info: Connected to MongoDB!
+[2023-09-05T21:57:07.893Z] info: Connected to MongoDB!
+[2023-09-05T21:57:17.399Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:57:17.400Z] error: something went wrong createProduct Cannot read properties of undefined (reading 'email')
+[2023-09-05T21:57:45.156Z] info: Connected to MongoDB!
+[2023-09-05T21:57:45.157Z] info: Connected to MongoDB!
+[2023-09-05T21:57:45.159Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:57:45.159Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:57:47.004Z] info: Connected to MongoDB!
+[2023-09-05T21:57:47.005Z] info: Connected to MongoDB!
+[2023-09-05T21:58:14.651Z] info: Connected to MongoDB!
+[2023-09-05T21:58:14.652Z] info: Connected to MongoDB!
+[2023-09-05T21:58:14.653Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:58:14.654Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:58:17.209Z] info: Connected to MongoDB!
+[2023-09-05T21:58:17.210Z] info: Connected to MongoDB!
+[2023-09-05T21:58:22.521Z] info: Connected to MongoDB!
+[2023-09-05T21:58:22.522Z] info: Connected to MongoDB!
+[2023-09-05T21:58:22.524Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:58:22.524Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:58:24.626Z] info: Connected to MongoDB!
+[2023-09-05T21:58:24.627Z] info: Connected to MongoDB!
+[2023-09-05T21:58:37.367Z] info: Connected to MongoDB!
+[2023-09-05T21:58:37.369Z] info: Connected to MongoDB!
+[2023-09-05T21:58:37.372Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:58:37.372Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:58:38.726Z] info: Connected to MongoDB!
+[2023-09-05T21:58:38.726Z] info: Connected to MongoDB!
+[2023-09-05T21:58:49.451Z] info: Connected to MongoDB!
+[2023-09-05T21:58:49.453Z] info: Connected to MongoDB!
+[2023-09-05T21:58:49.455Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:58:49.455Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:58:52.643Z] info: Connected to MongoDB!
+[2023-09-05T21:58:52.643Z] info: Connected to MongoDB!
+[2023-09-05T21:58:55.269Z] info: Connected to MongoDB!
+[2023-09-05T21:58:55.271Z] info: Connected to MongoDB!
+[2023-09-05T21:58:55.273Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:58:55.273Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T21:58:57.052Z] info: Connected to MongoDB!
+[2023-09-05T21:58:57.053Z] info: Connected to MongoDB!

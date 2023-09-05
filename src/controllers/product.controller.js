@@ -55,7 +55,7 @@ class ProductController {
         price: data.price,
         thumbnail: data.thumbnail,
         code: data.code,
-        owner: data.owner,
+        owner: req.session.user ? req.session.user.email : 'admin',
         stock: data.stock,
       }
       const createProduct = await productService.createOne(dataProduct)
@@ -68,7 +68,7 @@ class ProductController {
       req.logger.error('something went wrong createProduct', e)
       return res.status(500).json({
         status: 'error',
-        msg: 'something went wrong :(',
+        msg: `Something went wrong :( ${e}`,
         payload: {},
       })
     }
