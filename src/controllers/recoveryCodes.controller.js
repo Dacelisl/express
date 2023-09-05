@@ -42,7 +42,7 @@ class RecoveryCodesController {
       const { token, email } = req.query
       const response = await recoveryCodeFactory.findToken(token, email)
       const foundToken = response[0]
-      if (foundToken.expire > Date.now()) {
+      if (foundToken.expire > Date.now() && foundToken.active) {
         res.render('recoverPass', { token, email })
       } else {
         res.render('error', { error: 'token expired or invalid token!', code: 403 })
@@ -62,19 +62,19 @@ class RecoveryCodesController {
       let { token, email, password } = req.body
       const response = await recoveryCodeFactory.findToken(token, email)
       const foundToken = response[0]
-      if (foundToken.expire > Date.now() && password) {
+      if (foundToken.expire > Date.now() && foundToken.active && password) {
         const passHash = createHash(password)
         const user = await userFactory.getUserByEmail(email)
         if (!isValidPassword(password, user.password)) {
+          await recoveryCodeFactory.updateState(foundToken._id)
           await userFactory.updateUser(user._id, { password: passHash })
           req.flash('info', 'You have successfully changed the password.')
-          res.redirect('/api/sessions/login')
+          return res.redirect('/api/sessions/login')
         }
-        console.log('you cant use the same password')
         req.flash('info', `you can't use the same password`)
-        res.redirect(req.headers.referer)
+        return res.redirect(req.headers.referer)
       } else {
-        res.render('error', { error: 'token expired or invalid token!', code: 403 })
+        return res.render('error', { error: 'token expired or invalid token!', code: 403 })
       }
     } catch (e) {
       req.logger.error('something went wrong recoveryPass', e)

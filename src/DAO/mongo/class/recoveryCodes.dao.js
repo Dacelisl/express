@@ -14,8 +14,13 @@ class RecoveryCodes {
     return msg
   }
   findToken = async (token, email) => {
-    const msg = await RecoveryCodesModel.find({email:email, token:token})
+    const msg = await RecoveryCodesModel.find({ email: email, token: token })
     return msg
+  }
+
+  updateState = async (id) => {
+    const result = await RecoveryCodesModel.updateOne({ _id: id }, { active: false })
+    return result
   }
 }
 export const RecoveryCodesDAO = new RecoveryCodes()

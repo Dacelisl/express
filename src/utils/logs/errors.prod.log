@@ -1006,3 +1006,63 @@
 [2023-09-05T02:40:52.830Z] info: Connected to MongoDB!
 [2023-09-05T02:40:55.236Z] warning: failed to change roles, switchRol Cast to ObjectId failed for value "64def964cc33f982670" (type string) at path "_id" for model "users"
 [2023-09-05T02:40:55.236Z] warning: failed to change roles, switchRol Cast to ObjectId failed for value "64def964cc33f982670" (type string) at path "_id" for model "users"
+[2023-09-05T20:11:38.161Z] info: Connected to MongoDB!
+[2023-09-05T20:11:38.162Z] info: Connected to MongoDB!
+[2023-09-05T20:11:38.163Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:11:38.163Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:11:40.785Z] info: Connected to MongoDB!
+[2023-09-05T20:11:40.785Z] info: Connected to MongoDB!
+[2023-09-05T20:11:48.956Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:11:48.957Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:11:49.319Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:11:49.319Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:11:51.521Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:11:51.521Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:11:55.458Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:11:55.459Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:12:08.826Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:12:08.827Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:12:36.869Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:12:36.869Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:12:48.403Z] error: something went wrong recoveryPass Cannot set headers after they are sent to the client
+[2023-09-05T20:12:48.403Z] error: something went wrong recoveryPass Cannot set headers after they are sent to the client
+[2023-09-05T20:16:06.288Z] info: Connected to MongoDB!
+[2023-09-05T20:16:06.291Z] info: Connected to MongoDB!
+[2023-09-05T20:16:06.293Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:16:06.293Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:16:09.066Z] info: Connected to MongoDB!
+[2023-09-05T20:16:09.067Z] info: Connected to MongoDB!
+[2023-09-05T20:16:11.699Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:16:11.699Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:16:24.074Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:16:24.075Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:19:23.236Z] info: Connected to MongoDB!
+[2023-09-05T20:19:23.237Z] info: Connected to MongoDB!
+[2023-09-05T20:19:23.238Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:19:23.239Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:19:25.965Z] info: Connected to MongoDB!
+[2023-09-05T20:19:25.965Z] info: Connected to MongoDB!
+[2023-09-05T20:19:32.419Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:19:32.420Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:19:43.070Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:19:43.070Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:19:53.560Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:19:53.561Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:20:11.820Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:20:11.820Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:24:43.408Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:24:43.408Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:25:37.861Z] info: Connected to MongoDB!
+[2023-09-05T20:25:37.863Z] info: Connected to MongoDB!
+[2023-09-05T20:25:37.866Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:25:37.867Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:25:40.087Z] info: Connected to MongoDB!
+[2023-09-05T20:25:40.087Z] info: Connected to MongoDB!
+[2023-09-05T20:34:07.413Z] info: Connected to MongoDB!
+[2023-09-05T20:34:07.414Z] info: Connected to MongoDB!
+[2023-09-05T20:34:07.416Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:34:07.416Z] info: listen on http://localhost:8080, mode:
+[2023-09-05T20:34:09.257Z] info: Connected to MongoDB!
+[2023-09-05T20:34:09.257Z] info: Connected to MongoDB!
+[2023-09-05T20:34:16.538Z] warning: No user data found in session, getCurrent
+[2023-09-05T20:34:16.539Z] warning: No user data found in session, getCurrent
