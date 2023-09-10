@@ -32,7 +32,7 @@ class ViewsController {
         owner: req.session.user ? req.session.user.email : 'admin',
         stock: data.stock,
       }
-      await productService.createOne({ dataProduct })
+      await productService.createOne(dataProduct )
       message = `Producto agregado con éxito.`
       return res.render('addProduct', { message })
     } catch (e) {
