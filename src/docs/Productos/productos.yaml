@@ -17,13 +17,37 @@ paths:
           description: Error al obtener la informacion
         '500':
           description: Error del servidor. Usualmente generando la query o falla la conexion a la DB
-  /api/products/{uid}:
+    post:
+      description: Crea un nuevo producto
+      operationId: addProduct
+      requestBody:
+        description: Producto agregado a la tienda
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/newProduct'
+      responses:
+        '200':
+          description: producto agregado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/products'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/products/{_id}:
     get:
-      summary: Obtiene un products
+      description: Obtiene un producto por su ID
       tags:
         - products
       parameters:
-        - name: uid
+        - name: _id
           in: path
           required: true
           description: ID del usuario que se busca
@@ -41,7 +65,7 @@ paths:
       tags:
         - products
       parameters:
-        - name: uid
+        - name: _id
           in: path
           required: true
           description: ID del usuario que se busca
@@ -60,6 +84,24 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Success'
+    delete:
+      description: elimina un producto por su ID
+      operationId: deleteProduct
+      parameters:
+        - name: _id
+          in: path
+          description: ID of product to delete
+          required: true
+      responses:
+        '204':
+          description: product deleted
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 components:
   schemas:
     Success:
@@ -114,6 +156,42 @@ components:
         code: '1oOXBRaLHw'
         owner: atrian@gmail.com
         stock: 15
+    newProduct:
+      type: object
+      required:
+        - title
+        - description
+        - category
+        - price
+        - thumbnail
+        - code
+        - owner
+        - stock
+      properties:
+        title:
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripcion breve del producto
+        category:
+          type: String
+          description: Categoria del producto
+        price:
+          type: String
+          description: Precio del producto
+        thumbnail:
+          type: String
+          description: Imagen del producto
+        code:
+          type: String
+          description: Codigo unico del producto
+        owner:
+          type: String
+          description: Email del propietario del producto
+        stock:
+          type: Number
+          description: Unidades totales disponibles
   requestBodies:
     updateproducts:
       type: object
@@ -151,3 +229,10 @@ components:
         code: '1oOXBRaLHw'
         owner: atrian@gmail.com
         stock: 15
+  Error:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: ObjectId

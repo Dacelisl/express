@@ -40,7 +40,7 @@ class ProductController {
     try {
       const productId = req.params.pid
       const data = await productService.findById(productId)
-      res.render('home', { data })
+      res.render('product', data.payload)
     } catch (error) {
       req.logger.error('something went wrong getProductId', error)
     }

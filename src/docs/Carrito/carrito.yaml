@@ -1,27 +1,31 @@
 paths:
   /api/carts:
-    get:
-      summary: Obtiene todos los carts
+    post:
+      description: Crea un nuevo Cart vacio
+      operationId: createCart
       tags:
-        - carts
+        - cart
       responses:
-        '200':
-          description: Los carts fueron devueltos satisfactoriamente
+        '201':
+          description: Cart creado
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#components/schemas/cart'
-        '500':
-          description: Error del servidor. Usualmente generando la query o falla la conexion a la DB
-  /api/carts/{uid}:
+                $ref: '#/components/schemas/carts'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/carts/{_id}:
     get:
-      summary: Obtiene un cart
+      description: Obtiene un producto por su ID
       tags:
         - carts
       parameters:
-        - name: uid
+        - name: _id
           in: path
           required: true
           description: ID del usuario que se busca
@@ -33,13 +37,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#components/schemas/cart'
+                $ref: '#components/schemas/carts'
     put:
-      summary: Actualizar un cart a partir del ID
+      summary: Actualizar un carts a partir del ID
       tags:
         - carts
       parameters:
-        - name: uid
+        - name: _id
           in: path
           required: true
           description: ID del usuario que se busca
@@ -50,7 +54,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#components/requestBodies/updatecart'
+              $ref: '#components/requestBodies/updatecarts'
       responses:
         '200':
           description: Usuario modificado exitosamente
@@ -58,6 +62,24 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Success'
+    delete:
+      description: elimina un producto por su ID
+      operationId: deleteProduct
+      parameters:
+        - name: _id
+          in: path
+          description: ID of product to delete
+          required: true
+      responses:
+        '204':
+          description: product deleted
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 components:
   schemas:
     Success:
@@ -71,49 +93,60 @@ components:
           description: aclarando que ocurrio
       example:
         status: success
-        message: cart updated
-    cart:
+        message: carts updated
+    carts:
       type: object
       properties:
         _id:
           type: ObjectId
           description: ID auto generado by mongo
-        first_name:
-          type: String
-          description: Primer nombre
-        last_name:
-          type: String
-          description: Apellido
-        email:
-          type: String
-          description: Email de usuario
-        password:
-          type: String
-          description: Password hasheado del cart
+        products:
+          type: Array
+          description: Ids de los productos a comprar
       example:
         _id: ObjectId("644081a93f0625dc193bc594")
-        first_name: Adrian
-        last_name: Campo
-        email: atrian@gmail.com
-        password: $2b$10$Cf.uErjQ/lEzypTNfyE1IuFGxVXSRqGzjFWBYwL9KLK4Fe29kvu.e
+        products: []
   requestBodies:
-    updatecart:
+    updatecarts:
       type: object
       properties:
-        first_name:
+        title:
           type: String
-          description: Primer nombre
-        last_name:
+          description: Nombre del producto
+        description:
           type: String
-          description: Apellido
-        email:
+          description: Descripcion breve del producto
+        category:
           type: String
-          description: Email de usuario 
-        password:
+          description: Categoria del producto
+        price:
           type: String
-          description: Password hasheado del cart
+          description: Precio del producto
+        thumbnail:
+          type: String
+          description: Imagen del producto
+        code:
+          type: String
+          description: Codigo unico del producto
+        owner:
+          type: String
+          description: Email del propietario del producto
+        stock:
+          type: Number
+          description: Unidades totales disponibles
       example:
-        first_name: Adrian
-        last_name: Campo
-        email: atrian@gmail.com
-        password: $2b$10$Cf.uErjQ/lEzypTNfyE1IuFGxVXSRqGzjFWBYwL9KLK4Fe29kvu.e
+        title: 'Salad'
+        description: 'The beautiful range of Apple Naturalé that has an exciting mix of natu…'
+        category: 'Baby'
+        price: '$550'
+        thumbnail: 'insight_schedule_bloop.jpg'
+        code: '1oOXBRaLHw'
+        owner: atrian@gmail.com
+        stock: 15
+  Error:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: ObjectId
