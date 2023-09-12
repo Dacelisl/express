@@ -7,8 +7,7 @@
   "scripts": {
     "start": "node ./src/app.js --mode production",
     "prod": "nodemon src/app.js --mode production",
-    "dev": "nodemon src/app.js --mode development",
-    "sw": "nodemon -e yaml,js src/app.js"
+    "dev": "nodemon -e yaml,js src/app.js --mode development"
   },
   "engines": {
     "node": "16.x"

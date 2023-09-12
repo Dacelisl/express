@@ -1,0 +1,153 @@
+paths:
+  /api/products:
+    get:
+      summary: Obtiene todos los products
+      tags:
+        - products
+      responses:
+        '200':
+          description: Los products fueron devueltos satisfactoriamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/products'
+        '404':
+          description: Error al obtener la informacion
+        '500':
+          description: Error del servidor. Usualmente generando la query o falla la conexion a la DB
+  /api/products/{uid}:
+    get:
+      summary: Obtiene un products
+      tags:
+        - products
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del usuario que se busca
+          schema:
+            $type: String
+      responses:
+        '200':
+          description: Usuario encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/products'
+    put:
+      summary: Actualizar un products a partir del ID
+      tags:
+        - products
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del usuario que se busca
+          schema:
+            $type: String
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/updateproducts'
+      responses:
+        '200':
+          description: Usuario modificado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Success'
+components:
+  schemas:
+    Success:
+      type: object
+      properties:
+        status:
+          type: String
+          description: success or error
+        message:
+          type: String
+          description: aclarando que ocurrio
+      example:
+        status: success
+        message: products updated
+    products:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID auto generado by mongo
+        title:
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripcion breve del producto
+        category:
+          type: String
+          description: Categoria del producto
+        price:
+          type: String
+          description: Precio del producto
+        thumbnail:
+          type: String
+          description: Imagen del producto
+        code:
+          type: String
+          description: Codigo unico del producto
+        owner:
+          type: String
+          description: Email del propietario del producto
+        stock:
+          type: Number
+          description: Unidades totales disponibles
+      example:
+        _id: ObjectId("644081a93f0625dc193bc594")
+        title: 'Salad'
+        description: 'The beautiful range of Apple Naturalé that has an exciting mix of natu…'
+        category: 'Baby'
+        price: '$550'
+        thumbnail: 'insight_schedule_bloop.jpg'
+        code: '1oOXBRaLHw'
+        owner: atrian@gmail.com
+        stock: 15
+  requestBodies:
+    updateproducts:
+      type: object
+      properties:
+        title:
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripcion breve del producto
+        category:
+          type: String
+          description: Categoria del producto
+        price:
+          type: String
+          description: Precio del producto
+        thumbnail:
+          type: String
+          description: Imagen del producto
+        code:
+          type: String
+          description: Codigo unico del producto
+        owner:
+          type: String
+          description: Email del propietario del producto
+        stock:
+          type: Number
+          description: Unidades totales disponibles
+      example:
+        title: 'Salad'
+        description: 'The beautiful range of Apple Naturalé that has an exciting mix of natu…'
+        category: 'Baby'
+        price: '$550'
+        thumbnail: 'insight_schedule_bloop.jpg'
+        code: '1oOXBRaLHw'
+        owner: atrian@gmail.com
+        stock: 15

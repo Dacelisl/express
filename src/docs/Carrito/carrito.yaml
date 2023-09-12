@@ -1,0 +1,119 @@
+paths:
+  /api/carts:
+    get:
+      summary: Obtiene todos los carts
+      tags:
+        - carts
+      responses:
+        '200':
+          description: Los carts fueron devueltos satisfactoriamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/cart'
+        '500':
+          description: Error del servidor. Usualmente generando la query o falla la conexion a la DB
+  /api/carts/{uid}:
+    get:
+      summary: Obtiene un cart
+      tags:
+        - carts
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del usuario que se busca
+          schema:
+            $type: String
+      responses:
+        '200':
+          description: Usuario encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/cart'
+    put:
+      summary: Actualizar un cart a partir del ID
+      tags:
+        - carts
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del usuario que se busca
+          schema:
+            $type: String
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/updatecart'
+      responses:
+        '200':
+          description: Usuario modificado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Success'
+components:
+  schemas:
+    Success:
+      type: object
+      properties:
+        status:
+          type: String
+          description: success or error
+        message:
+          type: String
+          description: aclarando que ocurrio
+      example:
+        status: success
+        message: cart updated
+    cart:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID auto generado by mongo
+        first_name:
+          type: String
+          description: Primer nombre
+        last_name:
+          type: String
+          description: Apellido
+        email:
+          type: String
+          description: Email de usuario
+        password:
+          type: String
+          description: Password hasheado del cart
+      example:
+        _id: ObjectId("644081a93f0625dc193bc594")
+        first_name: Adrian
+        last_name: Campo
+        email: atrian@gmail.com
+        password: $2b$10$Cf.uErjQ/lEzypTNfyE1IuFGxVXSRqGzjFWBYwL9KLK4Fe29kvu.e
+  requestBodies:
+    updatecart:
+      type: object
+      properties:
+        first_name:
+          type: String
+          description: Primer nombre
+        last_name:
+          type: String
+          description: Apellido
+        email:
+          type: String
+          description: Email de usuario 
+        password:
+          type: String
+          description: Password hasheado del cart
+      example:
+        first_name: Adrian
+        last_name: Campo
+        email: atrian@gmail.com
+        password: $2b$10$Cf.uErjQ/lEzypTNfyE1IuFGxVXSRqGzjFWBYwL9KLK4Fe29kvu.e

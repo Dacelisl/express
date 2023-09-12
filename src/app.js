@@ -23,8 +23,8 @@ import passport from 'passport'
 import flash from 'connect-flash'
 import dataConfig from './config/process.config.js'
 
-/* import swaggerJSDoc from 'swagger-jsdoc.js'
-import swaggerUiExpress from 'swagger-ui-express.js' */
+import swaggerJSDoc from 'swagger-jsdoc'
+import swaggerUiExpress from 'swagger-ui-express'
 
 const app = express()
 app.use(addLogger)
@@ -36,6 +36,19 @@ connectMongo()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+const swaggerOptions = {
+  definition: {
+    openapi: '3.0.1',
+    info: {
+      title: 'Documentacion CoderShop',
+      description: 'descripcion de las clases, funciones y archivos del proyecto coderShop  ',
+    },
+  },
+  apis: [`${__dirname}/docs/**/*.yaml`],
+}
+const specs = swaggerJSDoc(swaggerOptions)
+app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs))
 
 app.engine('handlebars', handlebars.engine())
 app.set('views', path.join(__dirname, 'views'))
