@@ -1,7 +1,7 @@
 import { productFactory } from '../DAO/factory.js'
 import { parsedQuery, isValid } from '../utils/utils.js'
 import dataConfig from '../config/process.config.js'
-import ProductDTO from '../DAO/DTO/product.DTO.js'
+import ProductDTO from '../DAO/DTO/product.dto.js'
 
 class ProductServices {
   validateProduct(dataProduct) {
