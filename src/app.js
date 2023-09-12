@@ -23,6 +23,9 @@ import passport from 'passport'
 import flash from 'connect-flash'
 import dataConfig from './config/process.config.js'
 
+/* import swaggerJSDoc from 'swagger-jsdoc.js'
+import swaggerUiExpress from 'swagger-ui-express.js' */
+
 const app = express()
 app.use(addLogger)
 app.use(compression())
