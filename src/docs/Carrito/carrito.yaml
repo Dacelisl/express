@@ -21,23 +21,23 @@ paths:
 
   /api/carts/{_id}:
     get:
-      description: Obtiene un producto por su ID
+      description: Obtiene un Cart con todos sus productos
       tags:
-        - carts
+        - getCartId
       parameters:
         - name: _id
           in: path
           required: true
-          description: ID del usuario que se busca
+          description: ID del cart que se busca
           schema:
             $type: String
       responses:
         '200':
-          description: Usuario encontrado
+          description: Cart encontrado
           content:
             application/json:
               schema:
-                $ref: '#components/schemas/carts'
+                $ref: '#components/schemas/getCartId'
     put:
       summary: Actualizar un carts a partir del ID
       tags:
@@ -88,12 +88,20 @@ components:
         status:
           type: String
           description: success or error
-        message:
+        code:
+          type: Number
+          description: código de respuesta HTTP.
+        data:
+          type: Array
+          description: array con la informacion de la peticion requerida
+        msg:
           type: String
           description: aclarando que ocurrio
       example:
-        status: success
-        message: carts updated
+        status: 'Fail',
+          code: 404,
+          data: {},
+          msg: 'Error createCart',
     carts:
       type: object
       properties:
@@ -106,43 +114,39 @@ components:
       example:
         _id: ObjectId("644081a93f0625dc193bc594")
         products: []
-  requestBodies:
-    updatecarts:
+    getCartId:
       type: object
       properties:
-        title:
-          type: String
-          description: Nombre del producto
-        description:
-          type: String
-          description: Descripcion breve del producto
-        category:
-          type: String
-          description: Categoria del producto
-        price:
-          type: String
-          description: Precio del producto
-        thumbnail:
-          type: String
-          description: Imagen del producto
-        code:
-          type: String
-          description: Codigo unico del producto
-        owner:
-          type: String
-          description: Email del propietario del producto
-        stock:
-          type: Number
-          description: Unidades totales disponibles
+        _id:
+          type: ObjectId
+          description: ID auto generado by mongo
+        products:
+          type: Array
+          description: Ids de los productos a comprar
       example:
-        title: 'Salad'
-        description: 'The beautiful range of Apple Naturalé that has an exciting mix of natu…'
-        category: 'Baby'
-        price: '$550'
-        thumbnail: 'insight_schedule_bloop.jpg'
-        code: '1oOXBRaLHw'
-        owner: atrian@gmail.com
-        stock: 15
+        _id: 64d133a9d80ee1946b5c62fc
+        products: Array
+          0: Object
+            productId: ObjectId(648a287a1df594f1632f89b2)
+            quantity: 5
+            _id: ObjectId(64d133d0d80ee1946b5c630a)
+  requestBodies:
+    uodateCart:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID auto generado by mongo
+        products:
+          type: Array
+          description: Ids de los productos a comprar
+      example:
+        _id: 64d133a9d80ee1946b5c62fc
+        products: Array
+          0: Object
+            productId: ObjectId(648a287a1df594f1632f89b2)
+            quantity: 5
+            _id: ObjectId(64d133d0d80ee1946b5c630a)
   Error:
     type: object
     required:
