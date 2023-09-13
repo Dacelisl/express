@@ -42,7 +42,7 @@ const swaggerOptions = {
     openapi: '3.0.1',
     info: {
       title: 'Documentacion CoderShop',
-      description: 'descripcion de las clases, funciones y archivos del proyecto coderShop  ',
+      description: 'rutas de los modulos Products y Carts del proyecto coderShop',
     },
   },
   apis: [`${__dirname}/docs/**/*.yaml`],

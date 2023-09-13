@@ -41,7 +41,7 @@ class CartController {
 } */
   async deleteCart(req, res) {
     try {
-      const cid = req.session.user.cart || req.params.cid
+      const cid = req.session.user? req.session.user.cart : req.params.cid
       const resAdd = await cartService.deleteCart(cid)
       return res.json(resAdd)
     } catch (error) {
@@ -95,7 +95,7 @@ class CartController {
   }
   async updateCart(req, res) {
     try {
-      const cid = req.session.user.cart || req.params.cid
+      const cid = req.session.user? req.session.user.cart : req.params.cid
       const products = req.body.products
       const resUpdate = await cartService.updateCart(cid, products)
       return res.json(resUpdate)

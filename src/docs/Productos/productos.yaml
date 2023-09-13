@@ -18,7 +18,9 @@ paths:
         '500':
           description: Error del servidor. Usualmente generando la query o falla la conexion a la DB
     post:
-      description: Crea un nuevo producto
+      summary: Crea un nuevo producto
+      tags:
+        - products
       operationId: addProduct
       requestBody:
         description: Producto agregado a la tienda
@@ -43,7 +45,7 @@ paths:
 
   /api/products/{_id}:
     get:
-      description: Obtiene un producto por su ID
+      summary: Obtiene un producto por su ID
       tags:
         - products
       parameters:
@@ -85,7 +87,9 @@ paths:
               schema:
                 $ref: '#components/schemas/Success'
     delete:
-      description: elimina un producto por su ID
+      summary: elimina un producto por su ID
+      tags:
+        - products
       operationId: deleteProduct
       parameters:
         - name: _id

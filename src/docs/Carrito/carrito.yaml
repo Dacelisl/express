@@ -1,10 +1,10 @@
 paths:
   /api/carts:
     post:
-      description: Crea un nuevo Cart vacio
+      summary: Crea un nuevo Cart vacio
       operationId: createCart
       tags:
-        - cart
+        - carts
       responses:
         '201':
           description: Cart creado
@@ -18,12 +18,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-
   /api/carts/{_id}:
     get:
-      description: Obtiene un Cart con todos sus productos
+      summary: Obtiene un Cart con todos sus productos
       tags:
-        - getCartId
+        - carts
       parameters:
         - name: _id
           in: path
@@ -46,7 +45,7 @@ paths:
         - name: _id
           in: path
           required: true
-          description: ID del usuario que se busca
+          description: ID del cart que se busca
           schema:
             $type: String
       requestBody:
@@ -54,25 +53,27 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#components/requestBodies/updatecarts'
+              $ref: '#components/requestBodies/updateCart'
       responses:
         '200':
-          description: Usuario modificado exitosamente
+          description: cart modificado exitosamente
           content:
             application/json:
               schema:
                 $ref: '#components/schemas/Success'
     delete:
-      description: elimina un producto por su ID
-      operationId: deleteProduct
+      summary: elimina un cart por su ID
+      tags:
+        - carts
+      operationId: deleteCart
       parameters:
         - name: _id
           in: path
-          description: ID of product to delete
+          description: ID of cart to delete
           required: true
       responses:
         '204':
-          description: product deleted
+          description: cart deleted
         default:
           description: unexpected error
           content:
@@ -98,10 +99,10 @@ components:
           type: String
           description: aclarando que ocurrio
       example:
-        status: 'Fail',
-          code: 404,
-          data: {},
-          msg: 'Error createCart',
+        status: Fail
+        code: 404
+        data: {}
+        msg: Error createCart
     carts:
       type: object
       properties:
@@ -112,7 +113,7 @@ components:
           type: Array
           description: Ids de los productos a comprar
       example:
-        _id: ObjectId("644081a93f0625dc193bc594")
+        _id: ObjectId(644081a93f0625dc193bc594)
         products: []
     getCartId:
       type: object
@@ -124,14 +125,13 @@ components:
           type: Array
           description: Ids de los productos a comprar
       example:
-        _id: 64d133a9d80ee1946b5c62fc
         products: Array
-          0: Object
-            productId: ObjectId(648a287a1df594f1632f89b2)
-            quantity: 5
-            _id: ObjectId(64d133d0d80ee1946b5c630a)
+        0: Object
+        productId: ObjectId(648a287a1df594f1632f89b2)
+        quantity: 5
+        _id: ObjectId(64d133d0d80ee1946b5c630a)
   requestBodies:
-    uodateCart:
+    updateCart:
       type: object
       properties:
         _id:
@@ -141,12 +141,7 @@ components:
           type: Array
           description: Ids de los productos a comprar
       example:
-        _id: 64d133a9d80ee1946b5c62fc
-        products: Array
-          0: Object
-            productId: ObjectId(648a287a1df594f1632f89b2)
-            quantity: 5
-            _id: ObjectId(64d133d0d80ee1946b5c630a)
+        products: [{ _id: '648a287a1df594f1632f89b2', quantity: 10 }]
   Error:
     type: object
     required:
