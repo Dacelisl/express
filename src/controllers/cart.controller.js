@@ -15,7 +15,7 @@ class CartController {
   async addProduct(req, res) {
     try {
       const cid = req.params.cid ? req.params.cid : req.session.user.cart
-      const user = req.session.user.rol
+      const user = req.session.user ? req.session.user.rol : undefined
       const pid = req.params.pid
       const quant = req.body
       const resAdd = await cartService.addToCart(cid, pid, quant, user)
@@ -26,7 +26,7 @@ class CartController {
   }
   async deletedProduct(req, res) {
     try {
-      const cid = req.session.user.cart || req.params.cid
+      const cid = req.session.user? req.session.user.cart : req.params.cid
       const pid = req.params.pid
       const resAdd = await cartService.deletedProduct(cid, pid)
       return res.json(resAdd)
@@ -41,7 +41,7 @@ class CartController {
 } */
   async deleteCart(req, res) {
     try {
-      const cid = req.session.user? req.session.user.cart : req.params.cid
+      const cid = req.session.user ? req.session.user.cart : req.params.cid
       const resAdd = await cartService.deleteCart(cid)
       return res.json(resAdd)
     } catch (error) {
@@ -83,10 +83,10 @@ class CartController {
   }
   async updateAddToCart(req, res) {
     try {
-      const cid = req.session.user.cart || req.params.cid
+      const cid = req.session.user ? req.session.user.cart : req.params.cid
       const pid = req.params.pid
       const quant = req.body.quantity
-      const user = req.session.user
+      const user = req.session.user ? req.session.user.rol : undefined
       const resAdd = await cartService.addToCart(cid, pid, quant, user)
       return res.json(resAdd)
     } catch (error) {
@@ -95,7 +95,7 @@ class CartController {
   }
   async updateCart(req, res) {
     try {
-      const cid = req.session.user? req.session.user.cart : req.params.cid
+      const cid = req.session.user ? req.session.user.cart : req.params.cid
       const products = req.body.products
       const resUpdate = await cartService.updateCart(cid, products)
       return res.json(resUpdate)
