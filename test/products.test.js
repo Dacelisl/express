@@ -87,7 +87,6 @@ describe('Products test', () => {
 describe('Carts test', () => {
   let cartId = ''
   let productId = ''
-
   before(async () => {
     const product = {
       title: faker.commerce.product(),
@@ -102,7 +101,6 @@ describe('Carts test', () => {
     const response = await requester.post('/api/products').send(product)
     productId = response.body.payload._id
   })
-
   after(async () => {
     if (cartId) {
       await requester.delete(`/api/carts/${cartId}`).expect(204)
@@ -142,18 +140,16 @@ describe('Carts test', () => {
     expect(response.body.data.products).to.have.lengthOf.at.least(1)
   })
   it('UPDATE  /api/carts update product in cart', async () => {
-    const updatedProduct = {
-      quantity: 5,
-    }
-    const response = await requester.put(`/api/carts/${cartId}/product/${productId}`).send(updatedProduct)
-    console.log('res', response);
-    expect(response.status).to.equal(200)
+    const response = await requester.put(`/api/carts/${cartId}/product/${productId}`).send({ quantity: 5 })
+    expect(response.status).to.equal(201)
     expect(response.headers['content-type']).to.include('application/json')
+    expect(response.body).to.have.property('data')
+    expect(response.body.data).to.have.property('_id')
+    expect(response.body.data).to.have.property('products').that.is.an('array')
   })
-  /* 
   it('DELETE /api/carts update product by ID   ', async () => {
-    const response = await requester.delete(`/api/carts/${productId}`)
+    const response = await requester.delete(`/api/carts/${cartId}`)
     expect(response.status).to.equal(204)
     expect(response.text).to.equal('')
-  }) */
+  })
 })
