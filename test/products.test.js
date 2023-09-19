@@ -153,3 +153,86 @@ describe('Carts test', () => {
     expect(response.text).to.equal('')
   })
 })
+describe('Session test', () => {
+  const mockUser = {
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    email: faker.internet.email(),
+    password: faker.internet.password({ length: 5 }),
+    age: faker.number.int(60),
+    rol: 'admin',
+  }
+  it('GET register user', async () => {
+    const response = await requester.get('/api/sessions/register')
+    expect(response.req.method).to.equal('GET')
+    expect(response.status).to.equal(200)
+    expect(response.headers['content-type']).to.include('text/html')
+    const responseBody = response.text
+    expect(responseBody.includes('<h1>REGISTER')).to.be.true
+  })
+  it('POST register user', async () => {
+    const response = await requester.post('/api/sessions/register').send(mockUser)
+    expect(response.req.method).to.equal('POST')
+    expect(response.status).to.equal(302)
+    expect(response.header.location).to.equal('/api/sessions/login')
+  })
+  it('GET login user', async () => {
+    const response = await requester.get('/api/sessions/login')
+    expect(response.req.method).to.equal('GET')
+    expect(response.status).to.equal(200)
+    expect(response.headers['content-type']).to.include('text/html')
+    const responseBody = response.text
+    expect(responseBody.includes('<h1>LOGIN')).to.be.true
+  })
+  it('POST login user', async () => {
+    const response = await requester.post('/api/sessions/login').send(mockUser)
+    console.log('data login ', response);
+    expect(response.req.method).to.equal('POST')
+    expect(response.status).to.equal(302)
+    expect(response.header.location).to.equal('/api/products')
+  })
+
+  /* it('POST /api/carts create cart ', async () => {
+    const response = await requester.post('/api/carts')
+    cartId = response.body.data._id
+    expect(response.status).to.equal(201)
+    expect(response.body.data).to.have.property('_id')
+    expect(response.body.msg).to.include('cart created')
+    expect(response.headers['content-type']).to.include('application/json')
+  })
+  it('GET /api/carts get cart by ID', async () => {
+    const response = await requester.get(`/api/carts/${cartId}`)
+    expect(response.status).to.equal(200)
+    expect(response.headers['content-type']).to.include('application/json')
+    expect(response.body).to.have.property('data')
+    expect(response.body.data).to.have.property('products').that.is.an('array')
+  })
+  it('POST /api/carts addProduct to cart', async () => {
+    const response = await requester.post(`/api/carts/${cartId}/product/${productId}`)
+    expect(response.status).to.equal(201)
+    expect(response.body.data).to.have.property('_id')
+    expect(response.headers['content-type']).to.include('application/json')
+    expect(response.body.data).to.have.property('products').that.is.an('array')
+  })
+  it('GET /api/carts get cart with all products', async () => {
+    const response = await requester.get(`/api/carts/${cartId}`)
+    expect(response.status).to.equal(200)
+    expect(response.headers['content-type']).to.include('application/json')
+    expect(response.body).to.have.property('data')
+    expect(response.body.data).to.have.property('products').that.is.an('array')
+    expect(response.body.data.products).to.have.lengthOf.at.least(1)
+  })
+  it('UPDATE  /api/carts update product in cart', async () => {
+    const response = await requester.put(`/api/carts/${cartId}/product/${productId}`).send({ quantity: 5 })
+    expect(response.status).to.equal(201)
+    expect(response.headers['content-type']).to.include('application/json')
+    expect(response.body).to.have.property('data')
+    expect(response.body.data).to.have.property('_id')
+    expect(response.body.data).to.have.property('products').that.is.an('array')
+  })
+  it('DELETE /api/carts update product by ID   ', async () => {
+    const response = await requester.delete(`/api/carts/${cartId}`)
+    expect(response.status).to.equal(204)
+    expect(response.text).to.equal('')
+  }) */
+})
