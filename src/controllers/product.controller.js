@@ -88,7 +88,7 @@ class ProductController {
       }
       dataProduct.id = req.params.pid
       const resUpdate = await productService.updateOne(dataProduct)
-      return res.status(201).json({
+      return res.status(200).json({
         status: 'success',
         msg: 'product uptaded',
         data: resUpdate,
@@ -106,7 +106,7 @@ class ProductController {
     try {
       const productId = req.params.pid
       const resDelete = await productService.deletedOne(productId)
-      return res.status(200).json({
+      return res.status(204).json({
         status: 'success',
         msg: 'product deleted',
         data: resDelete,

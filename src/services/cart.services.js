@@ -179,7 +179,7 @@ class CartServices {
       }
       return {
         status: 'Success',
-        code: 200,
+        code: 204,
         data: {},
         msg: 'Cart deleted successfully',
       }

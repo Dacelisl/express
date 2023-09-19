@@ -8,3 +8,125 @@
 [2023-09-04T01:32:12.103Z] info: Connected to MongoDB!
 [2023-09-04T01:32:12.104Z] info: listen on http://localhost:3000, mode:
 [2023-09-04T01:32:12.104Z] info: listen on http://localhost:3000, mode:
+[2023-09-17T22:49:18.837Z] info: Connected to MongoDB!
+[2023-09-17T22:49:18.838Z] info: Connected to MongoDB!
+[2023-09-17T22:49:18.839Z] info: listen on http://localhost:3000, mode:
+[2023-09-17T22:49:18.839Z] info: listen on http://localhost:3000, mode:
+[2023-09-17T22:49:20.401Z] info: Connected to MongoDB!
+[2023-09-17T22:49:20.402Z] info: Connected to MongoDB!
+[2023-09-17T22:49:53.319Z] warning: No user data found in session, getCurrent
+[2023-09-17T22:49:53.320Z] warning: No user data found in session, getCurrent
+[2023-09-17T22:49:53.506Z] warning: No user data found in session, getCurrent
+[2023-09-17T22:49:53.506Z] warning: No user data found in session, getCurrent
+[2023-09-17T22:51:38.292Z] error: something went wrong generateProduct
+[2023-09-17T22:51:38.292Z] error: something went wrong generateProduct
+[2023-09-17T22:52:31.762Z] error: something went wrong generateProduct
+[2023-09-17T22:52:31.762Z] error: something went wrong generateProduct
+[2023-09-17T22:53:12.807Z] error: something went wrong generateProduct
+[2023-09-17T22:53:12.807Z] error: something went wrong generateProduct
+[2023-09-17T22:53:54.211Z] error: something went wrong generateProduct
+[2023-09-17T22:53:54.211Z] error: something went wrong generateProduct
+[2023-09-17T22:54:46.757Z] error: something went wrong generateProduct
+[2023-09-17T22:54:46.758Z] error: something went wrong generateProduct
+[2023-09-17T22:55:09.773Z] error: something went wrong generateProduct
+[2023-09-17T22:55:09.773Z] error: something went wrong generateProduct
+[2023-09-17T22:55:46.491Z] error: something went wrong generateProduct
+[2023-09-17T22:55:46.491Z] error: something went wrong generateProduct
+[2023-09-17T22:56:15.016Z] error: something went wrong generateProduct
+[2023-09-17T22:56:15.016Z] error: something went wrong generateProduct
+[2023-09-17T22:56:49.246Z] error: something went wrong generateProduct
+[2023-09-17T22:56:49.246Z] error: something went wrong generateProduct
+[2023-09-17T22:57:33.405Z] info: Connected to MongoDB!
+[2023-09-17T22:57:33.406Z] info: Connected to MongoDB!
+[2023-09-17T22:57:33.408Z] info: listen on http://localhost:3000, mode:
+[2023-09-17T22:57:33.408Z] info: listen on http://localhost:3000, mode:
+[2023-09-17T22:57:34.845Z] info: Connected to MongoDB!
+[2023-09-17T22:57:34.846Z] info: Connected to MongoDB!
+[2023-09-17T22:57:35.953Z] error: something went wrong generateProduct
+[2023-09-17T22:57:35.953Z] error: something went wrong generateProduct
+[2023-09-17T22:57:54.243Z] error: something went wrong generateProduct
+[2023-09-17T22:57:54.244Z] error: something went wrong generateProduct
+[2023-09-17T23:12:39.278Z] info: Connected to MongoDB!
+[2023-09-17T23:12:39.279Z] info: Connected to MongoDB!
+[2023-09-17T23:12:39.280Z] info: listen on http://localhost:3000, mode:
+[2023-09-17T23:12:39.280Z] info: listen on http://localhost:3000, mode:
+[2023-09-17T23:12:41.019Z] info: Connected to MongoDB!
+[2023-09-17T23:12:41.019Z] info: Connected to MongoDB!
+[2023-09-18T00:25:44.336Z] warning: No user data found in session, getCurrent
+[2023-09-18T00:25:44.337Z] warning: No user data found in session, getCurrent
+[2023-09-18T00:25:44.532Z] warning: No user data found in session, getCurrent
+[2023-09-18T00:25:44.532Z] warning: No user data found in session, getCurrent
+[2023-09-18T00:25:49.581Z] warning: No user data found in session, getCurrent
+[2023-09-18T00:25:49.581Z] warning: No user data found in session, getCurrent
+[2023-09-18T00:25:49.786Z] warning: No user data found in session, getCurrent
+[2023-09-18T00:25:49.787Z] warning: No user data found in session, getCurrent
+[2023-09-18T01:28:40.212Z] info: Connected to MongoDB!
+[2023-09-18T01:28:40.212Z] info: Connected to MongoDB!
+[2023-09-18T01:28:40.213Z] info: listen on http://localhost:3000, mode:
+[2023-09-18T01:28:40.214Z] info: listen on http://localhost:3000, mode:
+[2023-09-18T01:29:02.266Z] error: something went wrong createProduct Operation `products.insertOne()` buffering timed out after 10000ms
+[2023-09-18T01:29:02.267Z] error: something went wrong createProduct Operation `products.insertOne()` buffering timed out after 10000ms
+[2023-09-18T01:29:04.231Z] error: something went wrong 
+[2023-09-18T01:29:04.231Z] error: something went wrong 
+[2023-09-18T01:29:15.349Z] info: Connected to MongoDB!
+[2023-09-18T01:29:15.349Z] info: Connected to MongoDB!
+[2023-09-18T01:31:03.348Z] info: Connected to MongoDB!
+[2023-09-18T01:31:03.349Z] info: Connected to MongoDB!
+[2023-09-18T01:31:03.350Z] info: listen on http://localhost:3000, mode:
+[2023-09-18T01:31:03.350Z] info: listen on http://localhost:3000, mode:
+[2023-09-18T01:31:04.894Z] info: Connected to MongoDB!
+[2023-09-18T01:31:04.894Z] info: Connected to MongoDB!
+[2023-09-18T14:36:12.461Z] info: Connected to MongoDB!
+[2023-09-18T14:36:12.462Z] info: Connected to MongoDB!
+[2023-09-18T14:36:12.464Z] info: listen on http://localhost:3000, mode:
+[2023-09-18T14:36:12.464Z] info: listen on http://localhost:3000, mode:
+[2023-09-18T14:36:15.535Z] info: Connected to MongoDB!
+[2023-09-18T14:36:15.536Z] info: Connected to MongoDB!
+[2023-09-18T15:39:24.763Z] info: Connected to MongoDB!
+[2023-09-18T15:39:24.764Z] info: Connected to MongoDB!
+[2023-09-18T15:39:24.766Z] info: listen on http://localhost:3000, mode:
+[2023-09-18T15:39:24.766Z] info: listen on http://localhost:3000, mode:
+[2023-09-18T15:39:26.886Z] info: Connected to MongoDB!
+[2023-09-18T15:39:26.886Z] info: Connected to MongoDB!
+[2023-09-18T15:42:07.858Z] info: Connected to MongoDB!
+[2023-09-18T15:42:07.859Z] info: Connected to MongoDB!
+[2023-09-18T15:42:07.860Z] info: listen on http://localhost:3000, mode:
+[2023-09-18T15:42:07.860Z] info: listen on http://localhost:3000, mode:
+[2023-09-18T15:42:10.700Z] info: Connected to MongoDB!
+[2023-09-18T15:42:10.700Z] info: Connected to MongoDB!
+[2023-09-19T00:20:48.666Z] info: Connected to MongoDB!
+[2023-09-19T00:20:48.667Z] info: Connected to MongoDB!
+[2023-09-19T00:20:48.668Z] info: listen on http://localhost:3000, mode:
+[2023-09-19T00:20:48.668Z] info: listen on http://localhost:3000, mode:
+[2023-09-19T00:20:50.491Z] info: Connected to MongoDB!
+[2023-09-19T00:20:50.491Z] info: Connected to MongoDB!
+[2023-09-19T02:12:45.080Z] info: Connected to MongoDB!
+[2023-09-19T02:12:45.081Z] info: Connected to MongoDB!
+[2023-09-19T02:12:45.082Z] info: listen on http://localhost:3000, mode:
+[2023-09-19T02:12:45.082Z] info: listen on http://localhost:3000, mode:
+[2023-09-19T02:12:46.484Z] info: Connected to MongoDB!
+[2023-09-19T02:12:46.484Z] info: Connected to MongoDB!
+[2023-09-19T02:17:14.224Z] info: Connected to MongoDB!
+[2023-09-19T02:17:14.225Z] info: Connected to MongoDB!
+[2023-09-19T02:17:14.226Z] info: listen on http://localhost:3000, mode:
+[2023-09-19T02:17:14.227Z] info: listen on http://localhost:3000, mode:
+[2023-09-19T02:17:15.791Z] info: Connected to MongoDB!
+[2023-09-19T02:17:15.791Z] info: Connected to MongoDB!
+[2023-09-19T02:28:23.116Z] info: Connected to MongoDB!
+[2023-09-19T02:28:23.117Z] info: Connected to MongoDB!
+[2023-09-19T02:28:23.119Z] info: listen on http://localhost:3000, mode:
+[2023-09-19T02:28:23.119Z] info: listen on http://localhost:3000, mode:
+[2023-09-19T02:28:24.794Z] info: Connected to MongoDB!
+[2023-09-19T02:28:24.794Z] info: Connected to MongoDB!
+[2023-09-19T02:54:09.896Z] info: Connected to MongoDB!
+[2023-09-19T02:54:09.897Z] info: Connected to MongoDB!
+[2023-09-19T02:54:09.898Z] info: listen on http://localhost:3000, mode:
+[2023-09-19T02:54:09.898Z] info: listen on http://localhost:3000, mode:
+[2023-09-19T02:54:11.485Z] info: Connected to MongoDB!
+[2023-09-19T02:54:11.485Z] info: Connected to MongoDB!
+[2023-09-19T03:01:30.922Z] info: Connected to MongoDB!
+[2023-09-19T03:01:30.923Z] info: Connected to MongoDB!
+[2023-09-19T03:01:30.924Z] info: listen on http://localhost:3000, mode:
+[2023-09-19T03:01:30.924Z] info: listen on http://localhost:3000, mode:
+[2023-09-19T03:01:32.379Z] info: Connected to MongoDB!
+[2023-09-19T03:01:32.379Z] info: Connected to MongoDB!

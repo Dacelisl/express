@@ -19,7 +19,7 @@ class CartController {
       const pid = req.params.pid
       const quant = req.body
       const resAdd = await cartService.addToCart(cid, pid, quant, user)
-      return res.json(resAdd)
+      return res.status(201).json(resAdd)
     } catch (error) {
       req.logger.error('something went wrong addProduct', error)
     }
@@ -43,7 +43,7 @@ class CartController {
     try {
       const cid = req.session.user ? req.session.user.cart : req.params.cid
       const resAdd = await cartService.deleteCart(cid)
-      return res.json(resAdd)
+      return res.status(204).json(resAdd)
     } catch (error) {
       req.logger.error('something went wrong deleteCart', error)
     }
@@ -62,7 +62,7 @@ class CartController {
       const cartId = req.params.cid || req.session.user.cart
       const payload = await cartService.getCartWithProducts(cartId)
       /* return res.render('table', {payload}) */
-      return res.json(payload)
+      return res.status(200).json(payload)
     } catch (error) {
       req.logger.error('something went wrong getCartId', error)
     }
@@ -98,7 +98,7 @@ class CartController {
       const cid = req.session.user ? req.session.user.cart : req.params.cid
       const products = req.body.products
       const resUpdate = await cartService.updateCart(cid, products)
-      return res.json(resUpdate)
+      return res.status(201).json(resUpdate)
     } catch (error) {
       req.logger.error('something went wrong updateCart', error)
     }

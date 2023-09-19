@@ -1410,3 +1410,17 @@
 [2023-09-12T02:53:15.184Z] info: listen on http://localhost:8080, mode:
 [2023-09-12T02:53:16.634Z] info: Connected to MongoDB!
 [2023-09-12T02:53:16.634Z] info: Connected to MongoDB!
+[2023-09-18T01:25:51.749Z] info: Connected to MongoDB!
+[2023-09-18T01:25:51.750Z] info: Connected to MongoDB!
+[2023-09-18T01:25:51.751Z] info: listen on http://localhost:8080, mode:
+[2023-09-18T01:25:51.751Z] info: listen on http://localhost:8080, mode:
+[2023-09-18T01:26:00.282Z] info: Connected to MongoDB!
+[2023-09-18T01:26:00.283Z] info: Connected to MongoDB!
+[2023-09-18T01:26:44.554Z] info: Connected to MongoDB!
+[2023-09-18T01:26:44.555Z] info: Connected to MongoDB!
+[2023-09-18T01:26:44.556Z] info: listen on http://localhost:8080, mode:
+[2023-09-18T01:26:44.556Z] info: listen on http://localhost:8080, mode:
+[2023-09-18T01:27:11.574Z] error: something went wrong createProduct Operation `products.insertOne()` buffering timed out after 10000ms
+[2023-09-18T01:27:11.575Z] error: something went wrong createProduct Operation `products.insertOne()` buffering timed out after 10000ms
+[2023-09-18T01:27:12.293Z] info: Connected to MongoDB!
+[2023-09-18T01:27:12.293Z] info: Connected to MongoDB!
