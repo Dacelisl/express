@@ -35,7 +35,7 @@ export function initPassport() {
       },
       async (req, username, password, done) => {
         try {
-          const { email, firstName, lastName, age } = req.body
+          const { email, firstName, lastName, age, rol } = req.body
           let user = await userFactory.getUserByEmail(username)
           if (user) {
             return done(null, false, { message: 'User already exists' })
@@ -45,7 +45,7 @@ export function initPassport() {
             email: email,
             firstName: firstName,
             lastName: lastName,
-            rol: 'user',
+            rol: rol ? rol : 'user',
             password: createHash(password),
             age: Number(age),
             cart: cart._id,

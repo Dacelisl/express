@@ -19,6 +19,10 @@ class User {
     const result = await UserModel.create(user)
     return result
   }
+  deletedOne = async (userID) => {
+    const result = await UserModel.deleteOne({ _id: userID })
+    return result
+  }
 
   updateUser = async (id, user) => {
     const result = await UserModel.updateOne({ _id: id }, { $set: user })

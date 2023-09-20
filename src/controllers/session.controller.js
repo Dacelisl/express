@@ -52,6 +52,25 @@ class SessionController {
       return res.redirect('/api/sessions/login')
     })
   }
+  async deleteUser(req, res) {
+    try {
+      const userMail = req.params.uid
+      const user = await userFactory.getUserByEmail(userMail)
+      const resDelete = await userFactory.deletedOne(user._id)
+      return res.status(204).json({
+        status: 'success',
+        msg: 'user deleted',
+        data: resDelete,
+      })
+    } catch (e) {
+      req.logger.error('something went wrong deleteUser', e)
+      return res.status(500).json({
+        status: 'error',
+        msg: 'something went wrong :(',
+        data: {},
+      })
+    }
+  }
   getProfile(req, res) {
     const user = { email: req.session.user.email, isAdmin: req.session.user.rol === 'admin', user: req.session.user.firstName }
     return res.render('profile', user)
