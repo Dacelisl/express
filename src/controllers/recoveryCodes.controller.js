@@ -15,7 +15,8 @@ class RecoveryCodesController {
         return {
           status: 'Fail',
           code: 401,
-          msg: `The Email Does Not Exist`,
+          payload: {},
+          message: `The Email Does Not Exist`,
         }
       }
       const token = Math.random().toString(36).substring(2)
@@ -32,7 +33,8 @@ class RecoveryCodesController {
       req.logger.error('something went wrong createMailRecover', e)
       return res.status(500).json({
         status: 'error',
-        msg: 'something went wrong :( createMailRecover',
+        code: 500,
+        message: 'something went wrong :( createMailRecover',
         payload: {},
       })
     }
@@ -51,7 +53,8 @@ class RecoveryCodesController {
       req.logger.error('something went wrong getRecoveryPass', e)
       return res.status(500).json({
         status: 'error',
-        msg: 'something went wrong :( getRecoveryPass',
+        code: 500,
+        message: 'something went wrong :( getRecoveryPass',
         payload: {},
       })
     }
@@ -80,7 +83,8 @@ class RecoveryCodesController {
       req.logger.error('something went wrong recoveryPass', e)
       return res.status(500).json({
         status: 'error',
-        msg: `something went wrong :( recoveryPass`,
+        code: 500,
+        message: `something went wrong :( recoveryPass`,
         payload: {},
       })
     }

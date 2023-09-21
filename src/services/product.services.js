@@ -42,8 +42,8 @@ class ProductServices {
       return {
         status: 'Fail',
         code: 404,
-        msg: `Error getting data ${error.message}`,
         payload: {},
+        message: `Error getting data ${error.message}`,
       }
     }
   }
@@ -55,13 +55,14 @@ class ProductServices {
         status: 'Success',
         code: 201,
         payload: payload,
-        msg: 'cart created',
+        message: 'cart created',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 401,
-        msg: `Error ${error}`,
+        payload: {},
+        message: `Error ${error}`,
       }
     }
   }

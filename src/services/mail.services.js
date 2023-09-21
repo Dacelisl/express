@@ -14,14 +14,15 @@ class MailServices {
       return {
         status: 'Success',
         code: 201,
-        data: sendResult,
-        msg: 'Mail sent successfully',
+        payload: sendResult,
+        message: 'Mail sent successfully',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 401,
-        msg: `Error Mail sent ${error}`,
+        payload:{},
+        message: `Error Mail sent ${error}`,
       }
     }
   }
@@ -34,14 +35,15 @@ class MailServices {
       return {
         status: 'Success',
         code: 201,
-        data: sendResult,
-        msg: 'Mail sent successfully',
+        payload: sendResult,
+        message: 'Mail sent successfully',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 401,
-        msg: `Error Mail sent ${error}`,
+        payload:{},
+        message: `Error Mail sent ${error}`,
       }
     }
   }

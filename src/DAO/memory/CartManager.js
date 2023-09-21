@@ -22,13 +22,15 @@ export class CartManager {
       return {
         status: 'success',
         code: 201,
-        msg: 'cart created',
+        payload: {},
+        message: 'cart created',
       }
     } catch (error) {
       return {
         status: 'fail',
         code: 401,
-        msg: `Error ${error}`,
+        payload: {},
+        message: `Error ${error}`,
       }
     }
   }
@@ -38,13 +40,12 @@ export class CartManager {
         return {
           status: 'fail',
           code: 404,
-          msg: 'code does not exist',
+          payload: {},
+          message: 'code does not exist',
         }
       const cartIndex = this.carts.findIndex((cart) => cart.id === cId)
       if (this.productExist(cartIndex, pId)) {
-        const productIndex = this.carts[cartIndex].products.findIndex(
-          (product) => product.pId === pId
-        )
+        const productIndex = this.carts[cartIndex].products.findIndex((product) => product.pId === pId)
         this.carts[cartIndex].products[productIndex].quantity += 1
       } else {
         this.carts[cartIndex].products.push({
@@ -56,13 +57,15 @@ export class CartManager {
       return {
         status: 'success',
         code: 201,
-        msg: 'product added successfully',
+        payload: {},
+        message: 'product added successfully',
       }
     } catch (error) {
       return {
         status: 'fail',
         code: 400,
-        msg: `Error ${error}`,
+        payload: {},
+        message: `Error ${error}`,
       }
     }
   }
@@ -75,7 +78,8 @@ export class CartManager {
       return {
         status: 'fail',
         code: 400,
-        msg: `Error ${error}`,
+        payload: {},
+        message: `Error ${error}`,
       }
     }
   }
@@ -97,7 +101,8 @@ export class CartManager {
     return {
       status: 'fail',
       code: 400,
-      msg: `Error IdCart not found `,
+      payload: {},
+      message: `Error IdCart not found `,
     }
   }
   async getCartWithProducts(idCart) {
@@ -115,8 +120,8 @@ export class CartManager {
     return {
       status: 'success',
       code: 201,
-      msg: `Product list`,
-      data: productsInCart,
+      payload: productsInCart,
+      message: `Product list`,
     }
   }
 }

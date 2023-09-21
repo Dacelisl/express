@@ -9,14 +9,15 @@ class CartServices {
       return {
         status: 'Success',
         code: 201,
-        data: createdCart,
-        msg: 'cart created',
+        payload: createdCart,
+        message: 'cart created',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 401,
-        msg: `Error createCart ${error}`,
+        payload: {},
+        message: `Error createCart ${error}`,
       }
     }
   }
@@ -28,22 +29,22 @@ class CartServices {
         return {
           status: 'Fail',
           code: 404,
-          data: {},
-          msg: 'The cart does not exist',
+          payload: {},
+          message: 'The cart does not exist',
         }
       }
       return {
         status: 'Success',
         code: 200,
-        data: cart,
-        msg: 'Cart with products retrieved successfully',
+        payload: cart,
+        message: 'Cart with products retrieved successfully',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 500,
-        data: {},
-        msg: `Error getCartWithProducts: ${error}`,
+        payload: {},
+        message: `Error getCartWithProducts: ${error}`,
       }
     }
   }
@@ -58,16 +59,16 @@ class CartServices {
           return {
             status: 'Fail',
             code: 401,
-            data: {},
-            msg: `You can't add products you created`,
+            payload: {},
+            message: `You can't add products you created`,
           }
         }
         const newCart = await cartFactory.createCart(cartId, productId, quant)
         return {
           status: 'success',
           code: 201,
-          data: newCart,
-          msg: 'product added successfully',
+          payload: newCart,
+          message: 'product added successfully',
         }
       }
       const product = cart.products.find((p) => p.productId.toString() === productId)
@@ -75,8 +76,8 @@ class CartServices {
         return {
           status: 'Fail',
           code: 401,
-          data: {},
-          msg: `You can't add products you created`,
+          payload: {},
+          message: `You can't add products you created`,
         }
       }
       if (product) {
@@ -89,14 +90,15 @@ class CartServices {
       return {
         status: 'success',
         code: 201,
-        data: cart,
-        msg: 'product added successfully',
+        payload: cart,
+        message: 'product added successfully',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 400,
-        msg: `Error addToCart ${error}`,
+        payload: {},
+        message: `Error addToCart ${error}`,
       }
     }
   }
@@ -109,8 +111,8 @@ class CartServices {
         return {
           status: 'Fail',
           code: 400,
-          data: {},
-          msg: 'The car does not exist',
+          payload: {},
+          message: 'The car does not exist',
         }
       }
       const product = cart.products.filter((p) => {
@@ -126,14 +128,15 @@ class CartServices {
       return {
         status: 'Success',
         code: 200,
-        data: cart,
-        msg: 'Product deleted successfully',
+        payload: cart,
+        message: 'Product deleted successfully',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 500,
-        msg: `Error deletedProduct ${error}`,
+        payload: {},
+        message: `Error deletedProduct ${error}`,
       }
     }
   }
@@ -145,8 +148,8 @@ class CartServices {
         return {
           status: 'Fail',
           code: 400,
-          data: {},
-          msg: 'The cart does not exist',
+          payload: {},
+          message: 'The cart does not exist',
         }
       }
       cart.products = []
@@ -154,14 +157,15 @@ class CartServices {
       return {
         status: 'Success',
         code: 200,
-        data: cart,
-        msg: 'All products deleted successfully',
+        payload: cart,
+        message: 'All products deleted successfully',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 500,
-        msg: `Error deleteAllProducts: ${error}`,
+        payload: {},
+        message: `Error deleteAllProducts: ${error}`,
       }
     }
   }
@@ -173,21 +177,22 @@ class CartServices {
         return {
           status: 'Fail',
           code: 404,
-          data: {},
-          msg: 'The cart does not exist',
+          payload: {},
+          message: 'The cart does not exist',
         }
       }
       return {
         status: 'Success',
         code: 204,
-        data: {},
-        msg: 'Cart deleted successfully',
+        payload: {},
+        message: 'Cart deleted successfully',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 500,
-        msg: `Error deleteCart: ${error}`,
+        payload: {},
+        message: `Error deleteCart: ${error}`,
       }
     }
   }
@@ -198,8 +203,8 @@ class CartServices {
         return {
           status: 'Fail',
           code: 404,
-          data: {},
-          msg: 'Cart not found',
+          payload: {},
+          message: 'Cart not found',
         }
       }
       cart.products = products.map((product) => ({
@@ -211,14 +216,15 @@ class CartServices {
       return {
         status: 'success',
         code: 201,
-        data: cart,
-        msg: 'products added successfully',
+        payload: cart,
+        message: 'products added successfully',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 400,
-        msg: `Error updateCart ${error}`,
+        payload: {},
+        message: `Error updateCart ${error}`,
       }
     }
   }

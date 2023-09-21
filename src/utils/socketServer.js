@@ -14,7 +14,7 @@ export const connectSocket = (httpServer) => {
     socket.on('msg_front_to_back', async (msg) => {
       const msgCreated = await chatService.addMessage(msg)
       const msgs = await chatService.getAllMessages()
-      socketServer.emit('msg_back_to_front', msgs.data)
+      socketServer.emit('msg_back_to_front', msgs.payload)
     })
   })
 }

@@ -8,15 +8,17 @@ class MailController {
       const mail = await mailServices.sendMail(code, dataUser)
       return res.status(200).json({
         status: 'success',
-        msg: 'email Send',
-        data: mail,
+        code: 200,
+        message: 'email Send',
+        payload: mail,
       })
     } catch (e) {
       req.logger.error('something went wrong sendMail, MailController', e)
       return res.status(500).json({
         status: 'error',
-        msg: `something went wrong sendMail, MailController ${e}`,
-        data: {},
+        code: 500,
+        message: `something went wrong sendMail, MailController ${e}`,
+        payload: {},
       })
     }
   }

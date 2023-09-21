@@ -25,7 +25,7 @@ function updateCart(response) {
   }
   const tableBody = document.querySelector('#productTable tbody')
   tableBody.innerHTML = ''
-  response.data.products.forEach((item) => {
+  response.payload.products.forEach((item) => {
     const productData = item.productId
     const newRow = document.createElement('tr')
     newRow.innerHTML = `
@@ -60,7 +60,7 @@ async function deleteProductInCart(cartId, productId) {
       throw new Error('Failed to create a new cart')
     }
     const newCart = await response.json()
-    searchCart(newCart.data._id)
+    searchCart(newCart.payload._id)
   } catch (error) {
     throw new Error('Something went wrong!', error)
   }
@@ -92,7 +92,7 @@ async function purchase() {
           method: 'PUT',
         })
         const dataPurchase = await response.json()
-        sendMail(dataPurchase.data.code)
+        sendMail(dataPurchase.payload.code)
         cartAfterPurchase()
       })
     }

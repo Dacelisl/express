@@ -59,15 +59,17 @@ class SessionController {
       const resDelete = await userFactory.deletedOne(user._id)
       return res.status(204).json({
         status: 'success',
-        msg: 'user deleted',
-        data: resDelete,
+        code: 204,
+        message: 'user deleted',
+        payload: resDelete,
       })
     } catch (e) {
       req.logger.error('something went wrong deleteUser', e)
       return res.status(500).json({
         status: 'error',
-        msg: 'something went wrong :(',
-        data: {},
+        code: 500,
+        message: 'something went wrong :(',
+        payload: {},
       })
     }
   }
@@ -91,8 +93,9 @@ class SessionController {
       req.logger.warning('failed to change roles, switchRol', error)
       return res.json({
         status: 'error',
-        msg: 'failed to change roles,',
-        data: null,
+        code: 500,
+        message: 'failed to change roles,',
+        payload: null,
       })
     }
   }
@@ -102,8 +105,9 @@ class SessionController {
       req.logger.warning('No user data found in session, getCurrent')
       return res.json({
         status: 'error',
-        msg: 'No user data found in session',
-        data: null,
+        code: 500,
+        message: 'No user data found in session',
+        payload: null,
       })
     }
     const userDto = new userDTO(dataUser)

@@ -114,11 +114,19 @@ components:
         status:
           type: String
           description: success or error
+        code:
+          type: Number
+          description: código de respuesta HTTP.
+        payload:
+          type: Array
+          description: array con la informacion de la peticion requerida
         message:
           type: String
           description: aclarando que ocurrio
       example:
         status: success
+        code: 201
+        payload: {}
         message: products updated
     products:
       type: object

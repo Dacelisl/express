@@ -32,7 +32,7 @@ export class ProductManager {
         return {
           status: 'fail',
           code: 404,
-          msg: 'The code cannot be repeated',
+          message: 'The code cannot be repeated',
         }
       if (product.title && product.description && product.price && product.thumbnail && product.code && product.owner && product.stock) {
         this.products.push({
@@ -50,20 +50,20 @@ export class ProductManager {
         return {
           status: 'success',
           code: 201,
-          msg: 'product added successfully',
+          message: 'product added successfully',
         }
       } else {
         return {
           status: 'fail',
           code: 404,
-          msg: 'Fields are required',
+          message: 'Fields are required',
         }
       }
     } catch (error) {
       return {
         status: 'fail',
         code: 400,
-        msg: `Error ${error}`,
+        message: `Error ${error}`,
       }
     }
   }
@@ -84,28 +84,28 @@ export class ProductManager {
       return {
         status: 'success',
         code: 200,
-        msg: 'product list ',
-        data: this.products,
+        message: 'product list ',
+        payload: this.products,
       }
     } catch (error) {
       return {
         status: 'fail',
         code: 404,
-        msg: `Error ${error}`,
-        data: {},
+        message: `Error ${error}`,
+        payload: {},
       }
     }
   }
   async getProductById(idProduct) {
     const productList = await this.getProducts().then((prod) => {
-      const productFind = prod.data.filter((product) => product.id === idProduct)
+      const productFind = prod.payload.filter((product) => product.id === idProduct)
       return productFind
     })
     return {
       status: productList.length > 0 ? 'Success' : 'fail',
       code: productList.length > 0 ? 201 : 404,
-      msg: productList.length > 0 ? 'product found' : 'Code Not Found',
-      data: productList,
+      message: productList.length > 0 ? 'product found' : 'Code Not Found',
+      payload: productList,
     }
   }
   async updateProduct(idProduct, product) {
@@ -113,34 +113,34 @@ export class ProductManager {
       return {
         status: 'fail',
         code: 404,
-        msg: 'the code cannot be repeated',
+        message: 'the code cannot be repeated',
       }
     const productFind = await this.getProductById(idProduct)
     if (productFind.code !== 404) {
       const update = {
-        id: productFind.data[0].id,
-        title: product.title || productFind.data[0].title,
-        description: product.description || productFind.data[0].description,
-        price: product.price || productFind.data[0].price,
+        id: productFind.payload[0].id,
+        title: product.title || productFind.payload[0].title,
+        description: product.description || productFind.payload[0].description,
+        price: product.price || productFind.payload[0].price,
         status: true,
-        thumbnail: product.thumbnail || productFind.data[0].thumbnail,
-        code: product.code || productFind.data[0].code,
-        owner: product.owner || productFind.data[0].owner,
-        stock: product.stock || productFind.data[0].stock,
+        thumbnail: product.thumbnail || productFind.payload[0].thumbnail,
+        code: product.code || productFind.payload[0].code,
+        owner: product.owner || productFind.payload[0].owner,
+        stock: product.stock || productFind.payload[0].stock,
       }
-      this.products.splice(this.products.indexOf(productFind.data[0]), 1, update)
+      this.products.splice(this.products.indexOf(productFind.payload[0]), 1, update)
       try {
         await promises.writeFile(this.path, JSON.stringify(this.products))
         return {
           status: 'success',
           code: 200,
-          msg: 'product updated',
+          message: 'product updated',
         }
       } catch (error) {
         return {
           status: 'fail',
           code: 404,
-          msg: `Error ${error}`,
+          message: `Error ${error}`,
         }
       }
     } else {
@@ -150,19 +150,19 @@ export class ProductManager {
   async deleteProduct(idProduct) {
     const productFind = await this.getProductById(idProduct)
     if (productFind.code !== 404) {
-      this.products.splice(this.products.indexOf(productFind.data[0]), 1)
+      this.products.splice(this.products.indexOf(productFind.payload[0]), 1)
       try {
         await promises.writeFile(this.path, JSON.stringify(this.products))
         return {
           status: 'success',
           code: 200,
-          msg: 'removed product',
+          message: 'removed product',
         }
       } catch (error) {
         return {
           status: 'fail',
           code: 404,
-          msg: `Error ${error}`,
+          message: `Error ${error}`,
         }
       }
     } else {

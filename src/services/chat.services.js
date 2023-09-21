@@ -13,14 +13,15 @@ class ChatServices {
       return {
         status: 'Success',
         code: 201,
-        data: allMessages,
-        msg: 'get data',
+        payload: allMessages,
+        message: 'get data',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 500,
-        msg: `Error ${error}`,
+        payload:{},
+        message: `Error ${error}`,
       }
     }
   }
@@ -30,14 +31,15 @@ class ChatServices {
       return {
         status: 'Success',
         code: 200,
-        data: newMessage,
-        msg: 'Message added',
+        payload: newMessage,
+        message: 'Message added',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 500,
-        msg: `Error ${error}`,
+        payload:{},
+        message: `Error ${error}`,
       }
     }
   }

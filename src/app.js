@@ -94,7 +94,7 @@ app.use(passport.session())
 app.get('*', (req, res) => {
   return res.status(404).json({
     status: 'error',
-    msg: 'Not Found',
-    data: {},
+    message: 'Not Found',
+    payload: {},
   })
 })

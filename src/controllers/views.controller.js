@@ -8,9 +8,9 @@ class ViewsController {
     opcionesConsulta.sort = req.query.sort
     opcionesConsulta.query = req.query.query
     try {
-      const payload = await productService.getAll(opcionesConsulta)
-      payload.session = { email: req.session.user.email, isAdmin: req.session.user.rol === 'admin', user: req.session.user.firstName, message: req.session.user.message }
-      res.render('realTimeProducts', payload)
+      const dataProduct = await productService.getAll(opcionesConsulta)
+      dataProduct.session = { email: req.session.user.email, isAdmin: req.session.user.rol === 'admin', user: req.session.user.firstName, message: req.session.user.message }
+      res.render('realTimeProducts', dataProduct)
     } catch (error) {
       req.logger.error('something went wrong getAllProducts', error)
     }
@@ -22,7 +22,7 @@ class ViewsController {
     let message = ''
     try {
       const data = req.body
-      const dataProduct = {
+      const newProduct = {
         title: data.title,
         description: data.description,
         category: data.category,
@@ -32,7 +32,7 @@ class ViewsController {
         owner: req.session.user ? req.session.user.email : 'admin',
         stock: data.stock,
       }
-      await productService.createOne(dataProduct )
+      await productService.createOne(newProduct)
       message = `Producto agregado con éxito.`
       return res.render('addProduct', { message })
     } catch (e) {

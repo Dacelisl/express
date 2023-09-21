@@ -10,12 +10,12 @@ class RecoveryCodes {
     return result
   }
   find = async (email) => {
-    const msg = await RecoveryCodesModel.find({ email: email })
-    return msg
+    const result = await RecoveryCodesModel.find({ email: email })
+    return result
   }
   findToken = async (token, email) => {
-    const msg = await RecoveryCodesModel.find({ email: email, token: token })
-    return msg
+    const result = await RecoveryCodesModel.find({ email: email, token: token })
+    return result
   }
 
   updateState = async (id) => {

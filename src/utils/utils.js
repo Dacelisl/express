@@ -29,8 +29,8 @@ function isValid(id) {
     return {
       status: 'Fail',
       code: 400,
-      data: {},
-      msg: 'invalid format, must be ObjectId',
+      payload: {},
+      message: 'invalid format, must be ObjectId',
     }
   }
 }

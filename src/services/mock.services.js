@@ -1,4 +1,4 @@
-import {faker} from '@faker-js/faker'
+import { faker } from '@faker-js/faker'
 
 class MockServices {
   getAllProducts() {
@@ -7,14 +7,14 @@ class MockServices {
       return {
         code: 200,
         status: 'success',
-        data: products,
+        payload: products,
       }
     } catch (error) {
       return {
-        code: 500,
         status: 'Fail',
+        code: 500,
+        payload: {},
         message: `Internal Server Error, ${error}`,
-        data: {},
       }
     }
   }

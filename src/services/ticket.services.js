@@ -8,8 +8,8 @@ class TicketServices {
         return {
           status: 'Fail',
           code: 404,
-          data: {},
-          msg: 'the cart does not belong to the user',
+          payload: {},
+          message: 'the cart does not belong to the user',
         }
       const cartFilter = await cartFactory.getCartWithProducts(dataUser.cart)
       const productsNotPurchased = []
@@ -84,15 +84,15 @@ class TicketServices {
       return {
         status: 'Success',
         code: 200,
-        data: newOrder,
-        msg: 'Ticket created successfully',
+        payload: newOrder,
+        message: 'Ticket created successfully',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 500,
-        data: {},
-        msg: 'Internal Server Error',
+        payload: {},
+        message: 'Internal Server Error',
         error,
       }
     }
@@ -105,22 +105,22 @@ class TicketServices {
         return {
           status: 'Fail',
           code: 404,
-          data: {},
-          msg: 'Ticket does not exist',
+          payload: {},
+          message: 'Ticket does not exist',
         }
       }
       return {
         status: 'Success',
         code: 200,
-        data: ticket,
-        msg: 'Ticket retrieved successfully',
+        payload: ticket,
+        message: 'Ticket retrieved successfully',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 500,
-        data: {},
-        msg: `Error: getTicketById ${error}`,
+        payload: {},
+        message: `Error: getTicketById ${error}`,
       }
     }
   }
