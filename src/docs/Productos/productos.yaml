@@ -36,12 +36,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/products'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
 
   /api/products/{_id}:
     get:
@@ -99,13 +93,10 @@ paths:
       responses:
         '204':
           description: product deleted
-        default:
-          description: unexpected error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-
+                $ref: '#/components/schemas/deleteProduct'
 components:
   schemas:
     Success:
@@ -124,10 +115,22 @@ components:
           type: String
           description: aclarando que ocurrio
       example:
-        status: success
+        status: Success
         code: 201
-        payload: {}
-        message: products updated
+        payload:
+          {
+            _id: ObjectId(644081a93f0625dc193bc594),
+            products:
+              [
+                {
+                  productId: "64e394a9e1a8b022934165b6",
+                  quantity: 1,
+                  _id: '65104bf300916eb5923834be',
+                },
+              ],
+            __v: 0,
+          }
+        message: products added successfully
     products:
       type: object
       properties:
@@ -159,15 +162,37 @@ components:
           type: Number
           description: Unidades totales disponibles
       example:
-        _id: ObjectId("644081a93f0625dc193bc594")
-        title: 'Salad'
-        description: 'The beautiful range of Apple Naturalé that has an exciting mix of natu…'
-        category: 'Baby'
-        price: '$550'
-        thumbnail: 'insight_schedule_bloop.jpg'
-        code: '1oOXBRaLHw'
-        owner: atrian@gmail.com
-        stock: 15
+        status: success,
+        message: product created,
+        payload: {
+          title: Salad,
+          description: The beautiful range of Apple Naturalé that has an exciting mix of natu…,
+          category: Baby,
+          price: $550,
+          thumbnail: insight_schedule_bloop.jpg,
+          code: 1oOXBRaLwwHw,
+          owner: PedroP@mail.com,
+          stock: 15,
+          _id: 65106668983709ae4512fabd,
+          __v: 0
+        }
+    deleteProduct:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID auto generado by mongo
+        products:
+          type: Array
+          description: Ids de los productos a comprar
+      example:
+        status: Success
+        code: 204
+        payload: {
+          acknowledged: true,
+          deletedCount: 1
+        }
+        message: product deleted
     newProduct:
       type: object
       required:
@@ -204,6 +229,15 @@ components:
         stock:
           type: Number
           description: Unidades totales disponibles
+      example:
+        title: Salad,
+        description: The beautiful range of Apple Naturalé that has an exciting mix of natu…,
+        category: Baby,
+        price: $550,
+        thumbnail: insight_schedule_bloop.jpg,
+        code: 1oOXBRaLHw,
+        owner: atrian@gmail.com,
+        stock: 15
   requestBodies:
     updateproducts:
       type: object

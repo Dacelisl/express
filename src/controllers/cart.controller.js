@@ -43,7 +43,8 @@ class CartController {
     try {
       const cid = req.session.user ? req.session.user.cart : req.params.cid
       const resAdd = await cartService.deleteCart(cid)
-      return res.status(204).json(resAdd)
+      console.log('delete car', resAdd);
+      return res.json(resAdd)
     } catch (error) {
       req.logger.error('something went wrong deleteCart', error)
     }

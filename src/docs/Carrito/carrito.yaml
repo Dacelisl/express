@@ -12,12 +12,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/carts'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /api/carts/{_id}:
     get:
       summary: Obtiene un Cart con todos sus productos
@@ -76,12 +70,10 @@ paths:
       responses:
         '204':
           description: cart deleted
-        default:
-          description: unexpected error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/deleteCart'
   /api/carts/{_id}/product/{pid}:
     delete:
       summary: elimina un producto del cart por su ID
@@ -103,13 +95,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Success'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/deleteProduct'
     post:
       summary: Agrega un producto al cart
       operationId: addProduct
@@ -135,12 +121,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/productToCart'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
     put:
       summary: actualizar un carts a partir del ID
       tags:
@@ -171,12 +151,6 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/Success'
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
 components:
   schemas:
     Success:
@@ -209,8 +183,38 @@ components:
           type: Array
           description: Ids de los productos a comprar
       example:
-        _id: ObjectId(644081a93f0625dc193bc594)
-        products: []
+        status: Success
+        code: 201
+        payload: { _id: ObjectId(644081a93f0625dc193bc594), products: [], __v: 0 }
+        message: cart created
+    deleteCart:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID auto generado by mongo
+        products:
+          type: Array
+          description: Ids de los productos a comprar
+      example:
+        status: Success
+        code: 204
+        payload: {}
+        message: Cart deleted successfully
+    deleteProduct:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID auto generado by mongo
+        products:
+          type: Array
+          description: Ids de los productos a comprar
+      example:
+        status: Success
+        code: 204
+        payload: { _id: '65105847ae42559cf1d8326a', products: [], __v: 2 }
+        message: Product deleted successfully
     productToCart:
       type: object
       properties:
@@ -221,8 +225,10 @@ components:
           type: Array
           description: Ids de los productos a comprar
       example:
-        _id: ObjectId(644081a93f0625dc193bc594)
-        products: [{ productId: '648a287a1df594f1632f89b2', quantity: 15, _id: '650143b0f1629e151fb3e2b8' }, { productId: '648a285ba30b968d68a653a8', quantity: 1, _id: '65025c361d295af7fa52dd40' }]
+        status: Success
+        code: 201
+        payload: { _id: ObjectId(644081a93f0625dc193bc594), products: [{ productId: '64e394aae1a8b02293416d3b', quantity: 1, _id: '65104bf300916eb5923834be' }], __v: 0 }
+        message: product added successfully
     getCartId:
       type: object
       properties:
@@ -233,11 +239,34 @@ components:
           type: Array
           description: Ids de los productos a comprar
       example:
-        products: Array
-        0: Object
-        productId: ObjectId(648a287a1df594f1632f89b2)
-        quantity: 5
-        _id: ObjectId(64d133d0d80ee1946b5c630a)
+        status: Success
+        code: 200
+        payload:
+          {
+            _id: ObjectId(644081a93f0625dc193bc594),
+            products:
+              [
+                {
+                  productId":
+                    {
+                      owner": 'admin',
+                      _id": '64e394aae1a8b02293416d3b',
+                      title": 'Bacon',
+                      description": 'The automobile layout consists of a front-engine design, with transaxle-type transmissions',
+                      category": 'Outdoors',
+                      price": '$1001',
+                      thumbnail": 'furthermore_partially.webm',
+                      code": 'ZEZAg9OitW',
+                      stock": 25,
+                      __v": 0,
+                    },
+                  quantity: 1,
+                  _id: '65104bf300916eb5923834be',
+                },
+              ],
+            __v: 0,
+          }
+        message: Cart with products retrieved successfully
   requestBodies:
     newProduct:
       type: object
@@ -247,6 +276,8 @@ components:
         quantity:
           type: Number
           description: cantidad de Unidades
+      example:
+        quantity: 10 
     updateCart:
       type: object
       properties:

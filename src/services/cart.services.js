@@ -127,7 +127,7 @@ class CartServices {
       await cart.save()
       return {
         status: 'Success',
-        code: 200,
+        code: 204,
         payload: cart,
         message: 'Product deleted successfully',
       }
@@ -156,7 +156,7 @@ class CartServices {
       await cart.save()
       return {
         status: 'Success',
-        code: 200,
+        code: 204,
         payload: cart,
         message: 'All products deleted successfully',
       }
