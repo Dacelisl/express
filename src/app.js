@@ -1,4 +1,5 @@
 import express from 'express'
+import 'express-async-errors'
 import compression from 'express-compression'
 import session from 'express-session'
 import handlebars from 'express-handlebars'
@@ -54,6 +55,7 @@ app.engine('handlebars', handlebars.engine())
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'handlebars')
 
+
 app.use(express.static(__dirname + '/public'))
 
 app.use(
@@ -72,20 +74,10 @@ app.use('/api/products', ProductRoutes)
 app.use('/api/carts', CartRoutes)
 app.use('/realtimeproducts', isAdmin, ViewRoutes)
 app.use('/test-chat', chatRoutes)
-app.use('/api/sessions/', SessionRoutes)
+app.use('/api/sessions', SessionRoutes)
 app.use('/recover', RecoveryCodesRoutes)
 app.use('/api/mock/', MockRoutes)
 app.use('/mail', MailRoutes)
-app.get('/loggerTest', (req, res) => {
-  req.logger.debug('ingresando a un proceso importante debug')
-  req.logger.http('ingresando a un proceso importante http')
-  req.logger.info('ingresando a un proceso importante info')
-  req.logger.warning('ingresando a un proceso importante warning')
-  req.logger.error('ingresando a un proceso importante error')
-  req.logger.fatal('ingresando a un proceso importante fatal')
-  res.send({ message: 'fin del proceso heavy exito!!!' })
-})
-app.use(errorHandler)
 
 initPassport()
 app.use(passport.authorize())
@@ -98,3 +90,4 @@ app.get('*', (req, res) => {
     payload: {},
   })
 })
+app.use(errorHandler)

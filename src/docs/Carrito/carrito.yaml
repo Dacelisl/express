@@ -31,6 +31,18 @@ paths:
             application/json:
               schema:
                 $ref: '#components/schemas/getCartId'
+        '404':
+          description: Cart does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/CartNotExist'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#components/Error'
     put:
       summary: Actualizar un carts a partir del ID
       tags:
@@ -215,6 +227,22 @@ components:
         code: 204
         payload: { _id: '65105847ae42559cf1d8326a', products: [], __v: 2 }
         message: Product deleted successfully
+    CartNotExist:
+      type: object
+      properties:
+        status:
+          type: string
+        code:
+          type: integer
+        payload:
+          type: object
+        message:
+          type: string
+      example:
+        status: Fail
+        code: 404
+        payload: {}
+        message: The cart does not exist
     productToCart:
       type: object
       properties:
@@ -277,7 +305,7 @@ components:
           type: Number
           description: cantidad de Unidades
       example:
-        quantity: 10 
+        quantity: 10
     updateCart:
       type: object
       properties:
@@ -291,8 +319,14 @@ components:
         products: [{ _id: '648a287a1df594f1632f89b2', quantity: 10 }]
   Error:
     type: object
-    required:
-      - id
     properties:
-      id:
-        type: ObjectId
+      status:
+        type: string
+        example: error
+      error:
+        type: string
+        example: UNEXPECTED ERROR...
+
+
+
+                

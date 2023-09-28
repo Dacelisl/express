@@ -1,6 +1,7 @@
 import passport from 'passport'
 import userDTO from '../DAO/DTO/user.DTO.js'
 import { userFactory } from '../DAO/factory.js'
+import { uploader } from '../utils/utils.js'
 
 class SessionController {
   getRegister(req, res) {
@@ -80,6 +81,55 @@ class SessionController {
   getAdmin(req, res) {
     return res.render('admin')
   }
+  getDocuments(req, res) {
+    console.log('ingreso al documents')
+    return res.render('upload')
+  }
+  createDocument(req, res) {
+    console.log('ingreso al controller');
+    try {
+    const uid = req.params.uid
+    const imageType = req.body.imageType
+    console.log('data body', req.body);
+
+    if (imageType === 'profile') {
+      console.log('save profil')
+    } else if (imageType === 'product') {
+      console.log('save product')
+    } else if (imageType === 'document') {
+      console.log('save document')
+    }
+    return res.status(201).json({
+      status: 'success',
+      code: 201,
+      payload: {},
+    })
+      
+    } catch (error) {
+      console.log('errores session', error);
+    }
+
+   /*  console.log('datos de body', req.body)
+    const imageType = req.body.imageType 
+    uploader.single('file')(req, res, (err) => {
+      if (err) {
+        console.log('error en el multer', err)
+        return res.status(500).json({
+          status: 'error',
+          code: 500,
+          message: 'Error uploading file',
+        })
+      }
+      const file = req.file
+      console.log('datos de file', file)
+      console.log('datos de type', imageType)
+      return res.status(201).json({
+        status: 'success',
+        code: 201,
+        payload: {},
+      })
+    }) */
+  }
   async switchRol(req, res) {
     try {
       const uid = req.params.uid
@@ -100,6 +150,7 @@ class SessionController {
     }
   }
   getCurrent(req, res) {
+    console.log('entra al current')
     const dataUser = req.session.user
     if (dataUser === undefined) {
       req.logger.warning('No user data found in session, getCurrent')

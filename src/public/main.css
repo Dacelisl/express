@@ -7,6 +7,7 @@
 input {
   display: block;
   margin-bottom: 10px;
+  margin-left: 5px;
   text-align: center;
   padding: 5px 10px;
   border: 1px solid #ccc;
@@ -327,6 +328,7 @@ a {
   border-radius: 3px;
   padding: 0 10px;
   margin-top: 8px;
+  margin-left: 5px;
   font-size: 14px;
   font-weight: 300;
 }
@@ -363,7 +365,7 @@ a {
   width: fit-content;
   padding: 12px;
 }
-#forgot{
+#forgot {
   display: flex;
   justify-content: center;
 }
@@ -464,7 +466,8 @@ a {
   margin: auto;
 }
 
-#productTable th, #productTable td {
+#productTable th,
+#productTable td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
@@ -480,4 +483,24 @@ a {
 
 #productTable tr:hover {
   background-color: #ddd;
+}
+/* upload */
+#upload-form {
+  max-width: 400px;
+  margin: 10;
+  padding: 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+#image-type {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+#file-input {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
 }

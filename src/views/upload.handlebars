@@ -1,0 +1,17 @@
+<div class='profile-container'>
+  <h1>Upload Files</h1>
+  <form id='upload-form' action="api/sessions/documents" enctype='multipart/form-data' method="post">
+    <select id='image-type' name='imageType'>
+      <option value='profile'>Imagen de Perfil</option>
+      <option value='product'>Imagen de Producto</option>
+      <option value='document'>Documento</option>
+    </select>
+    <input type='file' id='file-input' name='file' accept='image/*' />
+    <button type='submit'>Add</button>
+  </form>
+  <div class='buttons'>
+    <button><a href='/api/sessions/profile/'>Back</a></button>
+    <button><a href='/api/sessions/logout/'>Logout</a></button>
+  </div>
+</div>
+{{!-- <script src='/js/upload.js'></script> --}}

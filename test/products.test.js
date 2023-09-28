@@ -102,7 +102,7 @@ describe('Products test', () => {
   })
   after(async () => {
     if (productId) {
-      await requester.delete(`/api/products/${productId}`).expect(204)
+      const res = await requester.delete(`/api/products/${productId}`).expect(204)
     }
   })
   it('POST /api/products product register  ', async () => {
@@ -225,7 +225,7 @@ describe('Carts test', () => {
     expect(response.body.payload).to.have.property('_id')
     expect(response.body.payload).to.have.property('products').that.is.an('array')
   })
-  it('DELETE /api/carts update product by ID   ', async () => {
+  it('DELETE /api/carts delete cart by ID   ', async () => {
     const response = await requester.delete(`/api/carts/${cartId}`)
     expect(response.status).to.equal(204)
     expect(response.text).to.equal('')

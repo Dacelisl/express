@@ -171,6 +171,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     /* AssingDeleteEvent() */
     searchProductByCategory()
   } catch (error) {
+    console.log('error server ', error);
     throw new Error('Something went wrong!', error)
   }
 })

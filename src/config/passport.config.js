@@ -19,6 +19,10 @@ export function initPassport() {
         }
         if (!isValidPassword(password, user.password)) {
           return done(null, false, { message: 'Invalid Password' })
+        } else {
+          const currentDate = new Date()
+          const formattedDate = currentDate.toLocaleString()
+          await userFactory.updateUser(user._id, { lastConnection: formattedDate })
         }
         return done(null, user)
       } catch (err) {
@@ -49,6 +53,8 @@ export function initPassport() {
             password: createHash(password),
             age: Number(age),
             cart: cart._id,
+            documents: [],
+            lastConnection: '',
           }
           const userDto = new userDTO(newUser)
           let userCreated = await userFactory.saveUser(userDto)
@@ -96,6 +102,8 @@ export function initPassport() {
               password: 'nopass',
               age: 0,
               cart: cart._id,
+              documents: [],
+              lastConnection: '',
             }
             const userDto = new userDTO(newUser)
             let userCreated = await userFactory.saveUser(userDto)
@@ -109,7 +117,6 @@ export function initPassport() {
       }
     )
   )
-
   passport.serializeUser((user, done) => {
     done(null, user._id)
   })

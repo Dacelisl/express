@@ -7,14 +7,36 @@ import bcryptjs from 'bcryptjs'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.resolve(__filename, '../../')
 
+const getDestination = (req, file, cb) => {
+  const imageType = req.body.imageType
+  console.log('datos en el multer', req.body)
+  let uploadFolder = 'public/image'
+  if (imageType === 'profile') {
+    uploadFolder += '/profile'
+  } else if (imageType === 'product') {
+    uploadFolder += '/product'
+  } else if (imageType === 'document') {
+    uploadFolder += '/document'
+  }
+  cb(null, path.join(__dirname, uploadFolder))
+}
 const storage = multer.diskStorage({
+  destination: getDestination,
+  filename: (req, file, cb) => {
+    cb(null, file.originalname)
+  },
+})
+
+/* const storage = multer.diskStorage({
   destination: (req, file, cb) => {
+    console.log('data body', req.body)
     cb(null, path.join(__dirname, 'public'))
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname)
   },
-})
+}) */
+
 function parsedQuery(query) {
   const response = {}
   const keyValuePairs = query.split('&')
@@ -43,7 +65,6 @@ function randomCode(length) {
   }
   return code
 }
-
 function convertCurrencyToNumber(currencyString) {
   const numericValue = parseFloat(currencyString.replace('$', '').trim())
   return isNaN(numericValue) ? 0 : numericValue

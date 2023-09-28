@@ -36,5 +36,15 @@ const schema = new Schema({
     type: String,
     required: false,
   },
+  documents: [
+    {
+      name: { type: String, required: false },
+      reference: { type: String, required: false },
+    },
+  ],
+  lastConnection: {
+    type: String,
+    required: false,
+  },
 })
 export const UserModel = model('users', schema)
