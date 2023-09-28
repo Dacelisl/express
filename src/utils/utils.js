@@ -8,8 +8,9 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.resolve(__filename, '../../')
 
 const getDestination = (req, file, cb) => {
+  const tipoArchivo = req.headers['x-tipo-archivo']
+  console.log('datos en el multer', tipoArchivo)
   const imageType = req.body.imageType
-  console.log('datos en el multer', req.body)
   let uploadFolder = 'public/image'
   if (imageType === 'profile') {
     uploadFolder += '/profile'
