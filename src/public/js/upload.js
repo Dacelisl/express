@@ -8,20 +8,18 @@ document.addEventListener('DOMContentLoaded', function () {
     formData.append('file', file)
     formData.append('imageType', imageType)
     const headers = new Headers()
-    headers.append('X-Tipo-Archivo', 'documento')
+    headers.append('X-Tipo-Archivo', imageType)
     try {
       const session = await fetch(`/api/sessions/current`)
       const userLocal = await session.json()
-      console.log('datos del form', formData.get('file'))
-      console.log('datos del form', formData.get('imageType'))
       const response = await fetch(`/api/sessions/${userLocal._id}/documents`, {
         method: 'POST',
         body: formData,
         headers: headers,
       })
-      console.log('data en server', response)
+      return response
     } catch (error) {
-      console.log('errores', error)
+      throw new Error('Failed to uploadFile', error)
     }
   }
   form.addEventListener('submit', async (e) => {
@@ -29,9 +27,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const file = fileInput.files[0]
     const imageType = imageTypeSelect.value
     if (file) {
-      console.log('image en server', imageType)
       uploadFile(file, imageType).then((message) => {
-        console.log('res del server ', message)
+        if (message.ok) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'The image was uploaded successfully',
+            showConfirmButton: false,
+            timer: 1500,
+          })
+        } else {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Something went wrong!',
+            showConfirmButton: false,
+            timer: 1500,
+          })
+        }
       })
     }
   })

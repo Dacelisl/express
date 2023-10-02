@@ -36,7 +36,6 @@ async function handleClick(event) {
         showConfirmButton: false,
         timer: 1500,
       })
-      /* updateProducts() */
     } else {
       throw new Error('Failed res no ok', response.status)
     }
@@ -154,24 +153,9 @@ async function searchProductByCategoryAPI(category) {
 
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    const response = await fetch(`/api/sessions/current`)
-    const userLocal = await response.json()
-    if (response.ok) {
-      if (userLocal.rol === 'admin') {
-        return Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'login as a user to buy!',
-          showConfirmButton: true,
-          timer: 4000,
-        })
-      }
-    }
     productToCart()
-    /* AssingDeleteEvent() */
     searchProductByCategory()
   } catch (error) {
-    console.log('error server ', error);
     throw new Error('Something went wrong!', error)
   }
 })

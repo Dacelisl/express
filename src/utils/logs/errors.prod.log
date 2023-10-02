@@ -1424,3 +1424,351 @@
 [2023-09-18T01:27:11.575Z] error: something went wrong createProduct Operation `products.insertOne()` buffering timed out after 10000ms
 [2023-09-18T01:27:12.293Z] info: Connected to MongoDB!
 [2023-09-18T01:27:12.293Z] info: Connected to MongoDB!
+[2023-10-02T03:56:24.958Z] info: Connected to MongoDB!
+[2023-10-02T03:56:24.959Z] info: Connected to MongoDB!
+[2023-10-02T03:56:24.961Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T03:56:24.960Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T03:56:26.361Z] info: Connected to MongoDB!
+[2023-10-02T03:56:26.361Z] info: Connected to MongoDB!
+[2023-10-02T03:57:46.727Z] warning: No user data found in session, getCurrent
+[2023-10-02T03:57:46.727Z] warning: No user data found in session, getCurrent
+[2023-10-02T03:57:47.539Z] warning: No user data found in session, getCurrent
+[2023-10-02T03:57:47.540Z] warning: No user data found in session, getCurrent
+[2023-10-02T03:58:37.832Z] warning: No user data found in session, getCurrent
+[2023-10-02T03:58:37.832Z] warning: No user data found in session, getCurrent
+[2023-10-02T03:58:45.429Z] warning: No user data found in session, getCurrent
+[2023-10-02T03:58:45.429Z] warning: No user data found in session, getCurrent
+[2023-10-02T03:58:45.438Z] warning: No user data found in session, getCurrent
+[2023-10-02T03:58:45.437Z] warning: No user data found in session, getCurrent
+[2023-10-02T03:58:54.825Z] warning: No user data found in session, getCurrent
+[2023-10-02T03:58:54.825Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:03:39.800Z] info: Connected to MongoDB!
+[2023-10-02T04:03:39.801Z] info: Connected to MongoDB!
+[2023-10-02T04:03:39.803Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:03:39.803Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:03:41.267Z] info: Connected to MongoDB!
+[2023-10-02T04:03:41.268Z] info: Connected to MongoDB!
+[2023-10-02T04:04:58.917Z] info: Connected to MongoDB!
+[2023-10-02T04:04:58.918Z] info: Connected to MongoDB!
+[2023-10-02T04:04:58.919Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:04:58.919Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:05:00.190Z] info: Connected to MongoDB!
+[2023-10-02T04:05:00.190Z] info: Connected to MongoDB!
+[2023-10-02T04:06:58.763Z] info: Connected to MongoDB!
+[2023-10-02T04:06:58.765Z] info: Connected to MongoDB!
+[2023-10-02T04:06:58.766Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:06:58.766Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:07:00.020Z] info: Connected to MongoDB!
+[2023-10-02T04:07:00.020Z] info: Connected to MongoDB!
+[2023-10-02T04:07:31.707Z] info: Connected to MongoDB!
+[2023-10-02T04:07:31.708Z] info: Connected to MongoDB!
+[2023-10-02T04:07:31.710Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:07:31.709Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:07:32.856Z] info: Connected to MongoDB!
+[2023-10-02T04:07:32.857Z] info: Connected to MongoDB!
+[2023-10-02T04:10:11.422Z] info: Connected to MongoDB!
+[2023-10-02T04:10:11.423Z] info: Connected to MongoDB!
+[2023-10-02T04:10:11.424Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:10:11.424Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:10:12.708Z] info: Connected to MongoDB!
+[2023-10-02T04:10:12.708Z] info: Connected to MongoDB!
+[2023-10-02T04:14:38.078Z] info: Connected to MongoDB!
+[2023-10-02T04:14:38.079Z] info: Connected to MongoDB!
+[2023-10-02T04:14:38.080Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:14:38.080Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:14:39.399Z] info: Connected to MongoDB!
+[2023-10-02T04:14:39.399Z] info: Connected to MongoDB!
+[2023-10-02T04:19:51.045Z] info: Connected to MongoDB!
+[2023-10-02T04:19:51.046Z] info: Connected to MongoDB!
+[2023-10-02T04:19:51.047Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:19:51.047Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:19:52.310Z] info: Connected to MongoDB!
+[2023-10-02T04:19:52.310Z] info: Connected to MongoDB!
+[2023-10-02T04:32:18.482Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:32:18.482Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:32:22.031Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:32:22.032Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:32:22.040Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:32:22.041Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:32:24.673Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:32:24.673Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:32:24.680Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:32:24.680Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:32:27.336Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:32:27.336Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:34:42.992Z] info: Connected to MongoDB!
+[2023-10-02T04:34:42.992Z] info: Connected to MongoDB!
+[2023-10-02T04:34:42.994Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:34:42.994Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:34:44.361Z] info: Connected to MongoDB!
+[2023-10-02T04:34:44.361Z] info: Connected to MongoDB!
+[2023-10-02T04:34:57.758Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:34:57.758Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:35:01.217Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:35:01.217Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:35:06.027Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:35:06.027Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:35:06.864Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:35:06.864Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:35:08.212Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:35:08.212Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:36:17.559Z] info: Connected to MongoDB!
+[2023-10-02T04:36:17.560Z] info: Connected to MongoDB!
+[2023-10-02T04:36:17.561Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:36:17.561Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:36:18.785Z] info: Connected to MongoDB!
+[2023-10-02T04:36:18.785Z] info: Connected to MongoDB!
+[2023-10-02T04:36:20.609Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:36:20.609Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:36:25.608Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:36:25.608Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:37:17.841Z] info: Connected to MongoDB!
+[2023-10-02T04:37:17.842Z] info: Connected to MongoDB!
+[2023-10-02T04:37:17.843Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:37:17.843Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:37:19.109Z] info: Connected to MongoDB!
+[2023-10-02T04:37:19.109Z] info: Connected to MongoDB!
+[2023-10-02T04:37:25.062Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:37:25.063Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:37:32.195Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:37:32.196Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:37:35.622Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:37:35.623Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:37:36.308Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:37:36.307Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:37:42.812Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:37:42.812Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:37:42.828Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:37:42.829Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:38:56.131Z] info: Connected to MongoDB!
+[2023-10-02T04:38:56.132Z] info: Connected to MongoDB!
+[2023-10-02T04:38:56.133Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:38:56.133Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:38:57.450Z] info: Connected to MongoDB!
+[2023-10-02T04:38:57.450Z] info: Connected to MongoDB!
+[2023-10-02T04:39:00.988Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:39:00.988Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:39:01.477Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:39:01.478Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:39:11.547Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:39:11.547Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:39:24.691Z] info: Connected to MongoDB!
+[2023-10-02T04:39:24.692Z] info: Connected to MongoDB!
+[2023-10-02T04:39:24.694Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:39:24.694Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:39:25.744Z] info: Connected to MongoDB!
+[2023-10-02T04:39:25.744Z] info: Connected to MongoDB!
+[2023-10-02T04:39:27.246Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:39:27.247Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:39:27.752Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:39:27.752Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:40:03.453Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:40:03.453Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:40:42.311Z] info: Connected to MongoDB!
+[2023-10-02T04:40:42.312Z] info: Connected to MongoDB!
+[2023-10-02T04:40:42.314Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:40:42.314Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:40:43.554Z] info: Connected to MongoDB!
+[2023-10-02T04:40:43.554Z] info: Connected to MongoDB!
+[2023-10-02T04:40:51.816Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:40:51.816Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:40:55.032Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:40:55.032Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:43:04.354Z] info: Connected to MongoDB!
+[2023-10-02T04:43:04.355Z] info: Connected to MongoDB!
+[2023-10-02T04:43:04.356Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:43:04.356Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:43:05.504Z] info: Connected to MongoDB!
+[2023-10-02T04:43:05.504Z] info: Connected to MongoDB!
+[2023-10-02T04:43:18.848Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:43:18.848Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:43:31.182Z] info: Connected to MongoDB!
+[2023-10-02T04:43:31.183Z] info: Connected to MongoDB!
+[2023-10-02T04:43:31.184Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:43:31.184Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:43:32.602Z] info: Connected to MongoDB!
+[2023-10-02T04:43:32.602Z] info: Connected to MongoDB!
+[2023-10-02T04:43:34.175Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:43:34.175Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:43:34.645Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:43:34.645Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:43:38.383Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:43:38.383Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:43:38.400Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:43:38.401Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:45:08.527Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:45:08.527Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:46:02.211Z] info: Connected to MongoDB!
+[2023-10-02T04:46:02.212Z] info: Connected to MongoDB!
+[2023-10-02T04:46:02.213Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:46:02.213Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:46:03.650Z] info: Connected to MongoDB!
+[2023-10-02T04:46:03.650Z] info: Connected to MongoDB!
+[2023-10-02T04:46:08.225Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:46:08.225Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:46:13.729Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:46:13.729Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:56:52.122Z] info: Connected to MongoDB!
+[2023-10-02T04:56:52.125Z] info: Connected to MongoDB!
+[2023-10-02T04:56:52.128Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:56:52.128Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:56:54.551Z] info: Connected to MongoDB!
+[2023-10-02T04:56:54.552Z] info: Connected to MongoDB!
+[2023-10-02T04:56:54.553Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:56:54.553Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:56:55.522Z] info: Connected to MongoDB!
+[2023-10-02T04:56:55.522Z] info: Connected to MongoDB!
+[2023-10-02T04:57:03.933Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:57:03.933Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:57:07.866Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:57:07.866Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:57:07.882Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:57:07.883Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:57:16.695Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:57:16.695Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:57:16.702Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:57:16.702Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:57:18.796Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:57:18.797Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:57:50.697Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:57:50.697Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:59:36.460Z] info: Connected to MongoDB!
+[2023-10-02T04:59:36.463Z] info: Connected to MongoDB!
+[2023-10-02T04:59:36.465Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:59:36.465Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T04:59:37.739Z] info: Connected to MongoDB!
+[2023-10-02T04:59:37.739Z] info: Connected to MongoDB!
+[2023-10-02T04:59:40.354Z] warning: No user data found in session, getCurrent
+[2023-10-02T04:59:40.354Z] warning: No user data found in session, getCurrent
+[2023-10-02T05:06:32.031Z] info: Connected to MongoDB!
+[2023-10-02T05:06:32.032Z] info: Connected to MongoDB!
+[2023-10-02T05:06:32.033Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:06:32.033Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:06:33.375Z] info: Connected to MongoDB!
+[2023-10-02T05:06:33.375Z] info: Connected to MongoDB!
+[2023-10-02T05:07:50.249Z] info: Connected to MongoDB!
+[2023-10-02T05:07:50.250Z] info: Connected to MongoDB!
+[2023-10-02T05:07:50.251Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:07:50.251Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:07:51.578Z] info: Connected to MongoDB!
+[2023-10-02T05:07:51.578Z] info: Connected to MongoDB!
+[2023-10-02T05:09:15.915Z] info: Connected to MongoDB!
+[2023-10-02T05:09:15.915Z] info: Connected to MongoDB!
+[2023-10-02T05:09:15.917Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:09:15.917Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:09:17.090Z] info: Connected to MongoDB!
+[2023-10-02T05:09:17.090Z] info: Connected to MongoDB!
+[2023-10-02T05:10:30.295Z] info: Connected to MongoDB!
+[2023-10-02T05:10:30.296Z] info: Connected to MongoDB!
+[2023-10-02T05:10:30.297Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:10:30.297Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:10:31.561Z] info: Connected to MongoDB!
+[2023-10-02T05:10:31.561Z] info: Connected to MongoDB!
+[2023-10-02T05:10:42.415Z] info: Connected to MongoDB!
+[2023-10-02T05:10:42.416Z] info: Connected to MongoDB!
+[2023-10-02T05:10:42.417Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:10:42.417Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:10:43.466Z] info: Connected to MongoDB!
+[2023-10-02T05:10:43.466Z] info: Connected to MongoDB!
+[2023-10-02T05:11:26.380Z] info: Connected to MongoDB!
+[2023-10-02T05:11:26.381Z] info: Connected to MongoDB!
+[2023-10-02T05:11:26.382Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:11:26.382Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:11:27.513Z] info: Connected to MongoDB!
+[2023-10-02T05:11:27.514Z] info: Connected to MongoDB!
+[2023-10-02T05:13:31.955Z] info: Connected to MongoDB!
+[2023-10-02T05:13:31.955Z] info: Connected to MongoDB!
+[2023-10-02T05:13:31.958Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:13:31.957Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:13:33.249Z] info: Connected to MongoDB!
+[2023-10-02T05:13:33.249Z] info: Connected to MongoDB!
+[2023-10-02T05:13:43.364Z] info: Connected to MongoDB!
+[2023-10-02T05:13:43.365Z] info: Connected to MongoDB!
+[2023-10-02T05:13:43.366Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:13:43.366Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:13:44.462Z] info: Connected to MongoDB!
+[2023-10-02T05:13:44.462Z] info: Connected to MongoDB!
+[2023-10-02T05:13:51.888Z] info: Connected to MongoDB!
+[2023-10-02T05:13:51.889Z] info: Connected to MongoDB!
+[2023-10-02T05:13:51.890Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:13:51.890Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:13:53.000Z] info: Connected to MongoDB!
+[2023-10-02T05:13:53.001Z] info: Connected to MongoDB!
+[2023-10-02T05:18:49.551Z] info: Connected to MongoDB!
+[2023-10-02T05:18:49.552Z] info: Connected to MongoDB!
+[2023-10-02T05:18:49.553Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:18:49.553Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:18:50.891Z] info: Connected to MongoDB!
+[2023-10-02T05:18:50.891Z] info: Connected to MongoDB!
+[2023-10-02T05:20:47.579Z] info: Connected to MongoDB!
+[2023-10-02T05:20:47.579Z] info: Connected to MongoDB!
+[2023-10-02T05:20:47.581Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:20:47.581Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:20:48.861Z] info: Connected to MongoDB!
+[2023-10-02T05:20:48.861Z] info: Connected to MongoDB!
+[2023-10-02T05:23:19.321Z] info: Connected to MongoDB!
+[2023-10-02T05:23:19.321Z] info: Connected to MongoDB!
+[2023-10-02T05:23:19.322Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:23:19.323Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:23:20.584Z] info: Connected to MongoDB!
+[2023-10-02T05:23:20.585Z] info: Connected to MongoDB!
+[2023-10-02T05:25:02.315Z] info: Connected to MongoDB!
+[2023-10-02T05:25:02.316Z] info: Connected to MongoDB!
+[2023-10-02T05:25:02.318Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:25:02.318Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:25:03.575Z] info: Connected to MongoDB!
+[2023-10-02T05:25:03.575Z] info: Connected to MongoDB!
+[2023-10-02T05:25:21.122Z] info: Connected to MongoDB!
+[2023-10-02T05:25:21.123Z] info: Connected to MongoDB!
+[2023-10-02T05:25:21.125Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:25:21.125Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:25:22.158Z] info: Connected to MongoDB!
+[2023-10-02T05:25:22.158Z] info: Connected to MongoDB!
+[2023-10-02T05:38:24.326Z] info: Connected to MongoDB!
+[2023-10-02T05:38:24.326Z] info: Connected to MongoDB!
+[2023-10-02T05:38:24.328Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:38:24.328Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:38:25.951Z] info: Connected to MongoDB!
+[2023-10-02T05:38:25.951Z] info: Connected to MongoDB!
+[2023-10-02T05:38:34.617Z] info: Connected to MongoDB!
+[2023-10-02T05:38:34.621Z] info: Connected to MongoDB!
+[2023-10-02T05:38:34.623Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:38:34.624Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:38:35.681Z] info: Connected to MongoDB!
+[2023-10-02T05:38:35.681Z] info: Connected to MongoDB!
+[2023-10-02T05:41:14.803Z] info: Connected to MongoDB!
+[2023-10-02T05:41:14.804Z] info: Connected to MongoDB!
+[2023-10-02T05:41:14.805Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:41:14.805Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:41:16.390Z] info: Connected to MongoDB!
+[2023-10-02T05:41:16.390Z] info: Connected to MongoDB!
+[2023-10-02T05:45:25.048Z] info: Connected to MongoDB!
+[2023-10-02T05:45:25.049Z] info: Connected to MongoDB!
+[2023-10-02T05:45:25.050Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:45:25.050Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:45:26.542Z] info: Connected to MongoDB!
+[2023-10-02T05:45:26.542Z] info: Connected to MongoDB!
+[2023-10-02T05:45:56.898Z] info: Connected to MongoDB!
+[2023-10-02T05:45:56.899Z] info: Connected to MongoDB!
+[2023-10-02T05:45:56.900Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:45:56.900Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:45:58.310Z] info: Connected to MongoDB!
+[2023-10-02T05:45:58.310Z] info: Connected to MongoDB!
+[2023-10-02T05:47:29.566Z] info: Connected to MongoDB!
+[2023-10-02T05:47:29.567Z] info: Connected to MongoDB!
+[2023-10-02T05:47:29.567Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:47:29.567Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:47:31.020Z] info: Connected to MongoDB!
+[2023-10-02T05:47:31.020Z] info: Connected to MongoDB!
+[2023-10-02T05:53:14.691Z] info: Connected to MongoDB!
+[2023-10-02T05:53:14.692Z] info: Connected to MongoDB!
+[2023-10-02T05:53:14.693Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:53:14.693Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:53:16.348Z] info: Connected to MongoDB!
+[2023-10-02T05:53:16.348Z] info: Connected to MongoDB!
+[2023-10-02T05:53:31.078Z] info: Connected to MongoDB!
+[2023-10-02T05:53:31.079Z] info: Connected to MongoDB!
+[2023-10-02T05:53:31.080Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:53:31.080Z] info: listen on http://localhost:8080, mode:
+[2023-10-02T05:53:32.490Z] info: Connected to MongoDB!
+[2023-10-02T05:53:32.490Z] info: Connected to MongoDB!

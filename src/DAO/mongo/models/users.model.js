@@ -39,6 +39,7 @@ const schema = new Schema({
   documents: [
     {
       name: { type: String, required: false },
+      type: { type: String, required: false },
       reference: { type: String, required: false },
     },
   ],

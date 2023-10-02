@@ -40,7 +40,11 @@ class SessionController {
         return res.redirect('/api/sessions/login')
       }
       req.session.user = user
-      req.flash('info', `¡Bienvenido ${user.firstName}!. Has iniciado sesión con éxito.`)
+      if (user.rol === 'admin') {
+        req.flash('info', `Welcome ${user.firstName}!. login as a user to buy!.`)
+      } else {
+        req.flash('info', `¡Bienvenido ${user.firstName}!. Has iniciado sesión con éxito.`)
+      }
       return res.redirect('/api/products')
     })(req, res, next)
   }
@@ -82,53 +86,34 @@ class SessionController {
     return res.render('admin')
   }
   getDocuments(req, res) {
-    console.log('ingreso al documents')
     return res.render('upload')
   }
-  createDocument(req, res) {
-    console.log('ingreso al controller');
+  async createDocument(req, res) {
     try {
-    const uid = req.params.uid
-    const imageType = req.body.imageType
-    console.log('data body', req.body);
+      const uid = req.params.uid
+      const type = req.body.imageType
+      const reference = req.file.path
+      const name = req.file.filename
 
-    if (imageType === 'profile') {
-      console.log('save profil')
-    } else if (imageType === 'product') {
-      console.log('save product')
-    } else if (imageType === 'document') {
-      console.log('save document')
-    }
-    return res.status(201).json({
-      status: 'success',
-      code: 201,
-      payload: {},
-    })
-      
-    } catch (error) {
-      console.log('errores session', error);
-    }
-
-   /*  console.log('datos de body', req.body)
-    const imageType = req.body.imageType 
-    uploader.single('file')(req, res, (err) => {
-      if (err) {
-        console.log('error en el multer', err)
-        return res.status(500).json({
-          status: 'error',
-          code: 500,
-          message: 'Error uploading file',
-        })
+      const nuevoDocumento = {
+        name,
+        type,
+        reference,
       }
-      const file = req.file
-      console.log('datos de file', file)
-      console.log('datos de type', imageType)
+      await userFactory.updateUser({ _id: uid }, { documents: nuevoDocumento })
       return res.status(201).json({
         status: 'success',
         code: 201,
         payload: {},
       })
-    }) */
+    } catch (error) {
+      req.logger.warning('Error uploading file, createDocument', error)
+      return res.status(500).json({
+        status: 'error',
+        code: 500,
+        message: 'Error uploading file',
+      })
+    }
   }
   async switchRol(req, res) {
     try {
@@ -150,7 +135,6 @@ class SessionController {
     }
   }
   getCurrent(req, res) {
-    console.log('entra al current')
     const dataUser = req.session.user
     if (dataUser === undefined) {
       req.logger.warning('No user data found in session, getCurrent')
