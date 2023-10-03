@@ -9,21 +9,24 @@ const __dirname = path.resolve(__filename, '../../')
 
 const getDestination = (req, file, cb) => {
   const tipoArchivo = req.headers['x-tipo-archivo']
-  const imageType = req.body.imageType
-  let uploadFolder = 'public/image'
+  let uploadFolder = 'public/image/'
   if (tipoArchivo === 'profile') {
-    uploadFolder += '/profile'
+    uploadFolder += `${tipoArchivo}`
   } else if (tipoArchivo === 'product') {
-    uploadFolder += '/product'
-  } else if (tipoArchivo === 'document') {
-    uploadFolder += '/document'
+    uploadFolder += `${tipoArchivo}`
+  } else {
+    uploadFolder += `document/${tipoArchivo}`
   }
   cb(null, path.join(__dirname, uploadFolder))
 }
 const storage = multer.diskStorage({
   destination: getDestination,
   filename: (req, file, cb) => {
-    cb(null, file.originalname)
+    const uid = req.params.uid
+    const tipoArchivo = req.headers['x-tipo-archivo']
+    const ext = path.extname(file.originalname)
+    const newName = uid + '_' + tipoArchivo + ext
+    cb(null, newName)
   },
 })
 

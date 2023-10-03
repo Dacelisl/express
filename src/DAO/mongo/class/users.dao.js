@@ -25,6 +25,10 @@ class User {
   }
 
   updateUser = async (id, user) => {
+    const result = await UserModel.updateOne({ _id: id }, { $push: user })
+    return result
+  }
+  updateConexion = async (id, user) => {
     const result = await UserModel.updateOne({ _id: id }, { $set: user })
     return result
   }

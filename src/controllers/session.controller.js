@@ -1,7 +1,8 @@
 import passport from 'passport'
 import userDTO from '../DAO/DTO/user.DTO.js'
 import { userFactory } from '../DAO/factory.js'
-import { uploader } from '../utils/utils.js'
+import { __dirname, __filename } from '../utils/utils.js'
+import dataConfig from '../config/process.config.js'
 
 class SessionController {
   getRegister(req, res) {
@@ -91,14 +92,14 @@ class SessionController {
   async createDocument(req, res) {
     try {
       const uid = req.params.uid
-      const type = req.body.imageType
       const reference = req.file.path
-      const name = req.file.filename
+      const base = reference.match(/\\image\\(.*)/)
+      const path = `http://localhost:${dataConfig.port}${base[0]}`
 
       const nuevoDocumento = {
-        name,
-        type,
-        reference,
+        name: req.file.filename,
+        type: req.body.imageType,
+        reference: path,
       }
       await userFactory.updateUser({ _id: uid }, { documents: nuevoDocumento })
       return res.status(201).json({
