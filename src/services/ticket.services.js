@@ -51,7 +51,7 @@ class TicketServices {
         })
       )
       productsToRemove.forEach(async (product) => {
-        const resRemove = await cartFactory.removeProductsFromCart(dataUser.cart, product._id)
+        await cartFactory.removeProductsFromCart(dataUser.cart, product._id)
       })
 
       const cartUpdate = await cartFactory.getCartWithProducts(dataUser.cart)

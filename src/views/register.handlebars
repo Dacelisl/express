@@ -3,7 +3,7 @@
   {{#if message}}
     <div class='alert alert-success'>{{message}}</div>
   {{/if}}
-  <form class='form' action='/api/sessions/register' method='POST'>
+  <form class='form' action='/api/users/register' method='POST'>
     <h1>REGISTER</h1>
     <input type='text' name='firstName' placeholder='FirstName' required />
     <input type='text' name='lastName' placeholder='LastName' required />
@@ -13,7 +13,7 @@
 
     <button type='submit'>Sign up</button>
     <span class='info'>Already have an account?
-      <a href='/api/sessions/login' type='submit'>Login!!</a>
+      <a href='/api/users/login' type='submit'>Login!!</a>
     </span>
   </form>
 </div>

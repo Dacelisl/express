@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const headers = new Headers()
     headers.append('X-Tipo-Archivo', imageType)
     try {
-      const session = await fetch(`/api/sessions/current`)
+      const session = await fetch(`/api/users/current`)
       const userLocal = await session.json()
-      const response = await fetch(`/api/sessions/${userLocal._id}/documents`, {
+      const response = await fetch(`/api/users/${userLocal._id}/documents`, {
         method: 'POST',
         body: formData,
         headers: headers,

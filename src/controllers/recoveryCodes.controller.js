@@ -28,7 +28,7 @@ class RecoveryCodesController {
       })
       await mailServices.recoveryMail(email, token, basePath)
       req.flash('info', 'We have sent an email to your address. Please check your inbox to continue.')
-      return res.redirect('/api/sessions/login')
+      return res.redirect('/api/users/login')
     } catch (e) {
       req.logger.error('something went wrong createMailRecover', e)
       return res.status(500).json({
@@ -72,7 +72,7 @@ class RecoveryCodesController {
           await recoveryCodeFactory.updateState(foundToken._id)
           await userFactory.updateUser(user._id, { password: passHash })
           req.flash('info', 'You have successfully changed the password.')
-          return res.redirect('/api/sessions/login')
+          return res.redirect('/api/users/login')
         }
         req.flash('info', `you can't use the same password`)
         return res.redirect(req.headers.referer)

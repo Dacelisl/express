@@ -18,7 +18,7 @@ import { ViewRoutes } from './routes/views.routes.js'
 import { chatRoutes } from './routes/chat.routes.js'
 import { MockRoutes } from './routes/mock.routes.js'
 import { MailRoutes } from './routes/mail.routes.js'
-import { SessionRoutes } from './routes/session.routes.js'
+import { UserRoutes } from './routes/user.routes.js'
 import { initPassport } from './config/passport.config.js'
 import passport from 'passport'
 import flash from 'connect-flash'
@@ -74,7 +74,7 @@ app.use('/api/products', ProductRoutes)
 app.use('/api/carts', CartRoutes)
 app.use('/realtimeproducts', isAdmin, ViewRoutes)
 app.use('/test-chat', chatRoutes)
-app.use('/api/sessions', SessionRoutes)
+app.use('/api/users', UserRoutes)
 app.use('/recover', RecoveryCodesRoutes)
 app.use('/api/mock/', MockRoutes)
 app.use('/mail', MailRoutes)

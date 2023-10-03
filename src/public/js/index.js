@@ -22,7 +22,7 @@ async function productToCart() {
 }
 async function handleClick(event) {
   try {
-    const session = await fetch(`/api/sessions/current`)
+    const session = await fetch(`/api/users/current`)
     const userLocal = await session.json()
     const productId = event.target.getAttribute('data-id')
     const response = await fetch(`/api/carts/${userLocal.cart}/product/${productId}`, {

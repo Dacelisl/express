@@ -51,7 +51,7 @@ class CartController {
   async currentCart(req, res) {
     try {
       const dataUser = req.session.user.cart
-      if (!dataUser) return res.redirect('/api/sessions/login')
+      if (!dataUser) return res.redirect('/api/users/login')
       return res.status(200).json(dataUser)
     } catch (error) {
       req.logger.error('something went wrong currentCart', error)
@@ -71,7 +71,7 @@ class CartController {
   async getAll(req, res) {
     try {
       const user = req.session.user
-      if (!user) return res.redirect('/api/sessions/login')
+      if (!user) return res.redirect('/api/users/login')
       user.isAdmin = user.rol === 'admin'
       if (req.query.isUpdating) {
         return res.status(201).json(user)

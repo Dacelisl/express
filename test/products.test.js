@@ -17,43 +17,43 @@ describe('Session test', () => {
     age: faker.number.int(60),
     rol: 'admin',
   }
-  it('GET /api/sessions/register user', async () => {
-    const response = await requester.get('/api/sessions/register')
+  it('GET /api/users/register user', async () => {
+    const response = await requester.get('/api/users/register')
     expect(response.req.method).to.equal('GET')
     expect(response.status).to.equal(200)
     expect(response.headers['content-type']).to.include('text/html')
     const responseBody = response.text
     expect(responseBody.includes('<h1>REGISTER')).to.be.true
   })
-  it('POST /api/sessions/register user', async () => {
-    const response = await requester.post('/api/sessions/register').send(mockUser)
+  it('POST /api/users/register user', async () => {
+    const response = await requester.post('/api/users/register').send(mockUser)
     expect(response.req.method).to.equal('POST')
     expect(response.status).to.equal(302)
-    expect(response.header.location).to.equal('/api/sessions/login')
+    expect(response.header.location).to.equal('/api/users/login')
   })
-  it('POST Fail /api/sessions/register user', async () => {
-    const response = await requester.post('/api/sessions/register').send(mockUser)
+  it('POST Fail /api/users/register user', async () => {
+    const response = await requester.post('/api/users/register').send(mockUser)
     expect(response.req.method).to.equal('POST')
     expect(response.status).to.equal(302)
-    expect(response.header.location).to.equal('/api/sessions/register')
+    expect(response.header.location).to.equal('/api/users/register')
   })
-  it('GET /api/sessions/login user', async () => {
-    const response = await requester.get('/api/sessions/login')
+  it('GET /api/users/login user', async () => {
+    const response = await requester.get('/api/users/login')
     expect(response.req.method).to.equal('GET')
     expect(response.status).to.equal(200)
     expect(response.headers['content-type']).to.include('text/html')
     const responseBody = response.text
     expect(responseBody.includes('<h1>LOGIN')).to.be.true
   })
-  it('POST fail /api/sessions/login user', async () => {
-    const response = await requester.post('/api/sessions/login').send({ username: mockUser.email, password: mockUser.firstName })
+  it('POST fail /api/users/login user', async () => {
+    const response = await requester.post('/api/users/login').send({ username: mockUser.email, password: mockUser.firstName })
     expect(response.req.method).to.equal('POST')
     expect(response.headers['content-type']).to.include('text/plain')
     expect(response.status).to.equal(302)
-    expect(response.header.location).to.equal('/api/sessions/login')
+    expect(response.header.location).to.equal('/api/users/login')
   })
-  it('POST /api/sessions/login user', async () => {
-    const response = await requester.post('/api/sessions/login').send(mockUser)
+  it('POST /api/users/login user', async () => {
+    const response = await requester.post('/api/users/login').send(mockUser)
     expect(response.req.method).to.equal('POST')
     expect(response.headers['content-type']).to.include('text/plain')
     expect(response.status).to.equal(302)
@@ -63,22 +63,22 @@ describe('Session test', () => {
     const cookieRest = sessionCookie.split('=')[1]
     cookieValue = cookieRest.split(';')[0]
   })
-  it('GET /api/sessions/current user', async () => {
-    const response = await requester.get('/api/sessions/current').set('Cookie', [`${cookieName}=${cookieValue}`])
+  it('GET /api/users/current user', async () => {
+    const response = await requester.get('/api/users/current').set('Cookie', [`${cookieName}=${cookieValue}`])
     expect(response.req.method).to.equal('GET')
     expect(response.headers['content-type']).to.include('application/json')
     expect(response.status).to.equal(200)
     expect(response._body.email).to.be.eql(mockUser.email)
   })
-  it('GET /api/sessions/logout user', async () => {
-    const response = await requester.get('/api/sessions/logout')
+  it('GET /api/users/logout user', async () => {
+    const response = await requester.get('/api/users/logout')
     expect(response.req.method).to.equal('GET')
     expect(response.status).to.equal(302)
     expect(response.headers['content-type']).to.include('text/plain')
-    expect(response.header.location).to.equal('/api/sessions/login')
+    expect(response.header.location).to.equal('/api/users/login')
   })
-  it('DELETE /api/sessions/ delete user ', async () => {
-    const response = await requester.delete(`/api/sessions/${mockUser.email}`)
+  it('DELETE /api/users/ delete user ', async () => {
+    const response = await requester.delete(`/api/users/${mockUser.email}`)
     expect(response.req.method).to.equal('DELETE')
     expect(response.status).to.equal(204)
     expect(response.text).to.equal('')

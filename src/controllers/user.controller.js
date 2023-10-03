@@ -1,9 +1,9 @@
 import passport from 'passport'
 import userDTO from '../DAO/DTO/user.DTO.js'
 import { userFactory } from '../DAO/factory.js'
-import dataConfig from '../config/process.config.js'
+import { userService } from '../services/user.services.js'
 
-class SessionController {
+class UserController {
   getRegister(req, res) {
     try {
       const message = req.flash('info')
@@ -13,16 +13,16 @@ class SessionController {
     }
   }
   createRegister(req, res, next) {
-    passport.authenticate('register', { failureRedirect: '/api/sessions/register', failureFlash: true }, (err, user, info) => {
+    passport.authenticate('register', { failureRedirect: '/api/Users/register', failureFlash: true }, (err, user, info) => {
       if (err) {
         req.logger.error('something went wrong createRegister', err)
         return next(err)
       }
       req.flash('info', info.message)
       if (!user) {
-        return res.redirect('/api/sessions/register')
+        return res.redirect('/api/users/register')
       }
-      return res.redirect('/api/sessions/login')
+      return res.redirect('/api/users/login')
     })(req, res, next)
   }
   getLogin(req, res) {
@@ -30,14 +30,14 @@ class SessionController {
     return res.render('login', { message })
   }
   createLogin(req, res, next) {
-    passport.authenticate('login', { failureRedirect: '/api/sessions/login', failureFlash: true }, (err, user, info) => {
+    passport.authenticate('login', { failureRedirect: '/api/users/login', failureFlash: true }, (err, user, info) => {
       if (err) {
         req.logger.error('something went wrong createLogin', err)
         return next(err)
       }
       if (!user) {
         req.flash('info', info.message)
-        return res.redirect('/api/sessions/login')
+        return res.redirect('/api/users/login')
       }
       req.session.user = user
       if (user.rol === 'admin') {
@@ -54,29 +54,8 @@ class SessionController {
         req.logger.error('something went wrong logout', err)
         return res.status(500).render('error', { error: 'session could not be closed', code: 500 })
       }
-      return res.redirect('/api/sessions/login')
+      return res.redirect('/api/users/login')
     })
-  }
-  async deleteUser(req, res) {
-    try {
-      const userMail = req.params.uid
-      const user = await userFactory.getUserByEmail(userMail)
-      const resDelete = await userFactory.deletedOne(user._id)
-      return res.status(204).json({
-        status: 'success',
-        code: 204,
-        message: 'user deleted',
-        payload: resDelete,
-      })
-    } catch (e) {
-      req.logger.error('something went wrong deleteUser', e)
-      return res.status(500).json({
-        status: 'error',
-        code: 500,
-        message: 'something went wrong :(',
-        payload: {},
-      })
-    }
   }
   getProfile(req, res) {
     const user = { email: req.session.user.email, isAdmin: req.session.user.rol === 'admin', user: req.session.user.firstName }
@@ -88,29 +67,50 @@ class SessionController {
   getDocuments(req, res) {
     return res.render('upload')
   }
+  async deleteUser(req, res) {
+    try {
+      const userMail = req.params.uid
+      const result = await userService.deleteUserByEmail(userMail)
+      if (result.status === 'success') {
+        return res.status(204).json({
+          status: 'success',
+          code: 204,
+          message: 'User deleted',
+          payload: result.payload,
+        })
+      } else {
+        return res.status(result.code).json({
+          status: result.status,
+          code: result.code,
+          payload: {},
+          message: result.message,
+        })
+      }
+    } catch (e) {
+      req.logger.error('something went wrong deleteUser', e)
+      return res.status(500).json({
+        status: 'error',
+        code: 500,
+        message: 'something went wrong :(',
+        payload: {},
+      })
+    }
+  }
   async createDocument(req, res) {
     try {
       const uid = req.params.uid
-      const reference = req.file.path
-      const base = reference.match(/\\image\\(.*)/)
-      const path = `http://localhost:${dataConfig.port}${base[0]}`
-
-      const nuevoDocumento = {
-        name: req.file.filename,
-        type: req.body.imageType,
-        reference: path,
-      }
-      await userFactory.loadDocument({ _id: uid }, { documents: nuevoDocumento })
+      const newDoc = await userService.createDocument(req.file, req.body.imageType, uid)
       return res.status(201).json({
         status: 'success',
         code: 201,
-        payload: {},
+        payload: newDoc,
       })
     } catch (error) {
       req.logger.warning('Error uploading file, createDocument', error)
       return res.status(500).json({
         status: 'error',
         code: 500,
+        payload: {},
         message: 'Error uploading file',
       })
     }
@@ -120,23 +120,13 @@ class SessionController {
       const uid = req.params.uid
       let user = await userFactory.getUserByID(uid)
       if (user) {
-        const documentosUsuario = user.documents.map((documento) => documento.type)
-        const tiposDocumentosRequeridos = ['DNI', 'proofAddress', 'accountStatus']
-        const tieneTodosLosDocumentos = tiposDocumentosRequeridos.every((tipo) => documentosUsuario.includes(tipo))
-        if (tieneTodosLosDocumentos) {
-          const userUpdate = await userFactory.updateUser(uid, { rol: user.rol === 'user' ? 'premium' : 'user' })
-          if (userUpdate.acknowledged) {
-            user = await userFactory.getUserByID(uid)
-          }
-          return res.status(200).json(user)
-        } else {
-          return res.json({
-            status: 'error',
-            code: 400,
-            message: 'The user does not have all the specified document types',
-            payload: {},
-          })
-        }
+        const result = await userService.switchUserRole(user)
+        return res.status(result.code).json({
+          status: result.status,
+          code: result.code,
+          message: result.message,
+          payload: result.payload,
+        })
       } else {
         return res.json({
           status: 'error',
@@ -175,4 +165,4 @@ class SessionController {
     res.redirect('/api/products')
   }
 }
-export const sessionController = new SessionController()
+export const userController = new UserController()
