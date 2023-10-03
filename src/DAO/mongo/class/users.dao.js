@@ -2,7 +2,9 @@ import { UserModel } from '../models/users.model.js'
 
 class User {
   getUsers = async () => {
-    const users = await UserModel.find()
+    const users = await UserModel.find({
+      'documents.type': { $all: ['DNI', 'proofAddress', 'accountStatus'] },
+    })
     return users
   }
 
@@ -24,11 +26,11 @@ class User {
     return result
   }
 
-  updateUser = async (id, user) => {
+  loadDocument = async (id, user) => {
     const result = await UserModel.updateOne({ _id: id }, { $push: user })
     return result
   }
-  updateConexion = async (id, user) => {
+  updateUser = async (id, user) => {
     const result = await UserModel.updateOne({ _id: id }, { $set: user })
     return result
   }

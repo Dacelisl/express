@@ -1,7 +1,6 @@
 import passport from 'passport'
 import userDTO from '../DAO/DTO/user.DTO.js'
 import { userFactory } from '../DAO/factory.js'
-import { __dirname, __filename } from '../utils/utils.js'
 import dataConfig from '../config/process.config.js'
 
 class SessionController {
@@ -101,7 +100,7 @@ class SessionController {
         type: req.body.imageType,
         reference: path,
       }
-      await userFactory.updateUser({ _id: uid }, { documents: nuevoDocumento })
+      await userFactory.loadDocument({ _id: uid }, { documents: nuevoDocumento })
       return res.status(201).json({
         status: 'success',
         code: 201,
@@ -120,18 +119,39 @@ class SessionController {
     try {
       const uid = req.params.uid
       let user = await userFactory.getUserByID(uid)
-      const userUpdate = await userFactory.updateUser(uid, { rol: user.rol === 'user' ? 'premium' : 'user' })
-      if (userUpdate.acknowledged) {
-        user = await userFactory.getUserByID(uid)
+      if (user) {
+        const documentosUsuario = user.documents.map((documento) => documento.type)
+        const tiposDocumentosRequeridos = ['DNI', 'proofAddress', 'accountStatus']
+        const tieneTodosLosDocumentos = tiposDocumentosRequeridos.every((tipo) => documentosUsuario.includes(tipo))
+        if (tieneTodosLosDocumentos) {
+          const userUpdate = await userFactory.updateUser(uid, { rol: user.rol === 'user' ? 'premium' : 'user' })
+          if (userUpdate.acknowledged) {
+            user = await userFactory.getUserByID(uid)
+          }
+          return res.status(200).json(user)
+        } else {
+          return res.json({
+            status: 'error',
+            code: 400,
+            message: 'The user does not have all the specified document types',
+            payload: {},
+          })
+        }
+      } else {
+        return res.json({
+          status: 'error',
+          code: 404,
+          message: 'User not found',
+          payload: {},
+        })
       }
-      return res.status(200).json(user)
     } catch (error) {
       req.logger.warning('failed to change roles, switchRol', error)
       return res.json({
         status: 'error',
         code: 500,
         message: 'failed to change roles,',
-        payload: null,
+        payload: {},
       })
     }
   }

@@ -22,7 +22,7 @@ export function initPassport() {
         } else {
           const currentDate = new Date()
           const formattedDate = currentDate.toLocaleString()
-          await userFactory.updateConexion(user._id, { lastConnection: formattedDate })
+          await userFactory.updateUser(user._id, { lastConnection: formattedDate })
         }
         return done(null, user)
       } catch (err) {
