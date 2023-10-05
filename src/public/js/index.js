@@ -123,6 +123,7 @@ function formDelete() {
         email: newForm.get('email'),
       }
       deleteUser(user.email)
+      userDelete.reset()
     })
   }
 }
@@ -137,7 +138,7 @@ async function deleteUser(email) {
         icon: 'error',
         title: 'The user does not exist or could not be deleted',
         showConfirmButton: false,
-        timer: 1500,
+        timer: 2000,
       })
     } else {
       Swal.fire({
@@ -145,7 +146,7 @@ async function deleteUser(email) {
         icon: 'success',
         title: `user ${email} was deleted`,
         showConfirmButton: false,
-        timer: 1500,
+        timer: 2000,
       })
     }
   } catch (error) {

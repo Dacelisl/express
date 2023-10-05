@@ -212,6 +212,84 @@ class MailServices {
     `
   }
 
+  async productNotificationMail(user, product) {
+    try {
+      const transporter = this.createTransporter()
+      const mailOptions = this.generateMailProductNotificationOptions(user, product)
+      const sendResult = await transporter.sendMail(mailOptions)
+      return {
+        status: 'Success',
+        code: 201,
+        message: 'Mail sent successfully',
+        payload: sendResult,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 401,
+        message: `Error Mail sent ${error}`,
+        payload: {},
+      }
+    }
+  }
+  generateMailProductNotificationOptions(user, product) {
+    return {
+      from: dataConfig.email_google,
+      to: user.email,
+      subject: 'Deletion notification',
+      html: this.generateMailProductNotificationHtml(user, product),
+    }
+  }
+  generateMailProductNotificationHtml(user, product) {
+    return `
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+    <body>
+    <div class="container">
+        <h1>Notificación de Eliminación de Producto</h1>
+        <p>Estimado ${user.firstName} ${user.lastName},</p>
+        <p>Lamentamos informarte que tu producto en nuestra tienda ha sido eliminado debido a que no cumplía con nuestras políticas de la tienda.</p>
+        <p>Detalles del producto eliminado:</p>
+        <ul>
+            <li>Nombre del Producto: ${product.title}</li>
+            <li>Categoria del Producto: ${product.category}</li>
+            <li>Codigo del Producto: ${product.code}</li>
+        </ul>
+        <p>Si tienes alguna pregunta o necesitas más información, por favor, no dudes en contactarnos.</p>
+        <p>Gracias por tu comprensión.</p>
+        <p>Atentamente,<br>Tu Equipo de Soporte de la Tienda</p>
+    </div>
+</body>
+    `
+  }
+
   async recoveryMail(email, token, basePath) {
     try {
       const transporter = this.createTransporter()

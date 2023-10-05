@@ -106,11 +106,11 @@ class ProductController {
     try {
       const productId = req.params.pid
       const resDelete = await productService.deletedOne(productId)
-      return res.status(204).json({
+      return res.json({
         status: 'success',
         code: 204,
-        payload: resDelete,
         message: 'product deleted',
+        payload: resDelete,
       })
     } catch (e) {
       req.logger.error('something went wrong deleteProduct', e)

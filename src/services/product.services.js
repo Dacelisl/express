@@ -1,4 +1,5 @@
-import { productFactory } from '../DAO/factory.js'
+import { productFactory, userFactory } from '../DAO/factory.js'
+import { mailServices } from '../services/mail.services.js'
 import { parsedQuery, isValid } from '../utils/utils.js'
 import dataConfig from '../config/process.config.js'
 import ProductDTO from '../DAO/DTO/product.dto.js'
@@ -54,15 +55,15 @@ class ProductServices {
       return {
         status: 'Success',
         code: 201,
+        message: 'product found',
         payload: payload,
-        message: 'cart created',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 401,
-        payload: {},
         message: `Error ${error}`,
+        payload: {},
       }
     }
   }
@@ -72,8 +73,15 @@ class ProductServices {
     const createProduct = await productFactory.saveProduct(dataDTO)
     return createProduct
   }
-  async deletedOne(objectId) {
-    const deleted = await productFactory.deleteProduct(objectId)
+  async deletedOne(productId) {
+    const productFound = await productFactory.getProductByID(productId)
+    const userOwner = await userFactory.getUserByEmail(productFound.owner)
+    if (userOwner !== 'null') {
+      if (userOwner.rol === 'premium') {
+        const res = await mailServices.productNotificationMail(userOwner, productFound)
+      }
+    }
+    const deleted = await productFactory.deleteProduct(productId)
     return deleted
   }
   async updateOne(dataProduct) {
