@@ -61,7 +61,6 @@ class CartController {
     try {
       const cartId = req.params.cid || req.session.user.cart
       const payload = await cartService.getCartWithProducts(cartId)
-      /* return res.render('table', {payload}) */
       return res.status(200).json(payload)
     } catch (error) {
       req.logger.error('something went wrong getCartId', error)

@@ -112,6 +112,62 @@ async function deleteProduct(productId) {
     throw new Error('Failed', error)
   }
 }
+
+function formDelete() {
+  const userDelete = document.querySelector('.userDelete')
+  if (userDelete) {
+    userDelete.addEventListener('submit', (event) => {
+      event.preventDefault()
+      const newForm = new FormData(userDelete)
+      const user = {
+        email: newForm.get('email'),
+      }
+      deleteUser(user.email)
+    })
+  }
+}
+async function deleteUser(email) {
+  try {
+    const response = await fetch(`/api/users/${email}`, {
+      method: 'DELETE',
+    })
+    if (!response.ok) {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'The user does not exist or could not be deleted',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    } else {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: `user ${email} was deleted`,
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    }
+  } catch (error) {
+    throw new Error('Failed', error)
+  }
+}
+
+function editUser() {
+  const editButton = document.getElementById('edit-button')
+  const saveButton = document.getElementById('save-button')
+  if (editButton) {
+    editButton.addEventListener('click', function () {
+      const inputElements = document.querySelectorAll('.form-user')
+      inputElements.forEach((input) => {
+        input.readOnly = false
+      })
+      editButton.style.display = 'none'
+      saveButton.style.display = 'block'
+    })
+  }
+}
+
 async function updateProducts() {
   try {
     const response = await fetch(`/api/products/?limit=10&isUpdating=true`)
@@ -155,6 +211,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   try {
     productToCart()
     searchProductByCategory()
+    editUser()
+    formDelete()
   } catch (error) {
     throw new Error('Something went wrong!', error)
   }

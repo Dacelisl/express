@@ -2,7 +2,7 @@ import { UserModel } from '../models/users.model.js'
 
 class User {
   getUsers = async () => {
-    const users = await UserModel.find()
+    const users = await UserModel.find({})
     return users
   }
   getUserByEmail = async (mail) => {

@@ -1,5 +1,5 @@
 import { ticketFactory, cartFactory, productFactory } from '../DAO/factory.js'
-import { isValid, randomCode, convertCurrencyToNumber } from '../utils/utils.js'
+import { randomCode, convertCurrencyToNumber } from '../utils/utils.js'
 
 class TicketServices {
   async purchaseCart(id, dataUser) {

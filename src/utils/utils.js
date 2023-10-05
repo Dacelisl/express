@@ -49,6 +49,13 @@ function isValid(id) {
     }
   }
 }
+function timeDifference(connectionTime, timeMinutes) {
+  const lastConnectionTime = new Date(connectionTime)
+  const currentTime = new Date()
+  const timeDifference = currentTime - lastConnectionTime
+  const hoursDifference = timeDifference / (1000 * 60)
+  return hoursDifference > timeMinutes
+}
 function randomCode(length) {
   const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   let code = ''
@@ -66,4 +73,4 @@ function convertCurrencyToNumber(currencyString) {
 export const createHash = (password) => bcryptjs.hashSync(password, bcryptjs.genSaltSync(10))
 export const isValidPassword = (password, hashPassword) => bcryptjs.compareSync(password, hashPassword)
 export const uploader = multer({ storage })
-export { __filename, __dirname, parsedQuery, isValid, randomCode, convertCurrencyToNumber }
+export { __filename, __dirname, parsedQuery, isValid, randomCode, convertCurrencyToNumber, timeDifference }

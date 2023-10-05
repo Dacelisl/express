@@ -1,9 +1,62 @@
 import passport from 'passport'
 import userDTO from '../DAO/DTO/user.DTO.js'
-import { userFactory } from '../DAO/factory.js'
 import { userService } from '../services/user.services.js'
 
 class UserController {
+  async getUser(req, res) {
+    try {
+      const uid = req.query.uid
+      const user = await userService.getUserByEmail(uid)
+      const userData = {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        age: user.age,
+        email: user.email,
+        rol: user.rol,
+      }
+      return res.render('editUser', { userData })
+    } catch (error) {
+      req.logger.warning('Error get User, getUser', error)
+      return res.status(user.code).json({
+        status: user.status,
+        code: user.code,
+        message: user.message,
+        payload: user.payload,
+      })
+    }
+  }
+  async getAllUsers(req, res) {
+    try {
+      const newDoc = await userService.getAllUsers()
+      return res.status(newDoc.code).json({
+        status: newDoc.status,
+        code: newDoc.code,
+        message: newDoc.message,
+        payload: newDoc.payload,
+      })
+    } catch (error) {
+      req.logger.warning('Error uploading file, createDocument', error)
+      return res.status(newDoc.code).json({
+        status: newDoc.status,
+        code: newDoc.code,
+        message: newDoc.message,
+        payload: newDoc.payload,
+      })
+    }
+  }
+  async deleteInactiveUsers(req, res) {
+    try {
+      const deletedUsers = await userService.deleteInactiveUsers()
+      return res.status(deletedUsers.code).json({
+        status: deletedUsers.status,
+        code: deletedUsers.code,
+        message: deletedUsers.message,
+        payload: deletedUsers.payload,
+      })
+    } catch (error) {
+      req.logger.error('something went wrong getRegister', error)
+    }
+  }
   getRegister(req, res) {
     try {
       const message = req.flash('info')
@@ -67,25 +120,60 @@ class UserController {
   getDocuments(req, res) {
     return res.render('upload')
   }
+  getEditUser(req, res) {
+    const successMessages = req.flash('success')
+    return res.render('editUser', { successMessages })
+  }
+  getDeleteUser(req, res) {
+    return res.render('deleteUser')
+  }
+  async updateUser(req, res) {
+    try {
+      const dataUser = req.body
+      const userUpdate = {
+        firstName: dataUser.firstName,
+        lastName: dataUser.lastName,
+        email: dataUser.email,
+        age: dataUser.age,
+        rol: dataUser.rol,
+      }
+      const userId = await userService.getUserByEmail(userUpdate.email)
+      if (!userId) {
+        return {
+          status: 'error',
+          code: 404,
+          message: 'User not found',
+          payload: {},
+        }
+      }
+      const result = await userService.updateUser(userId._id, userUpdate)
+      if (result.code === 201) {
+        req.flash('success', 'Information was successfully updated.')
+      } else {
+        req.flash('info', 'The information could not be updated.')
+      }
+      req.session.user.message = null
+      return res.redirect('/api/users/editUser')
+    } catch (e) {
+      req.logger.error('something went wrong updateUser', e)
+      return res.status(500).json({
+        status: 'error',
+        code: 500,
+        message: 'something went wrong :(',
+        payload: {},
+      })
+    }
+  }
   async deleteUser(req, res) {
     try {
       const userMail = req.params.uid
       const result = await userService.deleteUserByEmail(userMail)
-      if (result.status === 'success') {
-        return res.status(204).json({
-          status: 'success',
-          code: 204,
-          message: 'User deleted',
-          payload: result.payload,
-        })
-      } else {
-        return res.status(result.code).json({
-          status: result.status,
-          code: result.code,
-          payload: {},
-          message: result.message,
-        })
-      }
+      return res.status(result.code).json({
+        status: result.status,
+        code: result.code,
+        message: result.message,
+        payload: result.payload,
+      })
     } catch (e) {
       req.logger.error('something went wrong deleteUser', e)
       return res.status(500).json({
@@ -103,6 +191,7 @@ class UserController {
       return res.status(201).json({
         status: 'success',
         code: 201,
+        message: 'uploading file',
         payload: newDoc,
       })
     } catch (error) {
@@ -110,15 +199,15 @@ class UserController {
       return res.status(500).json({
         status: 'error',
         code: 500,
-        payload: {},
         message: 'Error uploading file',
+        payload: {},
       })
     }
   }
   async switchRol(req, res) {
     try {
       const uid = req.params.uid
-      let user = await userFactory.getUserByID(uid)
+      let user = await userService.getUserByID(uid)
       if (user) {
         const result = await userService.switchUserRole(user)
         return res.status(result.code).json({

@@ -2,7 +2,8 @@ import passport from 'passport'
 import local from 'passport-local'
 import GitHubStrategy from 'passport-github'
 import { createHash, isValidPassword } from '../utils/utils.js'
-import { userFactory, cartFactory } from '../DAO/factory.js'
+import { userService } from '../services/user.services.js'
+import { cartService } from '../services/cart.services.js'
 import userDTO from '../DAO/DTO/user.DTO.js'
 import fetch from 'node-fetch'
 import dataConfig from './process.config.js'
@@ -13,7 +14,7 @@ export function initPassport() {
     'login',
     new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
       try {
-        const user = await userFactory.getUserByEmail(username)
+        const user = await userService.getUserByEmail(username)
         if (!user) {
           return done(null, false, { message: 'The Email Does Not Exist ' + username })
         }
@@ -22,7 +23,7 @@ export function initPassport() {
         } else {
           const currentDate = new Date()
           const formattedDate = currentDate.toLocaleString()
-          await userFactory.updateUser(user._id, { lastConnection: formattedDate })
+          await userService.updateUser(user._id, { lastConnection: formattedDate })
         }
         return done(null, user)
       } catch (err) {
@@ -40,24 +41,24 @@ export function initPassport() {
       async (req, username, password, done) => {
         try {
           const { email, firstName, lastName, age, rol } = req.body
-          let user = await userFactory.getUserByEmail(username)
+          let user = await userService.getUserByEmail(username)
           if (user) {
             return done(null, false, { message: 'User already exists' })
           }
-          let cart = await cartFactory.createEmptyCart()
+          let cart = await cartService.createCart()
           const newUser = {
             email: email,
             firstName: firstName,
             lastName: lastName,
-            rol: rol ? rol : 'user',
+            rol: rol || 'user',
             password: createHash(password),
             age: Number(age),
-            cart: cart._id,
+            cart: cart.payload._id,
             documents: [],
             lastConnection: '',
           }
           const userDto = new userDTO(newUser)
-          let userCreated = await userFactory.saveUser(userDto)
+          let userCreated = await userService.saveUser(userDto)
           return done(null, userCreated, { message: 'User Registration succesful' })
         } catch (e) {
           return done(e, { message: 'Error in register' })
@@ -84,15 +85,15 @@ export function initPassport() {
             },
           })
           const emails = await res.json()
-          const emailDetail = emails.find((email) => email.verified == true)
+          const emailDetail = emails.find((email) => email.verified === true)
 
           if (!emailDetail) {
             return done(null, { message: 'cannot get a valid email for this user' })
           }
           profile.email = emailDetail.email
-          let cart = await cartFactory.createEmptyCart()
+          let cart = await cartService.createCart()
 
-          let user = await userFactory.getUserByEmail(profile.email)
+          let user = await userService.getUserByEmail(profile.email)
           if (!user) {
             const newUser = {
               email: profile.email,
@@ -101,12 +102,12 @@ export function initPassport() {
               rol: 'user',
               password: 'nopass',
               age: 0,
-              cart: cart._id,
+              cart: cart.payload._id,
               documents: [],
               lastConnection: '',
             }
             const userDto = new userDTO(newUser)
-            let userCreated = await userFactory.saveUser(userDto)
+            let userCreated = await userService.saveUser(userDto)
             return done(null, userCreated, { message: 'User Registration succesful' })
           } else {
             return done(null, user, { message: 'User already exists' })

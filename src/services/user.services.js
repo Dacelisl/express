@@ -1,9 +1,104 @@
 import { userFactory } from '../DAO/factory.js'
+import { timeDifference } from '../utils/utils.js'
+import { mailServices } from './mail.services.js'
 import dataConfig from '../config/process.config.js'
 
 class UserServices {
+  async saveUser(user) {
+    return await userFactory.saveUser(user)
+  }
+  async deleteInactiveUsers() {
+    const users = []
+    try {
+      const usersList = await userFactory.getUsers()
+      usersList.forEach((user) => {
+        const userData = {
+          name: user.firstName,
+          email: user.email,
+          delete: timeDifference(user.lastConnection, 2),
+        }
+        users.push(userData)
+      })
+      users.forEach(async (user) => {
+        if (user.delete) {
+          await mailServices.deleteInactiveUsersMail(user.email, user.name)
+          await this.deleteUserByEmail(user.email)
+        }
+      })
+      return {
+        status: 'success',
+        code: 201,
+        message: 'all users Inactive deleted',
+        payload: users,
+      }
+    } catch (error) {
+      return {
+        status: 'error',
+        code: 500,
+        message: 'error getting all users :(',
+        payload: {},
+      }
+    }
+  }
+  async getAllUsers() {
+    const users = []
+    try {
+      const usersList = await userFactory.getUsers()
+      usersList.forEach((user) => {
+        const userData = {
+          name: user.firstName,
+          email: user.email,
+          rol: user.rol,
+        }
+        users.push(userData)
+      })
+      return {
+        status: 'success',
+        code: 201,
+        message: 'all users',
+        payload: users,
+      }
+    } catch (error) {
+      return {
+        status: 'error',
+        code: 500,
+        message: 'error getting all users :(',
+        payload: {},
+      }
+    }
+  }
   async getUserByID(uid) {
     return await userFactory.getUserByID(uid)
+  }
+  async getUserByEmail(mail) {
+    return await userFactory.getUserByEmail(mail)
+  }
+  async updateUser(id, user) {
+    try {
+      const userFound = await userFactory.getUserByID(id)
+      if (!userFound) {
+        return {
+          status: 'Fail',
+          code: 404,
+          message: 'User not exist',
+          payload: {},
+        }
+      }
+      const userUpdate = await userFactory.updateUser(id, user)
+      return {
+        status: 'success',
+        code: 201,
+        message: 'user update successfully',
+        payload: userUpdate,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 400,
+        message: `Error updateUser`,
+        payload: {},
+      }
+    }
   }
   async createDocument(file, imageType, uid) {
     const reference = file.path
@@ -17,7 +112,6 @@ class UserServices {
     await userFactory.loadDocument({ _id: uid }, { documents: nuevoDocumento })
     return nuevoDocumento
   }
-
   async switchUserRole(user) {
     const documentosUsuario = user.documents.map((documento) => documento.type)
     const tiposDocumentosRequeridos = ['DNI', 'proofAddress', 'accountStatus']
@@ -32,27 +126,26 @@ class UserServices {
         return {
           status: 'success',
           code: 201,
-          payload: userUpdate,
           message: 'update user role',
+          payload: userUpdate,
         }
       } else {
         return {
           status: 'error',
           code: 500,
-          payload: {},
           message: 'Failed to update user role',
+          payload: {},
         }
       }
     } else {
       return {
         status: 'error',
         code: 400,
-        payload: {},
         message: 'The user does not have all the specified document types',
+        payload: {},
       }
     }
   }
-
   async deleteUserByEmail(userMail) {
     try {
       const user = await userFactory.getUserByEmail(userMail)
@@ -60,23 +153,23 @@ class UserServices {
         return {
           status: 'error',
           code: 404,
-          payload: {},
           message: 'User not found',
+          payload: {},
         }
       }
       const result = await userFactory.deletedOne(user._id)
       return {
         status: 'Success',
         code: 204,
-        payload: result,
         message: 'user deleted successfully',
+        payload: result,
       }
     } catch (error) {
       return {
         status: 'error',
         code: 500,
-        payload: {},
         message: 'Something went wrong :(',
+        payload: {},
       }
     }
   }

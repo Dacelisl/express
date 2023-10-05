@@ -1,0 +1,45 @@
+<div class='profile-container'>
+  <a href='/api/users/admin' class='floating-button'>Back</a>
+  {{#if successMessages}}
+    <div class='alert alert-success'>{{successMessages}}</div>
+  {{/if}}
+  <h1>Edit User</h1>
+
+  {{#if userData}}
+    <div class='header'>
+      <h1>Search User by Email</h1>
+      <form id='search-form' action='/api/users/user/:uid' method='get'>
+        <input type='text' id='email-input' name='uid' placeholder='enter email' />
+        <button type='submit'>Search</button>
+      </form>
+    </div>
+    <div class='user-info-container'>
+      <div class='user-info'>
+        <h2>Información del Usuario</h2>
+        <div class='user-details'>
+          <form id='form-user' action='/api/users/updateUser' method='post'>
+            <input type='text' class='form-user' id='user-firstname' name='firstName' value='{{userData.firstName}}' readonly />
+            <input type='text' class='form-user' id='user-lastname' name='lastName' value='{{userData.lastName}}' readonly />
+            <input type='text' class='form-user' id='user-email' name='email' value='{{userData.email}}' readonly />
+            <input type='text' class='form-user' id='user-age' name='age' value='{{userData.age}}' readonly />
+            <input type='text' class='form-user' id='user-rol' name='rol' value='{{userData.rol}}' readonly />
+            <div class='user-actions'>
+              <button id='edit-button' type='button'>Editar</button>
+              <button id='save-button' type='submit' style='display:none;'>Guardar </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  {{else}}
+    <div class='header'>
+      <h1>Search User by Email</h1>
+      <form id='search-form' action='/api/users/user/:uid' method='get'>
+        <input type='text' id='email-input' name='uid' placeholder='enter email' />
+        <button type='submit'>Search</button>
+      </form>
+    </div>
+
+  {{/if}}
+</div>
