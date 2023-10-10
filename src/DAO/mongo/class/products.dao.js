@@ -9,19 +9,20 @@ class Product {
       .lean()
     return products
   }
-
   getProductByID = async (id) => {
     const user = await ProductsModel.findById(id)
     return user
   }
-
+  getProductByCode = async (code) => {
+    const user = await ProductsModel.findOne({ code: code })
+    return user
+  }
   getTotalProducts = async (query) => {
     const user = await ProductsModel.countDocuments(query)
     return user
   }
-
   saveProduct = async (dataProduct) => {
-    const { title, description, category, price, thumbnail, code, stock, owner } = dataProduct
+    const { title, description, category, price, thumbnail, code, owner, stock } = dataProduct
     const result = await ProductsModel.create({ title, description, category, price, thumbnail, code, owner, stock })
     return result
   }
@@ -29,7 +30,6 @@ class Product {
     const result = await ProductsModel.deleteOne({ _id: objectId })
     return result
   }
-
   updateProduct = async (dataProduct) => {
     const { title, description, category, price, thumbnail, code, stock, id, owner } = dataProduct
     const result = await ProductsModel.updateOne({ _id: id }, { title, description, category, price, thumbnail, code, owner, stock })

@@ -2,7 +2,7 @@ import { connect, Schema, model } from 'mongoose'
 import { ProductsModel } from '../DAO/mongo/models/products.model.js'
 import { faker } from '@faker-js/faker'
 import dataConfig from '../config/process.config.js'
-import { logger } from "./logger.js";
+import { logger } from './logger.js'
 
 let mongoConnectionInstance = null
 
@@ -12,6 +12,12 @@ export const connectMongo = async () => {
       const dbConnection = await connect(`mongodb+srv://${dataConfig.userName}:${dataConfig.secretKey}@backendcoder.tu6mnjp.mongodb.net/${dataConfig.databaseName}?retryWrites=true&w=majority`)
       logger.info('Connected to MongoDB!')
       mongoConnectionInstance = dbConnection
+      try {
+        await dbConnection.syncIndexes()
+        logger.info('Indexes synchronized successfully')
+      } catch (error) {
+        logger.error('Error synchronizing indexes:', error)
+      }
       /* async function poblar() {
       const products = []
       for (let i = 0; i < 3000; i++) {

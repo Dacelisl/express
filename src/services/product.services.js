@@ -67,18 +67,26 @@ class ProductServices {
       }
     }
   }
+  async findByCode(code) {
+    return await productFactory.getProductByCode(code)
+  }
   async createOne(dataProduct) {
     const dataDTO = new ProductDTO({ dataProduct })
     this.validateProduct(dataDTO)
     const createProduct = await productFactory.saveProduct(dataDTO)
     return createProduct
   }
+  async searchOwner(mail, pid) {
+    const userOwner = await userFactory.getUserByEmail(mail)
+    const product = await productFactory.getProductByID(pid)
+    return userOwner.email === product.owner || userOwner.rol === 'admin'
+  }
   async deletedOne(productId) {
     const productFound = await productFactory.getProductByID(productId)
     const userOwner = await userFactory.getUserByEmail(productFound.owner)
-    if (userOwner !== 'null') {
+    if (userOwner) {
       if (userOwner.rol === 'premium') {
-        const res = await mailServices.productNotificationMail(userOwner, productFound)
+        await mailServices.productNotificationMail(userOwner, productFound)
       }
     }
     const deleted = await productFactory.deleteProduct(productId)

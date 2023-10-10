@@ -45,9 +45,31 @@ class ProductController {
       req.logger.error('something went wrong getProductId', error)
     }
   }
+  async getProductCode(req, res) {
+    try {
+      const productCode = req.params.code
+      const productFound = await productService.findByCode(productCode)
+      return res.status(200).json({
+        status: 'success',
+        message: 'product found',
+        payload: productFound,
+      })
+    } catch (e) {
+      req.logger.error('something went wrong getProductCode', e)
+      return res.status(500).json({
+        status: 'error',
+        message: `Something went wrong :( ${e}`,
+        payload: {},
+      })
+    }
+  }
   async createProduct(req, res) {
     try {
       const data = req.body
+      let owner = ''
+      if (req.session.user) {
+        owner = req.session.user.rol === 'premium' ? req.session.user.email : 'admin'
+      }
       const newProduct = {
         title: data.title,
         description: data.description,
@@ -55,7 +77,7 @@ class ProductController {
         price: data.price,
         thumbnail: data.thumbnail,
         code: data.code,
-        owner: req.session.user ? req.session.user.email : 'admin',
+        owner: req.session.user ? owner : 'admin',
         stock: data.stock,
       }
       const createProduct = await productService.createOne(newProduct)
@@ -105,12 +127,22 @@ class ProductController {
   async deleteProduct(req, res) {
     try {
       const productId = req.params.pid
-      const resDelete = await productService.deletedOne(productId)
-      return res.json({
-        status: 'success',
-        code: 204,
-        message: 'product deleted',
-        payload: resDelete,
+      const mail = req.session.user.email
+      const userOwner = await productService.searchOwner(mail, productId)
+      if (userOwner) {
+        const resDelete = await productService.deletedOne(productId)
+        return res.status(204).json({
+          status: 'success',
+          code: 204,
+          message: 'product deleted',
+          payload: resDelete,
+        })
+      }
+      return res.status(404).json({
+        status: 'fail',
+        code: 404,
+        message: 'Product not found',
+        payload: {},
       })
     } catch (e) {
       req.logger.error('something went wrong deleteProduct', e)

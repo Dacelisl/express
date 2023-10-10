@@ -26,8 +26,9 @@ class MockServices {
       description: faker.commerce.productDescription(),
       category: faker.commerce.department(),
       price: faker.commerce.price({ min: 10, max: 2000, dec: 0, symbol: '$' }),
-      thumbnails: faker.system.fileName(),
+      thumbnail: faker.system.fileName(),
       code: faker.string.alphanumeric(10),
+      owner: faker.internet.email(),
       stock: faker.number.int({ max: 100 }),
     }
   }

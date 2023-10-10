@@ -105,6 +105,13 @@ async function deleteProduct(productId) {
       method: 'DELETE',
     })
     if (!response.ok) {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'You dont have permissions to delete this product',
+        showConfirmButton: false,
+        timer: 1500,
+      })
       throw new Error('Failed to delete product')
     }
     updateProducts()

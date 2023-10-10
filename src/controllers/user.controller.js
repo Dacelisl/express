@@ -4,8 +4,8 @@ import { userService } from '../services/user.services.js'
 
 class UserController {
   async getUser(req, res) {
+    const uid = req.query.uid? req.query.uid: req.params.uid
     try {
-      const uid = req.query.uid
       const user = await userService.getUserByEmail(uid)
       const userData = {
         firstName: user.firstName,
@@ -17,11 +17,11 @@ class UserController {
       return res.render('editUser', { userData })
     } catch (error) {
       req.logger.warning('Error get User, getUser', error)
-      return res.status(user.code).json({
-        status: user.status,
-        code: user.code,
-        message: user.message,
-        payload: user.payload,
+      return res.status(500).json({
+        status: 'error',
+        code: 500,
+        message: 'something went wrong :(',
+        payload: {},
       })
     }
   }
