@@ -5,9 +5,17 @@ class TicketDAO {
     const tickets = await TicketModel.find({})
     return tickets
   }
+  getOrderById = async (id) => {
+    const ticket = await TicketModel.findOne({ _id: id }).populate('products.productId')
+    return ticket
+  }
   getOrderByCode = async (id) => {
     const ticket = await TicketModel.findOne({ code: id }).populate('products.productId')
     return ticket
+  }
+  deleteTicket = async (id) => {
+    const result = await TicketModel.findByIdAndDelete({ code: id })
+    return result
   }
 
   addOrder = async (ticket) => {

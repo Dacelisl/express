@@ -84,43 +84,94 @@ class TicketServices {
       return {
         status: 'Success',
         code: 200,
-        payload: newOrder,
         message: 'Ticket created successfully',
+        payload: newOrder,
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 500,
+        message: `Internal Server Error ${error}`,
         payload: {},
-        message: 'Internal Server Error',
-        error,
       }
     }
   }
 
-  async getTicketById(id) {
+  async getTicketByCode(code) {
     try {
-      const ticket = await ticketFactory.getOrderByCode(id)
+      const ticket = await ticketFactory.getOrderByCode(code)
       if (!ticket) {
         return {
           status: 'Fail',
           code: 404,
-          payload: {},
           message: 'Ticket does not exist',
+          payload: {},
         }
       }
       return {
         status: 'Success',
         code: 200,
-        payload: ticket,
         message: 'Ticket retrieved successfully',
+        payload: ticket,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 500,
+        message: `Error: getTicketById ${error}`,
+        payload: {},
+      }
+    }
+  }
+  async getTicketById(id) {
+    try {
+      const ticket = await ticketFactory.getOrderById(id)
+      if (!ticket) {
+        return {
+          status: 'Fail',
+          code: 404,
+          message: 'Ticket does not exist',
+          payload: {},
+        }
+      }
+      return {
+        status: 'Success',
+        code: 200,
+        message: 'Ticket retrieved successfully',
+        payload: ticket,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 500,
+        message: `Error: getTicketById ${error}`,
+        payload: {},
+      }
+    }
+  }
+  async deleteTicket(code) {
+    try {
+      const result = await ticketFactory.deleteTicket(code)
+      if (!result) {
+        return {
+          status: 'Fail',
+          code: 404,
+          payload: result,
+          message: 'The ticket does not exist',
+        }
+      }
+      return {
+        status: 'Success',
+        code: 204,
+        payload: result,
+        message: 'Ticket deleted successfully',
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 500,
         payload: {},
-        message: `Error: getTicketById ${error}`,
+        message: `Error deleteTicket: ${error}`,
       }
     }
   }

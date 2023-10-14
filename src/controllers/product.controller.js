@@ -65,36 +65,34 @@ class ProductController {
   }
   async createProduct(req, res) {
     try {
-      const data = req.body
-      let owner = ''
-      if (req.session.user) {
-        owner = req.session.user.rol === 'premium' ? req.session.user.email : 'admin'
-      }
+      const { title, description, category, price, thumbnail, code, stock } = req.body
+      const owner = req.session.user && req.session.user.rol === 'premium' ? req.session.user.email : 'admin'
       const newProduct = {
-        title: data.title,
-        description: data.description,
-        category: data.category,
-        price: data.price,
-        thumbnail: data.thumbnail,
-        code: data.code,
-        owner: req.session.user ? owner : 'admin',
-        stock: data.stock,
+        title,
+        description,
+        category,
+        price,
+        thumbnail,
+        code,
+        owner,
+        stock,
       }
-      const createProduct = await productService.createOne(newProduct)
-      return res.status(201).json({
-        status: 'success',
-        message: 'product created',
-        payload: createProduct,
+      const response = await productService.createOne(newProduct)
+      return res.status(response.code).json({
+        status: response.status,
+        message: response.message,
+        payload: response.payload,
       })
-    } catch (e) {
-      req.logger.error('something went wrong createProduct', e)
+    } catch (error) {
+      req.logger.error('Something went wrong createProduct', error)
       return res.status(500).json({
         status: 'error',
-        message: `Something went wrong :( ${e}`,
+        message: `Something went wrong :( ${error.message}`,
         payload: {},
       })
     }
   }
+
   async updateProduct(req, res) {
     try {
       const data = req.body
@@ -127,9 +125,13 @@ class ProductController {
   async deleteProduct(req, res) {
     try {
       const productId = req.params.pid
+      const rol = req.session.user.rol
       const mail = req.session.user.email
-      const userOwner = await productService.searchOwner(mail, productId)
-      if (userOwner) {
+
+      if (rol !== 'user') {
+        if (rol === 'premium') {
+          await productService.searchOwner(mail, productId)
+        }
         const resDelete = await productService.deletedOne(productId)
         return res.status(204).json({
           status: 'success',

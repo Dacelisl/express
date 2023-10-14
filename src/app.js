@@ -9,11 +9,12 @@ import { __dirname } from './utils/utils.js'
 import { addLogger, logger } from './utils/logger.js'
 import { connectMongo } from './utils/connectMongo.js'
 import { connectSocket } from './utils/socketServer.js'
-import { isAdmin } from './middleware/auth.js'
+import { adminAccess } from './middleware/auth.js'
 import { errorHandler } from './middleware/errors.js'
 import { ProductRoutes } from './routes/products.routes.js'
 import { RecoveryCodesRoutes } from './routes/recoveryCodes.routes.js'
 import { CartRoutes } from './routes/cart.routes.js'
+import { TicketsRoutes } from './routes/ticket.routes.js'
 import { ViewRoutes } from './routes/views.routes.js'
 import { chatRoutes } from './routes/chat.routes.js'
 import { MockRoutes } from './routes/mock.routes.js'
@@ -55,15 +56,16 @@ app.engine('handlebars', handlebars.engine())
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'handlebars')
 
-
 app.use(express.static(__dirname + '/public'))
 
+const store = MongoStore.create({
+  mongoUrl: dataConfig.url_mongo,
+  ttl: dataConfig.ttl,
+  collection: 'sessions',
+})
 app.use(
   session({
-    store: MongoStore.create({
-      mongoUrl: dataConfig.url_mongo,
-      ttl: 7200,
-    }),
+    store,
     secret: dataConfig.secret,
     resave: true,
     saveUninitialized: true,
@@ -72,12 +74,13 @@ app.use(
 app.use(flash())
 app.use('/api/products', ProductRoutes)
 app.use('/api/carts', CartRoutes)
-app.use('/realtimeproducts', isAdmin, ViewRoutes)
+app.use('/api/tickets', TicketsRoutes)
+app.use('/realtimeproducts', adminAccess, ViewRoutes)
 app.use('/test-chat', chatRoutes)
 app.use('/api/users', UserRoutes)
 app.use('/recover', RecoveryCodesRoutes)
 app.use('/api/mock/', MockRoutes)
-app.use('/mail', MailRoutes)
+app.use('/mail', adminAccess, MailRoutes)
 
 initPassport()
 app.use(passport.authorize())
@@ -91,3 +94,5 @@ app.get('*', (req, res) => {
   })
 })
 app.use(errorHandler)
+
+

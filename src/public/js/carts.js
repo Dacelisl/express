@@ -68,11 +68,9 @@ async function deleteProductInCart(cartId, productId) {
 async function searchCart(cart) {
   try {
     const response = await fetch(`/api/carts/${cart}`)
-    if (!response.ok) {
-      throw new Error('Something went wrong!')
-    }
+    if (!response.ok) throw new Error('Something went wrong!')
     const cartProducts = await response.json()
-    updateCart(cartProducts)
+    if (cartProducts.payload.products.lenght > 0) updateCart(cartProducts)
   } catch (error) {
     Swal.fire({
       position: 'center',
@@ -88,7 +86,7 @@ async function purchase() {
   try {
     if (ticket) {
       ticket.addEventListener('click', async (e) => {
-        const response = await fetch(`/api/carts/${currentCart}/purchase`, {
+        const response = await fetch(`/api/tickets/${currentCart}/purchase`, {
           method: 'PUT',
         })
         const dataPurchase = await response.json()

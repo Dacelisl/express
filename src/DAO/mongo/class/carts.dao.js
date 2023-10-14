@@ -17,11 +17,15 @@ class Cart {
     return products
   }
   getCartByID = async (cartId) => {
-    const cart = await CartsModel.findById(cartId)
-    return cart
+    try {
+      const cart = await CartsModel.findById(cartId)
+      return cart
+    } catch (error) {
+      return error
+    }
   }
-  deleteCart = async (id) => {
-    const result = await CartsModel.deleteOne({ _id: id })
+  deleteCart = async (objectId) => {
+    const result = await CartsModel.deleteOne({ _id: objectId })
     return result
   }
   removeProductsFromCart = async (cartId, productToRemove) => {

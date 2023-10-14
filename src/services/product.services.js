@@ -73,8 +73,22 @@ class ProductServices {
   async createOne(dataProduct) {
     const dataDTO = new ProductDTO({ dataProduct })
     this.validateProduct(dataDTO)
-    const createProduct = await productFactory.saveProduct(dataDTO)
-    return createProduct
+    try {
+      const createProduct = await productFactory.saveProduct(dataDTO)
+      return {
+        status: 'Success',
+        code: 201,
+        message: 'product created',
+        payload: createProduct,
+      }
+    } catch (error) {
+      return {
+        code: 500,
+        status: 'error',
+        message: `Error al crear el producto: ${error.message}`,
+        payload: {},
+      }
+    }
   }
   async searchOwner(mail, pid) {
     const userOwner = await userFactory.getUserByEmail(mail)
@@ -83,8 +97,8 @@ class ProductServices {
   }
   async deletedOne(productId) {
     const productFound = await productFactory.getProductByID(productId)
-    const userOwner = await userFactory.getUserByEmail(productFound.owner)
-    if (userOwner) {
+    if (productFound.owner !== 'admin') {
+      const userOwner = await userFactory.getUserByEmail(productFound.owner)
       if (userOwner.rol === 'premium') {
         await mailServices.productNotificationMail(userOwner, productFound)
       }

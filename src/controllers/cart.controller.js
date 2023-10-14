@@ -26,12 +26,21 @@ class CartController {
   }
   async deletedProduct(req, res) {
     try {
-      const cid = req.session.user? req.session.user.cart : req.params.cid
+      const cid = req.session.user ? req.session.user.cart : req.params.cid
       const pid = req.params.pid
-      const resAdd = await cartService.deletedProduct(cid, pid)
-      return res.json(resAdd)
+      const response = await cartService.deletedProduct(cid, pid)
+      return res.status(response.code).json({
+        status: response.status,
+        message: response.message,
+        payload: response.payload,
+      })
     } catch (error) {
       req.logger.error('something went wrong deletedProduct', error)
+      return res.status(500).json({
+        status: 'error',
+        message: `Something went wrong :( ${error.message}`,
+        payload: {},
+      })
     }
   }
   /* async deleteAllProducts(req, res) {
@@ -41,11 +50,21 @@ class CartController {
 } */
   async deleteCart(req, res) {
     try {
-      const cid = req.session.user ? req.session.user.cart : req.params.cid
-      const resAdd = await cartService.deleteCart(cid)
-      return res.status(204).json(resAdd)
+      const cid = req.params.cid
+      const resDelete = await cartService.deleteCart(cid)
+      return res.status(204).json({
+        status: 'success',
+        code: 204,
+        message: 'cart deleted',
+        payload: resDelete,
+      })
     } catch (error) {
       req.logger.error('something went wrong deleteCart', error)
+      return res.status(500).json({
+        status: 'error',
+        message: `Something went wrong :( ${error.message}`,
+        payload: {},
+      })
     }
   }
   async currentCart(req, res) {
@@ -55,6 +74,11 @@ class CartController {
       return res.status(200).json(dataUser)
     } catch (error) {
       req.logger.error('something went wrong currentCart', error)
+      return res.status(500).json({
+        status: 'error',
+        message: `Something went wrong :( ${error.message}`,
+        payload: {},
+      })
     }
   }
   async getCartId(req, res) {
@@ -64,6 +88,11 @@ class CartController {
       return res.status(200).json(payload)
     } catch (error) {
       req.logger.error('something went wrong getCartId', error)
+      return res.status(500).json({
+        status: 'error',
+        message: `Something went wrong :( ${error.message}`,
+        payload: {},
+      })
     }
   }
 
@@ -78,6 +107,11 @@ class CartController {
       res.render('cart', { user })
     } catch (error) {
       req.logger.error('something went wrong getAll', error)
+      return res.status(500).json({
+        status: 'error',
+        message: `Something went wrong :( ${error.message}`,
+        payload: {},
+      })
     }
   }
   async updateAddToCart(req, res) {
@@ -90,38 +124,26 @@ class CartController {
       return res.status(201).json(resAdd)
     } catch (error) {
       req.logger.error('something went wrong updateAddToCart', error)
+      return res.status(500).json({
+        status: 'error',
+        message: `Something went wrong :( ${error.message}`,
+        payload: {},
+      })
     }
   }
   async updateCart(req, res) {
     try {
-      const cid = req.session.user ? req.session.user.cart : req.params.cid
+      const cid = req.params.cid
       const products = req.body.products
       const resUpdate = await cartService.updateCart(cid, products)
       return res.status(201).json(resUpdate)
     } catch (error) {
       req.logger.error('something went wrong updateCart', error)
-    }
-  }
-
-  purchaseCart = async (req, res) => {
-    try {
-      const id = req.params.cid
-      const infoUser = new userDTO(req.session.user)
-      const response = await ticketServices.purchaseCart(id, infoUser)
-      return res.status(200).json(response)
-    } catch (error) {
-      req.logger.error('something went wrong purchaseCart', error)
-    }
-  }
-
-  getTicketById = async (req, res) => {
-    try {
-      const id = req.params.cid
-      const response = await ticketServices.getTicketById(id)
-      return res.status(201).json(response)
-      /* return res.render('ticket', { ticket: response.result }) */
-    } catch (error) {
-      req.logger.error('something went wrong getTicketById', error)
+      return res.status(500).json({
+        status: 'error',
+        message: `Something went wrong :( ${error.message}`,
+        payload: {},
+      })
     }
   }
 }

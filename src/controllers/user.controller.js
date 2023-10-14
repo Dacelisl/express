@@ -4,9 +4,15 @@ import { userService } from '../services/user.services.js'
 
 class UserController {
   async getUser(req, res) {
-    const uid = req.query.uid? req.query.uid: req.params.uid
+    const uid = req.query.uid ? req.query.uid : req.params.uid
+    const esEmail = /\S+@\S+\.\S+/.test(uid)
+    let user = ''
     try {
-      const user = await userService.getUserByEmail(uid)
+      if (esEmail) {
+        user = await userService.getUserByEmail(uid)
+      } else {
+        user = await userService.getUserByID(uid)
+      }
       const userData = {
         firstName: user.firstName,
         lastName: user.lastName,

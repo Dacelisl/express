@@ -1,4 +1,4 @@
-import { userFactory } from '../DAO/factory.js'
+import { userFactory, cartFactory } from '../DAO/factory.js'
 import { timeDifference } from '../utils/utils.js'
 import { mailServices } from './mail.services.js'
 import dataConfig from '../config/process.config.js'
@@ -156,7 +156,7 @@ class UserServices {
           message: 'User not found',
           payload: {},
         }
-      }
+      }await cartFactory.deleteCart(user.cart)
       const result = await userFactory.deletedOne(user._id)
       return {
         status: 'Success',

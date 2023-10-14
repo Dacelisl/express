@@ -111,8 +111,8 @@ class CartServices {
         return {
           status: 'Fail',
           code: 400,
-          payload: {},
           message: 'The car does not exist',
+          payload: {},
         }
       }
       const product = cart.products.filter((p) => {
@@ -128,15 +128,15 @@ class CartServices {
       return {
         status: 'Success',
         code: 204,
-        payload: cart,
         message: 'Product deleted successfully',
+        payload: cart,
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 500,
-        payload: {},
         message: `Error deletedProduct ${error}`,
+        payload: {},
       }
     }
   }
@@ -173,18 +173,18 @@ class CartServices {
     try {
       isValid(_id)
       const result = await cartFactory.deleteCart(_id)
-      if (result.deletedCount === 0) {
+      if (!result) {
         return {
           status: 'Fail',
           code: 404,
-          payload: {},
+          payload: result,
           message: 'The cart does not exist',
         }
       }
       return {
         status: 'Success',
         code: 204,
-        payload: {},
+        payload: result,
         message: 'Cart deleted successfully',
       }
     } catch (error) {
