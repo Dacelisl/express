@@ -68,7 +68,22 @@ class ProductServices {
     }
   }
   async findByCode(code) {
-    return await productFactory.getProductByCode(code)
+    try {
+      const payload = await productFactory.getProductByCode(code)
+      return {
+        status: 'Success',
+        code: 201,
+        message: 'product found',
+        payload: payload,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 401,
+        message: `Error ${error}`,
+        payload: {},
+      }
+    }
   }
   async createOne(dataProduct) {
     const dataDTO = new ProductDTO({ dataProduct })
@@ -96,19 +111,64 @@ class ProductServices {
     return userOwner.email === product.owner || userOwner.rol === 'admin'
   }
   async deletedOne(productId) {
-    const productFound = await productFactory.getProductByID(productId)
-    if (productFound.owner !== 'admin') {
-      const userOwner = await userFactory.getUserByEmail(productFound.owner)
-      if (userOwner.rol === 'premium') {
-        await mailServices.productNotificationMail(userOwner, productFound)
+    try {
+      const productFound = await productFactory.getProductByID(productId)
+      if (!productFound) {
+        return {
+          status: 'error',
+          code: 404,
+          message: 'Product not found',
+          payload: {},
+        }
+      }
+      if (productFound.owner !== 'admin') {
+        const userOwner = await userFactory.getUserByEmail(productFound.owner)
+        if (userOwner.rol === 'premium') {
+          await mailServices.productNotificationMail(userOwner, productFound)
+        }
+      }
+      const deleted = await productFactory.deleteProduct(productId)
+      return {
+        status: 'Success',
+        code: 204,
+        message: 'user deleted successfully',
+        payload: deleted,
+      }
+    } catch (error) {
+      return {
+        status: 'error',
+        code: 500,
+        message: `Something went wrong :( ${error}`,
+        payload: {},
       }
     }
-    const deleted = await productFactory.deleteProduct(productId)
-    return deleted
   }
-  async updateOne(dataProduct) {
-    const updateProduct = await productFactory.updateProduct(dataProduct)
-    return updateProduct
+  async updateOne(product) {
+    try {
+      const productFound = await productFactory.getProductByCode(product.code)
+      if (!productFound) {
+        return {
+          status: 'Fail',
+          code: 404,
+          message: 'product not exist',
+          payload: {},
+        }
+      }
+      const updateProduct = await productFactory.updateProduct(product)
+      return {
+        status: 'success',
+        code: 201,
+        message: 'product update successfully',
+        payload: updateProduct,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 400,
+        message: `Error updateProduct`,
+        payload: {},
+      }
+    }
   }
 }
 export const productService = new ProductServices()

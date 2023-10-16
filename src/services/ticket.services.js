@@ -96,7 +96,6 @@ class TicketServices {
       }
     }
   }
-
   async getTicketByCode(code) {
     try {
       const ticket = await ticketFactory.getOrderByCode(code)

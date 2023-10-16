@@ -1,6 +1,6 @@
 import { mailServices } from '../services/mail.services.js'
 import { recoveryCodeFactory, userFactory } from '../DAO/factory.js'
-import { createHash, isValidPassword } from '../utils/utils.js'
+import { createHash, isValidPassword, sendErrorResponse } from '../utils/utils.js'
 
 class RecoveryCodesController {
   async getRecovery(req, res) {
@@ -29,14 +29,9 @@ class RecoveryCodesController {
       await mailServices.recoveryMail(email, token, basePath)
       req.flash('info', 'We have sent an email to your address. Please check your inbox to continue.')
       return res.redirect('/api/users/login')
-    } catch (e) {
+    } catch (error) {
       req.logger.error('something went wrong createMailRecover', e)
-      return res.status(500).json({
-        status: 'error',
-        code: 500,
-        message: 'something went wrong :( createMailRecover',
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
   async getRecoveryPass(req, res) {
@@ -49,17 +44,11 @@ class RecoveryCodesController {
       } else {
         res.render('error', { error: 'token expired or invalid token!', code: 403 })
       }
-    } catch (e) {
+    } catch (error) {
       req.logger.error('something went wrong getRecoveryPass', e)
-      return res.status(500).json({
-        status: 'error',
-        code: 500,
-        message: 'something went wrong :( getRecoveryPass',
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
-
   async recoveryPass(req, res) {
     try {
       let { token, email, password } = req.body
@@ -79,14 +68,9 @@ class RecoveryCodesController {
       } else {
         return res.render('error', { error: 'token expired or invalid token!', code: 403 })
       }
-    } catch (e) {
+    } catch (error) {
       req.logger.error('something went wrong recoveryPass', e)
-      return res.status(500).json({
-        status: 'error',
-        code: 500,
-        message: `something went wrong :( recoveryPass`,
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
 }

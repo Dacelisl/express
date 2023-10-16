@@ -69,8 +69,24 @@ function convertCurrencyToNumber(currencyString) {
   const numericValue = parseFloat(currencyString.replace('$', '').trim())
   return isNaN(numericValue) ? 0 : numericValue
 }
+function sendErrorResponse(res, error) {
+  return res.status(500).json({
+    status: 'error',
+    code: 500,
+    message: `Something went wrong: ${error.message}`,
+    payload: {},
+  })
+}
+function sendSuccessResponse(res, data) {
+  return res.status(data.code).json({
+    status: data.status,
+    code: data.code,
+    message: data.message,
+    payload: data.payload,
+  })
+}
 
 export const createHash = (password) => bcryptjs.hashSync(password, bcryptjs.genSaltSync(10))
 export const isValidPassword = (password, hashPassword) => bcryptjs.compareSync(password, hashPassword)
 export const uploader = multer({ storage })
-export { __filename, __dirname, parsedQuery, isValid, randomCode, convertCurrencyToNumber, timeDifference }
+export { __filename, __dirname, parsedQuery, isValid, randomCode, convertCurrencyToNumber, timeDifference, sendErrorResponse, sendSuccessResponse }

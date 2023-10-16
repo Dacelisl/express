@@ -1,15 +1,14 @@
 import { cartService } from '../services/cart.services.js'
-import { ticketServices } from '../services/ticket.services.js'
-import userDTO from '../DAO/DTO/user.DTO.js'
+import { sendErrorResponse, sendSuccessResponse } from '../utils/utils.js'
 
 class CartController {
   async createCart(req, res) {
     try {
       const createdCart = await cartService.createCart()
-      return res.status(201).json(createdCart)
+      return sendSuccessResponse(res, createdCart)
     } catch (error) {
       req.logger.error('something went wrong createCart', error)
-      return res.status(401).json({ error: `Error ${error}` })
+      return sendErrorResponse(res, error)
     }
   }
   async addProduct(req, res) {
@@ -19,9 +18,10 @@ class CartController {
       const pid = req.params.pid
       const quant = req.body
       const resAdd = await cartService.addToCart(cid, pid, quant, user)
-      return res.status(201).json(resAdd)
+      return sendSuccessResponse(res, resAdd)
     } catch (error) {
       req.logger.error('something went wrong addProduct', error)
+      return sendErrorResponse(res, error)
     }
   }
   async deletedProduct(req, res) {
@@ -29,18 +29,10 @@ class CartController {
       const cid = req.session.user ? req.session.user.cart : req.params.cid
       const pid = req.params.pid
       const response = await cartService.deletedProduct(cid, pid)
-      return res.status(response.code).json({
-        status: response.status,
-        message: response.message,
-        payload: response.payload,
-      })
+      return sendSuccessResponse(res, response)
     } catch (error) {
       req.logger.error('something went wrong deletedProduct', error)
-      return res.status(500).json({
-        status: 'error',
-        message: `Something went wrong :( ${error.message}`,
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
   /* async deleteAllProducts(req, res) {
@@ -52,19 +44,10 @@ class CartController {
     try {
       const cid = req.params.cid
       const resDelete = await cartService.deleteCart(cid)
-      return res.status(204).json({
-        status: 'success',
-        code: 204,
-        message: 'cart deleted',
-        payload: resDelete,
-      })
+      return sendSuccessResponse(res, resDelete)
     } catch (error) {
       req.logger.error('something went wrong deleteCart', error)
-      return res.status(500).json({
-        status: 'error',
-        message: `Something went wrong :( ${error.message}`,
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
   async currentCart(req, res) {
@@ -74,25 +57,17 @@ class CartController {
       return res.status(200).json(dataUser)
     } catch (error) {
       req.logger.error('something went wrong currentCart', error)
-      return res.status(500).json({
-        status: 'error',
-        message: `Something went wrong :( ${error.message}`,
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
   async getCartId(req, res) {
     try {
       const cartId = req.params.cid || req.session.user.cart
-      const payload = await cartService.getCartWithProducts(cartId)
-      return res.status(200).json(payload)
+      const response = await cartService.getCartWithProducts(cartId)
+      return sendSuccessResponse(res, response)
     } catch (error) {
       req.logger.error('something went wrong getCartId', error)
-      return res.status(500).json({
-        status: 'error',
-        message: `Something went wrong :( ${error.message}`,
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
 
@@ -107,11 +82,7 @@ class CartController {
       res.render('cart', { user })
     } catch (error) {
       req.logger.error('something went wrong getAll', error)
-      return res.status(500).json({
-        status: 'error',
-        message: `Something went wrong :( ${error.message}`,
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
   async updateAddToCart(req, res) {
@@ -121,14 +92,10 @@ class CartController {
       const quant = req.body.quantity
       const user = req.session.user ? req.session.user.rol : undefined
       const resAdd = await cartService.addToCart(cid, pid, quant, user)
-      return res.status(201).json(resAdd)
+      return sendSuccessResponse(res, response)
     } catch (error) {
       req.logger.error('something went wrong updateAddToCart', error)
-      return res.status(500).json({
-        status: 'error',
-        message: `Something went wrong :( ${error.message}`,
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
   async updateCart(req, res) {
@@ -136,14 +103,10 @@ class CartController {
       const cid = req.params.cid
       const products = req.body.products
       const resUpdate = await cartService.updateCart(cid, products)
-      return res.status(201).json(resUpdate)
+      return sendSuccessResponse(res, resUpdate)
     } catch (error) {
       req.logger.error('something went wrong updateCart', error)
-      return res.status(500).json({
-        status: 'error',
-        message: `Something went wrong :( ${error.message}`,
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
 }

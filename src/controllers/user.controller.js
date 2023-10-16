@@ -1,5 +1,6 @@
 import passport from 'passport'
 import userDTO from '../DAO/DTO/user.DTO.js'
+import { sendErrorResponse, sendSuccessResponse } from '../utils/utils.js'
 import { userService } from '../services/user.services.js'
 
 class UserController {
@@ -23,44 +24,25 @@ class UserController {
       return res.render('editUser', { userData })
     } catch (error) {
       req.logger.warning('Error get User, getUser', error)
-      return res.status(500).json({
-        status: 'error',
-        code: 500,
-        message: 'something went wrong :(',
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
   async getAllUsers(req, res) {
     try {
-      const newDoc = await userService.getAllUsers()
-      return res.status(newDoc.code).json({
-        status: newDoc.status,
-        code: newDoc.code,
-        message: newDoc.message,
-        payload: newDoc.payload,
-      })
+      const response = await userService.getAllUsers()
+      return sendSuccessResponse(res, response)
     } catch (error) {
       req.logger.warning('Error uploading file, createDocument', error)
-      return res.status(newDoc.code).json({
-        status: newDoc.status,
-        code: newDoc.code,
-        message: newDoc.message,
-        payload: newDoc.payload,
-      })
+      return sendErrorResponse(res, error)
     }
   }
   async deleteInactiveUsers(req, res) {
     try {
-      const deletedUsers = await userService.deleteInactiveUsers()
-      return res.status(deletedUsers.code).json({
-        status: deletedUsers.status,
-        code: deletedUsers.code,
-        message: deletedUsers.message,
-        payload: deletedUsers.payload,
-      })
+      const response = await userService.deleteInactiveUsers()
+      return sendSuccessResponse(res, response)
     } catch (error) {
       req.logger.error('something went wrong getRegister', error)
+      return sendErrorResponse(res, error)
     }
   }
   getRegister(req, res) {
@@ -69,6 +51,7 @@ class UserController {
       return res.render('register', { message })
     } catch (error) {
       req.logger.error('something went wrong getRegister', error)
+      return sendErrorResponse(res, error)
     }
   }
   createRegister(req, res, next) {
@@ -160,68 +143,46 @@ class UserController {
       }
       req.session.user.message = null
       return res.redirect('/api/users/editUser')
-    } catch (e) {
+    } catch (error) {
       req.logger.error('something went wrong updateUser', e)
-      return res.status(500).json({
-        status: 'error',
-        code: 500,
-        message: 'something went wrong :(',
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
   async deleteUser(req, res) {
     try {
       const userMail = req.params.uid
-      const result = await userService.deleteUserByEmail(userMail)
-      return res.status(result.code).json({
-        status: result.status,
-        code: result.code,
-        message: result.message,
-        payload: result.payload,
-      })
-    } catch (e) {
+      const response = await userService.deleteUserByEmail(userMail)
+      return sendSuccessResponse(res, response)
+    } catch (error) {
       req.logger.error('something went wrong deleteUser', e)
-      return res.status(500).json({
-        status: 'error',
-        code: 500,
-        message: 'something went wrong :(',
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
   async createDocument(req, res) {
     try {
       const uid = req.params.uid
-      const newDoc = await userService.createDocument(req.file, req.body.imageType, uid)
-      return res.status(201).json({
-        status: 'success',
-        code: 201,
-        message: 'uploading file',
-        payload: newDoc,
-      })
+      /* const type = req.body.imageType */
+      const type = req.headers['x-tipo-archivo']
+      const response = await userService.createDocument(req.file, type, uid)
+      return sendSuccessResponse(res, response)
     } catch (error) {
       req.logger.warning('Error uploading file, createDocument', error)
-      return res.status(500).json({
-        status: 'error',
-        code: 500,
-        message: 'Error uploading file',
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
   async switchRol(req, res) {
     try {
       const uid = req.params.uid
-      let user = await userService.getUserByID(uid)
+      const esEmail = /\S+@\S+\.\S+/.test(uid)
+      let user = ''
+      if (esEmail) {
+        user = await userService.getUserByEmail(uid)
+      } else {
+        user = await userService.getUserByID(uid)
+      }
       if (user) {
-        const result = await userService.switchUserRole(user)
-        return res.status(result.code).json({
-          status: result.status,
-          code: result.code,
-          message: result.message,
-          payload: result.payload,
-        })
+        const response = await userService.switchUserRole(user)
+        return sendSuccessResponse(res, response)
       } else {
         return res.json({
           status: 'error',
@@ -232,12 +193,7 @@ class UserController {
       }
     } catch (error) {
       req.logger.warning('failed to change roles, switchRol', error)
-      return res.json({
-        status: 'error',
-        code: 500,
-        message: 'failed to change roles,',
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
   getCurrent(req, res) {
@@ -248,7 +204,7 @@ class UserController {
         status: 'error',
         code: 500,
         message: 'No user data found in session',
-        payload: null,
+        payload: {},
       })
     }
     const userDto = new userDTO(dataUser)

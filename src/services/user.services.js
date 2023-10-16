@@ -101,16 +101,36 @@ class UserServices {
     }
   }
   async createDocument(file, imageType, uid) {
-    const reference = file.path
-    const base = reference.match(/\\image\\(.*)/)
-    const path = `http://localhost:${dataConfig.port}${base[0]}`
-    const nuevoDocumento = {
-      name: file.filename,
-      type: imageType,
-      reference: path,
+    const esEmail = /\S+@\S+\.\S+/.test(uid)
+    let user = uid
+    try {
+      if (esEmail) {
+        const userRes = await this.getUserByEmail(uid)
+        user = userRes._id
+      }
+      const reference = file.path
+      const base = reference.match(/\\image\\(.*)/)
+      const path = `http://localhost:${dataConfig.port}${base[0]}`
+      const nuevoDocumento = {
+        name: file.filename,
+        type: imageType,
+        reference: path,
+      }
+      await userFactory.loadDocument({ _id: user }, { documents: nuevoDocumento })
+      return {
+        status: 'success',
+        code: 201,
+        message: 'uploading file',
+        payload: nuevoDocumento,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 500,
+        payload: {},
+        message: `Error createDocument`,
+      }
     }
-    await userFactory.loadDocument({ _id: uid }, { documents: nuevoDocumento })
-    return nuevoDocumento
   }
   async switchUserRole(user) {
     const documentosUsuario = user.documents.map((documento) => documento.type)
@@ -156,7 +176,8 @@ class UserServices {
           message: 'User not found',
           payload: {},
         }
-      }await cartFactory.deleteCart(user.cart)
+      }
+      await cartFactory.deleteCart(user.cart)
       const result = await userFactory.deletedOne(user._id)
       return {
         status: 'Success',

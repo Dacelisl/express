@@ -1,4 +1,5 @@
 import { productService } from '../services/product.services.js'
+import { sendErrorResponse, sendSuccessResponse } from '../utils/utils.js'
 
 class ProductController {
   async getAllProducts(req, res) {
@@ -33,7 +34,7 @@ class ProductController {
       }
     } catch (error) {
       req.logger.error('Error getting the products', error)
-      res.status(500).json({ error: 'Error getting the products' })
+      return sendErrorResponse(res, error)
     }
   }
   async getProductId(req, res) {
@@ -43,24 +44,17 @@ class ProductController {
       res.render('product', productFound.payload)
     } catch (error) {
       req.logger.error('something went wrong getProductId', error)
+      return sendErrorResponse(res, error)
     }
   }
   async getProductCode(req, res) {
     try {
       const productCode = req.params.code
-      const productFound = await productService.findByCode(productCode)
-      return res.status(200).json({
-        status: 'success',
-        message: 'product found',
-        payload: productFound,
-      })
+      const response = await productService.findByCode(productCode)
+      return sendSuccessResponse(res, response)
     } catch (e) {
       req.logger.error('something went wrong getProductCode', e)
-      return res.status(500).json({
-        status: 'error',
-        message: `Something went wrong :( ${e}`,
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
   async createProduct(req, res) {
@@ -78,21 +72,12 @@ class ProductController {
         stock,
       }
       const response = await productService.createOne(newProduct)
-      return res.status(response.code).json({
-        status: response.status,
-        message: response.message,
-        payload: response.payload,
-      })
+      return sendSuccessResponse(res, response)
     } catch (error) {
       req.logger.error('Something went wrong createProduct', error)
-      return res.status(500).json({
-        status: 'error',
-        message: `Something went wrong :( ${error.message}`,
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
-
   async updateProduct(req, res) {
     try {
       const data = req.body
@@ -108,18 +93,10 @@ class ProductController {
       }
       newProduct.id = req.params.pid
       const resUpdate = await productService.updateOne(newProduct)
-      return res.status(200).json({
-        status: 'success',
-        message: 'product uptaded',
-        payload: resUpdate,
-      })
+      return sendSuccessResponse(res, resUpdate)
     } catch (e) {
       req.logger.error('something went wrong updateProduct', e)
-      return res.status(500).json({
-        status: 'error',
-        message: `Something went wrong :( ${e}`,
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
   async deleteProduct(req, res) {
@@ -127,18 +104,12 @@ class ProductController {
       const productId = req.params.pid
       const rol = req.session.user.rol
       const mail = req.session.user.email
-
       if (rol !== 'user') {
         if (rol === 'premium') {
           await productService.searchOwner(mail, productId)
         }
-        const resDelete = await productService.deletedOne(productId)
-        return res.status(204).json({
-          status: 'success',
-          code: 204,
-          message: 'product deleted',
-          payload: resDelete,
-        })
+        const response = await productService.deletedOne(productId)
+        return sendSuccessResponse(res, response)
       }
       return res.status(404).json({
         status: 'fail',
@@ -148,12 +119,7 @@ class ProductController {
       })
     } catch (e) {
       req.logger.error('something went wrong deleteProduct', e)
-      return res.status(500).json({
-        status: 'error',
-        code: 500,
-        message: `Something went wrong :( ${e}`,
-        payload: {},
-      })
+      return sendErrorResponse(res, error)
     }
   }
 }

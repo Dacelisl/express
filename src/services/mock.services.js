@@ -7,6 +7,7 @@ class MockServices {
       return {
         code: 200,
         status: 'success',
+        message: 'data created',
         payload: products,
       }
     } catch (error) {

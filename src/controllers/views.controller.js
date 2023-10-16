@@ -1,4 +1,5 @@
 import { productService } from '../services/product.services.js'
+import { sendErrorResponse } from '../utils/utils.js'
 
 class ViewsController {
   async getAllProducts(req, res) {
@@ -13,6 +14,7 @@ class ViewsController {
       res.render('realTimeProducts', dataProduct)
     } catch (error) {
       req.logger.error('something went wrong getAllProducts', error)
+      return sendErrorResponse(res, error)
     }
   }
   async addProduct(req, res) {

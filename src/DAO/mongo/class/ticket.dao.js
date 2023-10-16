@@ -14,7 +14,7 @@ class TicketDAO {
     return ticket
   }
   deleteTicket = async (id) => {
-    const result = await TicketModel.findByIdAndDelete({ code: id })
+    const result = await TicketModel.findOneAndDelete({ code: id })
     return result
   }
 
