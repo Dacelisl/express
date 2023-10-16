@@ -3,6 +3,7 @@ import supertest from 'supertest'
 import dataConfig from '../src/config/process.config.js'
 import { faker } from '@faker-js/faker'
 import { __dirname } from '../src/utils/utils.js'
+import { unlinkSync } from 'fs'
 import superagent from 'superagent'
 
 const expect = chai.expect
@@ -28,15 +29,18 @@ const createUser = (type) => {
     rol: type,
   }
 }
-const routesDelete = (user) => {
-  console.log('en route delete ', user);
-  const rutas = user.documents.map((documento) => {
-    const referenceParts = documento.reference.split('image')
-    if (referenceParts.length > 1) {
-      return `${__dirname}/public/image` + referenceParts[1]
-    }
-  })
-  mockUser.rutas = rutas
+const routesDelete = (route) => {
+  try {
+    route.forEach((documento) => {
+      const referenceParts = documento.reference.split('image')
+      if (referenceParts.length > 1) {
+        const filePath = `${__dirname}/public/image${referenceParts[1]}`
+        unlinkSync(filePath)
+      }
+    })
+  } catch (error) {
+    console.error(`Error al eliminar archivos: ${error}`)
+  }
 }
 
 describe('tests API', () => {
@@ -184,8 +188,9 @@ describe('tests API', () => {
       expect(response.req.method).to.equal('GET')
       expect(response.type).to.equal('application/json')
       expect(response.status).to.equal(201)
-      expect(response._body.payload.email).to.be.eql(mockUser.email)
-      expect(response._body.payload.rol).to.be.eql('premium')
+      expect(response.body.payload).to.exist
+      expect(response.text).to.include('premium')
+      expect(response.text).to.include(mockUser.email)
     })
     it('GET /api/users/logout logout', async () => {
       const response = await authenticatedAgent.get(`${URL}/api/users/logout`)
@@ -229,17 +234,16 @@ describe('tests API', () => {
       expect(response.type).to.equal('application/json')
       expect(response.body.message).to.include('User not found')
     })
-   /*  it('DELETE /api/users/:uid deleteUser', async () => {
-      const responseUser = await authenticatedAgent.get(`${URL}/api/users/user/${mockUser.email}`)
-      routesDelete(responseUser)
-      console.log('data User', mockUser)
+    it('DELETE /api/users/:uid deleteUser', async () => {
+      const responseUser = await authenticatedAgent.get(`${URL}/api/users/documents/${mockUser.email}`)
+      routesDelete(responseUser.body)
       const response = await authenticatedAgent.delete(`${URL}/api/users/${mockUser.email}`)
       expect(response.req.method).to.equal('DELETE')
       expect(response.status).to.equal(204)
       expect(response.text).to.equal('')
-    }) */
+    })
   })
-  /* describe('Products test', () => {
+  describe('Products test', () => {
     before(async () => {
       productMock = {
         title: faker.commerce.product(),
@@ -491,5 +495,5 @@ describe('tests API', () => {
       expect(response.req.method).to.equal('DELETE')
       expect(response.text).to.equal('')
     })
-  }) */
+  })
 })

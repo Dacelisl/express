@@ -382,3 +382,155 @@
 [2023-10-16T16:06:47.424Z] info: Indexes synchronized successfully
 [2023-10-16T16:06:55.866Z] warning: Authentication Error!
 [2023-10-16T16:06:55.866Z] warning: Authentication Error!
+[2023-10-16T16:09:58.527Z] info: Connected to MongoDB!
+[2023-10-16T16:09:58.528Z] info: Connected to MongoDB!
+[2023-10-16T16:09:58.530Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:09:58.530Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:09:59.920Z] info: Connected to MongoDB!
+[2023-10-16T16:09:59.920Z] info: Connected to MongoDB!
+[2023-10-16T16:10:01.568Z] info: Indexes synchronized successfully
+[2023-10-16T16:10:01.568Z] info: Indexes synchronized successfully
+[2023-10-16T16:10:01.991Z] info: Indexes synchronized successfully
+[2023-10-16T16:10:01.992Z] info: Indexes synchronized successfully
+[2023-10-16T16:10:21.975Z] error: something went wrong UserCreation
+[2023-10-16T16:10:21.976Z] error: something went wrong UserCreation
+[2023-10-16T16:10:23.682Z] warning: Authentication Error!
+[2023-10-16T16:10:23.682Z] warning: Authentication Error!
+[2023-10-16T16:10:25.685Z] warning: failed to change roles, switchRol Cannot read properties of undefined (reading 'map')
+[2023-10-16T16:10:25.685Z] warning: failed to change roles, switchRol Cannot read properties of undefined (reading 'map')
+[2023-10-16T16:10:27.657Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:10:27.657Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:10:27.812Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:10:27.812Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:12:14.139Z] warning: Authentication Error!
+[2023-10-16T16:12:14.139Z] warning: Authentication Error!
+[2023-10-16T16:12:17.921Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:12:17.921Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:12:18.038Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:12:18.038Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:14:45.722Z] info: Connected to MongoDB!
+[2023-10-16T16:14:45.723Z] info: Connected to MongoDB!
+[2023-10-16T16:14:45.725Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:14:45.725Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:14:47.047Z] info: Connected to MongoDB!
+[2023-10-16T16:14:47.047Z] info: Connected to MongoDB!
+[2023-10-16T16:14:48.638Z] info: Indexes synchronized successfully
+[2023-10-16T16:14:48.638Z] info: Indexes synchronized successfully
+[2023-10-16T16:14:48.649Z] info: Indexes synchronized successfully
+[2023-10-16T16:14:48.649Z] info: Indexes synchronized successfully
+[2023-10-16T16:16:02.512Z] warning: Authentication Error!
+[2023-10-16T16:16:02.512Z] warning: Authentication Error!
+[2023-10-16T16:16:07.030Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:16:07.030Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:16:07.133Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:16:07.133Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:17:11.582Z] info: Connected to MongoDB!
+[2023-10-16T16:17:11.583Z] info: Connected to MongoDB!
+[2023-10-16T16:17:11.586Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:17:11.586Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:17:12.773Z] info: Connected to MongoDB!
+[2023-10-16T16:17:12.774Z] info: Connected to MongoDB!
+[2023-10-16T16:17:14.365Z] info: Indexes synchronized successfully
+[2023-10-16T16:17:14.365Z] info: Indexes synchronized successfully
+[2023-10-16T16:17:14.878Z] info: Indexes synchronized successfully
+[2023-10-16T16:17:14.878Z] info: Indexes synchronized successfully
+[2023-10-16T16:18:20.951Z] warning: Authentication Error!
+[2023-10-16T16:18:20.951Z] warning: Authentication Error!
+[2023-10-16T16:18:25.747Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:18:25.747Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:18:25.851Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:18:25.852Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:20:37.778Z] warning: Authentication Error!
+[2023-10-16T16:20:37.778Z] warning: Authentication Error!
+[2023-10-16T16:20:41.775Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:20:41.775Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:20:41.879Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:20:41.879Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:26:15.084Z] warning: Authentication Error!
+[2023-10-16T16:26:15.084Z] warning: Authentication Error!
+[2023-10-16T16:26:19.050Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:26:19.051Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:26:19.148Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:26:19.148Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:27:53.200Z] warning: Authentication Error!
+[2023-10-16T16:27:53.200Z] warning: Authentication Error!
+[2023-10-16T16:27:56.998Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:27:56.998Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:27:57.103Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:27:57.103Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:30:24.836Z] warning: Authentication Error!
+[2023-10-16T16:30:24.836Z] warning: Authentication Error!
+[2023-10-16T16:30:28.899Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:30:28.900Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:30:29.000Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:30:29.000Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:31:49.402Z] warning: Authentication Error!
+[2023-10-16T16:31:49.402Z] warning: Authentication Error!
+[2023-10-16T16:31:53.375Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:31:53.376Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:31:53.478Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:31:53.478Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:34:38.688Z] warning: Authentication Error!
+[2023-10-16T16:34:38.688Z] warning: Authentication Error!
+[2023-10-16T16:34:42.666Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:34:42.666Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:34:42.788Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:34:42.788Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:37:28.673Z] info: Connected to MongoDB!
+[2023-10-16T16:37:28.674Z] info: Connected to MongoDB!
+[2023-10-16T16:37:28.676Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:37:28.676Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:37:30.091Z] info: Connected to MongoDB!
+[2023-10-16T16:37:30.091Z] info: Connected to MongoDB!
+[2023-10-16T16:37:31.665Z] info: Indexes synchronized successfully
+[2023-10-16T16:37:31.665Z] info: Indexes synchronized successfully
+[2023-10-16T16:37:31.741Z] info: Indexes synchronized successfully
+[2023-10-16T16:37:31.741Z] info: Indexes synchronized successfully
+[2023-10-16T16:39:24.223Z] warning: Authentication Error!
+[2023-10-16T16:39:24.223Z] warning: Authentication Error!
+[2023-10-16T16:39:28.778Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:39:28.778Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:39:28.887Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:39:28.888Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:41:28.260Z] warning: Authentication Error!
+[2023-10-16T16:41:28.260Z] warning: Authentication Error!
+[2023-10-16T16:41:32.589Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:41:32.590Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:41:32.702Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:41:32.701Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:46:18.540Z] warning: Authentication Error!
+[2023-10-16T16:46:18.540Z] warning: Authentication Error!
+[2023-10-16T16:46:22.661Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:46:22.661Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:46:22.778Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:46:22.778Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:53:19.906Z] warning: Authentication Error!
+[2023-10-16T16:53:19.906Z] warning: Authentication Error!
+[2023-10-16T16:53:24.259Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:53:24.259Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:53:24.370Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:53:24.370Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:57:31.106Z] warning: Authentication Error!
+[2023-10-16T16:57:31.106Z] warning: Authentication Error!
+[2023-10-16T16:57:35.247Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:57:35.247Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:57:35.358Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:57:35.358Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:58:27.960Z] warning: Authentication Error!
+[2023-10-16T16:58:27.960Z] warning: Authentication Error!
+[2023-10-16T16:58:32.094Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:58:32.094Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:58:32.189Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:58:32.189Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T17:06:16.939Z] warning: Authentication Error!
+[2023-10-16T17:06:16.939Z] warning: Authentication Error!
+[2023-10-16T17:06:20.993Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T17:06:20.993Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T17:06:21.105Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T17:06:21.106Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T17:07:11.303Z] warning: Authentication Error!
+[2023-10-16T17:07:11.303Z] warning: Authentication Error!
+[2023-10-16T17:07:15.551Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T17:07:15.551Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T17:07:15.652Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T17:07:15.652Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid

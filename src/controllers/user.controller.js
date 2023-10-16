@@ -119,7 +119,7 @@ class UserController {
       } else {
         user = await userService.getUserByID(uid)
       }
-      return res.json(user)
+      return res.json(user.payload.documents)
     } catch (error) {
       req.logger.warning('Error get documents, getDocuments', error)
       return sendErrorResponse(res, error)
