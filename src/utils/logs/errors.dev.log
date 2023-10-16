@@ -1,784 +1,144 @@
-[2023-10-15T19:34:17.352Z] info: Connected to MongoDB!
-[2023-10-15T19:34:17.353Z] info: Connected to MongoDB!
-[2023-10-15T19:34:17.354Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T19:34:17.354Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T19:34:18.485Z] info: Connected to MongoDB!
-[2023-10-15T19:34:18.485Z] info: Connected to MongoDB!
-[2023-10-15T19:34:20.040Z] info: Indexes synchronized successfully
-[2023-10-15T19:34:20.041Z] info: Indexes synchronized successfully
-[2023-10-15T19:34:20.076Z] info: Indexes synchronized successfully
-[2023-10-15T19:34:20.076Z] info: Indexes synchronized successfully
-[2023-10-15T19:34:25.611Z] warning: Authentication Error!
-[2023-10-15T19:34:25.611Z] warning: Authentication Error!
-[2023-10-15T19:34:28.714Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T19:34:28.714Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T19:34:28.820Z] warning: Unauthorized access  DELETE /api/users/Florencio_Goodwin@gmail.com from /:uid
-[2023-10-15T19:34:28.821Z] warning: Unauthorized access  DELETE /api/users/Florencio_Goodwin@gmail.com from /:uid
-[2023-10-15T19:36:16.154Z] info: Connected to MongoDB!
-[2023-10-15T19:36:16.155Z] info: Connected to MongoDB!
-[2023-10-15T19:36:16.156Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T19:36:16.157Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T19:36:17.391Z] info: Connected to MongoDB!
-[2023-10-15T19:36:17.391Z] info: Connected to MongoDB!
-[2023-10-15T19:36:18.975Z] info: Indexes synchronized successfully
-[2023-10-15T19:36:18.976Z] info: Indexes synchronized successfully
-[2023-10-15T19:36:19.014Z] info: Indexes synchronized successfully
-[2023-10-15T19:36:19.014Z] info: Indexes synchronized successfully
-[2023-10-15T19:36:30.870Z] warning: Authentication Error!
-[2023-10-15T19:36:30.871Z] warning: Authentication Error!
-[2023-10-15T19:36:33.913Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T19:36:33.913Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T19:36:34.013Z] warning: Unauthorized access  DELETE /api/users/Zander.Hodkiewicz@hotmail.com from /:uid
-[2023-10-15T19:36:34.014Z] warning: Unauthorized access  DELETE /api/users/Zander.Hodkiewicz@hotmail.com from /:uid
-[2023-10-15T19:40:19.129Z] warning: Authentication Error!
-[2023-10-15T19:40:19.129Z] warning: Authentication Error!
-[2023-10-15T19:40:21.613Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T19:40:21.613Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T19:40:21.705Z] warning: Unauthorized access  DELETE /api/users/Flavio_Dibbert@gmail.com from /:uid
-[2023-10-15T19:40:21.706Z] warning: Unauthorized access  DELETE /api/users/Flavio_Dibbert@gmail.com from /:uid
-[2023-10-15T19:43:19.604Z] info: Connected to MongoDB!
-[2023-10-15T19:43:19.605Z] info: Connected to MongoDB!
-[2023-10-15T19:43:19.606Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T19:43:19.606Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T19:43:20.920Z] info: Connected to MongoDB!
-[2023-10-15T19:43:20.920Z] info: Connected to MongoDB!
-[2023-10-15T19:43:22.517Z] info: Indexes synchronized successfully
-[2023-10-15T19:43:22.517Z] info: Indexes synchronized successfully
-[2023-10-15T19:43:22.521Z] info: Indexes synchronized successfully
-[2023-10-15T19:43:22.520Z] info: Indexes synchronized successfully
-[2023-10-15T19:43:33.887Z] warning: Authentication Error!
-[2023-10-15T19:43:33.888Z] warning: Authentication Error!
-[2023-10-15T19:43:37.086Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T19:43:37.086Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T19:43:37.189Z] warning: Unauthorized access  DELETE /api/users/Charles_Murazik@hotmail.com from /:uid
-[2023-10-15T19:43:37.189Z] warning: Unauthorized access  DELETE /api/users/Charles_Murazik@hotmail.com from /:uid
-[2023-10-15T19:46:22.379Z] info: Connected to MongoDB!
-[2023-10-15T19:46:22.380Z] info: Connected to MongoDB!
-[2023-10-15T19:46:22.382Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T19:46:22.383Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T19:46:23.574Z] info: Connected to MongoDB!
-[2023-10-15T19:46:23.574Z] info: Connected to MongoDB!
-[2023-10-15T19:46:25.103Z] info: Indexes synchronized successfully
-[2023-10-15T19:46:25.103Z] info: Indexes synchronized successfully
-[2023-10-15T19:46:25.151Z] info: Indexes synchronized successfully
-[2023-10-15T19:46:25.151Z] info: Indexes synchronized successfully
-[2023-10-15T19:49:23.316Z] info: Connected to MongoDB!
-[2023-10-15T19:49:23.317Z] info: Connected to MongoDB!
-[2023-10-15T19:49:23.319Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T19:49:23.319Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T19:49:24.589Z] info: Connected to MongoDB!
-[2023-10-15T19:49:24.589Z] info: Connected to MongoDB!
-[2023-10-15T19:49:26.146Z] info: Indexes synchronized successfully
-[2023-10-15T19:49:26.147Z] info: Indexes synchronized successfully
-[2023-10-15T19:49:26.616Z] info: Indexes synchronized successfully
-[2023-10-15T19:49:26.616Z] info: Indexes synchronized successfully
-[2023-10-15T19:49:33.762Z] warning: Authentication Error!
-[2023-10-15T19:49:33.762Z] warning: Authentication Error!
-[2023-10-15T19:49:36.901Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T19:49:36.900Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T19:49:37.010Z] warning: Unauthorized access  DELETE /api/users/Ashtyn.Daniel@yahoo.com from /:uid
-[2023-10-15T19:49:37.010Z] warning: Unauthorized access  DELETE /api/users/Ashtyn.Daniel@yahoo.com from /:uid
-[2023-10-15T20:00:44.711Z] warning: Authentication Error!
-[2023-10-15T20:00:44.711Z] warning: Authentication Error!
-[2023-10-15T20:00:47.411Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:00:47.411Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:00:47.511Z] warning: Unauthorized access  DELETE /api/users/Myles_Hand56@yahoo.com from /:uid
-[2023-10-15T20:00:47.511Z] warning: Unauthorized access  DELETE /api/users/Myles_Hand56@yahoo.com from /:uid
-[2023-10-15T20:14:19.285Z] warning: Authentication Error!
-[2023-10-15T20:14:19.285Z] warning: Authentication Error!
-[2023-10-15T20:14:22.592Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:14:22.592Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:14:22.695Z] warning: Unauthorized access  DELETE /api/users/Christop44@yahoo.com from /:uid
-[2023-10-15T20:14:22.695Z] warning: Unauthorized access  DELETE /api/users/Christop44@yahoo.com from /:uid
-[2023-10-15T20:16:53.151Z] info: Connected to MongoDB!
-[2023-10-15T20:16:53.152Z] info: Connected to MongoDB!
-[2023-10-15T20:16:53.153Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:16:53.153Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:16:54.387Z] info: Connected to MongoDB!
-[2023-10-15T20:16:54.387Z] info: Connected to MongoDB!
-[2023-10-15T20:16:55.928Z] info: Indexes synchronized successfully
-[2023-10-15T20:16:55.928Z] info: Indexes synchronized successfully
-[2023-10-15T20:16:55.981Z] info: Indexes synchronized successfully
-[2023-10-15T20:16:55.981Z] info: Indexes synchronized successfully
-[2023-10-15T20:17:06.205Z] info: Connected to MongoDB!
-[2023-10-15T20:17:06.206Z] info: Connected to MongoDB!
-[2023-10-15T20:17:06.208Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:17:06.208Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:17:07.224Z] info: Connected to MongoDB!
-[2023-10-15T20:17:07.224Z] info: Connected to MongoDB!
-[2023-10-15T20:17:08.828Z] info: Indexes synchronized successfully
-[2023-10-15T20:17:08.828Z] info: Indexes synchronized successfully
-[2023-10-15T20:17:09.215Z] info: Indexes synchronized successfully
-[2023-10-15T20:17:09.216Z] info: Indexes synchronized successfully
-[2023-10-15T20:38:39.524Z] info: Connected to MongoDB!
-[2023-10-15T20:38:39.525Z] info: Connected to MongoDB!
-[2023-10-15T20:38:39.526Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:38:39.526Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:38:40.781Z] info: Connected to MongoDB!
-[2023-10-15T20:38:40.781Z] info: Connected to MongoDB!
-[2023-10-15T20:38:42.347Z] info: Indexes synchronized successfully
-[2023-10-15T20:38:42.347Z] info: Indexes synchronized successfully
-[2023-10-15T20:38:42.818Z] info: Indexes synchronized successfully
-[2023-10-15T20:38:42.819Z] info: Indexes synchronized successfully
-[2023-10-15T20:38:51.207Z] warning: Authentication Error!
-[2023-10-15T20:38:51.207Z] warning: Authentication Error!
-[2023-10-15T20:38:55.251Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:38:55.251Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:38:55.355Z] warning: Unauthorized access  DELETE /api/users/Emerald73@hotmail.com from /:uid
-[2023-10-15T20:38:55.355Z] warning: Unauthorized access  DELETE /api/users/Emerald73@hotmail.com from /:uid
-[2023-10-15T20:40:55.060Z] info: Connected to MongoDB!
-[2023-10-15T20:40:55.060Z] info: Connected to MongoDB!
-[2023-10-15T20:40:55.061Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:40:55.061Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:40:56.402Z] info: Connected to MongoDB!
-[2023-10-15T20:40:56.402Z] info: Connected to MongoDB!
-[2023-10-15T20:40:57.938Z] info: Indexes synchronized successfully
-[2023-10-15T20:40:57.939Z] info: Indexes synchronized successfully
-[2023-10-15T20:40:57.942Z] info: Indexes synchronized successfully
-[2023-10-15T20:40:57.943Z] info: Indexes synchronized successfully
-[2023-10-15T20:41:58.134Z] info: Connected to MongoDB!
-[2023-10-15T20:41:58.134Z] info: Connected to MongoDB!
-[2023-10-15T20:41:58.136Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:41:58.136Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:41:59.365Z] info: Connected to MongoDB!
-[2023-10-15T20:41:59.366Z] info: Connected to MongoDB!
-[2023-10-15T20:42:00.935Z] info: Indexes synchronized successfully
-[2023-10-15T20:42:00.935Z] info: Indexes synchronized successfully
-[2023-10-15T20:42:00.937Z] info: Indexes synchronized successfully
-[2023-10-15T20:42:00.938Z] info: Indexes synchronized successfully
-[2023-10-15T20:42:12.387Z] warning: Authentication Error!
-[2023-10-15T20:42:12.387Z] warning: Authentication Error!
-[2023-10-15T20:42:16.635Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:42:16.635Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:42:16.736Z] warning: Unauthorized access  DELETE /api/users/Leora_Mann55@yahoo.com from /:uid
-[2023-10-15T20:42:16.737Z] warning: Unauthorized access  DELETE /api/users/Leora_Mann55@yahoo.com from /:uid
-[2023-10-15T20:46:16.699Z] info: Connected to MongoDB!
-[2023-10-15T20:46:16.700Z] info: Connected to MongoDB!
-[2023-10-15T20:46:16.702Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:46:16.702Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:46:18.066Z] info: Connected to MongoDB!
-[2023-10-15T20:46:18.066Z] info: Connected to MongoDB!
-[2023-10-15T20:46:19.614Z] info: Indexes synchronized successfully
-[2023-10-15T20:46:19.615Z] info: Indexes synchronized successfully
-[2023-10-15T20:46:19.712Z] info: Indexes synchronized successfully
-[2023-10-15T20:46:19.713Z] info: Indexes synchronized successfully
-[2023-10-15T20:46:31.326Z] info: Connected to MongoDB!
-[2023-10-15T20:46:31.328Z] info: Connected to MongoDB!
-[2023-10-15T20:46:31.330Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:46:31.330Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:46:32.325Z] info: Connected to MongoDB!
-[2023-10-15T20:46:32.325Z] info: Connected to MongoDB!
-[2023-10-15T20:46:33.794Z] info: Indexes synchronized successfully
-[2023-10-15T20:46:33.794Z] info: Indexes synchronized successfully
-[2023-10-15T20:46:34.387Z] info: Indexes synchronized successfully
-[2023-10-15T20:46:34.387Z] info: Indexes synchronized successfully
-[2023-10-15T20:47:19.142Z] info: Connected to MongoDB!
-[2023-10-15T20:47:19.142Z] info: Connected to MongoDB!
-[2023-10-15T20:47:19.145Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:47:19.145Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:47:20.313Z] info: Connected to MongoDB!
-[2023-10-15T20:47:20.313Z] info: Connected to MongoDB!
-[2023-10-15T20:47:21.816Z] info: Indexes synchronized successfully
-[2023-10-15T20:47:21.817Z] info: Indexes synchronized successfully
-[2023-10-15T20:47:21.819Z] info: Indexes synchronized successfully
-[2023-10-15T20:47:21.820Z] info: Indexes synchronized successfully
-[2023-10-15T20:51:23.046Z] info: Connected to MongoDB!
-[2023-10-15T20:51:23.047Z] info: Connected to MongoDB!
-[2023-10-15T20:51:23.049Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:51:23.049Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:51:24.347Z] info: Connected to MongoDB!
-[2023-10-15T20:51:24.347Z] info: Connected to MongoDB!
-[2023-10-15T20:51:25.910Z] info: Indexes synchronized successfully
-[2023-10-15T20:51:25.911Z] info: Indexes synchronized successfully
-[2023-10-15T20:51:25.930Z] info: Indexes synchronized successfully
-[2023-10-15T20:51:25.930Z] info: Indexes synchronized successfully
-[2023-10-15T20:51:36.569Z] info: Connected to MongoDB!
-[2023-10-15T20:51:36.570Z] info: Connected to MongoDB!
-[2023-10-15T20:51:36.571Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:51:36.571Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:51:37.573Z] info: Connected to MongoDB!
-[2023-10-15T20:51:37.573Z] info: Connected to MongoDB!
-[2023-10-15T20:51:39.074Z] info: Indexes synchronized successfully
-[2023-10-15T20:51:39.074Z] info: Indexes synchronized successfully
-[2023-10-15T20:51:39.603Z] info: Indexes synchronized successfully
-[2023-10-15T20:51:39.603Z] info: Indexes synchronized successfully
-[2023-10-15T20:51:49.705Z] warning: Authentication Error!
-[2023-10-15T20:51:49.705Z] warning: Authentication Error!
-[2023-10-15T20:51:54.227Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:51:54.228Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:51:54.333Z] warning: Unauthorized access  DELETE /api/users/Stewart42@gmail.com from /:uid
-[2023-10-15T20:51:54.334Z] warning: Unauthorized access  DELETE /api/users/Stewart42@gmail.com from /:uid
-[2023-10-15T20:51:54.700Z] error: something went wrong UserCreation
-[2023-10-15T20:51:54.700Z] error: something went wrong UserCreation
-[2023-10-15T20:56:04.264Z] info: Connected to MongoDB!
-[2023-10-15T20:56:04.265Z] info: Connected to MongoDB!
-[2023-10-15T20:56:04.267Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:56:04.267Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T20:56:06.730Z] info: Connected to MongoDB!
-[2023-10-15T20:56:06.730Z] info: Connected to MongoDB!
-[2023-10-15T20:56:08.333Z] info: Indexes synchronized successfully
-[2023-10-15T20:56:08.334Z] info: Indexes synchronized successfully
-[2023-10-15T20:56:09.004Z] info: Indexes synchronized successfully
-[2023-10-15T20:56:09.004Z] info: Indexes synchronized successfully
-[2023-10-15T20:56:20.305Z] warning: Authentication Error!
-[2023-10-15T20:56:20.306Z] warning: Authentication Error!
-[2023-10-15T20:56:29.176Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:56:29.176Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:56:29.282Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:56:29.282Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T20:56:29.383Z] warning: Unauthorized access  DELETE /api/users/Cristopher68@yahoo.com from /:uid
-[2023-10-15T20:56:29.383Z] warning: Unauthorized access  DELETE /api/users/Cristopher68@yahoo.com from /:uid
-[2023-10-15T20:56:29.553Z] warning: Unauthorized access  DELETE /api/users/Freida from /:uid
-[2023-10-15T20:56:29.553Z] warning: Unauthorized access  DELETE /api/users/Freida from /:uid
-[2023-10-15T20:56:30.281Z] warning: Unauthorized access  DELETE /api/users/Marcelo_Beatty@gmail.com from /:uid
-[2023-10-15T20:56:30.281Z] warning: Unauthorized access  DELETE /api/users/Marcelo_Beatty@gmail.com from /:uid
-[2023-10-15T21:00:36.039Z] info: Connected to MongoDB!
-[2023-10-15T21:00:36.040Z] info: Connected to MongoDB!
-[2023-10-15T21:00:36.041Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T21:00:36.042Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T21:00:37.450Z] info: Connected to MongoDB!
-[2023-10-15T21:00:37.451Z] info: Connected to MongoDB!
-[2023-10-15T21:00:39.001Z] info: Indexes synchronized successfully
-[2023-10-15T21:00:39.002Z] info: Indexes synchronized successfully
-[2023-10-15T21:00:39.034Z] info: Indexes synchronized successfully
-[2023-10-15T21:00:39.034Z] info: Indexes synchronized successfully
-[2023-10-15T21:51:59.803Z] info: Connected to MongoDB!
-[2023-10-15T21:51:59.804Z] info: Connected to MongoDB!
-[2023-10-15T21:51:59.806Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T21:51:59.806Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T21:52:01.336Z] info: Connected to MongoDB!
-[2023-10-15T21:52:01.336Z] info: Connected to MongoDB!
-[2023-10-15T21:52:03.104Z] info: Indexes synchronized successfully
-[2023-10-15T21:52:03.105Z] info: Indexes synchronized successfully
-[2023-10-15T21:52:03.616Z] info: Indexes synchronized successfully
-[2023-10-15T21:52:03.617Z] info: Indexes synchronized successfully
-[2023-10-15T21:52:19.275Z] warning: Authentication Error!
-[2023-10-15T21:52:19.276Z] warning: Authentication Error!
-[2023-10-15T21:52:25.449Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T21:52:25.449Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T21:52:25.574Z] warning: Unauthorized access  DELETE /api/users/Quinton.Bogisich@hotmail.com from /:uid
-[2023-10-15T21:52:25.574Z] warning: Unauthorized access  DELETE /api/users/Quinton.Bogisich@hotmail.com from /:uid
-[2023-10-15T21:53:43.536Z] info: Connected to MongoDB!
-[2023-10-15T21:53:43.537Z] info: Connected to MongoDB!
-[2023-10-15T21:53:43.539Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T21:53:43.539Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T21:53:47.131Z] info: Connected to MongoDB!
-[2023-10-15T21:53:47.132Z] info: Connected to MongoDB!
-[2023-10-15T21:53:48.788Z] info: Indexes synchronized successfully
-[2023-10-15T21:53:48.788Z] info: Indexes synchronized successfully
-[2023-10-15T21:53:48.791Z] info: Indexes synchronized successfully
-[2023-10-15T21:53:48.791Z] info: Indexes synchronized successfully
-[2023-10-15T21:54:06.050Z] warning: Authentication Error!
-[2023-10-15T21:54:06.051Z] warning: Authentication Error!
-[2023-10-15T21:54:10.762Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T21:54:10.762Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T21:54:10.878Z] warning: Unauthorized access  DELETE /api/users/Jerrold_Johnston@gmail.com from /:uid
-[2023-10-15T21:54:10.878Z] warning: Unauthorized access  DELETE /api/users/Jerrold_Johnston@gmail.com from /:uid
-[2023-10-15T21:57:24.139Z] warning: Authentication Error!
-[2023-10-15T21:57:24.139Z] warning: Authentication Error!
-[2023-10-15T21:57:34.005Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T21:57:34.006Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T21:57:34.115Z] warning: Unauthorized access  DELETE /api/users/Chaz65@hotmail.com from /:uid
-[2023-10-15T21:57:34.115Z] warning: Unauthorized access  DELETE /api/users/Chaz65@hotmail.com from /:uid
-[2023-10-15T22:08:04.733Z] info: Connected to MongoDB!
-[2023-10-15T22:08:04.734Z] info: Connected to MongoDB!
-[2023-10-15T22:08:04.736Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T22:08:04.736Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T22:08:10.355Z] info: Connected to MongoDB!
-[2023-10-15T22:08:10.355Z] info: Connected to MongoDB!
-[2023-10-15T22:08:14.591Z] info: Indexes synchronized successfully
-[2023-10-15T22:08:14.592Z] info: Indexes synchronized successfully
-[2023-10-15T22:08:20.444Z] info: Indexes synchronized successfully
-[2023-10-15T22:08:20.444Z] info: Indexes synchronized successfully
-[2023-10-15T22:12:52.925Z] warning: Authentication Error!
-[2023-10-15T22:12:52.925Z] warning: Authentication Error!
-[2023-10-15T22:13:00.601Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:13:00.601Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:13:00.711Z] warning: Unauthorized access  DELETE /api/users/Alison7@hotmail.com from /:uid
-[2023-10-15T22:13:00.711Z] warning: Unauthorized access  DELETE /api/users/Alison7@hotmail.com from /:uid
-[2023-10-15T22:16:05.589Z] warning: Authentication Error!
-[2023-10-15T22:16:05.589Z] warning: Authentication Error!
-[2023-10-15T22:16:08.994Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:16:08.994Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:16:09.110Z] warning: Unauthorized access  DELETE /api/users/Mossie_Rosenbaum77@hotmail.com from /:uid
-[2023-10-15T22:16:09.110Z] warning: Unauthorized access  DELETE /api/users/Mossie_Rosenbaum77@hotmail.com from /:uid
-[2023-10-15T22:16:39.787Z] warning: Authentication Error!
-[2023-10-15T22:16:39.788Z] warning: Authentication Error!
-[2023-10-15T22:16:40.340Z] warning: Authentication Error!
-[2023-10-15T22:16:40.340Z] warning: Authentication Error!
-[2023-10-15T22:16:40.739Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:16:40.740Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:16:40.840Z] warning: Unauthorized access  DELETE /api/users/Marge16@yahoo.com from /:uid
-[2023-10-15T22:16:40.840Z] warning: Unauthorized access  DELETE /api/users/Marge16@yahoo.com from /:uid
-[2023-10-15T22:17:10.226Z] warning: Authentication Error!
-[2023-10-15T22:17:10.226Z] warning: Authentication Error!
-[2023-10-15T22:17:16.153Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:17:16.153Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:17:16.289Z] warning: Unauthorized access  DELETE /api/users/Bernhard.Kihn-Berge@hotmail.com from /:uid
-[2023-10-15T22:17:16.289Z] warning: Unauthorized access  DELETE /api/users/Bernhard.Kihn-Berge@hotmail.com from /:uid
-[2023-10-15T22:17:16.981Z] warning: Unauthorized access  DELETE /api/users/Trevion from /:uid
-[2023-10-15T22:17:16.981Z] warning: Unauthorized access  DELETE /api/users/Trevion from /:uid
-[2023-10-15T22:17:31.074Z] info: Connected to MongoDB!
-[2023-10-15T22:17:31.076Z] info: Connected to MongoDB!
-[2023-10-15T22:17:31.079Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T22:17:31.078Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T22:17:33.763Z] info: Connected to MongoDB!
-[2023-10-15T22:17:33.764Z] info: Connected to MongoDB!
-[2023-10-15T22:17:36.175Z] info: Indexes synchronized successfully
-[2023-10-15T22:17:36.175Z] info: Indexes synchronized successfully
-[2023-10-15T22:17:36.632Z] info: Indexes synchronized successfully
-[2023-10-15T22:17:36.633Z] info: Indexes synchronized successfully
-[2023-10-15T22:17:45.473Z] warning: Authentication Error!
-[2023-10-15T22:17:45.473Z] warning: Authentication Error!
-[2023-10-15T22:17:57.245Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:17:57.245Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:17:57.354Z] warning: Unauthorized access  DELETE /api/users/Trycia93@hotmail.com from /:uid
-[2023-10-15T22:17:57.354Z] warning: Unauthorized access  DELETE /api/users/Trycia93@hotmail.com from /:uid
-[2023-10-15T22:21:21.820Z] warning: Authentication Error!
-[2023-10-15T22:21:21.820Z] warning: Authentication Error!
-[2023-10-15T22:21:25.783Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:21:25.783Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:21:25.884Z] warning: Unauthorized access  DELETE /api/users/Adele.Will@yahoo.com from /:uid
-[2023-10-15T22:21:25.884Z] warning: Unauthorized access  DELETE /api/users/Adele.Will@yahoo.com from /:uid
-[2023-10-15T22:21:27.300Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:21:27.300Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:21:29.163Z] warning: Authentication Error!
-[2023-10-15T22:21:29.163Z] warning: Authentication Error!
-[2023-10-15T22:21:31.019Z] warning: Unauthorized access  DELETE /api/carts/652c65e96cd610e5b345b2cd from /:cid
-[2023-10-15T22:21:31.019Z] warning: Unauthorized access  DELETE /api/carts/652c65e96cd610e5b345b2cd from /:cid
-[2023-10-15T22:21:32.535Z] warning: Unauthorized access  DELETE /api/tickets/QMyzX9LMqP from /:cid
-[2023-10-15T22:21:32.535Z] warning: Unauthorized access  DELETE /api/tickets/QMyzX9LMqP from /:cid
-[2023-10-15T22:27:50.810Z] warning: Authentication Error!
-[2023-10-15T22:27:50.810Z] warning: Authentication Error!
-[2023-10-15T22:27:55.824Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:27:55.824Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:27:55.936Z] warning: Unauthorized access  DELETE /api/users/Lempi.Christiansen27@hotmail.com from /:uid
-[2023-10-15T22:27:55.936Z] warning: Unauthorized access  DELETE /api/users/Lempi.Christiansen27@hotmail.com from /:uid
-[2023-10-15T22:27:58.597Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:27:58.597Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:27:59.480Z] warning: Unauthorized access  DELETE /api/products/652c676d6cd610e5b345b313 from /:pid
-[2023-10-15T22:27:59.480Z] warning: Unauthorized access  DELETE /api/products/652c676d6cd610e5b345b313 from /:pid
-[2023-10-15T22:28:00.414Z] warning: Authentication Error!
-[2023-10-15T22:28:00.414Z] warning: Authentication Error!
-[2023-10-15T22:28:02.121Z] warning: Authentication Error!
-[2023-10-15T22:28:02.122Z] warning: Authentication Error!
-[2023-10-15T22:28:02.574Z] warning: Authentication Error!
-[2023-10-15T22:28:02.574Z] warning: Authentication Error!
-[2023-10-15T22:28:02.794Z] warning: Unauthorized access  PUT /api/carts/652c67616cd610e5b345b2da/product/652c676d6cd610e5b345b313 from /:cid/product/:pid
-[2023-10-15T22:28:02.793Z] warning: Unauthorized access  PUT /api/carts/652c67616cd610e5b345b2da/product/652c676d6cd610e5b345b313 from /:cid/product/:pid
-[2023-10-15T22:28:03.007Z] warning: Unauthorized access  DELETE /api/carts/652c67716cd610e5b345b320 from /:cid
-[2023-10-15T22:28:03.007Z] warning: Unauthorized access  DELETE /api/carts/652c67716cd610e5b345b320 from /:cid
-[2023-10-15T22:28:03.144Z] warning: Unauthorized access  DELETE /api/tickets/undefined from /:cid
-[2023-10-15T22:28:03.144Z] warning: Unauthorized access  DELETE /api/tickets/undefined from /:cid
-[2023-10-15T22:30:05.546Z] info: Connected to MongoDB!
-[2023-10-15T22:30:05.547Z] info: Connected to MongoDB!
-[2023-10-15T22:30:05.551Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T22:30:05.551Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T22:30:14.577Z] info: Connected to MongoDB!
-[2023-10-15T22:30:14.577Z] info: Connected to MongoDB!
-[2023-10-15T22:30:17.458Z] info: Indexes synchronized successfully
-[2023-10-15T22:30:17.458Z] info: Indexes synchronized successfully
-[2023-10-15T22:30:18.870Z] warning: Authentication Error!
-[2023-10-15T22:30:18.870Z] warning: Authentication Error!
-[2023-10-15T22:30:19.207Z] info: Indexes synchronized successfully
-[2023-10-15T22:30:19.207Z] info: Indexes synchronized successfully
-[2023-10-15T22:30:26.790Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:30:26.790Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:30:27.696Z] warning: Unauthorized access  DELETE /api/users/Gloria26@hotmail.com from /:uid
-[2023-10-15T22:30:27.696Z] warning: Unauthorized access  DELETE /api/users/Gloria26@hotmail.com from /:uid
-[2023-10-15T22:30:27.929Z] warning: Unauthorized access  DELETE /api/users/Maegan from /:uid
-[2023-10-15T22:30:27.930Z] warning: Unauthorized access  DELETE /api/users/Maegan from /:uid
-[2023-10-15T22:30:28.090Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:30:28.090Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:30:32.518Z] warning: Unauthorized access  DELETE /api/tickets/undefined from /:cid
-[2023-10-15T22:30:32.519Z] warning: Unauthorized access  DELETE /api/tickets/undefined from /:cid
-[2023-10-15T22:31:15.653Z] warning: Authentication Error!
-[2023-10-15T22:31:15.653Z] warning: Authentication Error!
-[2023-10-15T22:31:23.447Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:31:23.447Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:31:23.554Z] warning: Unauthorized access  DELETE /api/users/Josefina_Parker48@yahoo.com from /:uid
-[2023-10-15T22:31:23.555Z] warning: Unauthorized access  DELETE /api/users/Josefina_Parker48@yahoo.com from /:uid
-[2023-10-15T22:31:26.344Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:31:26.344Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:31:27.328Z] warning: Unauthorized access  DELETE /api/products/652c683dbf9ec7d47ed9a476 from /:pid
-[2023-10-15T22:31:27.328Z] warning: Unauthorized access  DELETE /api/products/652c683dbf9ec7d47ed9a476 from /:pid
-[2023-10-15T22:31:29.510Z] warning: Authentication Error!
-[2023-10-15T22:31:29.510Z] warning: Authentication Error!
-[2023-10-15T22:31:30.332Z] warning: Authentication Error!
-[2023-10-15T22:31:30.332Z] warning: Authentication Error!
-[2023-10-15T22:31:31.125Z] warning: Unauthorized access  PUT /api/carts/652c682cbf9ec7d47ed9a43d/product/652c683dbf9ec7d47ed9a476 from /:cid/product/:pid
-[2023-10-15T22:31:31.125Z] warning: Unauthorized access  PUT /api/carts/652c682cbf9ec7d47ed9a43d/product/652c683dbf9ec7d47ed9a476 from /:cid/product/:pid
-[2023-10-15T22:31:32.742Z] warning: Unauthorized access  DELETE /api/carts/652c6842bf9ec7d47ed9a483 from /:cid
-[2023-10-15T22:31:32.742Z] warning: Unauthorized access  DELETE /api/carts/652c6842bf9ec7d47ed9a483 from /:cid
-[2023-10-15T22:31:35.240Z] warning: Unauthorized access  DELETE /api/tickets/iskjbLR541 from /:cid
-[2023-10-15T22:31:35.241Z] warning: Unauthorized access  DELETE /api/tickets/iskjbLR541 from /:cid
-[2023-10-15T22:37:59.794Z] warning: Authentication Error!
-[2023-10-15T22:37:59.794Z] warning: Authentication Error!
-[2023-10-15T22:38:03.816Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:38:03.816Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:38:03.921Z] warning: Unauthorized access  DELETE /api/users/Orie91@hotmail.com from /:uid
-[2023-10-15T22:38:03.922Z] warning: Unauthorized access  DELETE /api/users/Orie91@hotmail.com from /:uid
-[2023-10-15T22:38:06.701Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:38:06.701Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:38:07.873Z] warning: Unauthorized access  DELETE /api/products/652c69cebf9ec7d47ed9a4e0 from /:pid
-[2023-10-15T22:38:07.873Z] warning: Unauthorized access  DELETE /api/products/652c69cebf9ec7d47ed9a4e0 from /:pid
-[2023-10-15T22:38:10.082Z] warning: Authentication Error!
-[2023-10-15T22:38:10.082Z] warning: Authentication Error!
-[2023-10-15T22:38:10.751Z] warning: Authentication Error!
-[2023-10-15T22:38:10.752Z] warning: Authentication Error!
-[2023-10-15T22:38:11.491Z] warning: Unauthorized access  PUT /api/carts/652c69c0bf9ec7d47ed9a4a7/product/652c69cebf9ec7d47ed9a4e0 from /:cid/product/:pid
-[2023-10-15T22:38:11.491Z] warning: Unauthorized access  PUT /api/carts/652c69c0bf9ec7d47ed9a4a7/product/652c69cebf9ec7d47ed9a4e0 from /:cid/product/:pid
-[2023-10-15T22:38:13.516Z] warning: Unauthorized access  DELETE /api/carts/652c69d2bf9ec7d47ed9a4ed from /:cid
-[2023-10-15T22:38:13.517Z] warning: Unauthorized access  DELETE /api/carts/652c69d2bf9ec7d47ed9a4ed from /:cid
-[2023-10-15T22:38:15.717Z] warning: Unauthorized access  DELETE /api/tickets/ox4TWq8Nt2 from /:cid
-[2023-10-15T22:38:15.717Z] warning: Unauthorized access  DELETE /api/tickets/ox4TWq8Nt2 from /:cid
-[2023-10-15T22:42:40.306Z] warning: Authentication Error!
-[2023-10-15T22:42:40.307Z] warning: Authentication Error!
-[2023-10-15T22:42:46.454Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:42:46.454Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:42:46.571Z] warning: Unauthorized access  DELETE /api/users/Rachel.Rogahn0@gmail.com from /:uid
-[2023-10-15T22:42:46.572Z] warning: Unauthorized access  DELETE /api/users/Rachel.Rogahn0@gmail.com from /:uid
-[2023-10-15T22:42:48.842Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:42:48.842Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:42:50.108Z] warning: Unauthorized access  PUT /api/products/652c6ae7bf9ec7d47ed9a54a from /:pid
-[2023-10-15T22:42:50.108Z] warning: Unauthorized access  PUT /api/products/652c6ae7bf9ec7d47ed9a54a from /:pid
-[2023-10-15T22:42:50.219Z] warning: Unauthorized access  DELETE /api/products/652c6ae7bf9ec7d47ed9a54a from /:pid
-[2023-10-15T22:42:50.219Z] warning: Unauthorized access  DELETE /api/products/652c6ae7bf9ec7d47ed9a54a from /:pid
-[2023-10-15T22:42:50.371Z] warning: Unauthorized access  DELETE /api/tickets/undefined from /:cid
-[2023-10-15T22:42:50.371Z] warning: Unauthorized access  DELETE /api/tickets/undefined from /:cid
-[2023-10-15T22:43:05.047Z] warning: Authentication Error!
-[2023-10-15T22:43:05.047Z] warning: Authentication Error!
-[2023-10-15T22:43:13.554Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:43:13.555Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:43:13.666Z] warning: Unauthorized access  DELETE /api/users/Adelle.Nitzsche@yahoo.com from /:uid
-[2023-10-15T22:43:13.667Z] warning: Unauthorized access  DELETE /api/users/Adelle.Nitzsche@yahoo.com from /:uid
-[2023-10-15T22:43:17.789Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:43:17.789Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:43:19.938Z] warning: Unauthorized access  PUT /api/products/652c6b04bf9ec7d47ed9a58b from /:pid
-[2023-10-15T22:43:19.938Z] warning: Unauthorized access  PUT /api/products/652c6b04bf9ec7d47ed9a58b from /:pid
-[2023-10-15T22:43:20.052Z] warning: Unauthorized access  DELETE /api/products/652c6b04bf9ec7d47ed9a58b from /:pid
-[2023-10-15T22:43:20.052Z] warning: Unauthorized access  DELETE /api/products/652c6b04bf9ec7d47ed9a58b from /:pid
-[2023-10-15T22:43:20.190Z] warning: Unauthorized access  DELETE /api/tickets/undefined from /:cid
-[2023-10-15T22:43:20.191Z] warning: Unauthorized access  DELETE /api/tickets/undefined from /:cid
-[2023-10-15T22:44:28.758Z] warning: Authentication Error!
-[2023-10-15T22:44:28.758Z] warning: Authentication Error!
-[2023-10-15T22:44:35.199Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:44:35.199Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:44:35.644Z] warning: Unauthorized access  DELETE /api/users/Jules_Price@yahoo.com from /:uid
-[2023-10-15T22:44:35.645Z] warning: Unauthorized access  DELETE /api/users/Jules_Price@yahoo.com from /:uid
-[2023-10-15T22:44:36.235Z] warning: Unauthorized access  DELETE /api/users/Keaton from /:uid
-[2023-10-15T22:44:36.236Z] warning: Unauthorized access  DELETE /api/users/Keaton from /:uid
-[2023-10-15T22:44:36.671Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:44:36.671Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:44:39.266Z] warning: Unauthorized access  DELETE /api/tickets/undefined from /:cid
-[2023-10-15T22:44:39.267Z] warning: Unauthorized access  DELETE /api/tickets/undefined from /:cid
-[2023-10-15T22:44:52.192Z] info: Connected to MongoDB!
-[2023-10-15T22:44:52.194Z] info: Connected to MongoDB!
-[2023-10-15T22:44:52.197Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T22:44:52.197Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T22:44:54.801Z] info: Connected to MongoDB!
-[2023-10-15T22:44:54.802Z] info: Connected to MongoDB!
-[2023-10-15T22:44:56.408Z] info: Indexes synchronized successfully
-[2023-10-15T22:44:56.408Z] info: Indexes synchronized successfully
-[2023-10-15T22:44:56.446Z] info: Indexes synchronized successfully
-[2023-10-15T22:44:56.446Z] info: Indexes synchronized successfully
-[2023-10-15T22:45:16.937Z] warning: Authentication Error!
-[2023-10-15T22:45:16.938Z] warning: Authentication Error!
-[2023-10-15T22:45:28.080Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:45:28.080Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
-[2023-10-15T22:45:28.182Z] warning: Unauthorized access  DELETE /api/users/Dolores_Rempel@gmail.com from /:uid
-[2023-10-15T22:45:28.182Z] warning: Unauthorized access  DELETE /api/users/Dolores_Rempel@gmail.com from /:uid
-[2023-10-15T22:45:29.586Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:45:29.586Z] warning: Unauthorized access  POST /api/products from /
-[2023-10-15T22:45:30.465Z] warning: Unauthorized access  DELETE /api/products/652c6b89afe1ca6b8f582fa7 from /:pid
-[2023-10-15T22:45:30.466Z] warning: Unauthorized access  DELETE /api/products/652c6b89afe1ca6b8f582fa7 from /:pid
-[2023-10-15T22:45:31.410Z] warning: Authentication Error!
-[2023-10-15T22:45:31.410Z] warning: Authentication Error!
-[2023-10-15T22:45:32.082Z] warning: Authentication Error!
-[2023-10-15T22:45:32.082Z] warning: Authentication Error!
-[2023-10-15T22:45:32.830Z] warning: Unauthorized access  PUT /api/carts/652c6b76afe1ca6b8f582f6e/product/652c6b89afe1ca6b8f582fa7 from /:cid/product/:pid
-[2023-10-15T22:45:32.830Z] warning: Unauthorized access  PUT /api/carts/652c6b76afe1ca6b8f582f6e/product/652c6b89afe1ca6b8f582fa7 from /:cid/product/:pid
-[2023-10-15T22:45:33.790Z] warning: Unauthorized access  DELETE /api/carts/652c6b8bafe1ca6b8f582fb4 from /:cid
-[2023-10-15T22:45:33.790Z] warning: Unauthorized access  DELETE /api/carts/652c6b8bafe1ca6b8f582fb4 from /:cid
-[2023-10-15T22:45:35.618Z] warning: Unauthorized access  DELETE /api/tickets/kksUjjpJe7 from /:cid
-[2023-10-15T22:45:35.618Z] warning: Unauthorized access  DELETE /api/tickets/kksUjjpJe7 from /:cid
-[2023-10-15T23:14:04.995Z] info: Connected to MongoDB!
-[2023-10-15T23:14:04.996Z] info: Connected to MongoDB!
-[2023-10-15T23:14:04.998Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:14:04.998Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:14:07.053Z] info: Connected to MongoDB!
-[2023-10-15T23:14:07.053Z] info: Connected to MongoDB!
-[2023-10-15T23:14:08.669Z] info: Indexes synchronized successfully
-[2023-10-15T23:14:08.670Z] info: Indexes synchronized successfully
-[2023-10-15T23:14:09.142Z] info: Indexes synchronized successfully
-[2023-10-15T23:14:09.143Z] info: Indexes synchronized successfully
-[2023-10-15T23:26:31.678Z] info: Connected to MongoDB!
-[2023-10-15T23:26:31.679Z] info: Connected to MongoDB!
-[2023-10-15T23:26:31.681Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:26:31.681Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:26:33.080Z] info: Connected to MongoDB!
-[2023-10-15T23:26:33.080Z] info: Connected to MongoDB!
-[2023-10-15T23:26:34.643Z] info: Indexes synchronized successfully
-[2023-10-15T23:26:34.643Z] info: Indexes synchronized successfully
-[2023-10-15T23:26:35.130Z] info: Indexes synchronized successfully
-[2023-10-15T23:26:35.131Z] info: Indexes synchronized successfully
-[2023-10-15T23:28:33.551Z] info: Connected to MongoDB!
-[2023-10-15T23:28:33.552Z] info: Connected to MongoDB!
-[2023-10-15T23:28:33.554Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:28:33.554Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:28:35.042Z] info: Connected to MongoDB!
-[2023-10-15T23:28:35.042Z] info: Connected to MongoDB!
-[2023-10-15T23:28:36.638Z] info: Indexes synchronized successfully
-[2023-10-15T23:28:36.638Z] info: Indexes synchronized successfully
-[2023-10-15T23:28:37.142Z] info: Indexes synchronized successfully
-[2023-10-15T23:28:37.143Z] info: Indexes synchronized successfully
-[2023-10-15T23:28:52.395Z] info: Connected to MongoDB!
-[2023-10-15T23:28:52.396Z] info: Connected to MongoDB!
-[2023-10-15T23:28:52.398Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:28:52.398Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:28:54.333Z] info: Connected to MongoDB!
-[2023-10-15T23:28:54.334Z] info: Connected to MongoDB!
-[2023-10-15T23:28:55.903Z] info: Indexes synchronized successfully
-[2023-10-15T23:28:55.903Z] info: Indexes synchronized successfully
-[2023-10-15T23:28:56.380Z] info: Indexes synchronized successfully
-[2023-10-15T23:28:56.381Z] info: Indexes synchronized successfully
-[2023-10-15T23:30:07.849Z] info: Connected to MongoDB!
-[2023-10-15T23:30:07.850Z] info: Connected to MongoDB!
-[2023-10-15T23:30:07.852Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:30:07.852Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:30:09.173Z] info: Connected to MongoDB!
-[2023-10-15T23:30:09.174Z] info: Connected to MongoDB!
-[2023-10-15T23:30:10.685Z] info: Indexes synchronized successfully
-[2023-10-15T23:30:10.686Z] info: Indexes synchronized successfully
-[2023-10-15T23:30:11.248Z] info: Indexes synchronized successfully
-[2023-10-15T23:30:11.249Z] info: Indexes synchronized successfully
-[2023-10-15T23:31:51.018Z] info: Connected to MongoDB!
-[2023-10-15T23:31:51.019Z] info: Connected to MongoDB!
-[2023-10-15T23:31:51.021Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:31:51.021Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:31:54.320Z] info: Connected to MongoDB!
-[2023-10-15T23:31:54.320Z] info: Connected to MongoDB!
-[2023-10-15T23:31:55.935Z] info: Indexes synchronized successfully
-[2023-10-15T23:31:55.935Z] info: Indexes synchronized successfully
-[2023-10-15T23:31:56.435Z] info: Indexes synchronized successfully
-[2023-10-15T23:31:56.436Z] info: Indexes synchronized successfully
-[2023-10-15T23:33:33.922Z] info: Connected to MongoDB!
-[2023-10-15T23:33:33.923Z] info: Connected to MongoDB!
-[2023-10-15T23:33:33.926Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:33:33.926Z] info: listen on http://localhost:3000, mode:
-[2023-10-15T23:33:35.418Z] info: Connected to MongoDB!
-[2023-10-15T23:33:35.419Z] info: Connected to MongoDB!
-[2023-10-15T23:33:36.987Z] info: Indexes synchronized successfully
-[2023-10-15T23:33:36.987Z] info: Indexes synchronized successfully
-[2023-10-15T23:33:36.994Z] info: Indexes synchronized successfully
-[2023-10-15T23:33:36.995Z] info: Indexes synchronized successfully
-[2023-10-16T00:07:06.424Z] info: Connected to MongoDB!
-[2023-10-16T00:07:06.426Z] info: Connected to MongoDB!
-[2023-10-16T00:07:06.428Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:07:06.428Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:07:08.235Z] info: Connected to MongoDB!
-[2023-10-16T00:07:08.236Z] info: Connected to MongoDB!
-[2023-10-16T00:07:09.855Z] info: Indexes synchronized successfully
-[2023-10-16T00:07:09.856Z] info: Indexes synchronized successfully
-[2023-10-16T00:07:10.343Z] info: Indexes synchronized successfully
-[2023-10-16T00:07:10.344Z] info: Indexes synchronized successfully
-[2023-10-16T00:07:46.157Z] info: Connected to MongoDB!
-[2023-10-16T00:07:46.159Z] info: Connected to MongoDB!
-[2023-10-16T00:07:46.162Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:07:46.162Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:07:48.176Z] info: Connected to MongoDB!
-[2023-10-16T00:07:48.177Z] info: Connected to MongoDB!
-[2023-10-16T00:07:49.754Z] info: Indexes synchronized successfully
-[2023-10-16T00:07:49.755Z] info: Indexes synchronized successfully
-[2023-10-16T00:07:50.280Z] info: Indexes synchronized successfully
-[2023-10-16T00:07:50.281Z] info: Indexes synchronized successfully
-[2023-10-16T00:09:56.918Z] info: Connected to MongoDB!
-[2023-10-16T00:09:56.919Z] info: Connected to MongoDB!
-[2023-10-16T00:09:56.921Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:09:56.921Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:09:58.539Z] info: Connected to MongoDB!
-[2023-10-16T00:09:58.539Z] info: Connected to MongoDB!
-[2023-10-16T00:10:00.120Z] info: Indexes synchronized successfully
-[2023-10-16T00:10:00.121Z] info: Indexes synchronized successfully
-[2023-10-16T00:10:00.199Z] info: Indexes synchronized successfully
-[2023-10-16T00:10:00.200Z] info: Indexes synchronized successfully
-[2023-10-16T00:13:20.011Z] info: Connected to MongoDB!
-[2023-10-16T00:13:20.014Z] info: Connected to MongoDB!
-[2023-10-16T00:13:20.016Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:13:20.016Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:13:21.890Z] info: Connected to MongoDB!
-[2023-10-16T00:13:21.890Z] info: Connected to MongoDB!
-[2023-10-16T00:13:23.489Z] info: Indexes synchronized successfully
-[2023-10-16T00:13:23.490Z] info: Indexes synchronized successfully
-[2023-10-16T00:13:24.001Z] info: Indexes synchronized successfully
-[2023-10-16T00:13:24.002Z] info: Indexes synchronized successfully
-[2023-10-16T00:14:40.618Z] info: Connected to MongoDB!
-[2023-10-16T00:14:40.619Z] info: Connected to MongoDB!
-[2023-10-16T00:14:40.621Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:14:40.621Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:14:42.483Z] info: Connected to MongoDB!
-[2023-10-16T00:14:42.483Z] info: Connected to MongoDB!
-[2023-10-16T00:14:44.497Z] info: Indexes synchronized successfully
-[2023-10-16T00:14:44.498Z] info: Indexes synchronized successfully
-[2023-10-16T00:14:45.063Z] info: Indexes synchronized successfully
-[2023-10-16T00:14:45.064Z] info: Indexes synchronized successfully
-[2023-10-16T00:16:28.261Z] info: Connected to MongoDB!
-[2023-10-16T00:16:28.263Z] info: Connected to MongoDB!
-[2023-10-16T00:16:28.266Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:16:28.267Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:16:30.116Z] info: Connected to MongoDB!
-[2023-10-16T00:16:30.117Z] info: Connected to MongoDB!
-[2023-10-16T00:16:31.635Z] info: Indexes synchronized successfully
-[2023-10-16T00:16:31.636Z] info: Indexes synchronized successfully
-[2023-10-16T00:16:31.702Z] info: Indexes synchronized successfully
-[2023-10-16T00:16:31.703Z] info: Indexes synchronized successfully
-[2023-10-16T00:17:04.522Z] info: Connected to MongoDB!
-[2023-10-16T00:17:04.523Z] info: Connected to MongoDB!
-[2023-10-16T00:17:04.525Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:17:04.525Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:17:05.681Z] info: Connected to MongoDB!
-[2023-10-16T00:17:05.681Z] info: Connected to MongoDB!
-[2023-10-16T00:17:07.262Z] info: Indexes synchronized successfully
-[2023-10-16T00:17:07.263Z] info: Indexes synchronized successfully
-[2023-10-16T00:17:07.314Z] info: Indexes synchronized successfully
-[2023-10-16T00:17:07.315Z] info: Indexes synchronized successfully
-[2023-10-16T00:17:38.329Z] info: Connected to MongoDB!
-[2023-10-16T00:17:38.331Z] info: Connected to MongoDB!
-[2023-10-16T00:17:38.333Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:17:38.333Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:17:39.750Z] info: Connected to MongoDB!
-[2023-10-16T00:17:39.751Z] info: Connected to MongoDB!
-[2023-10-16T00:17:41.277Z] info: Indexes synchronized successfully
-[2023-10-16T00:17:41.277Z] info: Indexes synchronized successfully
-[2023-10-16T00:17:41.303Z] info: Indexes synchronized successfully
-[2023-10-16T00:17:41.304Z] info: Indexes synchronized successfully
-[2023-10-16T00:19:00.575Z] info: Connected to MongoDB!
-[2023-10-16T00:19:00.577Z] info: Connected to MongoDB!
-[2023-10-16T00:19:00.579Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:19:00.579Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:19:02.575Z] info: Connected to MongoDB!
-[2023-10-16T00:19:02.576Z] info: Connected to MongoDB!
-[2023-10-16T00:19:04.149Z] info: Indexes synchronized successfully
-[2023-10-16T00:19:04.150Z] info: Indexes synchronized successfully
-[2023-10-16T00:19:04.180Z] info: Indexes synchronized successfully
-[2023-10-16T00:19:04.180Z] info: Indexes synchronized successfully
-[2023-10-16T00:19:28.983Z] info: Connected to MongoDB!
-[2023-10-16T00:19:28.984Z] info: Connected to MongoDB!
-[2023-10-16T00:19:28.986Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:19:28.986Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:19:30.678Z] info: Connected to MongoDB!
-[2023-10-16T00:19:30.678Z] info: Connected to MongoDB!
-[2023-10-16T00:19:32.315Z] info: Indexes synchronized successfully
-[2023-10-16T00:19:32.316Z] info: Indexes synchronized successfully
-[2023-10-16T00:19:32.325Z] info: Indexes synchronized successfully
-[2023-10-16T00:19:32.326Z] info: Indexes synchronized successfully
-[2023-10-16T00:22:26.449Z] info: Connected to MongoDB!
-[2023-10-16T00:22:26.451Z] info: Connected to MongoDB!
-[2023-10-16T00:22:26.454Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:22:26.455Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:22:28.515Z] info: Connected to MongoDB!
-[2023-10-16T00:22:28.516Z] info: Connected to MongoDB!
-[2023-10-16T00:22:30.725Z] info: Indexes synchronized successfully
-[2023-10-16T00:22:30.726Z] info: Indexes synchronized successfully
-[2023-10-16T00:22:31.417Z] info: Indexes synchronized successfully
-[2023-10-16T00:22:31.417Z] info: Indexes synchronized successfully
-[2023-10-16T00:22:53.527Z] info: Connected to MongoDB!
-[2023-10-16T00:22:53.528Z] info: Connected to MongoDB!
-[2023-10-16T00:22:53.530Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:22:53.530Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:22:56.814Z] info: Connected to MongoDB!
-[2023-10-16T00:22:56.815Z] info: Connected to MongoDB!
-[2023-10-16T00:23:00.637Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:00.638Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:03.068Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:03.068Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:14.521Z] info: Connected to MongoDB!
-[2023-10-16T00:23:14.522Z] info: Connected to MongoDB!
-[2023-10-16T00:23:14.525Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:23:14.525Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:23:16.050Z] info: Connected to MongoDB!
-[2023-10-16T00:23:16.050Z] info: Connected to MongoDB!
-[2023-10-16T00:23:18.277Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:18.277Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:18.570Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:18.570Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:42.929Z] info: Connected to MongoDB!
-[2023-10-16T00:23:42.932Z] info: Connected to MongoDB!
-[2023-10-16T00:23:42.940Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:23:42.941Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:23:44.316Z] info: Connected to MongoDB!
-[2023-10-16T00:23:44.316Z] info: Connected to MongoDB!
-[2023-10-16T00:23:45.921Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:45.922Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:46.384Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:46.384Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:51.214Z] info: Connected to MongoDB!
-[2023-10-16T00:23:51.215Z] info: Connected to MongoDB!
-[2023-10-16T00:23:51.217Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:23:51.217Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:23:53.613Z] info: Connected to MongoDB!
-[2023-10-16T00:23:53.613Z] info: Connected to MongoDB!
-[2023-10-16T00:23:55.204Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:55.205Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:55.209Z] info: Indexes synchronized successfully
-[2023-10-16T00:23:55.209Z] info: Indexes synchronized successfully
-[2023-10-16T00:24:01.721Z] info: Connected to MongoDB!
-[2023-10-16T00:24:01.722Z] info: Connected to MongoDB!
-[2023-10-16T00:24:01.724Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:24:01.724Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:24:03.665Z] info: Connected to MongoDB!
-[2023-10-16T00:24:03.665Z] info: Connected to MongoDB!
-[2023-10-16T00:24:05.199Z] info: Indexes synchronized successfully
-[2023-10-16T00:24:05.200Z] info: Indexes synchronized successfully
-[2023-10-16T00:24:05.286Z] info: Indexes synchronized successfully
-[2023-10-16T00:24:05.287Z] info: Indexes synchronized successfully
-[2023-10-16T00:25:31.152Z] info: Connected to MongoDB!
-[2023-10-16T00:25:31.153Z] info: Connected to MongoDB!
-[2023-10-16T00:25:31.158Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:25:31.158Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:25:32.683Z] info: Connected to MongoDB!
-[2023-10-16T00:25:32.683Z] info: Connected to MongoDB!
-[2023-10-16T00:25:34.213Z] info: Indexes synchronized successfully
-[2023-10-16T00:25:34.213Z] info: Indexes synchronized successfully
-[2023-10-16T00:25:34.239Z] info: Indexes synchronized successfully
-[2023-10-16T00:25:34.240Z] info: Indexes synchronized successfully
-[2023-10-16T00:25:38.421Z] info: Connected to MongoDB!
-[2023-10-16T00:25:38.422Z] info: Connected to MongoDB!
-[2023-10-16T00:25:38.424Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:25:38.424Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:25:40.229Z] info: Connected to MongoDB!
-[2023-10-16T00:25:40.230Z] info: Connected to MongoDB!
-[2023-10-16T00:25:41.810Z] info: Indexes synchronized successfully
-[2023-10-16T00:25:41.810Z] info: Indexes synchronized successfully
-[2023-10-16T00:25:42.280Z] info: Indexes synchronized successfully
-[2023-10-16T00:25:42.281Z] info: Indexes synchronized successfully
-[2023-10-16T00:26:30.053Z] info: Connected to MongoDB!
-[2023-10-16T00:26:30.055Z] info: Connected to MongoDB!
-[2023-10-16T00:26:30.058Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:26:30.058Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:26:32.010Z] info: Connected to MongoDB!
-[2023-10-16T00:26:32.010Z] info: Connected to MongoDB!
-[2023-10-16T00:26:33.546Z] info: Indexes synchronized successfully
-[2023-10-16T00:26:33.547Z] info: Indexes synchronized successfully
-[2023-10-16T00:26:33.629Z] info: Indexes synchronized successfully
-[2023-10-16T00:26:33.629Z] info: Indexes synchronized successfully
-[2023-10-16T00:27:21.783Z] info: Connected to MongoDB!
-[2023-10-16T00:27:21.785Z] info: Connected to MongoDB!
-[2023-10-16T00:27:21.786Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:27:21.787Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:27:24.349Z] info: Connected to MongoDB!
-[2023-10-16T00:27:24.350Z] info: Connected to MongoDB!
-[2023-10-16T00:27:25.925Z] info: Indexes synchronized successfully
-[2023-10-16T00:27:25.925Z] info: Indexes synchronized successfully
-[2023-10-16T00:27:25.934Z] info: Indexes synchronized successfully
-[2023-10-16T00:27:25.935Z] info: Indexes synchronized successfully
-[2023-10-16T00:27:52.202Z] info: Connected to MongoDB!
-[2023-10-16T00:27:52.204Z] info: Connected to MongoDB!
-[2023-10-16T00:27:52.205Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:27:52.206Z] info: listen on http://localhost:3000, mode:
-[2023-10-16T00:27:53.561Z] info: Connected to MongoDB!
-[2023-10-16T00:27:53.561Z] info: Connected to MongoDB!
-[2023-10-16T00:27:55.155Z] info: Indexes synchronized successfully
-[2023-10-16T00:27:55.156Z] info: Indexes synchronized successfully
-[2023-10-16T00:27:55.711Z] info: Indexes synchronized successfully
-[2023-10-16T00:27:55.712Z] info: Indexes synchronized successfully
+[2023-10-16T14:47:14.105Z] info: Connected to MongoDB!
+[2023-10-16T14:47:14.105Z] info: Connected to MongoDB!
+[2023-10-16T14:47:14.107Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T14:47:14.107Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T14:47:15.544Z] info: Connected to MongoDB!
+[2023-10-16T14:47:15.544Z] info: Connected to MongoDB!
+[2023-10-16T14:47:17.121Z] info: Indexes synchronized successfully
+[2023-10-16T14:47:17.121Z] info: Indexes synchronized successfully
+[2023-10-16T14:47:17.579Z] info: Indexes synchronized successfully
+[2023-10-16T14:47:17.579Z] info: Indexes synchronized successfully
+[2023-10-16T15:00:33.974Z] info: Connected to MongoDB!
+[2023-10-16T15:00:33.975Z] info: Connected to MongoDB!
+[2023-10-16T15:00:33.976Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:00:33.976Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:00:35.158Z] info: Connected to MongoDB!
+[2023-10-16T15:00:35.158Z] info: Connected to MongoDB!
+[2023-10-16T15:00:36.820Z] info: Indexes synchronized successfully
+[2023-10-16T15:00:36.821Z] info: Indexes synchronized successfully
+[2023-10-16T15:00:37.339Z] info: Indexes synchronized successfully
+[2023-10-16T15:00:37.339Z] info: Indexes synchronized successfully
+[2023-10-16T15:01:20.858Z] info: Connected to MongoDB!
+[2023-10-16T15:01:20.860Z] info: Connected to MongoDB!
+[2023-10-16T15:01:20.862Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:01:20.862Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:01:22.165Z] info: Connected to MongoDB!
+[2023-10-16T15:01:22.165Z] info: Connected to MongoDB!
+[2023-10-16T15:01:23.735Z] info: Indexes synchronized successfully
+[2023-10-16T15:01:23.736Z] info: Indexes synchronized successfully
+[2023-10-16T15:01:23.747Z] info: Indexes synchronized successfully
+[2023-10-16T15:01:23.747Z] info: Indexes synchronized successfully
+[2023-10-16T15:03:03.540Z] info: Connected to MongoDB!
+[2023-10-16T15:03:03.541Z] info: Connected to MongoDB!
+[2023-10-16T15:03:03.542Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:03:03.543Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:03:04.998Z] info: Connected to MongoDB!
+[2023-10-16T15:03:04.998Z] info: Connected to MongoDB!
+[2023-10-16T15:03:06.519Z] info: Indexes synchronized successfully
+[2023-10-16T15:03:06.520Z] info: Indexes synchronized successfully
+[2023-10-16T15:03:07.038Z] info: Indexes synchronized successfully
+[2023-10-16T15:03:07.038Z] info: Indexes synchronized successfully
+[2023-10-16T15:03:32.665Z] info: Connected to MongoDB!
+[2023-10-16T15:03:32.666Z] info: Connected to MongoDB!
+[2023-10-16T15:03:32.667Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:03:32.668Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:03:33.895Z] info: Connected to MongoDB!
+[2023-10-16T15:03:33.895Z] info: Connected to MongoDB!
+[2023-10-16T15:03:35.394Z] info: Indexes synchronized successfully
+[2023-10-16T15:03:35.394Z] info: Indexes synchronized successfully
+[2023-10-16T15:03:35.411Z] info: Indexes synchronized successfully
+[2023-10-16T15:03:35.411Z] info: Indexes synchronized successfully
+[2023-10-16T15:04:55.335Z] warning: Authentication Error!
+[2023-10-16T15:04:55.335Z] warning: Authentication Error!
+[2023-10-16T15:04:59.479Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:04:59.479Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:04:59.582Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:04:59.582Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:05:33.879Z] warning: Authentication Error!
+[2023-10-16T15:05:33.880Z] warning: Authentication Error!
+[2023-10-16T15:05:37.153Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:05:37.154Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:05:37.259Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:05:37.260Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:06:41.185Z] warning: Authentication Error!
+[2023-10-16T15:06:41.186Z] warning: Authentication Error!
+[2023-10-16T15:06:44.523Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:06:44.523Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:06:44.620Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:06:44.620Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:09:02.173Z] warning: Authentication Error!
+[2023-10-16T15:09:02.174Z] warning: Authentication Error!
+[2023-10-16T15:09:05.401Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:09:05.401Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:09:05.502Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:09:05.503Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:09:45.477Z] warning: Authentication Error!
+[2023-10-16T15:09:45.477Z] warning: Authentication Error!
+[2023-10-16T15:09:48.831Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:09:48.831Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:09:48.939Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:09:48.939Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:11:43.028Z] warning: Authentication Error!
+[2023-10-16T15:11:43.028Z] warning: Authentication Error!
+[2023-10-16T15:11:45.804Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:11:45.804Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:11:45.911Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:11:45.911Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:13:28.752Z] info: Connected to MongoDB!
+[2023-10-16T15:13:28.753Z] info: Connected to MongoDB!
+[2023-10-16T15:13:28.755Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:13:28.755Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:13:29.989Z] info: Connected to MongoDB!
+[2023-10-16T15:13:29.989Z] info: Connected to MongoDB!
+[2023-10-16T15:13:31.550Z] info: Indexes synchronized successfully
+[2023-10-16T15:13:31.551Z] info: Indexes synchronized successfully
+[2023-10-16T15:13:31.578Z] info: Indexes synchronized successfully
+[2023-10-16T15:13:31.579Z] info: Indexes synchronized successfully
+[2023-10-16T15:14:03.601Z] info: Connected to MongoDB!
+[2023-10-16T15:14:03.603Z] info: Connected to MongoDB!
+[2023-10-16T15:14:03.605Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:14:03.605Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:14:04.681Z] info: Connected to MongoDB!
+[2023-10-16T15:14:04.681Z] info: Connected to MongoDB!
+[2023-10-16T15:14:06.298Z] info: Indexes synchronized successfully
+[2023-10-16T15:14:06.298Z] info: Indexes synchronized successfully
+[2023-10-16T15:14:06.300Z] info: Indexes synchronized successfully
+[2023-10-16T15:14:06.301Z] info: Indexes synchronized successfully
+[2023-10-16T15:14:39.275Z] warning: Authentication Error!
+[2023-10-16T15:14:39.275Z] warning: Authentication Error!
+[2023-10-16T15:14:43.024Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:14:43.024Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:14:43.136Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:14:43.137Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:24:58.891Z] info: Connected to MongoDB!
+[2023-10-16T15:24:58.892Z] info: Connected to MongoDB!
+[2023-10-16T15:24:58.893Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:24:58.893Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:25:00.209Z] info: Connected to MongoDB!
+[2023-10-16T15:25:00.209Z] info: Connected to MongoDB!
+[2023-10-16T15:25:01.872Z] info: Indexes synchronized successfully
+[2023-10-16T15:25:01.872Z] info: Indexes synchronized successfully
+[2023-10-16T15:25:02.308Z] info: Indexes synchronized successfully
+[2023-10-16T15:25:02.309Z] info: Indexes synchronized successfully
+[2023-10-16T15:25:25.017Z] error: something went wrong createRegister Cannot read properties of null (reading 'code')
+[2023-10-16T15:25:25.017Z] error: something went wrong createRegister Cannot read properties of null (reading 'code')
+[2023-10-16T15:25:25.226Z] error: something went wrong createRegister Cannot read properties of null (reading 'code')
+[2023-10-16T15:25:25.226Z] error: something went wrong createRegister Cannot read properties of null (reading 'code')
+[2023-10-16T15:25:25.419Z] error: something went wrong createRegister Cannot read properties of null (reading 'code')
+[2023-10-16T15:25:25.419Z] error: something went wrong createRegister Cannot read properties of null (reading 'code')
+[2023-10-16T15:25:25.925Z] warning: Authentication Error!
+[2023-10-16T15:25:25.925Z] warning: Authentication Error!
+[2023-10-16T15:25:26.048Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:25:26.048Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:25:26.157Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:25:26.157Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:29:32.983Z] info: Connected to MongoDB!
+[2023-10-16T15:29:32.984Z] info: Connected to MongoDB!
+[2023-10-16T15:29:32.986Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:29:32.986Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:29:34.356Z] info: Connected to MongoDB!
+[2023-10-16T15:29:34.357Z] info: Connected to MongoDB!
+[2023-10-16T15:29:35.884Z] info: Indexes synchronized successfully
+[2023-10-16T15:29:35.884Z] info: Indexes synchronized successfully
+[2023-10-16T15:29:35.924Z] info: Indexes synchronized successfully
+[2023-10-16T15:29:35.925Z] info: Indexes synchronized successfully

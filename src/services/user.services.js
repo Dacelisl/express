@@ -68,10 +68,56 @@ class UserServices {
     }
   }
   async getUserByID(uid) {
-    return await userFactory.getUserByID(uid)
+    try {
+      const userFound = await userFactory.getUserByID(uid)
+      if (!userFound) {
+        return {
+          status: 'Fail',
+          code: 404,
+          message: 'User not exist',
+          payload: {},
+        }
+      }
+      return {
+        status: 'success',
+        code: 201,
+        message: 'user found',
+        payload: userFound,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 400,
+        message: `Error getUserByID`,
+        payload: {},
+      }
+    }
   }
   async getUserByEmail(mail) {
-    return await userFactory.getUserByEmail(mail)
+    try {
+      const userFound = userFactory.getUserByEmail(mail)
+      if (!userFound) {
+        return {
+          status: 'Fail',
+          code: 404,
+          message: 'User not exist',
+          payload: {},
+        }
+      }
+      return {
+        status: 'success',
+        code: 201,
+        message: 'user found',
+        payload: userFound,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 400,
+        message: `Error getUserByID`,
+        payload: {},
+      }
+    }
   }
   async updateUser(id, user) {
     try {

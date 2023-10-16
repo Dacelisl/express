@@ -15,11 +15,11 @@ class UserController {
         user = await userService.getUserByID(uid)
       }
       const userData = {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        age: user.age,
-        email: user.email,
-        rol: user.rol,
+        firstName: user.payload.firstName,
+        lastName: user.payload.lastName,
+        age: user.payload.age,
+        email: user.payload.email,
+        rol: user.payload.rol,
       }
       return res.render('editUser', { userData })
     } catch (error) {
@@ -56,6 +56,7 @@ class UserController {
   }
   createRegister(req, res, next) {
     passport.authenticate('register', { failureRedirect: '/api/Users/register', failureFlash: true }, (err, user, info) => {
+      console.log('user en create register', user)
       if (err) {
         req.logger.error('something went wrong createRegister', err)
         return next(err)
@@ -106,8 +107,24 @@ class UserController {
   getAdmin(req, res) {
     return res.render('admin')
   }
-  getDocuments(req, res) {
+  uploadDocuments(req, res) {
     return res.render('upload')
+  }
+  async getDocuments(req, res) {
+    const uid = req.params.uid
+    const esEmail = /\S+@\S+\.\S+/.test(uid)
+    let user = ''
+    try {
+      if (esEmail) {
+        user = await userService.getUserByEmail(uid)
+      } else {
+        user = await userService.getUserByID(uid)
+      }
+      return res.json(user)
+    } catch (error) {
+      req.logger.warning('Error get documents, getDocuments', error)
+      return sendErrorResponse(res, error)
+    }
   }
   getEditUser(req, res) {
     const successMessages = req.flash('success')
@@ -135,7 +152,7 @@ class UserController {
           payload: {},
         }
       }
-      const result = await userService.updateUser(userId._id, userUpdate)
+      const result = await userService.updateUser(userId.payload._id, userUpdate)
       if (result.code === 201) {
         req.flash('success', 'Information was successfully updated.')
       } else {
@@ -181,7 +198,7 @@ class UserController {
         user = await userService.getUserByID(uid)
       }
       if (user) {
-        const response = await userService.switchUserRole(user)
+        const response = await userService.switchUserRole(user.payload)
         return sendSuccessResponse(res, response)
       } else {
         return res.json({

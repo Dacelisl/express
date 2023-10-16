@@ -25,10 +25,6 @@ class Product {
     const { title, description, category, price, thumbnail, code, owner, stock } = dataProduct
     const result = await ProductsModel.create({ title, description, category, price, thumbnail, code, owner, stock })
     return result
-    /* try {
-    } catch (error) {
-      throw new Error('Error al guardar el producto en la base de datos')
-    } */
   }
   deleteProduct = async (objectId) => {
     const result = await ProductsModel.deleteOne({ _id: objectId })

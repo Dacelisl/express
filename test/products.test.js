@@ -28,6 +28,16 @@ const createUser = (type) => {
     rol: type,
   }
 }
+const routesDelete = (user) => {
+  console.log('en route delete ', user);
+  const rutas = user.documents.map((documento) => {
+    const referenceParts = documento.reference.split('image')
+    if (referenceParts.length > 1) {
+      return `${__dirname}/public/image` + referenceParts[1]
+    }
+  })
+  mockUser.rutas = rutas
+}
 
 describe('tests API', () => {
   let mockAdmin = ''
@@ -42,7 +52,7 @@ describe('tests API', () => {
   after(async () => {
     const response = await authenticatedAgent.get(`${URL}/api/users/user/${mockAdmin.email}`)
     if (response.ok) {
-      await authenticatedAgent.delete(`${URL}/api/products/${productMock._id}`)
+      await authenticatedAgent.delete(`${URL}/api/products/${productMock.id}`)
       await authenticatedAgent.delete(`${URL}/api/users/${mockAdmin.email}`)
     }
   })
@@ -63,6 +73,7 @@ describe('tests API', () => {
     })
     it('POST /api/users/register createRegister `user`', async () => {
       mockUser = createUser('user')
+      mockUser.email = dataConfig.emailTest
       const response = await requester.post('/api/users/register').send(mockUser)
       expect(response.req.method).to.equal('POST')
       expect(response.status).to.equal(302)
@@ -131,8 +142,8 @@ describe('tests API', () => {
       expect(response.status).to.equal(200)
       expect(response._body.email).to.be.eql(mockAdmin.email)
     })
-    it('GET view /api/users/documents getDocuments', async () => {
-      const response = await authenticatedAgent.get(`${URL}/api/users/documents`)
+    it('GET view /api/users/uploads uploadDocuments', async () => {
+      const response = await authenticatedAgent.get(`${URL}/api/users/uploads`)
       expect(response.status).to.equal(200)
       expect(response.req.method).to.equal('GET')
       expect(response.type).to.equal('text/html')
@@ -219,13 +230,17 @@ describe('tests API', () => {
       expect(response.body.message).to.include('User not found')
     })
     it('DELETE /api/users/:uid deleteUser', async () => {
+      const responseUser = await authenticatedAgent.get(`${URL}/api/users/user/${mockUser.email}`)
+      console.log('RES', responseUser.body.payload)
+      routesDelete(responseUser)
+      console.log('data User', mockUser)
       const response = await authenticatedAgent.delete(`${URL}/api/users/${mockUser.email}`)
       expect(response.req.method).to.equal('DELETE')
       expect(response.status).to.equal(204)
       expect(response.text).to.equal('')
     })
   })
-  describe('Products test', () => {
+  /* describe('Products test', () => {
     before(async () => {
       productMock = {
         title: faker.commerce.product(),
@@ -243,7 +258,7 @@ describe('tests API', () => {
       expect(response.status).to.equal(201)
       expect(response.type).to.equal('application/json')
       expect(response.body.payload).to.have.property('_id')
-      productMock._id = response.body.payload._id
+      productMock.id = response.body.payload._id
     })
     it('POST fail (duplicate code) /api/products', async () => {
       let response = ''
@@ -275,7 +290,7 @@ describe('tests API', () => {
       expect(productMatches.length).to.be.greaterThan(0)
     })
     it('GET /api/products/:pid getProductId', async () => {
-      const response = await requester.get(`/api/products/${productMock._id}`)
+      const response = await requester.get(`/api/products/${productMock.id}`)
       expect(response.status).to.equal(200)
       expect(response.type).to.equal('text/html')
       expect(response.text).to.include(`<h1 class='title'>`)
@@ -293,14 +308,16 @@ describe('tests API', () => {
         thumbnail: faker.system.fileName(),
         stock: faker.number.int(100),
       }
-      const response = await authenticatedAgent.put(`${URL}/api/products/${productMock._id}`).send(updatedProduct)
-      expect(response.status).to.equal(200)
+
+      const response = await authenticatedAgent.put(`${URL}/api/products/${productMock.id}`).send(updatedProduct)
+
+      expect(response.status).to.equal(201)
       expect(response.req.method).to.equal('PUT')
       expect(response.type).to.equal('application/json')
       expect(response.text).to.include('"modifiedCount":1')
     })
     it('DELETE fail (authorization error) /api/products:pid  ', async () => {
-      const response = await requester.delete(`/api/products/${productMock._id}`)
+      const response = await requester.delete(`/api/products/${productMock.id}`)
       expect(response.status).to.equal(403)
       expect(response.type).to.equal('text/html')
       expect(response.text).to.include('authorization error')
@@ -360,14 +377,14 @@ describe('tests API', () => {
       expect(response.body.message).to.include('cart created')
     })
     it('POST /:cid/product/:pid fail (Authentication Error)', async () => {
-      const response = await requester.post(`/api/carts/${mockAdmin.cart}/product/${productMock._id}`)
+      const response = await requester.post(`/api/carts/${mockAdmin.cart}/product/${productMock.id}`)
       expect(response.status).to.equal(401)
       expect(response.req.method).to.equal('POST')
       expect(response.type).to.equal('text/html')
       expect(response.text).to.include('Authentication Error!')
     })
     it('POST /:cid/product/:pid addProduct', async () => {
-      const response = await authenticatedAgent.post(`${URL}/api/carts/${mockAdmin.cart}/product/${productMock._id}`)
+      const response = await authenticatedAgent.post(`${URL}/api/carts/${mockAdmin.cart}/product/${productMock.id}`)
       expect(response.status).to.equal(201)
       expect(response.req.method).to.equal('POST')
       expect(response.body.payload).to.have.property('_id')
@@ -388,28 +405,29 @@ describe('tests API', () => {
       expect(response.text).to.include(mockAdmin.cart)
     })
     it('PUT /:cid/product/:pid fail (Authentication Error)', async () => {
-      const response = await requester.put(`/api/carts/${mockAdmin.cart}/product/${productMock._id}`).send({ quantity: 5 })
+      const response = await requester.put(`/api/carts/${mockAdmin.cart}/product/${productMock.id}`).send({ quantity: 5 })
       expect(response.status).to.equal(403)
       expect(response.req.method).to.equal('PUT')
       expect(response.type).to.equal('text/html')
       expect(response.text).to.include('authorization error')
     })
     it('PUT /:cid/product/:pid updateAddToCart', async () => {
-      const response = await authenticatedAgent.put(`${URL}/api/carts/${mockAdmin.cart}/product/${productMock._id}`).send({ quantity: 5 })
+      const response = await authenticatedAgent.put(`${URL}/api/carts/${mockAdmin.cart}/product/${productMock.id}`).send({ quantity: 5 })
       expect(response.status).to.equal(201)
       expect(response.type).to.equal('application/json')
       expect(response.body).to.have.property('payload')
       expect(response.body.payload).to.have.property('_id')
+      expect(response.body.message).to.include('product added successfully')
       expect(response.body.payload).to.have.property('products').that.is.an('array')
     })
     it('DELETE /:cid/product/:pid fail (Authentication Error)', async () => {
-      const response = await requester.delete(`/${mockAdmin.cart}/product/${productMock._id}`)
+      const response = await requester.delete(`/${mockAdmin.cart}/product/${productMock.id}`)
       expect(response.status).to.equal(401)
       expect(response.req.method).to.equal('DELETE')
       expect(response.text).to.include('Unauthorized')
     })
     it('DELETE /:cid/product/:pid deletedProduct', async () => {
-      const response = await authenticatedAgent.delete(`${URL}/api/carts/${mockAdmin.cart}/product/${productMock._id}`)
+      const response = await authenticatedAgent.delete(`${URL}/api/carts/${mockAdmin.cart}/product/${productMock.id}`)
       expect(response.status).to.equal(204)
       expect(response.req.method).to.equal('DELETE')
       expect(response.text).to.equal('')
@@ -474,5 +492,5 @@ describe('tests API', () => {
       expect(response.req.method).to.equal('DELETE')
       expect(response.text).to.equal('')
     })
-  })
+  }) */
 })

@@ -52,7 +52,7 @@ class ProductController {
       const productCode = req.params.code
       const response = await productService.findByCode(productCode)
       return sendSuccessResponse(res, response)
-    } catch (e) {
+    } catch (error) {
       req.logger.error('something went wrong getProductCode', e)
       return sendErrorResponse(res, error)
     }
@@ -87,14 +87,12 @@ class ProductController {
         category: data.category,
         price: data.price,
         thumbnail: data.thumbnail,
-        code: data.code,
-        owner: data.owner,
         stock: data.stock,
       }
       newProduct.id = req.params.pid
       const resUpdate = await productService.updateOne(newProduct)
       return sendSuccessResponse(res, resUpdate)
-    } catch (e) {
+    } catch (error) {
       req.logger.error('something went wrong updateProduct', e)
       return sendErrorResponse(res, error)
     }
@@ -117,7 +115,7 @@ class ProductController {
         message: 'Product not found',
         payload: {},
       })
-    } catch (e) {
+    } catch (error) {
       req.logger.error('something went wrong deleteProduct', e)
       return sendErrorResponse(res, error)
     }

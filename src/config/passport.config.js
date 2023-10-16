@@ -18,14 +18,14 @@ export function initPassport() {
         if (!user) {
           return done(null, false, { message: 'The Email Does Not Exist ' + username })
         }
-        if (!isValidPassword(password, user.password)) {
+        if (!isValidPassword(password, user.payload.password)) {
           return done(null, false, { message: 'Invalid Password' })
         } else {
           const currentDate = new Date()
           const formattedDate = currentDate.toLocaleString()
-          await userService.updateUser(user._id, { lastConnection: formattedDate })
+          await userService.updateUser(user.payload._id, { lastConnection: formattedDate })
         }
-        return done(null, user)
+        return done(null, user.payload)
       } catch (err) {
         return done(err)
       }
@@ -41,8 +41,10 @@ export function initPassport() {
       async (req, username, password, done) => {
         try {
           const { email, firstName, lastName, age, rol } = req.body
-          let user = await userService.getUserByEmail(username)
-          if (user) {
+          console.log('user create', email);
+          let user = await userService.getUserByEmail(email)
+          console.log('passport user', user);
+          if (user.code == 204 ) {
             return done(null, false, { message: 'User already exists' })
           }
           let cart = await cartService.createCart()
@@ -110,7 +112,7 @@ export function initPassport() {
             let userCreated = await userService.saveUser(userDto)
             return done(null, userCreated, { message: 'User Registration succesful' })
           } else {
-            return done(null, user, { message: 'User already exists' })
+            return done(null, user.payload, { message: 'User already exists' })
           }
         } catch (e) {
           return done(e, { message: 'Error en auth github' })
@@ -119,10 +121,12 @@ export function initPassport() {
     )
   )
   passport.serializeUser((user, done) => {
+    console.log('user serializable', user);
     done(null, user._id)
   })
   passport.deserializeUser(async (id, done) => {
-    let user = await User.getUserByID(id)
-    done(null, user)
+    let userFound = await user.getUserByID(id)
+    console.log('user des', userFound);
+    done(null, userFound)
   })
 }

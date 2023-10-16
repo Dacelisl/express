@@ -145,7 +145,7 @@ class ProductServices {
   }
   async updateOne(product) {
     try {
-      const productFound = await productFactory.getProductByCode(product.code)
+      const productFound = await productFactory.getProductByID(product.id)
       if (!productFound) {
         return {
           status: 'Fail',

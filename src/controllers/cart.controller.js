@@ -92,7 +92,7 @@ class CartController {
       const quant = req.body.quantity
       const user = req.session.user ? req.session.user.rol : undefined
       const resAdd = await cartService.addToCart(cid, pid, quant, user)
-      return sendSuccessResponse(res, response)
+      return sendSuccessResponse(res, resAdd)
     } catch (error) {
       req.logger.error('something went wrong updateAddToCart', error)
       return sendErrorResponse(res, error)
