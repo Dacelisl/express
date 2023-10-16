@@ -142,3 +142,243 @@
 [2023-10-16T15:29:35.884Z] info: Indexes synchronized successfully
 [2023-10-16T15:29:35.924Z] info: Indexes synchronized successfully
 [2023-10-16T15:29:35.925Z] info: Indexes synchronized successfully
+[2023-10-16T15:39:45.774Z] info: Connected to MongoDB!
+[2023-10-16T15:39:45.775Z] info: Connected to MongoDB!
+[2023-10-16T15:39:45.776Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:39:45.776Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:39:47.058Z] info: Connected to MongoDB!
+[2023-10-16T15:39:47.059Z] info: Connected to MongoDB!
+[2023-10-16T15:39:48.340Z] error: Error synchronizing indexes: users: Index build failed: facd8916-c6cc-47e6-b38d-527f50af7b6d: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:39:48.340Z] error: Error synchronizing indexes: users: Index build failed: facd8916-c6cc-47e6-b38d-527f50af7b6d: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:39:48.409Z] error: Error synchronizing indexes: users: Index build failed: 0edb6788-5e6c-4d8b-b29a-4c41699b7243: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:39:48.409Z] error: Error synchronizing indexes: users: Index build failed: 0edb6788-5e6c-4d8b-b29a-4c41699b7243: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:39:55.439Z] error: something went wrong createLogin Illegal arguments: string, undefined
+[2023-10-16T15:39:55.439Z] error: something went wrong createLogin Illegal arguments: string, undefined
+[2023-10-16T15:41:21.089Z] info: Connected to MongoDB!
+[2023-10-16T15:41:21.090Z] info: Connected to MongoDB!
+[2023-10-16T15:41:21.091Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:41:21.091Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:41:22.422Z] info: Connected to MongoDB!
+[2023-10-16T15:41:22.422Z] info: Connected to MongoDB!
+[2023-10-16T15:41:23.719Z] error: Error synchronizing indexes: users: Index build failed: 4dd3317d-632b-4e6d-adeb-967e58227e46: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:41:23.720Z] error: Error synchronizing indexes: users: Index build failed: 4dd3317d-632b-4e6d-adeb-967e58227e46: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:41:23.778Z] error: Error synchronizing indexes: users: Index build failed: 9fb1e45e-5c24-4fc4-8bb0-7876369b1a9c: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:41:23.778Z] error: Error synchronizing indexes: users: Index build failed: 9fb1e45e-5c24-4fc4-8bb0-7876369b1a9c: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:41:25.243Z] error: something went wrong createLogin Illegal arguments: string, undefined
+[2023-10-16T15:41:25.243Z] error: something went wrong createLogin Illegal arguments: string, undefined
+[2023-10-16T15:42:06.273Z] info: Connected to MongoDB!
+[2023-10-16T15:42:06.273Z] info: Connected to MongoDB!
+[2023-10-16T15:42:06.275Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:42:06.275Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:42:07.410Z] info: Connected to MongoDB!
+[2023-10-16T15:42:07.410Z] info: Connected to MongoDB!
+[2023-10-16T15:42:08.690Z] error: Error synchronizing indexes: users: Index build failed: b5f990f2-6bad-4af7-8f35-ed13f6d8015a: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:42:08.690Z] error: Error synchronizing indexes: users: Index build failed: b5f990f2-6bad-4af7-8f35-ed13f6d8015a: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:42:08.755Z] error: Error synchronizing indexes: users: Index build failed: a1f02cd3-d101-44bb-9053-96795accf12b: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:42:08.755Z] error: Error synchronizing indexes: users: Index build failed: a1f02cd3-d101-44bb-9053-96795accf12b: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:42:18.656Z] error: something went wrong createLogin Illegal arguments: string, undefined
+[2023-10-16T15:42:18.656Z] error: something went wrong createLogin Illegal arguments: string, undefined
+[2023-10-16T15:43:08.211Z] info: Connected to MongoDB!
+[2023-10-16T15:43:08.212Z] info: Connected to MongoDB!
+[2023-10-16T15:43:08.214Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:43:08.214Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:43:09.448Z] info: Connected to MongoDB!
+[2023-10-16T15:43:09.448Z] info: Connected to MongoDB!
+[2023-10-16T15:43:10.744Z] error: Error synchronizing indexes: users: Index build failed: 67dae21f-d80f-415a-88d5-e4df501c432f: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:43:10.744Z] error: Error synchronizing indexes: users: Index build failed: 67dae21f-d80f-415a-88d5-e4df501c432f: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:43:10.822Z] error: Error synchronizing indexes: users: Index build failed: 89c5b79f-eac3-412b-8e6d-37aefa887b77: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:43:10.822Z] error: Error synchronizing indexes: users: Index build failed: 89c5b79f-eac3-412b-8e6d-37aefa887b77: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:43:20.492Z] error: something went wrong createLogin Illegal arguments: string, undefined
+[2023-10-16T15:43:20.491Z] error: something went wrong createLogin Illegal arguments: string, undefined
+[2023-10-16T15:44:18.930Z] info: Connected to MongoDB!
+[2023-10-16T15:44:18.930Z] info: Connected to MongoDB!
+[2023-10-16T15:44:18.932Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:44:18.932Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:44:20.328Z] info: Connected to MongoDB!
+[2023-10-16T15:44:20.328Z] info: Connected to MongoDB!
+[2023-10-16T15:44:21.589Z] error: Error synchronizing indexes: users: Index build failed: ed1a0579-488a-4f0b-b182-072d1e323f34: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:44:21.590Z] error: Error synchronizing indexes: users: Index build failed: ed1a0579-488a-4f0b-b182-072d1e323f34: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:44:21.672Z] error: Error synchronizing indexes: users: Index build failed: 07e7a841-a398-40f6-8ff9-cdf196719e25: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:44:21.673Z] error: Error synchronizing indexes: users: Index build failed: 07e7a841-a398-40f6-8ff9-cdf196719e25: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:44:28.871Z] error: something went wrong createLogin Illegal arguments: string, undefined
+[2023-10-16T15:44:28.872Z] error: something went wrong createLogin Illegal arguments: string, undefined
+[2023-10-16T15:45:01.964Z] info: Connected to MongoDB!
+[2023-10-16T15:45:01.965Z] info: Connected to MongoDB!
+[2023-10-16T15:45:01.969Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:45:01.969Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:45:03.178Z] info: Connected to MongoDB!
+[2023-10-16T15:45:03.179Z] info: Connected to MongoDB!
+[2023-10-16T15:45:04.536Z] error: Error synchronizing indexes: users: Index build failed: f15f3292-ac80-4a90-8818-f568fbc98502: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:45:04.537Z] error: Error synchronizing indexes: users: Index build failed: f15f3292-ac80-4a90-8818-f568fbc98502: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:45:04.988Z] error: Error synchronizing indexes: users: Index build failed: f3869fde-ef0a-49fa-8c61-f88cf05cf93b: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:45:04.988Z] error: Error synchronizing indexes: users: Index build failed: f3869fde-ef0a-49fa-8c61-f88cf05cf93b: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:45:40.331Z] info: Connected to MongoDB!
+[2023-10-16T15:45:40.332Z] info: Connected to MongoDB!
+[2023-10-16T15:45:40.334Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:45:40.334Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:45:41.453Z] info: Connected to MongoDB!
+[2023-10-16T15:45:41.453Z] info: Connected to MongoDB!
+[2023-10-16T15:45:42.717Z] error: Error synchronizing indexes: users: Index build failed: c18189b9-11aa-46af-af6e-a7436a5fa047: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:45:42.717Z] error: Error synchronizing indexes: users: Index build failed: c18189b9-11aa-46af-af6e-a7436a5fa047: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:45:42.783Z] error: Error synchronizing indexes: users: Index build failed: 73baaf88-39fa-4261-8c48-430edab1a3bf: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:45:42.784Z] error: Error synchronizing indexes: users: Index build failed: 73baaf88-39fa-4261-8c48-430edab1a3bf: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:45:53.087Z] info: Connected to MongoDB!
+[2023-10-16T15:45:53.088Z] info: Connected to MongoDB!
+[2023-10-16T15:45:53.090Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:45:53.090Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:45:54.109Z] info: Connected to MongoDB!
+[2023-10-16T15:45:54.110Z] info: Connected to MongoDB!
+[2023-10-16T15:45:55.428Z] error: Error synchronizing indexes: users: Index build failed: e5b0028f-ed90-4221-9a25-086379ed4cb6: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:45:55.428Z] error: Error synchronizing indexes: users: Index build failed: e5b0028f-ed90-4221-9a25-086379ed4cb6: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:45:55.883Z] error: Error synchronizing indexes: users: Index build failed: 1b1e20d1-8cc1-442b-b211-d45db8c5b45f: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:45:55.883Z] error: Error synchronizing indexes: users: Index build failed: 1b1e20d1-8cc1-442b-b211-d45db8c5b45f: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:46:01.680Z] warning: Authentication Error!
+[2023-10-16T15:46:01.680Z] warning: Authentication Error!
+[2023-10-16T15:46:05.449Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:46:05.450Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:46:05.550Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:46:05.550Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:48:05.999Z] info: Connected to MongoDB!
+[2023-10-16T15:48:06.000Z] info: Connected to MongoDB!
+[2023-10-16T15:48:06.001Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:48:06.001Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:48:07.219Z] info: Connected to MongoDB!
+[2023-10-16T15:48:07.219Z] info: Connected to MongoDB!
+[2023-10-16T15:48:08.549Z] error: Error synchronizing indexes: users: Index build failed: a82d2065-5567-4042-8645-69e1ec85c3ed: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:48:08.549Z] error: Error synchronizing indexes: users: Index build failed: a82d2065-5567-4042-8645-69e1ec85c3ed: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:48:09.030Z] error: Error synchronizing indexes: users: Index build failed: 196f2a40-a892-4da2-adbc-9cc1516bad9b: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:48:09.030Z] error: Error synchronizing indexes: users: Index build failed: 196f2a40-a892-4da2-adbc-9cc1516bad9b: Collection ecommerceDevelop.users ( 40ccc685-cc5d-40b4-b458-db1aea5770bf ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Annie_Schroeder27@hotmail.com" }
+[2023-10-16T15:48:32.273Z] warning: Authentication Error!
+[2023-10-16T15:48:32.273Z] warning: Authentication Error!
+[2023-10-16T15:48:36.477Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:48:36.478Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:48:36.586Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:48:36.586Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:52:30.134Z] warning: Authentication Error!
+[2023-10-16T15:52:30.134Z] warning: Authentication Error!
+[2023-10-16T15:52:33.465Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:52:33.465Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:52:33.565Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:52:33.565Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:54:49.030Z] info: Connected to MongoDB!
+[2023-10-16T15:54:49.031Z] info: Connected to MongoDB!
+[2023-10-16T15:54:49.033Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:54:49.033Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:54:50.341Z] info: Connected to MongoDB!
+[2023-10-16T15:54:50.341Z] info: Connected to MongoDB!
+[2023-10-16T15:54:51.583Z] error: Error synchronizing indexes: users: Index build failed: fd55af80-6f1d-4343-9558-7098bb9eb5ad: Collection ecommerceDevelop.users ( 847820da-5db7-42a2-a26f-ba444aaa9e2e ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Camryn52@hotmail.com" }
+[2023-10-16T15:54:51.583Z] error: Error synchronizing indexes: users: Index build failed: fd55af80-6f1d-4343-9558-7098bb9eb5ad: Collection ecommerceDevelop.users ( 847820da-5db7-42a2-a26f-ba444aaa9e2e ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Camryn52@hotmail.com" }
+[2023-10-16T15:54:52.065Z] error: Error synchronizing indexes: users: Index build failed: a2efb659-b76f-4763-81e2-a9b0f1fe62a6: Collection ecommerceDevelop.users ( 847820da-5db7-42a2-a26f-ba444aaa9e2e ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Camryn52@hotmail.com" }
+[2023-10-16T15:54:52.065Z] error: Error synchronizing indexes: users: Index build failed: a2efb659-b76f-4763-81e2-a9b0f1fe62a6: Collection ecommerceDevelop.users ( 847820da-5db7-42a2-a26f-ba444aaa9e2e ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Camryn52@hotmail.com" }
+[2023-10-16T15:55:29.562Z] info: Connected to MongoDB!
+[2023-10-16T15:55:29.563Z] info: Connected to MongoDB!
+[2023-10-16T15:55:29.564Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:55:29.564Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:55:30.809Z] info: Connected to MongoDB!
+[2023-10-16T15:55:30.809Z] info: Connected to MongoDB!
+[2023-10-16T15:55:32.066Z] error: Error synchronizing indexes: users: Index build failed: 242f7020-c107-4d62-99d9-03a31b8b9624: Collection ecommerceDevelop.users ( 847820da-5db7-42a2-a26f-ba444aaa9e2e ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Camryn52@hotmail.com" }
+[2023-10-16T15:55:32.066Z] error: Error synchronizing indexes: users: Index build failed: 242f7020-c107-4d62-99d9-03a31b8b9624: Collection ecommerceDevelop.users ( 847820da-5db7-42a2-a26f-ba444aaa9e2e ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Camryn52@hotmail.com" }
+[2023-10-16T15:55:32.124Z] error: Error synchronizing indexes: users: Index build failed: 05be09d3-e61e-46ac-bbb9-17006d70ac8f: Collection ecommerceDevelop.users ( 847820da-5db7-42a2-a26f-ba444aaa9e2e ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Camryn52@hotmail.com" }
+[2023-10-16T15:55:32.124Z] error: Error synchronizing indexes: users: Index build failed: 05be09d3-e61e-46ac-bbb9-17006d70ac8f: Collection ecommerceDevelop.users ( 847820da-5db7-42a2-a26f-ba444aaa9e2e ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Camryn52@hotmail.com" }
+[2023-10-16T15:55:59.345Z] warning: Authentication Error!
+[2023-10-16T15:55:59.345Z] warning: Authentication Error!
+[2023-10-16T15:56:03.602Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:56:03.602Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:56:03.700Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:56:03.700Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:56:35.573Z] info: Connected to MongoDB!
+[2023-10-16T15:56:35.574Z] info: Connected to MongoDB!
+[2023-10-16T15:56:35.575Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:56:35.575Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:56:36.888Z] info: Connected to MongoDB!
+[2023-10-16T15:56:36.889Z] info: Connected to MongoDB!
+[2023-10-16T15:56:38.119Z] error: Error synchronizing indexes: users: Index build failed: 17e97e03-7161-4d28-83c9-67e12ec74548: Collection ecommerceDevelop.users ( 4b580a08-86b2-4fc5-8593-bee3aff79ccb ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Jamie70@yahoo.com" }
+[2023-10-16T15:56:38.119Z] error: Error synchronizing indexes: users: Index build failed: 17e97e03-7161-4d28-83c9-67e12ec74548: Collection ecommerceDevelop.users ( 4b580a08-86b2-4fc5-8593-bee3aff79ccb ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Jamie70@yahoo.com" }
+[2023-10-16T15:56:38.634Z] error: Error synchronizing indexes: users: Index build failed: 52b1c4ee-cf2c-4ac3-935d-d2fc25e0def7: Collection ecommerceDevelop.users ( 4b580a08-86b2-4fc5-8593-bee3aff79ccb ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Jamie70@yahoo.com" }
+[2023-10-16T15:56:38.634Z] error: Error synchronizing indexes: users: Index build failed: 52b1c4ee-cf2c-4ac3-935d-d2fc25e0def7: Collection ecommerceDevelop.users ( 4b580a08-86b2-4fc5-8593-bee3aff79ccb ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Jamie70@yahoo.com" }
+[2023-10-16T15:56:41.163Z] info: Connected to MongoDB!
+[2023-10-16T15:56:41.164Z] info: Connected to MongoDB!
+[2023-10-16T15:56:41.166Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:56:41.166Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:56:42.363Z] info: Connected to MongoDB!
+[2023-10-16T15:56:42.364Z] info: Connected to MongoDB!
+[2023-10-16T15:56:43.627Z] error: Error synchronizing indexes: users: Index build failed: 4e579803-3d20-45d8-9c41-eac6c982f88b: Collection ecommerceDevelop.users ( 4b580a08-86b2-4fc5-8593-bee3aff79ccb ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Jamie70@yahoo.com" }
+[2023-10-16T15:56:43.627Z] error: Error synchronizing indexes: users: Index build failed: 4e579803-3d20-45d8-9c41-eac6c982f88b: Collection ecommerceDevelop.users ( 4b580a08-86b2-4fc5-8593-bee3aff79ccb ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Jamie70@yahoo.com" }
+[2023-10-16T15:56:43.702Z] error: Error synchronizing indexes: users: Index build failed: 9ee406ae-36ce-44b2-a027-af7c6560d806: Collection ecommerceDevelop.users ( 4b580a08-86b2-4fc5-8593-bee3aff79ccb ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Jamie70@yahoo.com" }
+[2023-10-16T15:56:43.702Z] error: Error synchronizing indexes: users: Index build failed: 9ee406ae-36ce-44b2-a027-af7c6560d806: Collection ecommerceDevelop.users ( 4b580a08-86b2-4fc5-8593-bee3aff79ccb ) :: caused by :: E11000 duplicate key error collection: ecommerceDevelop.users index: email_1 dup key: { email: "Jamie70@yahoo.com" }
+[2023-10-16T15:56:47.827Z] warning: Authentication Error!
+[2023-10-16T15:56:47.827Z] warning: Authentication Error!
+[2023-10-16T15:56:47.942Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:56:47.942Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:56:48.042Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:56:48.042Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:57:20.198Z] warning: Authentication Error!
+[2023-10-16T15:57:20.198Z] warning: Authentication Error!
+[2023-10-16T15:57:20.317Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:57:20.317Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:57:20.419Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:57:20.419Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:58:11.959Z] info: Connected to MongoDB!
+[2023-10-16T15:58:11.960Z] info: Connected to MongoDB!
+[2023-10-16T15:58:11.961Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:58:11.961Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:58:13.275Z] info: Connected to MongoDB!
+[2023-10-16T15:58:13.275Z] info: Connected to MongoDB!
+[2023-10-16T15:58:15.045Z] info: Indexes synchronized successfully
+[2023-10-16T15:58:15.045Z] info: Indexes synchronized successfully
+[2023-10-16T15:58:15.487Z] info: Indexes synchronized successfully
+[2023-10-16T15:58:15.487Z] info: Indexes synchronized successfully
+[2023-10-16T15:58:25.322Z] warning: Authentication Error!
+[2023-10-16T15:58:25.323Z] warning: Authentication Error!
+[2023-10-16T15:58:25.433Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:58:25.433Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T15:58:25.554Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:58:25.555Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T15:59:20.390Z] info: Connected to MongoDB!
+[2023-10-16T15:59:20.391Z] info: Connected to MongoDB!
+[2023-10-16T15:59:20.393Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:59:20.393Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T15:59:21.649Z] info: Connected to MongoDB!
+[2023-10-16T15:59:21.649Z] info: Connected to MongoDB!
+[2023-10-16T15:59:23.255Z] info: Indexes synchronized successfully
+[2023-10-16T15:59:23.256Z] info: Indexes synchronized successfully
+[2023-10-16T15:59:23.291Z] info: Indexes synchronized successfully
+[2023-10-16T15:59:23.291Z] info: Indexes synchronized successfully
+[2023-10-16T16:02:00.549Z] info: Connected to MongoDB!
+[2023-10-16T16:02:00.550Z] info: Connected to MongoDB!
+[2023-10-16T16:02:00.551Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:02:00.551Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:02:01.823Z] info: Connected to MongoDB!
+[2023-10-16T16:02:01.823Z] info: Connected to MongoDB!
+[2023-10-16T16:02:03.359Z] info: Indexes synchronized successfully
+[2023-10-16T16:02:03.360Z] info: Indexes synchronized successfully
+[2023-10-16T16:02:03.857Z] info: Indexes synchronized successfully
+[2023-10-16T16:02:03.857Z] info: Indexes synchronized successfully
+[2023-10-16T16:02:13.213Z] warning: Authentication Error!
+[2023-10-16T16:02:13.213Z] warning: Authentication Error!
+[2023-10-16T16:02:17.504Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:02:17.504Z] warning: Unauthorized access  POST /api/users/updateUser from /updateUser
+[2023-10-16T16:02:17.606Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:02:17.607Z] warning: Unauthorized access  DELETE /api/users/hero055@hotmail.com from /:uid
+[2023-10-16T16:05:33.588Z] info: Connected to MongoDB!
+[2023-10-16T16:05:33.590Z] info: Connected to MongoDB!
+[2023-10-16T16:05:33.591Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:05:33.591Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:05:35.009Z] info: Connected to MongoDB!
+[2023-10-16T16:05:35.009Z] info: Connected to MongoDB!
+[2023-10-16T16:05:36.549Z] info: Indexes synchronized successfully
+[2023-10-16T16:05:36.549Z] info: Indexes synchronized successfully
+[2023-10-16T16:05:37.107Z] info: Indexes synchronized successfully
+[2023-10-16T16:05:37.108Z] info: Indexes synchronized successfully
+[2023-10-16T16:06:43.988Z] info: Connected to MongoDB!
+[2023-10-16T16:06:43.989Z] info: Connected to MongoDB!
+[2023-10-16T16:06:43.991Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:06:43.991Z] info: listen on http://localhost:3000, mode:
+[2023-10-16T16:06:45.310Z] info: Connected to MongoDB!
+[2023-10-16T16:06:45.310Z] info: Connected to MongoDB!
+[2023-10-16T16:06:46.964Z] info: Indexes synchronized successfully
+[2023-10-16T16:06:46.965Z] info: Indexes synchronized successfully
+[2023-10-16T16:06:47.424Z] info: Indexes synchronized successfully
+[2023-10-16T16:06:47.424Z] info: Indexes synchronized successfully
+[2023-10-16T16:06:55.866Z] warning: Authentication Error!
+[2023-10-16T16:06:55.866Z] warning: Authentication Error!

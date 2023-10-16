@@ -56,7 +56,6 @@ class UserController {
   }
   createRegister(req, res, next) {
     passport.authenticate('register', { failureRedirect: '/api/Users/register', failureFlash: true }, (err, user, info) => {
-      console.log('user en create register', user)
       if (err) {
         req.logger.error('something went wrong createRegister', err)
         return next(err)

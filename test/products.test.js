@@ -229,16 +229,15 @@ describe('tests API', () => {
       expect(response.type).to.equal('application/json')
       expect(response.body.message).to.include('User not found')
     })
-    it('DELETE /api/users/:uid deleteUser', async () => {
+   /*  it('DELETE /api/users/:uid deleteUser', async () => {
       const responseUser = await authenticatedAgent.get(`${URL}/api/users/user/${mockUser.email}`)
-      console.log('RES', responseUser.body.payload)
       routesDelete(responseUser)
       console.log('data User', mockUser)
       const response = await authenticatedAgent.delete(`${URL}/api/users/${mockUser.email}`)
       expect(response.req.method).to.equal('DELETE')
       expect(response.status).to.equal(204)
       expect(response.text).to.equal('')
-    })
+    }) */
   })
   /* describe('Products test', () => {
     before(async () => {

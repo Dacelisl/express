@@ -95,7 +95,7 @@ class UserServices {
   }
   async getUserByEmail(mail) {
     try {
-      const userFound = userFactory.getUserByEmail(mail)
+      const userFound = await userFactory.getUserByEmail(mail)
       if (!userFound) {
         return {
           status: 'Fail',
@@ -151,7 +151,7 @@ class UserServices {
     let user = uid
     try {
       if (esEmail) {
-        const userRes = await this.getUserByEmail(uid)
+        const userRes = await userFactory.getUserByEmail(uid)
         user = userRes._id
       }
       const reference = file.path

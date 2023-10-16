@@ -15,7 +15,7 @@ export function initPassport() {
     new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
       try {
         const user = await userService.getUserByEmail(username)
-        if (!user) {
+        if (user.code === 404) {
           return done(null, false, { message: 'The Email Does Not Exist ' + username })
         }
         if (!isValidPassword(password, user.payload.password)) {
@@ -41,10 +41,8 @@ export function initPassport() {
       async (req, username, password, done) => {
         try {
           const { email, firstName, lastName, age, rol } = req.body
-          console.log('user create', email);
           let user = await userService.getUserByEmail(email)
-          console.log('passport user', user);
-          if (user.code == 204 ) {
+          if (user.code === 201) {
             return done(null, false, { message: 'User already exists' })
           }
           let cart = await cartService.createCart()
@@ -121,12 +119,10 @@ export function initPassport() {
     )
   )
   passport.serializeUser((user, done) => {
-    console.log('user serializable', user);
     done(null, user._id)
   })
   passport.deserializeUser(async (id, done) => {
     let userFound = await user.getUserByID(id)
-    console.log('user des', userFound);
     done(null, userFound)
   })
 }

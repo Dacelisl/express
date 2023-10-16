@@ -52,6 +52,7 @@ export const errorHandler = (error, req, res, next) => {
       })
       break
     default:
+      console.log('error', error);
       res.send({ status: 'error', message: 'Unhandled error' })
       break
   }
