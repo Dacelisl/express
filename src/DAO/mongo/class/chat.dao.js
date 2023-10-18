@@ -9,5 +9,9 @@ class Chat {
     const msg = await ChatModel.find({})
     return msg
   }
+  deleteAllMessage = async () => {
+    const msg = await ChatModel.deleteMany({})
+    return msg
+  }
 }
 export const chatDAO = new Chat()

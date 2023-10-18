@@ -1772,3 +1772,31 @@
 [2023-10-02T05:53:31.080Z] info: listen on http://localhost:8080, mode:
 [2023-10-02T05:53:32.490Z] info: Connected to MongoDB!
 [2023-10-02T05:53:32.490Z] info: Connected to MongoDB!
+[2023-10-16T18:30:15.773Z] info: Connected to MongoDB!
+[2023-10-16T18:30:15.774Z] info: Connected to MongoDB!
+[2023-10-16T18:30:15.776Z] info: listen on http://localhost:8080, mode:
+[2023-10-16T18:30:15.776Z] info: listen on http://localhost:8080, mode:
+[2023-10-16T18:30:17.127Z] info: Connected to MongoDB!
+[2023-10-16T18:30:17.127Z] info: Connected to MongoDB!
+[2023-10-16T18:30:18.142Z] error: Error synchronizing indexes: products: Index build failed: 47d79759-9481-4c79-9f50-c2a0025ed02b: Collection ecommerce.products ( 93c1d15b-f358-446a-aa27-995931c045d2 ) :: caused by :: E11000 duplicate key error collection: ecommerce.products index: code_1 dup key: { code: " iuyujhn" }
+[2023-10-16T18:30:18.142Z] error: Error synchronizing indexes: products: Index build failed: 47d79759-9481-4c79-9f50-c2a0025ed02b: Collection ecommerce.products ( 93c1d15b-f358-446a-aa27-995931c045d2 ) :: caused by :: E11000 duplicate key error collection: ecommerce.products index: code_1 dup key: { code: " iuyujhn" }
+[2023-10-16T18:30:18.241Z] error: Error synchronizing indexes: products: Index build failed: a6a5aedb-23db-4c8c-ac4f-adb5486c9ed5: Collection ecommerce.products ( 93c1d15b-f358-446a-aa27-995931c045d2 ) :: caused by :: E11000 duplicate key error collection: ecommerce.products index: code_1 dup key: { code: " iuyujhn" }
+[2023-10-16T18:30:18.242Z] error: Error synchronizing indexes: products: Index build failed: a6a5aedb-23db-4c8c-ac4f-adb5486c9ed5: Collection ecommerce.products ( 93c1d15b-f358-446a-aa27-995931c045d2 ) :: caused by :: E11000 duplicate key error collection: ecommerce.products index: code_1 dup key: { code: " iuyujhn" }
+[2023-10-16T18:43:58.413Z] info: Connected to MongoDB!
+[2023-10-16T18:43:58.414Z] info: Connected to MongoDB!
+[2023-10-16T18:43:58.420Z] info: listen on http://localhost:8080, mode:
+[2023-10-16T18:43:58.421Z] info: listen on http://localhost:8080, mode:
+[2023-10-16T18:44:00.678Z] info: Connected to MongoDB!
+[2023-10-16T18:44:00.679Z] info: Connected to MongoDB!
+[2023-10-16T18:44:01.612Z] error: Error synchronizing indexes: products: Index build failed: f638015b-4271-4a68-b659-601f1c8df812: Collection ecommerce.products ( 93c1d15b-f358-446a-aa27-995931c045d2 ) :: caused by :: E11000 duplicate key error collection: ecommerce.products index: code_1 dup key: { code: " iuyujhn" }
+[2023-10-16T18:44:01.612Z] error: Error synchronizing indexes: products: Index build failed: f638015b-4271-4a68-b659-601f1c8df812: Collection ecommerce.products ( 93c1d15b-f358-446a-aa27-995931c045d2 ) :: caused by :: E11000 duplicate key error collection: ecommerce.products index: code_1 dup key: { code: " iuyujhn" }
+[2023-10-16T18:44:01.703Z] error: Error synchronizing indexes: products: Index build failed: d35a4926-5a52-4ce8-b36f-1378cf26d279: Collection ecommerce.products ( 93c1d15b-f358-446a-aa27-995931c045d2 ) :: caused by :: E11000 duplicate key error collection: ecommerce.products index: code_1 dup key: { code: " iuyujhn" }
+[2023-10-16T18:44:01.703Z] error: Error synchronizing indexes: products: Index build failed: d35a4926-5a52-4ce8-b36f-1378cf26d279: Collection ecommerce.products ( 93c1d15b-f358-446a-aa27-995931c045d2 ) :: caused by :: E11000 duplicate key error collection: ecommerce.products index: code_1 dup key: { code: " iuyujhn" }
+[2023-10-16T18:44:10.995Z] warning: authorization error
+[2023-10-16T18:44:10.996Z] warning: authorization error
+[2023-10-16T18:48:42.262Z] warning: authorization error
+[2023-10-16T18:48:42.262Z] warning: authorization error
+[2023-10-16T18:48:48.739Z] warning: authorization error
+[2023-10-16T18:48:48.740Z] warning: authorization error
+[2023-10-16T18:49:47.720Z] info: cliente socketServer conectado
+[2023-10-16T18:49:47.721Z] info: cliente socketServer conectado

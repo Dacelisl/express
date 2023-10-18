@@ -11,6 +11,15 @@ class ChatController {
       return sendErrorResponse(res, error)
     }
   }
+  async deleteAllMessage(req, res) {
+    try {
+      const addMsg = await chatService.deleteAll()
+      return sendSuccessResponse(res, addMsg)
+    } catch (error) {
+      req.logger.error('something went wrong deleteAllMessage', error)
+      return sendErrorResponse(res, error)
+    }
+  }
   async addMessage(req, res) {
     try {
       const newMessage = req.body

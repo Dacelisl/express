@@ -1,8 +1,9 @@
 import express from 'express'
 import { chatController } from '../controllers/chat.controller.js'
-import { isUser, registeredUser } from '../middleware/auth.js'
+import { adminAccess, registeredUser } from '../middleware/auth.js'
 
 export const chatRoutes = express.Router()
 
-chatRoutes.get('/', registeredUser, isUser, chatController.getAllMessages)
-chatRoutes.post('/', registeredUser, isUser, chatController.addMessage)
+chatRoutes.get('/', registeredUser, chatController.getAllMessages)
+chatRoutes.post('/', registeredUser, chatController.addMessage)
+chatRoutes.delete('/', adminAccess, chatController.deleteAllMessage)

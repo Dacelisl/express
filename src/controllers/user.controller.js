@@ -47,7 +47,7 @@ class UserController {
   }
   getRegister(req, res) {
     try {
-      const message = req.flash('info')
+      const message = req.flash('registerMessage')
       return res.render('register', { message })
     } catch (error) {
       req.logger.error('something went wrong getRegister', error)
@@ -60,7 +60,7 @@ class UserController {
         req.logger.error('something went wrong createRegister', err)
         return next(err)
       }
-      req.flash('info', info.message)
+      req.flash('loginMessage', info.message)
       if (!user) {
         return res.redirect('/api/users/register')
       }
@@ -68,7 +68,7 @@ class UserController {
     })(req, res, next)
   }
   getLogin(req, res) {
-    const message = req.flash('info')
+    const message = req.flash('loginMessage')
     return res.render('login', { message })
   }
   createLogin(req, res, next) {
@@ -78,14 +78,14 @@ class UserController {
         return next(err)
       }
       if (!user) {
-        req.flash('info', info.message)
+        req.flash('loginMessage', info.message)
         return res.redirect('/api/users/login')
       }
       req.session.user = user
       if (user.rol === 'admin') {
-        req.flash('info', `Welcome ${user.firstName}!. login as a user to buy!.`)
+        req.flash('homeMessage', `Welcome ${user.firstName}!. login as a user to buy!.`)
       } else {
-        req.flash('info', `¡Bienvenido ${user.firstName}!. Has iniciado sesión con éxito.`)
+        req.flash('homeMessage', `¡Bienvenido ${user.firstName}!. Has iniciado sesión con éxito.`)
       }
       return res.redirect('/api/products')
     })(req, res, next)
@@ -126,7 +126,7 @@ class UserController {
     }
   }
   getEditUser(req, res) {
-    const successMessages = req.flash('success')
+    const successMessages = req.flash('editMessage')
     return res.render('editUser', { successMessages })
   }
   getDeleteUser(req, res) {
@@ -153,9 +153,9 @@ class UserController {
       }
       const result = await userService.updateUser(userId.payload._id, userUpdate)
       if (result.code === 201) {
-        req.flash('success', 'Information was successfully updated.')
+        req.flash('editMessage', 'Information was successfully updated.')
       } else {
-        req.flash('info', 'The information could not be updated.')
+        req.flash('editMessage', 'The information could not be updated.')
       }
       req.session.user.message = null
       return res.redirect('/api/users/editUser')
@@ -228,7 +228,7 @@ class UserController {
   }
   loginGit(req, res) {
     req.session.user = req.user
-    req.flash('info', `${req.user.firstName} Logged in with GitHub successfully`)
+    req.flash('homeMessage', `${req.user.firstName} Logged in with GitHub successfully`)
     res.redirect('/api/products')
   }
 }

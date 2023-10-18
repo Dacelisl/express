@@ -16,8 +16,8 @@ class MailServices {
 
   async sendMail(code, dataUser) {
     try {
-      const cartPurchase = await ticketServices.getTicketById(code)
-      const dataRes = cartPurchase.data
+      const cartPurchase = await ticketServices.getTicketByCode(code)
+      const dataRes = cartPurchase.payload
       const transporter = this.createTransporter()
       const mailOptions = this.generateMailOptions(dataUser, dataRes)
       const sendResult = await transporter.sendMail(mailOptions)
@@ -54,9 +54,6 @@ class MailServices {
   generateMailHtml(dataRes) {
     return `
     <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
     .container {
       max-width: 600px;
       margin: 0 auto;
@@ -66,8 +63,10 @@ class MailServices {
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     .header {
+      background-color: #007BFF;
+      color: #fff;
       text-align: center;
-      margin-bottom: 20px;
+      padding: 20px 0;
     }
     .products {
       border-collapse: collapse;
@@ -90,10 +89,10 @@ class MailServices {
       <div class="container">
         <div class="header">
         <h1>Confirmación de Compra</h1>
+        </div>
         <p>¡Gracias por comprar en Coder-Shop!</p>
         <p>Estamos a la espera de recibir la confirmación del pago.</p>
         <p>Una vez sea confirmado, tu pedido será procesado y te notificaremos.</p>
-        </div>
         <table class="products">
           <thead>
             <tr>
@@ -175,10 +174,10 @@ class MailServices {
             background-color: #f5f5f5;
         }
         .header {
-            background-color: #007BFF;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
+          background-color: #007BFF;
+          color: #fff;
+          text-align: center;
+          padding: 20px 0;
         }
         .content {
             padding: 20px;
@@ -256,6 +255,12 @@ class MailServices {
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+        .header {
+          background-color: #007BFF;
+          color: #fff;
+          text-align: center;
+          padding: 20px 0;
+        }
         h1 {
             color: #333;
         }
@@ -273,7 +278,9 @@ class MailServices {
     </style>
     <body>
     <div class="container">
-        <h1>Notificación de Eliminación de Producto</h1>
+        <div class="container">
+          <h1>Notificación de Eliminación de Producto</h1>
+        </div>
         <p>Estimado ${user.firstName} ${user.lastName},</p>
         <p>Lamentamos informarte que tu producto en nuestra tienda ha sido eliminado debido a que no cumplía con nuestras políticas de la tienda.</p>
         <p>Detalles del producto eliminado:</p>

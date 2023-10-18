@@ -19,6 +19,18 @@ const authSession = async (requester, mockAdmin) => {
   authToken.set('Cookie', [`${cookieName}=${cookieValue}`])
   return authToken
 }
+const createProduct = (mail) => {
+  return {
+    title: faker.commerce.product(),
+    description: faker.commerce.productDescription(),
+    category: faker.commerce.department(),
+    price: faker.commerce.price({ min: 10, max: 2000, dec: 0, symbol: '$' }),
+    thumbnail: faker.system.fileName(),
+    code: faker.string.alphanumeric(10),
+    owner: mail,
+    stock: faker.number.int(100),
+  }
+}
 const createUser = (type) => {
   return {
     firstName: faker.person.firstName(),
@@ -30,21 +42,18 @@ const createUser = (type) => {
   }
 }
 const routesDelete = (route) => {
-  try {
-    route.forEach((documento) => {
-      const referenceParts = documento.reference.split('image')
-      if (referenceParts.length > 1) {
-        const filePath = `${__dirname}/public/image${referenceParts[1]}`
-        unlinkSync(filePath)
-      }
-    })
-  } catch (error) {
-    console.error(`Error al eliminar archivos: ${error}`)
-  }
+  route.forEach((documento) => {
+    const referenceParts = documento.reference.split('image')
+    if (referenceParts.length > 1) {
+      const filePath = `${__dirname}/public/image${referenceParts[1]}`
+      unlinkSync(filePath)
+    }
+  })
 }
 
 describe('tests API', () => {
   let mockAdmin = ''
+  let mockUserPremium = ''
   let mockUser = ''
   let productMock = ''
   let newCart = ''
@@ -58,6 +67,7 @@ describe('tests API', () => {
     if (response.ok) {
       await authenticatedAgent.delete(`${URL}/api/products/${productMock.id}`)
       await authenticatedAgent.delete(`${URL}/api/users/${mockAdmin.email}`)
+      await authenticatedAgent.delete(`${URL}/api/users/${mockUserPremium.email}`)
     }
   })
 
@@ -75,9 +85,16 @@ describe('tests API', () => {
       expect(response.status).to.equal(302)
       expect(response.header.location).to.equal('/api/users/login')
     })
+    it('POST /api/users/register createRegister `premium`', async () => {
+      mockUserPremium = createUser('premium')
+      mockUserPremium.email = dataConfig.emailTest
+      const response = await requester.post('/api/users/register').send(mockUserPremium)
+      expect(response.req.method).to.equal('POST')
+      expect(response.status).to.equal(302)
+      expect(response.header.location).to.equal('/api/users/login')
+    })
     it('POST /api/users/register createRegister `user`', async () => {
       mockUser = createUser('user')
-      mockUser.email = dataConfig.emailTest
       const response = await requester.post('/api/users/register').send(mockUser)
       expect(response.req.method).to.equal('POST')
       expect(response.status).to.equal(302)
@@ -198,7 +215,7 @@ describe('tests API', () => {
       expect(response.status).to.equal(200)
       expect(response.type).to.equal('text/html')
       expect(response.text).to.include('<h1>LOGIN</h1>')
-      authenticatedAgent = await authSession(requester, mockAdmin)
+      authenticatedAgent = await authSession(requester, mockUserPremium)
     })
     it('PUT  /api/users/updateUser updateUser', async () => {
       const updatedUser = mockUser
@@ -245,23 +262,22 @@ describe('tests API', () => {
   })
   describe('Products test', () => {
     before(async () => {
-      productMock = {
-        title: faker.commerce.product(),
-        description: faker.commerce.productDescription(),
-        category: faker.commerce.department(),
-        price: faker.commerce.price({ min: 10, max: 2000, dec: 0, symbol: '$' }),
-        thumbnail: faker.system.fileName(),
-        code: faker.string.alphanumeric(10),
-        owner: mockAdmin.email,
-        stock: faker.number.int(100),
-      }
+      productMock = createProduct(mockUserPremium.email)
     })
-    it('POST /api/products createProduct', async () => {
+    it('POST /api/products createProduct `ticket`', async () => {
       const response = await authenticatedAgent.post(`${URL}/api/products`).send(productMock)
       expect(response.status).to.equal(201)
       expect(response.type).to.equal('application/json')
       expect(response.body.payload).to.have.property('_id')
       productMock.id = response.body.payload._id
+    })
+    it('POST /api/products createProduct `delete`', async () => {
+      const productDelete = createProduct(mockUserPremium.email)
+      const response = await authenticatedAgent.post(`${URL}/api/products`).send(productDelete)
+      expect(response.status).to.equal(201)
+      expect(response.type).to.equal('application/json')
+      expect(response.body.payload).to.have.property('_id')
+      productMock.delete = response.body.payload._id
     })
     it('POST fail (duplicate code) /api/products', async () => {
       let response = ''
@@ -283,7 +299,6 @@ describe('tests API', () => {
     })
     it('GET /api/products getAllProducts', async () => {
       const response = await requester.get('/api/products')
-
       expect(response.status).to.equal(200)
       expect(response.type).to.equal('text/html')
       expect(response.text).to.include(`<h1 class='title'>`)
@@ -311,9 +326,7 @@ describe('tests API', () => {
         thumbnail: faker.system.fileName(),
         stock: faker.number.int(100),
       }
-
       const response = await authenticatedAgent.put(`${URL}/api/products/${productMock.id}`).send(updatedProduct)
-
       expect(response.status).to.equal(201)
       expect(response.req.method).to.equal('PUT')
       expect(response.type).to.equal('application/json')
@@ -326,16 +339,7 @@ describe('tests API', () => {
       expect(response.text).to.include('authorization error')
     })
     it('DELETE /api/products:pid deleteProduct', async () => {
-      let newProduct = {
-        title: faker.commerce.product(),
-        description: faker.commerce.productDescription(),
-        category: faker.commerce.department(),
-        price: faker.commerce.price({ min: 10, max: 2000, dec: 0, symbol: '$' }),
-        thumbnail: faker.system.fileName(),
-        code: faker.string.alphanumeric(10),
-        owner: mockAdmin.email,
-        stock: faker.number.int(100),
-      }
+      let newProduct = createProduct(mockUserPremium.email)
       const productDelete = await authenticatedAgent.post(`${URL}/api/products`).send(newProduct)
       const response = await authenticatedAgent.delete(`${URL}/api/products/${productDelete.body.payload._id}`)
       expect(response.req.method).to.equal('DELETE')
@@ -346,7 +350,7 @@ describe('tests API', () => {
   describe('Carts test /api/carts/', () => {
     before(async () => {
       const response = await authenticatedAgent.get(`${URL}/api/users/current`)
-      mockAdmin.cart = response._body.cart
+      mockUserPremium.cart = response._body.cart
     })
     it('GET /api/carts view fail (Authentication Error)', async () => {
       const response = await requester.get(`/api/carts/`)
@@ -355,7 +359,7 @@ describe('tests API', () => {
       expect(response.type).to.equal('text/html')
       expect(response.text).to.include('Authentication Error!')
     })
-    it('GET /api/carts view ', async () => {
+    it('GET view /api/carts getAll', async () => {
       const response = await authenticatedAgent.get(`${URL}/api/carts/`)
       expect(response.status).to.equal(200)
       expect(response.req.method).to.equal('GET')
@@ -363,7 +367,7 @@ describe('tests API', () => {
       expect(response.text).to.include('PRODUCT LIST FROM CART')
     })
     it('GET /:cid getCartId', async () => {
-      const response = await requester.get(`/api/carts/${mockAdmin.cart}`)
+      const response = await requester.get(`/api/carts/${mockUserPremium.cart}`)
       expect(response.status).to.equal(200)
       expect(response.req.method).to.equal('GET')
       expect(response.type).to.equal('application/json')
@@ -380,21 +384,22 @@ describe('tests API', () => {
       expect(response.body.message).to.include('cart created')
     })
     it('POST /:cid/product/:pid fail (Authentication Error)', async () => {
-      const response = await requester.post(`/api/carts/${mockAdmin.cart}/product/${productMock.id}`)
+      const response = await requester.post(`/api/carts/${mockUserPremium.cart}/product/${productMock.id}`)
       expect(response.status).to.equal(401)
       expect(response.req.method).to.equal('POST')
       expect(response.type).to.equal('text/html')
       expect(response.text).to.include('Authentication Error!')
     })
     it('POST /:cid/product/:pid addProduct', async () => {
-      const response = await authenticatedAgent.post(`${URL}/api/carts/${mockAdmin.cart}/product/${productMock.id}`)
+      const response = await authenticatedAgent.post(`${URL}/api/carts/${mockUserPremium.cart}/product/${productMock.id}`)
+      await authenticatedAgent.post(`${URL}/api/carts/${mockUserPremium.cart}/product/${productMock.delete}`)
       expect(response.status).to.equal(201)
       expect(response.req.method).to.equal('POST')
       expect(response.body.payload).to.have.property('_id')
       expect(response.type).to.equal('application/json')
       expect(response.body.payload).to.have.property('products').that.is.an('array')
     })
-    it('GET /current/cart fail (Authentication Error)', async () => {
+    it('GET fail (Authentication Error) /current/cart/ ', async () => {
       const response = await requester.get(`/current/cart`)
       expect(response.status).to.equal(401)
       expect(response.req.method).to.equal('GET')
@@ -405,17 +410,17 @@ describe('tests API', () => {
       expect(response.status).to.equal(200)
       expect(response.req.method).to.equal('GET')
       expect(response.type).to.equal('application/json')
-      expect(response.text).to.include(mockAdmin.cart)
+      expect(response.text).to.include(mockUserPremium.cart)
     })
-    it('PUT /:cid/product/:pid fail (Authentication Error)', async () => {
-      const response = await requester.put(`/api/carts/${mockAdmin.cart}/product/${productMock.id}`).send({ quantity: 5 })
+    it('PUT fail (Authentication Error) /:cid/product/:pid/ ', async () => {
+      const response = await requester.put(`/api/carts/${mockUserPremium.cart}/product/${productMock.id}`).send({ quantity: 5 })
       expect(response.status).to.equal(403)
       expect(response.req.method).to.equal('PUT')
       expect(response.type).to.equal('text/html')
       expect(response.text).to.include('authorization error')
     })
     it('PUT /:cid/product/:pid updateAddToCart', async () => {
-      const response = await authenticatedAgent.put(`${URL}/api/carts/${mockAdmin.cart}/product/${productMock.id}`).send({ quantity: 5 })
+      const response = await authenticatedAgent.put(`${URL}/api/carts/${mockUserPremium.cart}/product/${productMock.id}`).send({ quantity: 5 })
       expect(response.status).to.equal(201)
       expect(response.type).to.equal('application/json')
       expect(response.body).to.have.property('payload')
@@ -424,13 +429,13 @@ describe('tests API', () => {
       expect(response.body.payload).to.have.property('products').that.is.an('array')
     })
     it('DELETE /:cid/product/:pid fail (Authentication Error)', async () => {
-      const response = await requester.delete(`/${mockAdmin.cart}/product/${productMock.id}`)
+      const response = await requester.delete(`/${mockUserPremium.cart}/product/${productMock.id}`)
       expect(response.status).to.equal(401)
       expect(response.req.method).to.equal('DELETE')
       expect(response.text).to.include('Unauthorized')
     })
     it('DELETE /:cid/product/:pid deletedProduct', async () => {
-      const response = await authenticatedAgent.delete(`${URL}/api/carts/${mockAdmin.cart}/product/${productMock.id}`)
+      const response = await authenticatedAgent.delete(`${URL}/api/carts/${mockUserPremium.cart}/product/${productMock.delete}`)
       expect(response.status).to.equal(204)
       expect(response.req.method).to.equal('DELETE')
       expect(response.text).to.equal('')
@@ -451,19 +456,19 @@ describe('tests API', () => {
   })
   describe('Tickets test /api/tickets/', () => {
     it('PUT /:cid/purchase purchaseCart', async () => {
-      const response = await authenticatedAgent.put(`${URL}/api/tickets/${mockAdmin.cart}/purchase`)
+      const response = await authenticatedAgent.put(`${URL}/api/tickets/${mockUserPremium.cart}/purchase`)
       expect(response.status).to.equal(200)
       expect(response.req.method).to.equal('PUT')
       expect(response.type).to.equal('application/json')
       expect(response.body.message).to.include('Ticket created successfully')
-      expect(response.body.payload.purchaser).to.include(mockAdmin.email)
+      expect(response.body.payload.purchaser).to.include(mockUserPremium.email)
       expect(response.body.payload).to.have.property('products').that.is.an('array')
-      mockAdmin.ticket = response.body.payload.code
+      mockUserPremium.ticket = response.body.payload.code
     })
     it('GET fail /purchase/code/:cid', async () => {
       let response = ''
       try {
-        response = await authenticatedAgent.get(`${URL}/api/tickets/purchase/code/${mockAdmin.cart}`)
+        response = await authenticatedAgent.get(`${URL}/api/tickets/purchase/code/${mockUserPremium.cart}`)
       } catch (error) {
         response = error.response
       }
@@ -474,26 +479,136 @@ describe('tests API', () => {
       expect(response.body.message).to.include('Ticket does not exist')
     })
     it('GET /purchase/code/:cid getTicketByCode', async () => {
-      const response = await authenticatedAgent.get(`${URL}/api/tickets/purchase/code/${mockAdmin.ticket}`)
+      const response = await authenticatedAgent.get(`${URL}/api/tickets/purchase/code/${mockUserPremium.ticket}`)
       expect(response.status).to.equal(200)
       expect(response.req.method).to.equal('GET')
       expect(response.type).to.equal('application/json')
       expect(response.body.message).to.include('Ticket retrieved successfully')
-      expect(response.body.payload.purchaser).to.include(mockAdmin.email)
+      expect(response.body.payload.purchaser).to.include(mockUserPremium.email)
       expect(response.body.payload).to.have.property('products').that.is.an('array')
     })
+    it('POST /mail/send/:code sendMail', async () => {
+      const response = await authenticatedAgent.post(`${URL}/mail/send/${mockUserPremium.ticket}`)
+      expect(response.status).to.equal(201)
+      expect(response.req.method).to.equal('POST')
+      expect(response.type).to.equal('application/json')
+      expect(response.body.message).to.include('Mail sent successfully')
+    })
     it('DELETE /api/tickets/:cid fail (Authentication Error) ', async () => {
-      const response = await requester.delete(`/api/tickets/${mockAdmin.ticket}`)
+      const response = await requester.delete(`/api/tickets/${mockUserPremium.ticket}`)
       expect(response.status).to.equal(403)
       expect(response.req.method).to.equal('DELETE')
       expect(response.type).to.equal('text/html')
       expect(response.text).to.include('authorization error')
     })
     it('DELETE /api/tickets/:cid deleteTicket', async () => {
-      const response = await authenticatedAgent.delete(`${URL}/api/tickets/${mockAdmin.ticket}`)
+      const response = await authenticatedAgent.delete(`${URL}/api/tickets/${mockUserPremium.ticket}`)
       expect(response.status).to.equal(204)
       expect(response.req.method).to.equal('DELETE')
       expect(response.text).to.equal('')
+    })
+  })
+  describe('Chat test /api/tickets/', () => {
+    it('POST /api/chat/ addMessage', async () => {
+      const newMessage = {
+        user: mockUserPremium.firstName,
+        message: 'Hello, world!',
+      }
+      const response = await authenticatedAgent.post(`${URL}/api/chat/`).send(newMessage)
+      expect(response.status).to.equal(200)
+      expect(response.req.method).to.equal('POST')
+      expect(response.type).to.equal('application/json')
+      expect(response.body.payload).to.have.property('_id')
+      expect(response.body.message).to.include('Message added')
+    })
+    it('GET view /api/chat/ getAllMessages', async () => {
+      const response = await authenticatedAgent.get(`${URL}/api/chat/`)
+      expect(response.status).to.equal(200)
+      expect(response.req.method).to.equal('GET')
+      expect(response.type).to.equal('text/html')
+      expect(response.text).to.include('todo listo para trabajar con sockets')
+    })
+    it('GET fail (Authentication Error) /api/chat/', async () => {
+      let response = ''
+      try {
+        response = await requester.get(`/api/chat/`)
+      } catch (error) {
+        response = error.response
+      }
+      expect(response.status).to.equal(401)
+      expect(response.req.method).to.equal('GET')
+      expect(response.type).to.equal('text/html')
+      expect(response.text).to.include('Authentication Error')
+    })
+    it('DELETE fail (Authentication Error)/api/chat/', async () => {
+      let response = ''
+      try {
+        response = await requester.get(`/api/chat/`)
+      } catch (error) {
+        response = error.response
+      }
+      expect(response.status).to.equal(401)
+      expect(response.req.method).to.equal('GET')
+      expect(response.type).to.equal('text/html')
+      expect(response.text).to.include('Authentication Error')
+    })
+    it('DELETE /api/chat/ deleteAllMessage', async () => {
+      const response = await authenticatedAgent.delete(`${URL}/api/chat/`)
+      expect(response.status).to.equal(204)
+      expect(response.req.method).to.equal('DELETE')
+      expect(response.text).to.equal('')
+    })
+  })
+  describe('Recover test /api/recover/', () => {
+    it('POST fail (email not found) /recover/mail createMailRecover', async () => {
+      const user = {
+        email: faker.internet.email(),
+      }
+      let response
+      try {
+        response = await authenticatedAgent.post(`${URL}/recover/mail`).send(user)
+      } catch (error) {
+        response = error
+      }
+      expect(response.status).to.equal(200)
+      expect(response.req.method).to.equal('GET')
+      expect(response.type).to.equal('text/html')
+      expect(response.redirects.some((url) => url.includes('/api/users/register'))).to.be.true
+    })
+    it('POST /recover/mail createMailRecover', async () => {
+      const user = {
+        email: mockUserPremium.email,
+      }
+      const response = await authenticatedAgent.post(`${URL}/recover/mail`).send(user)
+      expect(response.status).to.equal(200)
+      expect(response.req.method).to.equal('GET')
+      expect(response.type).to.equal('text/html')
+      expect(response.redirects.some((url) => url.includes('/api/users/login'))).to.be.true
+    })
+    it('GET view /recover/pass/ getRecoveryPass', async () => {
+      const dataRecover = await requester.get(`/recover/pass/${mockUserPremium.email}`)
+      const token = dataRecover.body.payload.token
+      const email = dataRecover.body.payload.email
+      const response = await authenticatedAgent.get(`${URL}/recover/pass`).query({ token, email })
+
+      expect(response.status).to.equal(200)
+      expect(response.req.method).to.equal('GET')
+      expect(response.type).to.equal('text/html')
+      expect(response.text).to.include('Change Password')
+      expect(response.text).to.include(mockUserPremium.email)
+    })
+    it('GET view fail /recover/pass/', async () => {
+      let response
+      try {
+        response = await requester.get(`/recover/pass/`)
+      } catch (error) {
+        response = error
+      }
+      expect(response.status).to.equal(200)
+      expect(response.req.method).to.equal('GET')
+      expect(response.type).to.equal('text/html')
+      expect(response.text).to.include('are you lost')
+      expect(response.redirects.some((url) => url.includes('/api/users/register'))).to.be.true
     })
   })
 })

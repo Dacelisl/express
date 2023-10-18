@@ -20,7 +20,27 @@ class ChatServices {
       return {
         status: 'Fail',
         code: 500,
-        payload:{},
+        payload: {},
+        message: `Error ${error}`,
+      }
+    }
+  }
+  async deleteAll() {
+    try {
+      const response = await chatFactory.deleteAllMessage()
+      if (response.deletedCount > 0) {
+        return {
+          status: 'Success',
+          code: 204,
+          payload: response,
+          message: 'All Messages deleted',
+        }
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 500,
+        payload: {},
         message: `Error ${error}`,
       }
     }
@@ -38,7 +58,7 @@ class ChatServices {
       return {
         status: 'Fail',
         code: 500,
-        payload:{},
+        payload: {},
         message: `Error ${error}`,
       }
     }

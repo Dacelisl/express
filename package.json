@@ -8,7 +8,7 @@
     "start": "node ./src/app.js --mode production",
     "prod": "nodemon src/app.js --mode production",
     "dev": "nodemon -e yaml,js src/app.js --mode development",
-    "test": "mocha test/products.test.js --mode development"
+    "test": "mocha test/api.test.js --mode development"
   },
   "engines": {
     "node": "16.x"

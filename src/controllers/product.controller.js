@@ -16,7 +16,7 @@ class ProductController {
       const dataProduct = await productService.getAll(opcionesConsulta)
       if (dataProduct.status === 'Success') {
         if (req.session.user) {
-          dataProduct.session = { email: req.session.user.email, isAdmin: req.session.user.rol === 'admin', user: req.session.user.firstName, message: req.flash('info') }
+          dataProduct.session = { email: req.session.user.email, isAdmin: req.session.user.rol === 'admin', user: req.session.user.firstName, message: req.flash('homeMessage') }
           req.session.user.message = null
         }
         if (opcionesConsulta.isUpdating) {
@@ -100,21 +100,8 @@ class ProductController {
   async deleteProduct(req, res) {
     try {
       const productId = req.params.pid
-      const rol = req.session.user.rol
-      const mail = req.session.user.email
-      if (rol !== 'user') {
-        if (rol === 'premium') {
-          await productService.searchOwner(mail, productId)
-        }
-        const response = await productService.deletedOne(productId)
-        return sendSuccessResponse(res, response)
-      }
-      return res.status(404).json({
-        status: 'fail',
-        code: 404,
-        message: 'Product not found',
-        payload: {},
-      })
+      const resDelete = await productService.deletedOne(productId)
+      return sendSuccessResponse(res, resDelete)
     } catch (error) {
       req.logger.error('something went wrong deleteProduct', e)
       return sendErrorResponse(res, error)

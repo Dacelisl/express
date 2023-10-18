@@ -9,8 +9,8 @@ class RecoveryCodes {
     })
     return result
   }
-  find = async (email) => {
-    const result = await RecoveryCodesModel.find({ email: email })
+  findLastToken = async (email) => {
+    const result = await RecoveryCodesModel.findOne({ email: email }).sort({ expire: -1 })
     return result
   }
   findToken = async (token, email) => {
