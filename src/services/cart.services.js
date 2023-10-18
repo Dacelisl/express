@@ -55,7 +55,7 @@ class CartServices {
       const cart = await cartFactory.getCartByID(cartId)
       if (!cart) {
         const productFound = await productFactory.getProductByID(productId)
-        if (user !== undefined && user.rol === 'premium' && productFound.owner === user.email) {
+        if (user.rol === 'premium' && productFound.owner === user.email) {
           return {
             status: 'Fail',
             code: 401,
@@ -72,7 +72,7 @@ class CartServices {
         }
       }
       const product = cart.products.find((p) => p.productId.toString() === productId)
-      if (user !== undefined && user.rol === 'premium' && product.owner === user.email) {
+      if (user.rol === 'premium' && product.owner === user.email) {
         return {
           status: 'Fail',
           code: 401,

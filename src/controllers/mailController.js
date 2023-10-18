@@ -9,7 +9,7 @@ class MailController {
       const mail = await mailServices.sendMail(code, dataUser)
       return sendSuccessResponse(res, mail)
     } catch (error) {
-      req.logger.error('something went wrong sendMail, MailController', e)
+      req.logger.error('something went wrong sendMail, MailController', error)
       return sendErrorResponse(res, error)
     }
   }

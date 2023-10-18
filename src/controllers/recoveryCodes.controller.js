@@ -50,12 +50,10 @@ class RecoveryCodesController {
       const { token, email } = req.query
       const response = await recoveryCodeFactory.findToken(token, email)
       const foundToken = response[0]
-      console.log('user found', foundToken)
       if (!foundToken) {
         return res.render('error', { error: `are you lost ?`, code: 404 })
       }
       if (foundToken.expire > Date.now() && foundToken.active) {
-        console.log('yesss');
         const message = req.flash('recoverMessage')
         res.render('recoverPass', { token, email, message })
       } else {

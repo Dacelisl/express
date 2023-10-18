@@ -60,8 +60,8 @@ class UserController {
         req.logger.error('something went wrong createRegister', err)
         return next(err)
       }
-      req.flash('loginMessage', info.message)
       if (!user) {
+        req.flash('registerMessage', info.message)
         return res.redirect('/api/users/register')
       }
       return res.redirect('/api/users/login')
@@ -177,7 +177,6 @@ class UserController {
   async createDocument(req, res) {
     try {
       const uid = req.params.uid
-      /* const type = req.body.imageType */
       const type = req.headers['x-tipo-archivo']
       const response = await userService.createDocument(req.file, type, uid)
       return sendSuccessResponse(res, response)

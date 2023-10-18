@@ -14,7 +14,7 @@ class CartController {
   async addProduct(req, res) {
     try {
       const cid = req.params.cid ? req.params.cid : req.session.user.cart
-      const user = req.session.user ? req.session.user.rol : undefined
+      const user = req.session.user
       const pid = req.params.pid
       const quant = req.body
       const resAdd = await cartService.addToCart(cid, pid, quant, user)
@@ -35,11 +35,6 @@ class CartController {
       return sendErrorResponse(res, error)
     }
   }
-  /* async deleteAllProducts(req, res) {
-  const cid = req.params.cid
-  const resAdd = await cartService.deleteAllProducts(cid)
-  return res.json(resAdd)
-} */
   async deleteCart(req, res) {
     try {
       const cid = req.params.cid

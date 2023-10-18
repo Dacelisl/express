@@ -80,7 +80,7 @@ app.use('/api/chat', chatRoutes)
 app.use('/api/users', UserRoutes)
 app.use('/recover', RecoveryCodesRoutes)
 app.use('/api/mock/', MockRoutes)
-app.use('/mail', adminAccess, MailRoutes)
+app.use('/mail', MailRoutes)
 
 initPassport()
 app.use(passport.authorize())
@@ -94,5 +94,3 @@ app.get('*', (req, res) => {
   })
 })
 app.use(errorHandler)
-
-

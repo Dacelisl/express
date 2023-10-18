@@ -70,7 +70,9 @@ async function searchCart(cart) {
     const response = await fetch(`/api/carts/${cart}`)
     if (!response.ok) throw new Error('Something went wrong!')
     const cartProducts = await response.json()
-    if (cartProducts.payload.products.lenght > 0) updateCart(cartProducts)
+    if (cartProducts.payload.products.length > 0) {
+      updateCart(cartProducts)
+    }
   } catch (error) {
     Swal.fire({
       position: 'center',
@@ -116,7 +118,6 @@ async function sendMail(code) {
     throw new Error('Failed to sendMail', error)
   }
 }
-
 async function cartAfterPurchase() {
   try {
     const cartData = await fetch(`/api/carts/${currentCart}`)

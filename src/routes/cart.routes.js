@@ -12,4 +12,3 @@ CartRoutes.put('/:cid', registeredUser, cartController.updateCart)
 CartRoutes.delete('/:cid/product/:pid', registeredUser, cartController.deletedProduct)
 CartRoutes.delete('/:cid', adminAccess, cartController.deleteCart)
 CartRoutes.get('/current/cart', cartController.currentCart)
-/* CartRoutes.delete('/:cid', cartController.deleteAllProducts) */

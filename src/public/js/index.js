@@ -24,6 +24,15 @@ async function handleClick(event) {
   try {
     const session = await fetch(`/api/users/current`)
     const userLocal = await session.json()
+    if (userLocal.rol == 'admin') {
+      return Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'login as a user to buy',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+    }
     const productId = event.target.getAttribute('data-id')
     const response = await fetch(`/api/carts/${userLocal.cart}/product/${productId}`, {
       method: 'POST',

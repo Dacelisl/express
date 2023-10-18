@@ -85,7 +85,6 @@ function sendSuccessResponse(res, data) {
     payload: data.payload,
   })
 }
-
 export const createHash = (password) => bcryptjs.hashSync(password, bcryptjs.genSaltSync(10))
 export const isValidPassword = (password, hashPassword) => bcryptjs.compareSync(password, hashPassword)
 export const uploader = multer({ storage })

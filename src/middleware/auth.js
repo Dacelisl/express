@@ -11,8 +11,7 @@ export function adminAccess(req, res, next) {
     return next()
   }
   const ruta = req.originalUrl
-  const funcion = req.route.path
-  req.logger.warning(`Unauthorized access  ${req.method} ${ruta} from ${funcion}`)
+  req.logger.warning(`Unauthorized access  ${req.method} ${ruta}`)
   return res.status(403).render('error', { error: 'authorization error!', code: 403 })
 }
 export function isUser(req, res, next) {
