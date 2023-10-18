@@ -13,7 +13,7 @@ class CartController {
   }
   async addProduct(req, res) {
     try {
-      const cid = req.params.cid ? req.params.cid : req.session.user.cart
+      const cid = req.params.cid || req.session.user.cart
       const user = req.session.user
       const pid = req.params.pid
       const quant = req.body

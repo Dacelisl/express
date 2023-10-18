@@ -72,15 +72,16 @@ class CartServices {
         }
       }
       const product = cart.products.find((p) => p.productId.toString() === productId)
-      if (user.rol === 'premium' && product.owner === user.email) {
-        return {
-          status: 'Fail',
-          code: 401,
-          payload: {},
-          message: `You can't add products you created`,
-        }
-      }
+
       if (product) {
+        if (user.rol === 'premium' && product.owner === user.email) {
+          return {
+            status: 'Fail',
+            code: 401,
+            payload: {},
+            message: `You can't add products you created`,
+          }
+        }
         product.quantity += quant
         await cart.save()
       } else {

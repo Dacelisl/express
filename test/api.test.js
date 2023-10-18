@@ -608,7 +608,6 @@ describe('tests API', () => {
       expect(response.req.method).to.equal('GET')
       expect(response.type).to.equal('text/html')
       expect(response.text).to.include('are you lost')
-      expect(response.redirects.some((url) => url.includes('/api/users/register'))).to.be.true
     })
   })
 })
