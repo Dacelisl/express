@@ -1,7 +1,7 @@
 import winston from 'winston'
 import path from 'path'
 import dataConfig from '../config/process.config.js'
-import { __dirname } from '../utils/utils.js'
+import { __dirname, extractFunctionAndFile } from '../utils/utils.js'
 
 export let logger = ''
 
@@ -15,6 +15,14 @@ const myCustomLevels = {
     fatal: 5,
   },
 }
+const myCustomFormat = winston.format((info) => {
+  if (info.level === 'error') {
+    const { functionName, fileName } = extractFunctionAndFile(info)
+    info.message = `something went wrong in the ${functionName} function of the ${fileName} file`
+    return info
+  }
+  return info
+})
 const formatWithTimestamp = winston.format.combine(
   winston.format.timestamp(),
   winston.format.printf(({ timestamp, level, message }) => {
@@ -41,7 +49,7 @@ if (dataConfig.mode === 'development') {
       new winston.transports.File({
         filename: path.join(__dirname, '/utils/logs/errors.dev.log'),
         level: 'error',
-        format: formatWithTimestamp,
+        format: winston.format.combine( formatWithTimestamp),
       }),
       new winston.transports.File({
         filename: path.join(__dirname, '/utils/logs/errors.dev.log'),
@@ -64,7 +72,7 @@ if (dataConfig.mode === 'development') {
       new winston.transports.File({
         filename: path.join(__dirname, '/utils/logs/errors.prod.log'),
         level: 'error',
-        format: formatWithTimestamp,
+        format: winston.format.combine(formatWithTimestamp, myCustomFormat()),
       }),
       new winston.transports.File({
         filename: path.join(__dirname, '/utils/logs/errors.prod.log'),

@@ -1,46 +1,85 @@
-import { ticketServices } from '../services/ticket.services.js'
-import userDTO from '../DAO/DTO/user.DTO.js'
+import { ticketService } from '../services/ticket.services.js'
+
 import { sendErrorResponse, sendSuccessResponse } from '../utils/utils.js'
 
 class TicketController {
-  purchaseCart = async (req, res) => {
+  async getTickets(req, res) {
     try {
-      const id = req.params.cid
-      const infoUser = new userDTO(req.session.user)
-      const response = await ticketServices.purchaseCart(id, infoUser)
-      return sendSuccessResponse(res, response)
+      const tickets = await ticketService.getTickets()
+      return sendSuccessResponse(res, tickets)
     } catch (error) {
-      req.logger.error('something went wrong purchaseCart', error)
+      req.logger.error(error)
       return sendErrorResponse(res, error)
     }
   }
-  getTicketById = async (req, res) => {
+  async getTicketById(req, res) {
+    const ticketId = req.params.tid
     try {
-      const id = req.params.cid
-      const response = await ticketServices.getTicketById(id)
+      const response = await ticketService.getTicketById(ticketId)
       return sendSuccessResponse(res, response)
     } catch (error) {
-      req.logger.error('something went wrong getTicketById', error)
+      req.logger.error(error)
       return sendErrorResponse(res, error)
     }
   }
-  getTicketByCode = async (req, res) => {
+  async getTicketByTicketNumber(req, res) {
+    const ticketNum = req.params.tnum
     try {
-      const code = req.params.cid
-      const response = await ticketServices.getTicketByCode(code)
+      const response = await ticketService.getTicketByTicketNumber(parseInt(ticketNum))
       return sendSuccessResponse(res, response)
     } catch (error) {
-      req.logger.error('something went wrong getTicketByCode', error)
+      req.logger.error(error)
+      return sendErrorResponse(res, error)
+    }
+  }
+  async getTicketsByCustomerDNI(req, res) {
+    const ticketCustomer = req.params.cid
+    console.log('customr', ticketCustomer);
+    try {
+      const response = await ticketService.getTicketsByCustomerDNI(ticketCustomer)
+      return sendSuccessResponse(res, response)
+    } catch (error) {
+      req.logger.error(error)
+      return sendErrorResponse(res, error)
+    }
+  }
+  async getTicketsByEmployeeDNI(req, res) {
+    const ticketEmployee = req.params.eid
+    try {
+      const response = await ticketService.getTicketsByEmployeeDNI(ticketEmployee)
+      return sendSuccessResponse(res, response)
+    } catch (error) {
+      req.logger.error(error)
+      return sendErrorResponse(res, error)
+    }
+  }
+  async createTicket(req, res) {
+    const newTicket = req.body
+    try {
+      const response = await ticketService.createTicket(newTicket)
+      return sendSuccessResponse(res, response)
+    } catch (error) {
+      req.logger.error(error)
+      return sendErrorResponse(res, error)
+    }
+  }
+  async updateTicket(req, res) {
+    const data = req.body
+    try {
+      const resUpdate = await ticketService.updateTicket(data)
+      return sendSuccessResponse(res, resUpdate)
+    } catch (error) {
+      req.logger.error(error)
       return sendErrorResponse(res, error)
     }
   }
   async deleteTicket(req, res) {
     try {
-      const code = req.params.cid
-      const response = await ticketServices.deleteTicket(code)
+      const ticketId = req.params.tid
+      const response = await ticketService.deleteTicket(ticketId)
       return sendSuccessResponse(res, response)
     } catch (error) {
-      req.logger.error('something went wrong deleteTicket', error)
+      req.logger.error(error)
       return sendErrorResponse(res, error)
     }
   }

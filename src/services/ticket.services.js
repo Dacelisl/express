@@ -1,178 +1,236 @@
-import { ticketFactory, cartFactory, productFactory } from '../DAO/factory.js'
-import { randomCode, convertCurrencyToNumber } from '../utils/utils.js'
+import { ticketFactory } from '../DAO/factory.js'
+import { isValid } from '../utils/utils.js'
 
 class TicketServices {
-  async purchaseCart(id, dataUser) {
+  async getTickets() {
     try {
-      if (id !== dataUser.cart)
+      const tickets = await ticketFactory.getTickets()
+      if (!tickets) {
         return {
           status: 'Fail',
           code: 404,
+          message: `Error, Tickets not found getTickets`,
           payload: {},
-          message: 'the cart does not belong to the user',
         }
-      const cartFilter = await cartFactory.getCartWithProducts(dataUser.cart)
-      const productsNotPurchased = []
-      const productsToRemove = []
-      let totalCost = 0
-      const updatedProducts = await Promise.all(
-        cartFilter.products.map(async (product) => {
-          const productFiltered = await productFactory.getProductByID(product.productId._id)
-
-          if (productFiltered.stock >= product.quantity) {
-            productFiltered.stock -= product.quantity
-            await productFiltered.save()
-            productsToRemove.push(productFiltered)
-            totalCost += convertCurrencyToNumber(productFiltered.price) * product.quantity
-            return {
-              purchasedProduct: productFiltered,
-              purchasedQuantity: product.quantity,
-            }
-          } else if (productFiltered.stock > 0) {
-            const remainingQuantity = productFiltered.stock
-            productFiltered.stock = 0
-            await productFiltered.save()
-            totalCost += convertCurrencyToNumber(productFiltered.price) * remainingQuantity
-            productsNotPurchased.push({
-              product: productFiltered,
-              remainingQuantity: product.quantity - remainingQuantity,
-            })
-            return {
-              purchasedProduct: productFiltered,
-              purchasedQuantity: remainingQuantity,
-            }
-          } else {
-            productsNotPurchased.push({
-              product: productFiltered,
-              remainingQuantity: 0,
-            })
-            return null
-          }
-        })
-      )
-      productsToRemove.forEach(async (product) => {
-        await cartFactory.removeProductsFromCart(dataUser.cart, product._id)
-      })
-
-      const cartUpdate = await cartFactory.getCartWithProducts(dataUser.cart)
-      cartUpdate.products.forEach((product) => {
-        productsNotPurchased.forEach((outStock) => {
-          if (product.productId._id.toString() === outStock.product._id.toString()) {
-            const newQuantity = outStock.remainingQuantity > 0 ? outStock.remainingQuantity : product.quantity
-            product.quantity = newQuantity
-          }
-        })
-      })
-      await cartUpdate.save()
-      const currentDate = new Date()
-      const formattedDate = currentDate.toLocaleString()
-
-      const newOrder = {
-        code: randomCode(10),
-        purchase_datetime: formattedDate,
-        amount: totalCost,
-        purchaser: dataUser.email,
-        products: updatedProducts
-          .filter((product) => product !== null)
-          .map((product) => ({
-            productId: product.purchasedProduct._id,
-            quantity: product.purchasedQuantity,
-          })),
       }
-      await ticketFactory.addOrder(newOrder)
-
       return {
-        status: 'Success',
+        status: 'success',
         code: 200,
-        message: 'Ticket created successfully',
-        payload: newOrder,
+        message: 'all tickets',
+        payload: tickets,
       }
     } catch (error) {
       return {
-        status: 'Fail',
+        status: 'error',
         code: 500,
-        message: `Internal Server Error ${error}`,
+        message: `error getting all tickets : getTickets ${error}`,
         payload: {},
       }
     }
   }
-  async getTicketByCode(code) {
+  async getTicketById(uid) {
     try {
-      const ticket = await ticketFactory.getOrderByCode(code)
+      isValid(uid)
+      const ticketFound = await ticketFactory.getTicketById(uid)
+      if (!ticketFound) {
+        return {
+          status: 'Fail',
+          code: 404,
+          message: 'Ticket not exist getTicketById',
+          payload: {},
+        }
+      }
+      return {
+        status: 'success',
+        code: 200,
+        message: 'ticket found',
+        payload: ticketFound,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 400,
+        message: `Error getTicketById ${error}`,
+        payload: {},
+      }
+    }
+  }
+  async getTicketByTicketNumber(ticketNumber) {
+    try {
+      const ticketFound = await ticketFactory.getTicketByTicketNumber(ticketNumber)
+      if (!ticketFound) {
+        return {
+          status: 'Fail',
+          code: 404,
+          message: 'Ticket not exist getTicketByTicketNumber',
+          payload: {},
+        }
+      }
+      return {
+        status: 'success',
+        code: 200,
+        message: 'ticket found',
+        payload: ticketFound,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 400,
+        message: `Error getTicketByEmail ${error}`,
+        payload: {},
+      }
+    }
+  }
+  async getTicketsByCustomerDNI(customerId) {
+    try {
+      const ticketFound = await ticketFactory.getTicketsByCustomerDNI(customerId)
+      if (!ticketFound) {
+        return {
+          status: 'Fail',
+          code: 404,
+          message: 'Ticket not exist getTicketsByCustomerDNI',
+          payload: {},
+        }
+      }
+      return {
+        status: 'success',
+        code: 200,
+        message: 'ticket found',
+        payload: ticketFound,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 400,
+        message: `Error getTicketsByCustomerDNI ${error}`,
+        payload: {},
+      }
+    }
+  }
+  async getTicketsByEmployeeDNI(employeeId) {
+    try {
+      const ticketFound = await ticketFactory.getTicketsByEmployeeDNI(employeeId)
+      if (!ticketFound) {
+        return {
+          status: 'Fail',
+          code: 404,
+          message: 'Ticket not exist getTicketsByEmployeeDNI',
+          payload: {},
+        }
+      }
+      return {
+        status: 'success',
+        code: 200,
+        message: 'ticket found',
+        payload: ticketFound,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 400,
+        message: `Error getTicketsByEmployeeDNI ${error}`,
+        payload: {},
+      }
+    }
+  }
+  async createTicket(ticket) {
+    try {
+      const newTicket = await ticketFactory.createTicket(ticket)
+      if (!newTicket) {
+        return {
+          status: 'Fail',
+          code: 400,
+          message: 'ticket created properties are missing or undefined',
+          payload: {},
+        }
+      }
+      return {
+        status: 'Success',
+        code: 201,
+        message: 'ticket created',
+        payload: newTicket,
+      }
+    } catch (error) {
+      return {
+        code: 500,
+        status: 'error',
+        message: `Error to createTicket: ${error}`,
+        payload: {},
+      }
+    }
+  }
+  async updateTicket(ticket) {
+    try {
+      const ticketFound = await ticketFactory.getTicketByTicketNumber(ticket.ticketNumber)
+      if (!ticketFound) {
+        return {
+          status: 'Fail',
+          code: 404,
+          message: 'Ticket not exist : updateTicket',
+          payload: {},
+        }
+      }
+      const ticketUpdate = await ticketFactory.updateTicket(ticket)
+      if (ticketUpdate.modifiedCount > 0) {
+        const responseUpdate = await ticketFactory.getTicketByTicketNumber(ticket.ticketNumber)
+        return {
+          status: 'success',
+          code: 200,
+          message: 'ticket update successfully',
+          payload: responseUpdate,
+        }
+      } else {
+        return {
+          status: 'Fail',
+          code: 404,
+          message: `Error updateTicket`,
+          payload: ticketUpdate,
+        }
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 400,
+        message: `Error updateTicket : ${error}`,
+        payload: {},
+      }
+    }
+  }
+  async deleteTicket(id) {
+    try {
+      const ticket = await ticketFactory.getTicketById(id)
       if (!ticket) {
         return {
-          status: 'Fail',
+          status: 'error',
           code: 404,
-          message: 'Ticket does not exist',
+          message: 'Ticket not found',
           payload: {},
         }
       }
-      return {
-        status: 'Success',
-        code: 200,
-        message: 'Ticket retrieved successfully',
-        payload: ticket,
-      }
-    } catch (error) {
-      return {
-        status: 'Fail',
-        code: 500,
-        message: `Error: getTicketById ${error}`,
-        payload: {},
-      }
-    }
-  }
-  async getTicketById(id) {
-    try {
-      const ticket = await ticketFactory.getOrderById(id)
-      if (!ticket) {
+      const result = await ticketFactory.deleteTicket(id)
+      if (result.deletedCount > 0) {
+        return {
+          status: 'Success',
+          code: 204,
+          message: 'ticket deleted successfully',
+          payload: {},
+        }
+      } else {
         return {
           status: 'Fail',
           code: 404,
-          message: 'Ticket does not exist',
+          message: `Error, ticket not found deleteTicket`,
           payload: {},
         }
       }
-      return {
-        status: 'Success',
-        code: 200,
-        message: 'Ticket retrieved successfully',
-        payload: ticket,
-      }
     } catch (error) {
       return {
-        status: 'Fail',
+        status: 'error',
         code: 500,
-        message: `Error: getTicketById ${error}`,
+        message: `Something went wrong deleteTicket: ${error}`,
         payload: {},
-      }
-    }
-  }
-  async deleteTicket(code) {
-    try {
-      const result = await ticketFactory.deleteTicket(code)
-      if (!result) {
-        return {
-          status: 'Fail',
-          code: 404,
-          payload: result,
-          message: 'The ticket does not exist',
-        }
-      }
-      return {
-        status: 'Success',
-        code: 204,
-        payload: result,
-        message: 'Ticket deleted successfully',
-      }
-    } catch (error) {
-      return {
-        status: 'Fail',
-        code: 500,
-        payload: {},
-        message: `Error deleteTicket: ${error}`,
       }
     }
   }
 }
-export const ticketServices = new TicketServices()
+export const ticketService = new TicketServices()

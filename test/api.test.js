@@ -128,7 +128,7 @@ describe('tests API', () => {
       expect(response.header.location).to.equal('/api/products')
       authenticatedAgent = await authSession(requester, mockAdmin)
     })
-    it('GET /api/users/user/:uid getUser', async () => {
+    it('GET /api/users/user/:uid getUserById', async () => {
       const response = await authenticatedAgent.get(`${URL}/api/users/user/${mockAdmin.email}`)
       expect(response.req.method).to.equal('GET')
       expect(response.type).to.equal('text/html')

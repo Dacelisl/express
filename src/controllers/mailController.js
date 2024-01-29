@@ -1,4 +1,4 @@
-import { mailServices } from '../services/mail.services.js'
+/* import { mailServices } from '../services/mail.services.js'
 import { sendErrorResponse, sendSuccessResponse } from '../utils/utils.js'
 
 class MailController {
@@ -15,3 +15,4 @@ class MailController {
   }
 }
 export const mailController = new MailController()
+ */

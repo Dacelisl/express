@@ -1,9 +1,12 @@
 import express from 'express'
 import { ticketController } from '../controllers/ticket.controller.js'
-import { registeredUser, adminAccess } from '../middleware/auth.js'
-export const TicketsRoutes = express.Router()
+export const TicketRoutes = express.Router()
 
-TicketsRoutes.put('/:cid/purchase', registeredUser, ticketController.purchaseCart)
-TicketsRoutes.get('/purchase/:cid', adminAccess, ticketController.getTicketById)
-TicketsRoutes.get('/purchase/code/:cid', registeredUser, ticketController.getTicketByCode)
-TicketsRoutes.delete('/:cid', adminAccess, ticketController.deleteTicket)
+TicketRoutes.get('/', ticketController.getTickets)
+TicketRoutes.get('/:tid', ticketController.getTicketById)
+TicketRoutes.get('/ticket/:tnum', ticketController.getTicketByTicketNumber)
+TicketRoutes.get('/customer/:cid', ticketController.getTicketsByCustomerDNI)
+TicketRoutes.get('/employee/:eid', ticketController.getTicketsByEmployeeDNI)
+TicketRoutes.post('/', ticketController.createTicket)
+TicketRoutes.put('/:tid', ticketController.updateTicket)
+TicketRoutes.delete('/:tid', ticketController.deleteTicket)

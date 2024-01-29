@@ -3,8 +3,7 @@ import local from 'passport-local'
 import GitHubStrategy from 'passport-github'
 import { createHash, isValidPassword } from '../utils/utils.js'
 import { userService } from '../services/user.services.js'
-import { cartService } from '../services/cart.services.js'
-import userDTO from '../DAO/DTO/user.DTO.js'
+
 import fetch from 'node-fetch'
 import dataConfig from './process.config.js'
 const LocalStrategy = local.Strategy
@@ -45,7 +44,7 @@ export function initPassport() {
           if (user.code === 201) {
             return done(null, false, { message: 'User already exists' })
           }
-          let cart = await cartService.createCart()
+
           const newUser = {
             email: email,
             firstName: firstName,
@@ -53,12 +52,10 @@ export function initPassport() {
             rol: rol || 'user',
             password: createHash(password),
             age: Number(age),
-            cart: cart.payload._id,
             documents: [],
             lastConnection: '',
           }
-          const userDto = new userDTO(newUser)
-          let userCreated = await userService.saveUser(userDto)
+          let userCreated = await userService.saveUser(newUser)
           return done(null, userCreated, { message: 'User Registration succesful' })
         } catch (e) {
           return done(e, { message: 'Error in register' })
@@ -91,7 +88,6 @@ export function initPassport() {
             return done(null, { message: 'cannot get a valid email for this user' })
           }
           profile.email = emailDetail.email
-          let cart = await cartService.createCart()
 
           let user = await userService.getUserByEmail(profile.email)
           if (!user) {
@@ -102,12 +98,10 @@ export function initPassport() {
               rol: 'user',
               password: 'nopass',
               age: 0,
-              cart: cart.payload._id,
               documents: [],
               lastConnection: '',
             }
-            const userDto = new userDTO(newUser)
-            let userCreated = await userService.saveUser(userDto)
+            let userCreated = await userService.saveUser(newUser)
             return done(null, userCreated, { message: 'User Registration succesful' })
           } else {
             return done(null, user.payload, { message: 'User already exists' })
@@ -122,7 +116,7 @@ export function initPassport() {
     done(null, user._id)
   })
   passport.deserializeUser(async (id, done) => {
-    let userFound = await user.getUserByID(id)
+    let userFound = await user.getUserById(id)
     done(null, userFound)
   })
 }

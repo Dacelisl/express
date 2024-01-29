@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer'
+/* import nodemailer from 'nodemailer'
 import dataConfig from '../config/process.config.js'
 import { ticketServices } from '../services/ticket.services.js'
 import { __dirname } from '../utils/utils.js'
@@ -30,7 +30,7 @@ class MailServices {
     } catch (error) {
       return {
         status: 'Fail',
-        code: 401,
+        code: 404,
         payload: {},
         message: `Error Mail sent ${error}`,
       }
@@ -147,7 +147,7 @@ class MailServices {
     } catch (error) {
       return {
         status: 'Fail',
-        code: 401,
+        code: 404,
         message: `Error Mail sent ${error}`,
         payload: {},
       }
@@ -225,7 +225,7 @@ class MailServices {
     } catch (error) {
       return {
         status: 'Fail',
-        code: 401,
+        code: 404,
         message: `Error Mail sent ${error}`,
         payload: {},
       }
@@ -311,7 +311,7 @@ class MailServices {
     } catch (error) {
       return {
         status: 'Fail',
-        code: 401,
+        code: 404,
         payload: {},
         message: `Error Mail sent ${error}`,
       }
@@ -371,3 +371,4 @@ class MailServices {
   }
 }
 export const mailServices = new MailServices()
+ */
