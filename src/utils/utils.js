@@ -49,16 +49,6 @@ function isValid(id) {
     }
   }
 }
-
-function totalPrice(tickets) {
-  let total = 0
-  tickets.items.forEach(async (item) => {
-    total += item.itemPrice
-  })
-  tickets.totalPayment = total
-  return tickets
-}
-
 function timeDifference(connectionTime, timeMinutes) {
   const lastConnectionTime = new Date(connectionTime)
   const currentTime = new Date()
@@ -95,43 +85,7 @@ function sendSuccessResponse(res, data) {
     payload: data.payload,
   })
 }
-
-function formatDate(date) {
-  return date === undefined ? 'none' : new Date(date).toLocaleDateString('es-CO')
-}
-function formatCurrency(amount) {
-  return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(amount)
-}
-function formatPercentage(percentage) {
-  return `${percentage.toFixed(2)}%`
-}
-
-function extractFunctionAndFile(error) {
-  const stackLines = error.stack.split('\n')
-  const callSite = stackLines[stackLines.length - 1]
-  const [beforeParentheses, insideParentheses] = callSite.split(/\(([^)]+)\)/)
-  const filePathPart = insideParentheses.split('/src/')[1]
-  const fileName = filePathPart.split('/').pop()
-  const functionName = beforeParentheses.split('.').pop()
-  return { functionName, fileName }
-}
-
 export const createHash = (password) => bcryptjs.hashSync(password, bcryptjs.genSaltSync(10))
 export const isValidPassword = (password, hashPassword) => bcryptjs.compareSync(password, hashPassword)
 export const uploader = multer({ storage })
-export {
-  __filename,
-  __dirname,
-  parsedQuery,
-  isValid,
-  randomCode,
-  convertCurrencyToNumber,
-  extractFunctionAndFile,
-  timeDifference,
-  formatCurrency,
-  formatPercentage,
-  formatDate,
-  totalPrice,
-  sendErrorResponse,
-  sendSuccessResponse,
-}
+export { __filename, __dirname, parsedQuery, isValid, randomCode, convertCurrencyToNumber, timeDifference, sendErrorResponse, sendSuccessResponse }

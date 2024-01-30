@@ -1,28 +1,57 @@
-import { userFactory } from '../DAO/factory.js'
-import { isValid } from '../utils/utils.js'
+import { userFactory, cartFactory } from '../DAO/factory.js'
+import { timeDifference } from '../utils/utils.js'
+import { mailServices } from './mail.services.js'
+import dataConfig from '../config/process.config.js'
 
 class UserServices {
-  validateUser(dataUser) {
-    const requiredProperties = ['firstName', 'lastName', 'dni', 'phone', 'address', 'email', 'dateBirthday']
-    const missingProperties = requiredProperties.filter((property) => {
-      return !(property in dataUser) || dataUser[property] === undefined
-    })
-    if (missingProperties.length > 0) {
-      throw new Error(`Validation error: Missing or undefined properties ${missingProperties}`)
+  async saveUser(user) {
+    return await userFactory.saveUser(user)
+  }
+  async deleteInactiveUsers() {
+    const users = []
+    try {
+      const usersList = await userFactory.getUsers()
+      usersList.forEach((user) => {
+        const userData = {
+          name: user.firstName,
+          email: user.email,
+          delete: timeDifference(user.lastConnection, 2),
+        }
+        users.push(userData)
+      })
+      users.forEach(async (user) => {
+        if (user.delete) {
+          await mailServices.deleteInactiveUsersMail(user.email, user.name)
+          await this.deleteUserByEmail(user.email)
+        }
+      })
+      return {
+        status: 'success',
+        code: 201,
+        message: 'all users Inactive deleted',
+        payload: users,
+      }
+    } catch (error) {
+      return {
+        status: 'error',
+        code: 500,
+        message: 'error getting all users :(',
+        payload: {},
+      }
     }
-    return true
   }
   async getAllUsers() {
+    const users = []
     try {
-      const users = await userFactory.getAllUsers()
-      if (!users) {
-        return {
-          status: 'Fail',
-          code: 404,
-          message: `Error, Users not found getAllUsers`,
-          payload: {},
+      const usersList = await userFactory.getUsers()
+      usersList.forEach((user) => {
+        const userData = {
+          name: user.firstName,
+          email: user.email,
+          rol: user.rol,
         }
-      }
+        users.push(userData)
+      })
       return {
         status: 'success',
         code: 201,
@@ -33,26 +62,25 @@ class UserServices {
       return {
         status: 'error',
         code: 500,
-        message: 'error getting all users : getAllUsers',
+        message: 'error getting all users :(',
         payload: {},
       }
     }
   }
-  async getUserById(uid) {
+  async getUserByID(uid) {
     try {
-      isValid(uid)
-      const userFound = await userFactory.getUserById(uid)
+      const userFound = await userFactory.getUserByID(uid)
       if (!userFound) {
         return {
           status: 'Fail',
           code: 404,
-          message: 'User not exist getUserById',
+          message: 'User not exist',
           payload: {},
         }
       }
       return {
         status: 'success',
-        code: 200,
+        code: 201,
         message: 'user found',
         payload: userFound,
       }
@@ -60,7 +88,7 @@ class UserServices {
       return {
         status: 'Fail',
         code: 400,
-        message: `Error getUserById ${error}`,
+        message: `Error getUserByID`,
         payload: {},
       }
     }
@@ -72,13 +100,13 @@ class UserServices {
         return {
           status: 'Fail',
           code: 404,
-          message: 'User not exist getUserByEmail',
+          message: 'User not exist',
           payload: {},
         }
       }
       return {
         status: 'success',
-        code: 200,
+        code: 201,
         message: 'user found',
         payload: userFound,
       }
@@ -86,76 +114,105 @@ class UserServices {
       return {
         status: 'Fail',
         code: 400,
-        message: `Error getUserByEmail ${error}`,
+        message: `Error getUserByID`,
         payload: {},
       }
     }
   }
-  async saveUser(user) {
+  async updateUser(id, user) {
     try {
-      this.validateUser(user)
-      const newUser = await userFactory.saveUser(user)
-      if (!newUser) {
-        return {
-          status: 'Fail',
-          code: 400,
-          message: 'user created properties are missing or undefined',
-          payload: {},
-        }
-      }
-      return {
-        status: 'Success',
-        code: 201,
-        message: 'user created',
-        payload: newUser,
-      }
-    } catch (error) {
-      return {
-        code: 500,
-        status: 'error',
-        message: `Error to saveUser: ${error}`,
-        payload: {},
-      }
-    }
-  }
-  async updateUser(user) {
-    try {
-      const userFound = await userFactory.getUserByEmail(user.email)
+      const userFound = await userFactory.getUserByID(id)
       if (!userFound) {
         return {
           status: 'Fail',
           code: 404,
-          message: 'User not exist : updateUser',
+          message: 'User not exist',
           payload: {},
         }
       }
-      const userUpdate = await userFactory.updateUser(user)
-      if (userUpdate.modifiedCount > 0) {
-        const responseUpdate = await userFactory.getUserByEmail(user.email)
-        return {
-          status: 'success',
-          code: 200,
-          message: 'user update successfully',
-          payload: responseUpdate,
-        }
-      } else {
-        return {
-          status: 'Fail',
-          code: 404,
-          message: `Error updateUser`,
-          payload: userUpdate,
-        }
+      const userUpdate = await userFactory.updateUser(id, user)
+      return {
+        status: 'success',
+        code: 201,
+        message: 'user update successfully',
+        payload: userUpdate,
       }
     } catch (error) {
       return {
         status: 'Fail',
         code: 400,
-        message: `Error updateUser : ${error}`,
+        message: `Error updateUser`,
         payload: {},
       }
     }
   }
-  async deleteUser(userMail) {
+  async createDocument(file, imageType, uid) {
+    const esEmail = /\S+@\S+\.\S+/.test(uid)
+    let user = uid
+    try {
+      if (esEmail) {
+        const userRes = await userFactory.getUserByEmail(uid)
+        user = userRes._id
+      }
+      const reference = file.path
+      const base = reference.match(/\\image\\(.*)/)
+      const path = `http://localhost:${dataConfig.port}${base[0]}`
+      const nuevoDocumento = {
+        name: file.filename,
+        type: imageType,
+        reference: path,
+      }
+      await userFactory.loadDocument({ _id: user }, { documents: nuevoDocumento })
+      return {
+        status: 'success',
+        code: 201,
+        message: 'uploading file',
+        payload: nuevoDocumento,
+      }
+    } catch (error) {
+      return {
+        status: 'Fail',
+        code: 500,
+        payload: {},
+        message: `Error createDocument`,
+      }
+    }
+  }
+  async switchUserRole(user) {
+    const documentosUsuario = user.documents.map((documento) => documento.type)
+    const tiposDocumentosRequeridos = ['DNI', 'proofAddress', 'accountStatus']
+    const tieneTodosLosDocumentos = tiposDocumentosRequeridos.every((tipo) => documentosUsuario.includes(tipo))
+
+    if (tieneTodosLosDocumentos) {
+      const updatedUser = await userFactory.updateUser(user._id, {
+        rol: user.rol === 'user' ? 'premium' : 'user',
+      })
+      if (updatedUser.acknowledged) {
+        const userUpdate = await this.getUserByID(user._id)
+        return {
+          status: 'success',
+          code: 201,
+          message: 'update user role',
+          payload: userUpdate,
+        }
+      } else {
+        return {
+          status: 'error',
+          code: 500,
+          message: 'Failed to update user role',
+          payload: {},
+        }
+      }
+    } else {
+      return {
+        status: 'error',
+        code: 400,
+        message: 'The user does not have all the specified document types',
+        payload: {},
+      }
+    }
+  }
+  async deleteUserByEmail(userMail) {
     try {
       const user = await userFactory.getUserByEmail(userMail)
       if (!user) {
@@ -166,27 +223,19 @@ class UserServices {
           payload: {},
         }
       }
-      const result = await userFactory.deleteUser(user.email)
-      if (result.deletedCount > 0) {
-        return {
-          status: 'Success',
-          code: 204,
-          message: 'user deleted successfully',
-          payload: {},
-        }
-      } else {
-        return {
-          status: 'Fail',
-          code: 404,
-          message: `Error, user not found deleteUser`,
-          payload: {},
-        }
+      await cartFactory.deleteCart(user.cart)
+      const result = await userFactory.deletedOne(user._id)
+      return {
+        status: 'Success',
+        code: 204,
+        message: 'user deleted successfully',
+        payload: result,
       }
     } catch (error) {
       return {
         status: 'error',
         code: 500,
-        message: `Something went wrong deleteUser: ${error}`,
+        message: 'Something went wrong :(',
         payload: {},
       }
     }

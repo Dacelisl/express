@@ -9,20 +9,19 @@ import { __dirname } from './utils/utils.js'
 import { addLogger, logger } from './utils/logger.js'
 import { connectMongo } from './utils/connectMongo.js'
 import { connectSocket } from './utils/socketServer.js'
+import { adminAccess } from './middleware/auth.js'
 import { errorHandler } from './middleware/errors.js'
 import { ProductRoutes } from './routes/products.routes.js'
-import { RoleRoutes } from './routes/role.routes.js'
-import { ServiceRoutes } from './routes/service.routes.js'
-import { UserRoutes } from './routes/user.routes.js'
-import { EmployeeRoutes } from './routes/employee.routes.js'
-import { TicketRoutes } from './routes/ticket.routes.js'
-import { EmployeePerformanceRoutes } from './routes/employeePerformance.routes.js'
-/* import { adminAccess } from './middleware/auth.js'
 import { RecoveryCodesRoutes } from './routes/recoveryCodes.routes.js'
+import { CartRoutes } from './routes/cart.routes.js'
+import { TicketsRoutes } from './routes/ticket.routes.js'
+import { ViewRoutes } from './routes/views.routes.js'
 import { chatRoutes } from './routes/chat.routes.js'
+import { MockRoutes } from './routes/mock.routes.js'
 import { MailRoutes } from './routes/mail.routes.js'
+import { UserRoutes } from './routes/user.routes.js'
 import { initPassport } from './config/passport.config.js'
-import passport from 'passport' */
+import passport from 'passport'
 import flash from 'connect-flash'
 import dataConfig from './config/process.config.js'
 
@@ -40,18 +39,18 @@ connectMongo()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-/* const swaggerOptions = {
+const swaggerOptions = {
   definition: {
     openapi: '3.0.1',
     info: {
       title: 'Documentacion CoderShop',
       description: 'rutas de los modulos Products y Carts del proyecto coderShop',
     },
-  }, */
-//  apis: [`${__dirname}/docs/**/*.yaml`],
-//}
-/* const specs = swaggerJSDoc(swaggerOptions)
-app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs)) */
+  },
+  apis: [`${__dirname}/docs/**/*.yaml`],
+}
+const specs = swaggerJSDoc(swaggerOptions)
+app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs))
 
 app.engine('handlebars', handlebars.engine())
 app.set('views', path.join(__dirname, 'views'))
@@ -74,27 +73,23 @@ app.use(
 )
 app.use(flash())
 app.use('/api/products', ProductRoutes)
-app.use('/api/users', UserRoutes)
-app.use('/api/employee', EmployeeRoutes)
-app.use('/api/role', RoleRoutes)
-app.use('/api/service', ServiceRoutes)
-app.use('/api/tickets', TicketRoutes)
-app.use('/api/performance', EmployeePerformanceRoutes)
-/* 
+app.use('/api/carts', CartRoutes)
+app.use('/api/tickets', TicketsRoutes)
 app.use('/realtimeproducts', adminAccess, ViewRoutes)
-app.use('/api/chat', chatRoutes
+app.use('/api/chat', chatRoutes)
+app.use('/api/users', UserRoutes)
 app.use('/recover', RecoveryCodesRoutes)
 app.use('/api/mock/', MockRoutes)
-app.use('/mail', MailRoutes) */
+app.use('/mail', MailRoutes)
 
-/* initPassport()
+initPassport()
 app.use(passport.authorize())
-app.use(passport.session()) */
+app.use(passport.session())
 
 app.get('*', (req, res) => {
   return res.status(404).json({
     status: 'error',
-    message: `Not Found: ${res.message}`,
+    message: 'Not Found',
     payload: {},
   })
 })

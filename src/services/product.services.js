@@ -1,63 +1,31 @@
-import { productFactory } from '../DAO/factory.js'
+import { productFactory, userFactory } from '../DAO/factory.js'
+import { mailServices } from '../services/mail.services.js'
 import { parsedQuery, isValid } from '../utils/utils.js'
 import dataConfig from '../config/process.config.js'
+import ProductDTO from '../DAO/DTO/product.dto.js'
 
 class ProductServices {
   validateProduct(dataProduct) {
-    const requiredProperties = ['name', 'description', 'category', 'price', 'thumbnail', 'code', 'provider', 'stock', 'profitPercentage']
-    const missingProperties = requiredProperties.filter((property) => {
-      return !(property in dataProduct) || dataProduct[property] === undefined
-    })
+    const requiredProperties = ['title', 'description', 'category', 'price', 'thumbnail', 'code', 'owner', 'stock']
+    const missingProperties = requiredProperties.filter((property) => !(property in dataProduct))
     if (missingProperties.length > 0) {
-      throw new Error(`Validation error: Missing or undefined properties ${missingProperties}`)
-    }
-    return true
-  }
-  async getAllProducts() {
-    try {
-      const payload = await productFactory.getAllProducts()
-      if (!payload) {
-        return {
-          status: 'Fail',
-          code: 404,
-          message: `Error, products not found getAllProducts`,
-          payload: {},
-        }
-      }
-      return {
-        status: 'Success',
-        code: 201,
-        message: 'products found getAllProducts',
-        payload: payload,
-      }
-    } catch (error) {
-      return {
-        status: 'Fail',
-        code: 500,
-        message: `Internal Server Error getAllProducts`,
-        payload: {},
-      }
+      throw new Error(`Validation error: Missing properties - ${missingProperties.join(', ')}`)
     }
   }
-  async getProductsFilter({ limit, page, sort, query, baseUrl }) {
+
+  async getAll({ limit, page, sort, query, baseUrl, isUpdating }) {
     const limitValue = limit ? parseInt(limit) : 10
     const pageNumber = page ? parseInt(page) : 1
     const sorting = sort === 'desc' ? -1 : 1
     const queryFilter = query ? parsedQuery(query) : {}
     try {
-      const payload = await productFactory.getProductsFilter(queryFilter, pageNumber, limitValue, sorting)
+      const payload = await productFactory.getProducts(queryFilter, page, limitValue, sorting)
       const totalProducts = await productFactory.getTotalProducts(queryFilter)
       const totalPages = Math.ceil(totalProducts / limitValue)
+
       const hasNextPage = pageNumber < totalPages
       const hasPrevPage = pageNumber > 1
-      if (!payload) {
-        return {
-          status: 'Fail',
-          code: 404,
-          message: `Error, products not found getProductsFilter`,
-          payload: {},
-        }
-      }
+
       return {
         status: 'Success',
         code: 200,
@@ -76,77 +44,52 @@ class ProductServices {
         status: 'Fail',
         code: 404,
         payload: {},
-        message: `Error getting data getProductsFilter ${error.message}`,
+        message: `Error getting data ${error.message}`,
       }
     }
   }
-  async getProductByID(_id) {
+  async findById(_id) {
     try {
       isValid(_id)
       const payload = await productFactory.getProductByID(_id)
-      if (payload) {
-        return {
-          status: 'Success',
-          code: 201,
-          message: 'product found',
-          payload: payload,
-        }
-      } else {
-        return {
-          status: 'Fail',
-          code: 404,
-          message: `Error, product not found getProductByID`,
-          payload: {},
-        }
+      return {
+        status: 'Success',
+        code: 201,
+        message: 'product found',
+        payload: payload,
       }
     } catch (error) {
       return {
         status: 'Fail',
-        code: 500,
-        message: `Internal Server Error getProductByID`,
+        code: 401,
+        message: `Error ${error}`,
         payload: {},
       }
     }
   }
-  async getProductByCode(code) {
+  async findByCode(code) {
     try {
       const payload = await productFactory.getProductByCode(code)
-      if (payload) {
-        return {
-          status: 'Success',
-          code: 201,
-          message: 'product found',
-          payload: payload,
-        }
-      } else {
-        return {
-          status: 'Fail',
-          code: 404,
-          message: `Error, product not found getProductByCode`,
-          payload: {},
-        }
+      return {
+        status: 'Success',
+        code: 201,
+        message: 'product found',
+        payload: payload,
       }
     } catch (error) {
       return {
         status: 'Fail',
-        code: 500,
-        message: `Internal Server Error getProductByCode`,
+        code: 401,
+        message: `Error ${error}`,
         payload: {},
       }
     }
   }
-  async createProduct(dataProduct) {
+  async createOne(dataProduct) {
+    const dataDTO = new ProductDTO({ dataProduct })
+    this.validateProduct(dataDTO)
     try {
-      this.validateProduct(dataProduct)
-      const createProduct = await productFactory.saveProduct(dataProduct)
-      if (!createProduct) {
-        return {
-          status: 'Fail',
-          code: 400,
-          message: 'Product created properties are missing or undefined',
-          payload: {},
-        }
-      }
+      const createProduct = await productFactory.saveProduct(dataDTO)
       return {
         status: 'Success',
         code: 201,
@@ -157,12 +100,17 @@ class ProductServices {
       return {
         code: 500,
         status: 'error',
-        message: `Error to save product: ${error.message}`,
+        message: `Error al crear el producto: ${error.message}`,
         payload: {},
       }
     }
   }
-  async deleteProduct(productId) {
+  async searchOwner(mail, pid) {
+    const userOwner = await userFactory.getUserByEmail(mail)
+    const product = await productFactory.getProductByID(pid)
+    return userOwner.email === product.owner || userOwner.rol === 'admin'
+  }
+  async deletedOne(productId) {
     try {
       const productFound = await productFactory.getProductByID(productId)
       if (!productFound) {
@@ -173,21 +121,18 @@ class ProductServices {
           payload: {},
         }
       }
+      if (productFound.owner !== 'admin') {
+        const userOwner = await userFactory.getUserByEmail(productFound.owner)
+        if (userOwner.rol === 'premium') {
+          await mailServices.productNotificationMail(userOwner, productFound)
+        }
+      }
       const deleted = await productFactory.deleteProduct(productId)
-      if (deleted.deletedCount > 0) {
-        return {
-          status: 'Success',
-          code: 204,
-          message: 'removed product',
-          payload: {},
-        }
-      } else {
-        return {
-          status: 'Fail',
-          code: 404,
-          message: `Error, product not found deleteProduct`,
-          payload: {},
-        }
+      return {
+        status: 'Success',
+        code: 204,
+        message: 'user deleted successfully',
+        payload: deleted,
       }
     } catch (error) {
       return {
@@ -198,39 +143,29 @@ class ProductServices {
       }
     }
   }
-  async updateProduct(product) {
+  async updateOne(product) {
     try {
       const productFound = await productFactory.getProductByID(product.id)
       if (!productFound) {
         return {
           status: 'Fail',
           code: 404,
-          message: 'product not exist deleteProduct',
+          message: 'product not exist',
           payload: {},
         }
       }
       const updateProduct = await productFactory.updateProduct(product)
-      if (updateProduct.modifiedCount > 0) {
-        const productUpdate = await productFactory.getProductByID(product.id)
-        return {
-          status: 'Success',
-          code: 200,
-          message: 'product update successfully',
-          payload: productUpdate,
-        }
-      } else {
-        return {
-          status: 'Fail',
-          code: 404,
-          message: `Error updateProduct`,
-          payload: updateProduct,
-        }
+      return {
+        status: 'success',
+        code: 201,
+        message: 'product update successfully',
+        payload: updateProduct,
       }
     } catch (error) {
       return {
         status: 'Fail',
-        code: 500,
-        message: `Something went wrong :( ${error}`,
+        code: 400,
+        message: `Error updateProduct`,
         payload: {},
       }
     }

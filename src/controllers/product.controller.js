@@ -3,15 +3,6 @@ import { sendErrorResponse, sendSuccessResponse } from '../utils/utils.js'
 
 class ProductController {
   async getAllProducts(req, res) {
-    try {
-      const products = await productService.getAllProducts()
-      return sendSuccessResponse(res, products)
-    } catch (error) {
-      req.logger.error(error)
-      return sendErrorResponse(res, error)
-    }
-  }
-  async getProductsFilter(req, res) {
     const { limit, page, sort, query } = req.query
     const opcionesConsulta = {
       limit: parseInt(limit),
@@ -22,9 +13,17 @@ class ProductController {
       isUpdating: !!req.query.isUpdating,
     }
     try {
-      const dataProduct = await productService.getProductsFilter(opcionesConsulta)
+      const dataProduct = await productService.getAll(opcionesConsulta)
       if (dataProduct.status === 'Success') {
-        return res.json(dataProduct)
+        if (req.session.user) {
+          dataProduct.session = { email: req.session.user.email, isAdmin: req.session.user.rol === 'admin', user: req.session.user.firstName, message: req.flash('homeMessage') }
+          req.session.user.message = null
+        }
+        if (opcionesConsulta.isUpdating) {
+          return res.status(200).json(dataProduct)
+        } else {
+          res.render('home', dataProduct)
+        }
       } else {
         req.logger.error('something went wrong ')
         return res.status(500).json({
@@ -34,38 +33,48 @@ class ProductController {
         })
       }
     } catch (error) {
-      req.logger.error(error)
+      req.logger.error('Error getting the products', error)
       return sendErrorResponse(res, error)
     }
   }
   async getProductId(req, res) {
-    const productId = req.params.pid
     try {
-      const productFound = await productService.getProductByID(productId)
-      return sendSuccessResponse(res, productFound)
+      const productId = req.params.pid
+      const productFound = await productService.findById(productId)
+      res.render('product', productFound.payload)
     } catch (error) {
-      req.logger.error(error)
+      req.logger.error('something went wrong getProductId', error)
       return sendErrorResponse(res, error)
     }
   }
   async getProductCode(req, res) {
-    const productCode = req.params.code
     try {
-      const productFound = await productService.getProductByCode(productCode)
-      return sendSuccessResponse(res, productFound)
+      const productCode = req.params.code
+      const response = await productService.findByCode(productCode)
+      return sendSuccessResponse(res, response)
     } catch (error) {
-      req.logger.error(error)
+      req.logger.error('something went wrong getProductCode', e)
       return sendErrorResponse(res, error)
     }
   }
   async createProduct(req, res) {
     try {
-      const { name, description, category, price, thumbnail, code, provider, stock, profitPercentage } = req.body
-      const newProduct = { name, description, category, price, thumbnail, code, provider, stock, profitPercentage }
-      const response = await productService.createProduct(newProduct)
+      const { title, description, category, price, thumbnail, code, stock } = req.body
+      const owner = req.session.user && req.session.user.rol === 'premium' ? req.session.user.email : 'admin'
+      const newProduct = {
+        title,
+        description,
+        category,
+        price,
+        thumbnail,
+        code,
+        owner,
+        stock,
+      }
+      const response = await productService.createOne(newProduct)
       return sendSuccessResponse(res, response)
     } catch (error) {
-      req.logger.error(error)
+      req.logger.error('Something went wrong createProduct', error)
       return sendErrorResponse(res, error)
     }
   }
@@ -73,31 +82,28 @@ class ProductController {
     try {
       const data = req.body
       const newProduct = {
-        name: data.name,
+        title: data.title,
         description: data.description,
         category: data.category,
         price: data.price,
         thumbnail: data.thumbnail,
-        code: data.code,
-        provider: data.provider,
         stock: data.stock,
-        profitPercentage: data.profitPercentage,
       }
       newProduct.id = req.params.pid
-      const resUpdate = await productService.updateProduct(newProduct)
+      const resUpdate = await productService.updateOne(newProduct)
       return sendSuccessResponse(res, resUpdate)
     } catch (error) {
-      req.logger.error(error)
+      req.logger.error('something went wrong updateProduct', e)
       return sendErrorResponse(res, error)
     }
   }
   async deleteProduct(req, res) {
-    const productId = req.params.pid
     try {
-      const resDelete = await productService.deleteProduct(productId)
+      const productId = req.params.pid
+      const resDelete = await productService.deletedOne(productId)
       return sendSuccessResponse(res, resDelete)
     } catch (error) {
-      req.logger.error(error)
+      req.logger.error('something went wrong deleteProduct', e)
       return sendErrorResponse(res, error)
     }
   }
